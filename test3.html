@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -84,60 +83,223 @@
 <body>
 
   <h1>Test 3</h1>
+  <div style="text-align:center; margin-bottom: 20px;">
+    <label for="languageSelect">Dil Seç / Select Language: </label>
+    <select id="languageSelect" onchange="switchLanguage(this.value)">
+      <option value="tr">Türkçe</option>
+      <option value="en">English</option>
+    </select>
+  </div>
   <form id="quizForm"></form>
   <button onclick="checkAnswers()">Cevapları Kontrol Et</button>
   <p id="result"></p>
 
   <script>
     const questions = [
-  { "q": "İnsanlar neden 'çaba gerekçelendirme' (effort justification) eğilimi gösterir?", "options": ["Kendilerini cezalandırmak için", "Zor işleri kolay göstermek için", "Zorlandıkları şeye daha fazla değer vermek için", "Başarısızlığı örtbas etmek için"], "correct": "C" },
-  { "q": "Sistem 1 düşünme tarzı aşağıdakilerden hangisini tanımlar?", "options": ["Yavaş ve mantıklı", "Analitik ve kontrollü", "Otomatik ve hızlı", "Detaylı ve hesaplı"], "correct": "C" },
-  { "q": "İnsanların daha önce duyduğu bilgiye daha çok inanmasına ne ad verilir?", "options": ["İnanç direnci", "Maruziyet etkisi", "Doğruluk illüzyonu", "Yanıltıcı çapa"], "correct": "C" },
-  { "q": "Heuristiklerin temel avantajı nedir?", "options": ["Kararları daha mantıklı kılmak", "Detaylı analiz yapılmasını sağlamak", "Karar vermeyi hızlandırmak", "Tüm bilgileri kullanmak"], "correct": "C" },
-  { "q": "İnsanların önceki kararlarını haklı çıkarmak için yeni tutumlar geliştirmesi hangi kavrama örnektir?", "options": ["Duygusal rezonans", "Cognitive dissonance", "Heuristik savunma", "İkili düşünme"], "correct": "B" },
-  { "q": "Korku temelli mesajlar başarısız olduğunda neden etkili olamaz?", "options": ["Korku yetersiz olduğu için", "Çözüm önerisi sunulmadığı için", "Mesaj çok uzun olduğu için", "Kaynak güvenilir olmadığı için"], "correct": "B" },
-  { "q": "Peripheral route hangi bireyleri daha çok etkiler?", "options": ["Konuya yüksek ilgisi olanları", "Yorgun veya dikkat dağınıklığı olanları", "Bilim insanlarını", "Uzun analizleri sevenleri"], "correct": "B" },
-  { "q": "Karar verirken duygulara aşırı güvenilmesi ne tür bir yanlığa neden olabilir?", "options": ["Mantıksal tutarsızlık", "Affect heuristic", "Çapa yanlılığı", "Analitik önyargı"], "correct": "B" },
-  { "q": "Sosyal kanıt (social proof) ilkesi en çok ne zaman işe yarar?", "options": ["İnsanlar konuya hâkim olduğunda", "Kişi belirsizlik içinde olduğunda", "İnsanlar yalnız karar aldığında", "Konu kişisel olduğunda"], "correct": "B" },
-  { "q": "İnsanların geçmişteki yatırımlarını kaybetmemek için kötü kararları sürdürmesine ne ad verilir?", "options": ["Anchoring bias", "Sürüklenme hatası", "Sunk cost fallacy", "Primacy effect"], "correct": "C" },
-  { "q": "İkna sürecinde mesajın tekrarı neyi artırır?", "options": ["Karmaşıklığı", "Bıkkınlığı", "Tanıdıklığı ve kabulü", "Dikkat dağınıklığını"], "correct": "C" },
-  { "q": "Kişinin bir konuda daha önceki tutumu, yeni bilgiyi nasıl etkiler?", "options": ["İlgisiz kalmasını sağlar", "Tutumla çelişen bilgiyi daha dikkatli dinlemesini sağlar", "Tutumu destekleyen bilgiyi tercih etmesine neden olur", "Bilgiyi unutmasına yol açar"], "correct": "C" },
-  { "q": "Duyguların tutum oluşturmadaki rolü en çok ne zaman artar?", "options": ["Konu önemsizse", "Zaman kısıtlıysa", "Analiz yapmak mümkün değilse", "Konu kişisel öneme sahipse"], "correct": "D" },
-  { "q": "Yüksek bilişsel yük altındaki bireyler hangi ikna yoluna daha yatkındır?", "options": ["Analitik ikna", "Central route", "Peripheral route", "Kararsız kalma"], "correct": "C" },
-  { "q": "Tutumun davranışı öngörmesi hangi durumda artar?", "options": ["Tutum zayıfsa", "Toplumsal baskı fazlaysa", "Tutum kolay hatırlanıyorsa (yüksek erişilebilirlik)", "Konu önemsizse"], "correct": "C" },
-  { "q": "Tutum bileşenlerinden 'duyuşsal' olan neyi ifade eder?", "options": ["İnançları ve düşünceleri", "Geçmiş davranışları", "Duygusal tepkileri", "Mantıksal çıkarımları"], "correct": "C" },
-  { "q": "İnsanlar başkalarının davranışını açıklarken daha çok neye odaklanır?", "options": ["Kişilik özelliklerine", "Durumsal etkenlere", "Şansa", "Kültüre"], "correct": "A" },
-  { "q": "Anchoring bias (çapa yanlılığı) aşağıdakilerden hangisini açıklar?", "options": ["Önce gelen bilgiye fazla ağırlık vermek", "Karar verirken sosyal etkiye dayanmak", "Korkuya dayalı kararlar almak", "İlk seçenekleri reddetmek"], "correct": "A" },
-  { "q": "Self-perception teorisine göre birey neye bakarak tutum oluşturur?", "options": ["Toplumun beklentisine", "Duygusal içgörüye", "Kendi davranışlarına", "Başarısızlıklarına"], "correct": "C" },
-  { "q": "Tutum-uyum süreci neden önemlidir?", "options": ["Bireyin topluma karşı durmasını sağlar", "Tutumun davranışı yönlendirmesini sağlar", "Duyguları zayıflatır", "Bilgiyi unutturur"], "correct": "B" },
-  { "q": "Cognitive dissonance ile başa çıkma yöntemlerinden biri nedir?", "options": ["Daha fazla bilgi toplamak", "Tutumda değişiklik yapmak", "Durumu inkar etmek", "Karmaşa yaratmak"], "correct": "B" },
-  { "q": "Hedef kitlede direnç oluşmaması için hangi ikna biçimi daha etkilidir?", "options": ["Doğrudan emir", "Tehdit temelli yaklaşım", "Özgürlük vurgulayan yaklaşım", "Yüksek otorite baskısı"], "correct": "C" },
-  { "q": "‘Ben böyle düşünmem ama söylerim’ tarzı davranışlar hangi etkiyle tutuma dönüşebilir?", "options": ["Social facilitation", "Foot-in-the-door", "Saying-becomes-believing", "Group polarization"], "correct": "C" },
-  { "q": "Bir bireyin davranışıyla tutumu arasındaki çelişki uzun sürerse ne olur?", "options": ["Tutumu güçlenir", "Uyum bozulur", "Duyarsızlaşma başlar", "Tutum davranışa uyarlanabilir"], "correct": "D" },
-  { "q": "Tutumun davranışı etkileyebilmesi için aşağıdakilerden hangisi gereklidir?", "options": ["Tutumun zayıf olması", "Tutumun farkında olunması", "Davranışın rastlantısal olması", "Tutumun toplumsal olması"], "correct": "B" }
-    ];
-    const form = document.getElementById("quizForm");
-    questions.forEach((item, index) => {
-      const div = document.createElement("div");
-      div.className = "question";
-      div.innerHTML = `<strong>${index + 1}. ${item.q}</strong>`;
-      const group = document.createElement("div");
-      group.className = "options";
-      item.options.forEach((opt, optIndex) => {
-  const id = `q${index}_opt${optIndex}`;
-  const letter = String.fromCharCode(65 + optIndex); // A, B, C, D
-  group.innerHTML += `
-    <label>
-      <input type="radio" name="q${index}" value="${letter}" id="${id}"> (${letter}) ${opt}
-    </label>
-  `;
-});
-      div.appendChild(group);
-      const feedback = document.createElement("div");
-      feedback.id = `feedback${index}`;
-      div.appendChild(feedback);
-      form.appendChild(div);
-    });
+ {
+    "q": "İnsanlar neden 'çaba gerekçelendirme' (effort justification) eğilimi gösterir?",
+    "q_en": "Why do people show the tendency of effort justification?",
+    "options": ["Kendilerini cezalandırmak için", "Zor işleri kolay göstermek için", "Zorlandıkları şeye daha fazla değer vermek için", "Başarısızlığı örtbas etmek için"],
+    "options_en": ["To punish themselves", "To make difficult tasks seem easy", "To value things they struggled for more", "To cover up failure"],
+    "correct": "C"
+  },
+  {
+    "q": "Sistem 1 düşünme tarzı aşağıdakilerden hangisini tanımlar?",
+    "q_en": "Which of the following describes System 1 thinking?",
+    "options": ["Yavaş ve mantıklı", "Analitik ve kontrollü", "Otomatik ve hızlı", "Detaylı ve hesaplı"],
+    "options_en": ["Slow and logical", "Analytical and controlled", "Automatic and fast", "Detailed and calculated"],
+    "correct": "C"
+  },
+  {
+    "q": "İnsanların daha önce duyduğu bilgiye daha çok inanmasına ne ad verilir?",
+    "q_en": "What is it called when people are more likely to believe information they've heard before?",
+    "options": ["İnanç direnci", "Maruziyet etkisi", "Doğruluk illüzyonu", "Yanıltıcı çapa"],
+    "options_en": ["Belief perseverance", "Exposure effect", "Illusion of truth", "Misleading anchor"],
+    "correct": "C"
+  },
+  {
+    "q": "Heuristiklerin temel avantajı nedir?",
+    "q_en": "What is the main advantage of heuristics?",
+    "options": ["Kararları daha mantıklı kılmak", "Detaylı analiz yapılmasını sağlamak", "Karar vermeyi hızlandırmak", "Tüm bilgileri kullanmak"],
+    "options_en": ["Make decisions more logical", "Enable detailed analysis", "Speed up decision making", "Use all available information"],
+    "correct": "C"
+  },
+  {
+    "q": "İnsanların önceki kararlarını haklı çıkarmak için yeni tutumlar geliştirmesi hangi kavrama örnektir?",
+    "q_en": "Which concept explains when people develop new attitudes to justify past decisions?",
+    "options": ["Duygusal rezonans", "Cognitive dissonance", "Heuristik savunma", "İkili düşünme"],
+    "options_en": ["Emotional resonance", "Cognitive dissonance", "Heuristic defense", "Dual thinking"],
+    "correct": "B"
+  },
+  {
+    "q": "Korku temelli mesajlar başarısız olduğunda neden etkili olamaz?",
+    "q_en": "Why are fear-based messages ineffective when they fail?",
+    "options": ["Korku yetersiz olduğu için", "Çözüm önerisi sunulmadığı için", "Mesaj çok uzun olduğu için", "Kaynak güvenilir olmadığı için"],
+    "options_en": ["Because fear is insufficient", "Because no solution is offered", "Because the message is too long", "Because the source is not credible"],
+    "correct": "B"
+  },
+  {
+    "q": "Peripheral route hangi bireyleri daha çok etkiler?",
+    "q_en": "Which individuals are more influenced by the peripheral route?",
+    "options": ["Konuya yüksek ilgisi olanları", "Yorgun veya dikkat dağınıklığı olanları", "Bilim insanlarını", "Uzun analizleri sevenleri"],
+    "options_en": ["Those highly interested in the topic", "Tired or distracted individuals", "Scientists", "People who like long analyses"],
+    "correct": "B"
+  },
+  {
+    "q": "Karar verirken duygulara aşırı güvenilmesi ne tür bir yanlığa neden olabilir?",
+    "q_en": "What kind of bias can result from relying too much on emotions in decision-making?",
+    "options": ["Mantıksal tutarsızlık", "Affect heuristic", "Çapa yanlılığı", "Analitik önyargı"],
+    "options_en": ["Logical inconsistency", "Affect heuristic", "Anchoring bias", "Analytical bias"],
+    "correct": "B"
+  },
+  {
+    "q": "Sosyal kanıt (social proof) ilkesi en çok ne zaman işe yarar?",
+    "q_en": "When is the principle of social proof most effective?",
+    "options": ["İnsanlar konuya hâkim olduğunda", "Kişi belirsizlik içinde olduğunda", "İnsanlar yalnız karar aldığında", "Konu kişisel olduğunda"],
+    "options_en": ["When people are knowledgeable", "When a person is uncertain", "When people decide alone", "When the issue is personal"],
+    "correct": "B"
+  },
+  {
+    "q": "İnsanların geçmişteki yatırımlarını kaybetmemek için kötü kararları sürdürmesine ne ad verilir?",
+    "q_en": "What is it called when people continue poor decisions to avoid losing past investments?",
+    "options": ["Anchoring bias", "Sürüklenme hatası", "Sunk cost fallacy", "Primacy effect"],
+    "options_en": ["Anchoring bias", "Drift error", "Sunk cost fallacy", "Primacy effect"],
+    "correct": "C"
+  },
+{
+    "q": "İkna sürecinde mesajın tekrarı neyi artırır?",
+    "q_en": "What does message repetition increase in the persuasion process?",
+    "options": ["Karmaşıklığı", "Bıkkınlığı", "Tanıdıklığı ve kabulü", "Dikkat dağınıklığını"],
+    "options_en": ["Complexity", "Boredom", "Familiarity and acceptance", "Distraction"],
+    "correct": "C"
+  },
+  {
+    "q": "Kişinin bir konuda daha önceki tutumu, yeni bilgiyi nasıl etkiler?",
+    "q_en": "How does a person’s prior attitude affect new information?",
+    "options": ["İlgisiz kalmasını sağlar", "Tutumla çelişen bilgiyi daha dikkatli dinlemesini sağlar", "Tutumu destekleyen bilgiyi tercih etmesine neden olur", "Bilgiyi unutmasına yol açar"],
+    "options_en": ["Makes them indifferent", "Makes them pay more attention to conflicting info", "Leads them to prefer info that supports their attitude", "Leads to forgetting the info"],
+    "correct": "C"
+  },
+  {
+    "q": "Duyguların tutum oluşturmadaki rolü en çok ne zaman artar?",
+    "q_en": "When does the role of emotions in attitude formation increase the most?",
+    "options": ["Konu önemsizse", "Zaman kısıtlıysa", "Analiz yapmak mümkün değilse", "Konu kişisel öneme sahipse"],
+    "options_en": ["If the topic is unimportant", "If time is limited", "If analysis is not possible", "If the topic has personal importance"],
+    "correct": "D"
+  },
+  {
+    "q": "Yüksek bilişsel yük altındaki bireyler hangi ikna yoluna daha yatkındır?",
+    "q_en": "Which persuasion route do individuals under high cognitive load prefer?",
+    "options": ["Analitik ikna", "Central route", "Peripheral route", "Kararsız kalma"],
+    "options_en": ["Analytical persuasion", "Central route", "Peripheral route", "Indecision"],
+    "correct": "C"
+  },
+  {
+    "q": "Tutumun davranışı öngörmesi hangi durumda artar?",
+    "q_en": "When is an attitude more likely to predict behavior?",
+    "options": ["Tutum zayıfsa", "Toplumsal baskı fazlaysa", "Tutum kolay hatırlanıyorsa (yüksek erişilebilirlik)", "Konu önemsizse"],
+    "options_en": ["When the attitude is weak", "When social pressure is high", "When the attitude is easily accessible", "When the topic is unimportant"],
+    "correct": "C"
+  },
+  {
+    "q": "Tutum bileşenlerinden 'duyuşsal' olan neyi ifade eder?",
+    "q_en": "What does the 'affective' component of attitude refer to?",
+    "options": ["İnançları ve düşünceleri", "Geçmiş davranışları", "Duygusal tepkileri", "Mantıksal çıkarımları"],
+    "options_en": ["Beliefs and thoughts", "Past behaviors", "Emotional responses", "Logical inferences"],
+    "correct": "C"
+  },
+  {
+    "q": "İnsanlar başkalarının davranışını açıklarken daha çok neye odaklanır?",
+    "q_en": "What do people tend to focus on when explaining others’ behavior?",
+    "options": ["Kişilik özelliklerine", "Durumsal etkenlere", "Şansa", "Kültüre"],
+    "options_en": ["Personality traits", "Situational factors", "Chance", "Culture"],
+    "correct": "A"
+  },
+  {
+    "q": "Anchoring bias (çapa yanlılığı) aşağıdakilerden hangisini açıklar?",
+    "q_en": "What does anchoring bias explain?",
+    "options": ["Önce gelen bilgiye fazla ağırlık vermek", "Karar verirken sosyal etkiye dayanmak", "Korkuya dayalı kararlar almak", "İlk seçenekleri reddetmek"],
+    "options_en": ["Overweighting initial information", "Relying on social influence", "Making fear-based decisions", "Rejecting initial options"],
+    "correct": "A"
+  },
+  {
+    "q": "Self-perception teorisine göre birey neye bakarak tutum oluşturur?",
+    "q_en": "According to self-perception theory, what do individuals look at to form attitudes?",
+    "options": ["Toplumun beklentisine", "Duygusal içgörüye", "Kendi davranışlarına", "Başarısızlıklarına"],
+    "options_en": ["Social expectations", "Emotional insight", "Their own behaviors", "Their failures"],
+    "correct": "C"
+  },
+  {
+    "q": "Tutum-uyum süreci neden önemlidir?",
+    "q_en": "Why is the attitude-behavior consistency process important?",
+    "options": ["Bireyin topluma karşı durmasını sağlar", "Tutumun davranışı yönlendirmesini sağlar", "Duyguları zayıflatır", "Bilgiyi unutturur"],
+    "options_en": ["Allows individual to oppose society", "Allows attitudes to guide behavior", "Weakens emotions", "Leads to forgetting information"],
+    "correct": "B"
+  },
+  {
+    "q": "Cognitive dissonance ile başa çıkma yöntemlerinden biri nedir?",
+    "q_en": "What is one way to cope with cognitive dissonance?",
+    "options": ["Daha fazla bilgi toplamak", "Tutumda değişiklik yapmak", "Durumu inkar etmek", "Karmaşa yaratmak"],
+    "options_en": ["Gather more information", "Change the attitude", "Deny the situation", "Create confusion"],
+    "correct": "B"
+  },
+  {
+    "q": "Hedef kitlede direnç oluşmaması için hangi ikna biçimi daha etkilidir?",
+    "q_en": "Which persuasion approach is more effective in avoiding resistance in the audience?",
+    "options": ["Doğrudan emir", "Tehdit temelli yaklaşım", "Özgürlük vurgulayan yaklaşım", "Yüksek otorite baskısı"],
+    "options_en": ["Direct command", "Threat-based approach", "Autonomy-emphasizing approach", "Strong authority pressure"],
+    "correct": "C"
+  },
+  {
+    "q": "‘Ben böyle düşünmem ama söylerim’ tarzı davranışlar hangi etkiyle tutuma dönüşebilir?",
+    "q_en": "Which effect can turn 'I don’t believe it but I say it' behavior into actual attitude?",
+    "options": ["Social facilitation", "Foot-in-the-door", "Saying-becomes-believing", "Group polarization"],
+    "options_en": ["Social facilitation", "Foot-in-the-door", "Saying-becomes-believing", "Group polarization"],
+    "correct": "C"
+  },
+  {
+    "q": "Bir bireyin davranışıyla tutumu arasındaki çelişki uzun sürerse ne olur?",
+    "q_en": "What happens if the inconsistency between a person’s behavior and attitude persists?",
+    "options": ["Tutumu güçlenir", "Uyum bozulur", "Duyarsızlaşma başlar", "Tutum davranışa uyarlanabilir"],
+    "options_en": ["The attitude strengthens", "Alignment is disrupted", "Desensitization begins", "Attitude adjusts to behavior"],
+    "correct": "D"
+  },
+  {
+    "q": "Tutumun davranışı etkileyebilmesi için aşağıdakilerden hangisi gereklidir?",
+    "q_en": "What is necessary for an attitude to influence behavior?",
+    "options": ["Tutumun zayıf olması", "Tutumun farkında olunması", "Davranışın rastlantısal olması", "Tutumun toplumsal olması"],
+    "options_en": ["Weak attitude", "Awareness of the attitude", "Random behavior", "Socially held attitude"],
+    "correct": "B"
+  }  ];
+     const form = document.getElementById("quizForm");
+
+    function renderQuestions(language = "tr") {
+      form.innerHTML = "";
+      questions.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "question";
+        const questionText = language === "en" ? item.q_en : item.q;
+        const options = language === "en" ? item.options_en : item.options;
+        div.innerHTML = `<strong>${index + 1}. ${questionText}</strong>`;
+        const group = document.createElement("div");
+        group.className = "options";
+        options.forEach((opt, optIndex) => {
+          const id = `q${index}_opt${optIndex}`;
+          const letter = String.fromCharCode(65 + optIndex); // A, B, C, D
+          group.innerHTML += `
+            <label>
+              <input type="radio" name="q${index}" value="${letter}" id="${id}"> (${letter}) ${opt}
+            </label>
+          `;
+        });
+        div.appendChild(group);
+        const feedback = document.createElement("div");
+        feedback.id = `feedback${index}`;
+        div.appendChild(feedback);
+        form.appendChild(div);
+      });
+    }
+
     function checkAnswers() {
       let score = 0;
       questions.forEach((item, index) => {
@@ -158,6 +320,13 @@
       const result = document.getElementById("result");
       result.innerHTML = `Puanın: ${score} / ${questions.length} (${Math.round((score / questions.length) * 100)}%)`;
     }
+
+    function switchLanguage(lang) {
+      renderQuestions(lang);
+    }
+
+    // İlk yüklemede Türkçe göster
+    renderQuestions("tr");
   </script>
 </body>
 </html>
