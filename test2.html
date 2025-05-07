@@ -1,1 +1,162 @@
 
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Test 1</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      padding: 40px;
+      background-color: #f0f2f5;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #2c3e50;
+    }
+    .question {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-left: 6px solid #3498db;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+    .question strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #34495e;
+    }
+    .options label {
+      display: block;
+      background-color: #f7f9fb;
+      padding: 10px;
+      margin-bottom: 6px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .options input[type="radio"] {
+      margin-right: 10px;
+    }
+    .options label:hover {
+      background-color: #e6f1ff;
+      border-color: #3498db;
+    }
+    .correct {
+      color: #27ae60;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+    .wrong {
+      color: #e74c3c;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+    button {
+      display: block;
+      margin: 30px auto 20px auto;
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    #result {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Test 1</h1>
+  <form id="quizForm"></form>
+  <button onclick="checkAnswers()">Cevapları Kontrol Et</button>
+  <p id="result"></p>
+
+  <script>
+    const questions = [
+  { "q": "Heuristikler ne için kullanılır?", "options": ["Duygusal karar almak", "Karmaşık hesaplamalar yapmak", "Zihinsel kestirme yollarla karar vermek", "Algıları manipüle etmek"], "correct": "?" },
+  { "q": "Temsil edilebilirlik sezgisi (representativeness heuristic) neyi ifade eder?", "options": ["Geçmiş deneyimlere göre karar alma", "Bir şeyin olasılığını benzerliğe göre değerlendirme", "Karar alırken sayısal verilere odaklanma", "Duygusal yönlendirmeye göre seçim yapma"], "correct": "?" },
+  { "q": "Elde bulunabilirlik sezgisi (availability heuristic) hangi durumu etkiler?", "options": ["Nesnel veriye göre karar vermeyi", "Zor kararların ertelenmesini", "Kolay hatırlanan örneklerin kararları etkilemesini", "İstatistiksel analizlere yönelmeyi"], "correct": "?" },
+  { "q": "Overconfidence bias (aşırı güven yanlılığı) nedir?", "options": ["Kendi yeterliliğini küçümsemek", "Başka insanların fikirlerine aşırı güvenmek", "Kendi bilgilerine ve yargılarına gereğinden fazla güvenmek", "Kararsız kalmak"], "correct": "?" },
+  { "q": "Anchoring bias (çapa etkisi) en çok ne zaman ortaya çıkar?", "options": ["Kararsızlık durumunda", "İlk bilgiye fazla odaklanıldığında", "Tüm seçenekler değerlendirildiğinde", "Bilinçli analiz yapıldığında"], "correct": "?" },
+  { "q": "Confirmation bias (doğrulama yanlılığı) hangi davranışa yol açar?", "options": ["Farklı görüşleri araştırmak", "Sadece kendi inancını destekleyen bilgileri dikkate almak", "Tarafsız bilgi toplamaya çalışmak", "Kendi fikrine karşı çıkan kanıtları öne çıkarmak"], "correct": "?" },
+  { "q": "Bilişsel tutarsızlık (cognitive dissonance) durumunda kişi ne yapar?", "options": ["Tutumunu veya davranışını değiştirerek uyum sağlar", "Kararsız kalır", "Hatalı olduğuna inanmaz", "Durumu görmezden gelir"], "correct": "?" },
+  { "q": "Self-serving bias hangi durumu ifade eder?", "options": ["Başarıyı şansa, başarısızlığı kendine atfetmek", "Başarıyı kendine, başarısızlığı dış faktörlere atfetmek", "Diğerlerini suçlamak", "Kendi hatalarını abartmak"], "correct": "?" },
+  { "q": "Korku uyandırıcı mesajlar ne zaman daha etkilidir?", "options": ["Sadece tehdit içerdiğinde", "Çözüm önerisiyle birlikte sunulduğunda", "Çok şiddetli olduğunda", "Kısa ve genel olduğunda"], "correct": "?" },
+  { "q": "Peripheral route ile ikna edilen tutumun özelliği nedir?", "options": ["Kalıcıdır", "Yüzeyseldir", "Zorlukla değişir", "Rasyoneldir"], "correct": "?" },
+  { "q": "Tutumlar hangi koşulda davranışları daha güçlü etkiler?", "options": ["Genel olduklarında", "Sosyal baskı yüksekse", "Özel ve güçlü olduklarında", "Gizli kaldıklarında"], "correct": "?" },
+  { "q": "Mere exposure effect neyi ifade eder?", "options": ["Yetersiz maruziyetin ilgiyi artırmasını", "Bir şeye ne kadar maruz kalırsak, onu o kadar fazla beğenmemizi", "Maruz kalmamanın ilgiyi artırmasını", "Yeni olana karşı daha olumlu tutum geliştirmeyi"], "correct": "?" },
+  { "q": "Central route hangi durumda kullanılır?", "options": ["Konu önemsizse", "Dikkat düşükse", "Dinleyici konuya ilgiliyse", "Mesaj kısa ve yüzeyselse"], "correct": "?" },
+  { "q": "Primacy effect nedir?", "options": ["Son bilginin daha etkili olması", "İlk bilginin daha çok hatırlanması ve etkili olması", "Tüm bilgilerin eşit etkili olması", "Ara bilgilerin daha çok hatırlanması"], "correct": "?" },
+  { "q": "Self-presentation (öz sunum) teorisine göre birey neden tutumunu davranışına uygun hale getirir?", "options": ["Kendine tutarlı görünmek için", "Topluma karşı dürüst olmak için", "Davranışını değiştirmek için", "Motivasyonu artırmak için"], "correct": "?" },
+  { "q": "Attitude accessibility neyi ifade eder?", "options": ["Tutumların kararsız olması", "Tutumların hatırlanabilirliğinin yüksek olması", "Tutumun zayıf olması", "Davranışın unutulması"], "correct": "?" },
+  { "q": "Sleep effect (uyuyan etki) nedir?", "options": ["Mesajın unutulması", "Kaynağın zamanla etkisizleşmesi", "Mesajın zamanla daha etkili hale gelmesi", "Kaynağın hemen etkili olması"], "correct": "?" },
+  { "q": "Lowball tekniği nasıl işler?", "options": ["Yüksek teklif verip geri çekilmek", "Önce cazip teklif sunup sonra koşulları değiştirmek", "İkna için doğrudan baskı yapmak", "İlk başta tüm koşulları sunmak"], "correct": "?" },
+  { "q": "Sosyal psikolojide tutumun üç bileşeni nedir?", "options": ["Duygusal, davranışsal, bilişsel", "Davranışsal, sosyal, zihinsel", "Bilişsel, fizyolojik, duygusal", "Duygusal, refleksif, bilişsel"], "correct": "?" },
+  { "q": "Sosyal etki türlerinden compliance neyi ifade eder?", "options": ["İçselleştirme", "Zorla kabul ettirme", "Görünüşte katılma, içten katılmama", "Bağımsızlık gösterme"], "correct": "?" },
+  { "q": "Foot-in-the-door tekniği nedir?", "options": ["Büyük istekten sonra küçük istek yapmak", "Küçük istekle başlayıp sonra büyük isteği kabul ettirmek", "Açık tehdit sunmak", "İkna yerine zorlamak"], "correct": "?" },
+  { "q": "İnsanlar neden bilgi çelişkisi yaşadığında dissonance hisseder?", "options": ["Tüm bilgileri analiz etmek zorunda kaldıkları için", "Tutarsızlık psikolojik rahatsızlık yarattığı için", "Sosyal baskı yüzünden", "Düşünsel yorgunluk yüzünden"], "correct": "?" },
+  { "q": "Self-perception teorisi hangi durumda geçerlidir?", "options": ["Kişi davranışının nedenini bilmediğinde", "Kişi güçlü bir tutuma sahip olduğunda", "Kişi çok kararlıysa", "Tutumlar çok eskiyse"], "correct": "?" },
+  { "q": "Attitude-behavior inconsistency hangi durumda gözlenir?", "options": ["Tutumlar güçlü olduğunda", "Tutum davranışla örtüşmediğinde", "Tutum davranışı belirlediğinde", "Duygular davranışı etkilediğinde"], "correct": "?" },
+  { "q": "İkna edici mesajlarda kaynak etkisini artıran unsur hangisidir?", "options": ["Zayıf duruş", "Uzmanlık ve güvenilirlik", "Yavaş konuşma", "Anonimlik"], "correct": "?" }
+    ];
+    const form = document.getElementById("quizForm");
+    questions.forEach((item, index) => {
+      const div = document.createElement("div");
+      div.className = "question";
+      div.innerHTML = `<strong>${index + 1}. ${item.q}</strong>`;
+      const group = document.createElement("div");
+      group.className = "options";
+      item.options.forEach(opt => {
+        const id = `q${index}_opt${opt}`;
+        group.innerHTML += `
+          <label>
+            <input type="radio" name="q${index}" value="${opt}" id="${id}"> ${opt}
+          </label>
+        `;
+      });
+      div.appendChild(group);
+      const feedback = document.createElement("div");
+      feedback.id = `feedback${index}`;
+      div.appendChild(feedback);
+      form.appendChild(div);
+    });
+    function checkAnswers() {
+      let score = 0;
+      questions.forEach((item, index) => {
+        const selected = document.querySelector(`input[name="q${index}"]:checked`);
+        const feedback = document.getElementById(`feedback${index}`);
+        if (!selected) {
+          feedback.textContent = "Cevap seçilmedi.";
+          feedback.className = "wrong";
+        } else if (selected.value === item.correct) {
+          feedback.textContent = "Doğru!";
+          feedback.className = "correct";
+          score++;
+        } else {
+          feedback.textContent = `Yanlış. Doğru cevap: ${item.correct}`;
+          feedback.className = "wrong";
+        }
+      });
+      const result = document.getElementById("result");
+      result.innerHTML = `Puanın: ${score} / ${questions.length} (${Math.round((score / questions.length) * 100)}%)`;
+    }
+  </script>
+</body>
+</html>
