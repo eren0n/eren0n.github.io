@@ -122,14 +122,15 @@
       div.innerHTML = `<strong>${index + 1}. ${item.q}</strong>`;
       const group = document.createElement("div");
       group.className = "options";
-      item.options.forEach(opt => {
-        const id = `q${index}_opt${opt}`;
-        group.innerHTML += `
-          <label>
-            <input type="radio" name="q${index}" value="${opt}" id="${id}"> ${opt}
-          </label>
-        `;
-      });
+      item.options.forEach((opt, optIndex) => {
+  const id = `q${index}_opt${optIndex}`;
+  const letter = String.fromCharCode(65 + optIndex); // A, B, C, D
+  group.innerHTML += `
+    <label>
+      <input type="radio" name="q${index}" value="${letter}" id="${id}"> (${letter}) ${opt}
+    </label>
+  `;
+});
       div.appendChild(group);
       const feedback = document.createElement("div");
       feedback.id = `feedback${index}`;
