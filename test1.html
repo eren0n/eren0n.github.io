@@ -83,60 +83,197 @@
 <body>
 
   <h1>Test 1</h1>
+  <div style="text-align:center; margin-bottom: 20px;">
+    <label for="languageSelect">Dil Seç / Select Language: </label>
+    <select id="languageSelect" onchange="switchLanguage(this.value)">
+      <option value="tr">Türkçe</option>
+      <option value="en">English</option>
+    </select>
+  </div>
   <form id="quizForm"></form>
   <button onclick="checkAnswers()">Cevapları Kontrol Et</button>
   <p id="result"></p>
 
   <script>
     const questions = [
-        { q: "Self-serving bias (kendini kayırma yanlılığı) aşağıdakilerden hangisini ifade eder?", options: ["Başarısızlığı kişisel hatalarla açıklamak", "Başarıyı dış etkenlere bağlamak", "Başarıyı kendine, başarısızlığı dış etkenlere atfetmek", "Diğerlerinin başarılarını küçümsemek"], correct: "C" },
-        { q: "Bias blind spot kavramı neyi ifade eder?", options: ["Başkalarının ne düşündüğünü fark edememek", "Kendi önyargılarını görememe, ama başkalarınınkini fark etme eğilimi", "Ön yargılarla karar vermeyi normalleştirme", "Gözlemlenemeyen hatalı bilişler"], correct: "B" },
-        { q: "Tutum davranışı en çok ne zaman etkiler?", options: ["Tutum genelse", "Davranış alışkanlıksa", "Sosyal baskı varsa", "Tutum güçlü ve özelse"], correct: "D" },
-        { q: "Cognitive dissonance ne zaman oluşur?", options: ["Tartışma yaşandığında", "Yanlış bilgi alındığında", "Tutum ve davranış çeliştiğinde", "Duygular bastırıldığında"], correct: "C" },
-        { q: "Öz-algı teorisine göre kişi ne zaman tutum belirler?", options: ["Güçlü fikri varsa", "Kararsız olduğunda", "Davranışına bakarak", "Sosyal baskıyla"], correct: "C" },
-        { q: "Overjustification etkisine örnek nedir?", options: ["Kitap okumayı sevip para alması", "Spor yapmayı bırakmak", "Zorla görevi yapmak", "Arkadaş zoruyla etkinliğe gitmek"], correct: "A" },
-        { q: "İkna sürecinde etkili olmayan şey?", options: ["Kaynak", "Mesaj", "Dinleyici fiziği", "Kanal"], correct: "C" },
-        { q: "Central route ne zaman işler?", options: ["Dikkat dağınıksa", "Konu önemsizse", "Dinleyici ilgiliyse", "Mesaj kısa ise"], correct: "C" },
-        { q: "Peripheral route örneği nedir?", options: ["İçeriği detaylı incelemek", "Bilimsel kanıtlarla ikna olmak", "Ünlü reklamını görünce satın almak", "Yazılı metin analiz etmek"], correct: "C" },
-        { q: "Aşağıdakilerden hangisi tutum bileşeni değildir?", options: ["Duygusal", "Bilişsel", "Sosyal baskı", "Davranışsal"], correct: "C" },
-        { q: "Saying becomes believing etkisinin tanımı nedir?", options: ["Başkalarının söylediğine hemen inanmak", "Söylediğimiz şeye sonradan gerçekten inanmak", "Kendi tutumumuzu değiştirmemek", "Gruptan gelen bilgiye karşı direnç göstermek"], correct: "B" },
-        { q: "Bilişsel uyumsuzluk yaşayan biri hangi tepkiyi vererek bu durumu azaltabilir?", options: ["Kararsız kalır", "Tutumunu davranışına göre değiştirir", "Gruptan ayrılır", "Yeni fikir üretir"], correct: "B" },
-        { q: "Self-presentation teorisine göre insanlar neden davranışlarına uygun tutumlar ifade eder?", options: ["Davranışlarını değiştirmek için", "Sosyal açıdan tutarlı görünmek için", "Düşünmeden hareket ettikleri için", "Kendi iç motivasyonlarıyla"], correct: "B" },
-        { q: "“Sigarayı bırakmazsan ciğerlerin kararır” ifadesi hangi ikna tekniğidir?", options: ["Duygusal destek", "Korku uyandırıcı mesaj", "Mizahi yaklaşım", "Bilimsel açıklama"], correct: "B" },
-        { q: "Bir mesaj kaynağının güvenilirliğini artıran unsur nedir?", options: ["Karmaşık kelimeler kullanması", "Yavaş ve duraksamalı konuşması", "Akıcı ve kendinden emin konuşması", "İleri yaşta olması"], correct: "C" },
-        { q: "Primacy effect ne zaman daha baskındır?", options: ["Son bilgi daha akılda kaldığında", "İlk bilgi diğerlerini etkilediğinde", "Ara bilgi önemli olduğunda", "Bilgi arası zaman uzadığında"], correct: "B" },
-        { q: "Door-in-the-face tekniği nasıl işler?", options: ["Önce küçük istek, sonra büyük istek", "Önce büyük istek, sonra daha küçük istek", "İstek yerine emir kullanma", "Karşı tarafı susturarak ikna etme"], correct: "B" },
-        { q: "Self-perception teorisinde özgürlük neden önemlidir?", options: ["Zorla yapılan davranışlar daha güçlü etki eder", "Özgür yapılan davranışlar tutum için ipucu verir", "Toplum tarafından desteklenmelidir", "Bireyin cezalandırılması gerekir"], correct: "B" },
-        { q: "Peripheral yol ile ikna edilen bir tutumun özelliği nedir?", options: ["Çok dirençlidir", "Kalıcıdır", "Yüzeyseldir", "Her durumda uygulanır"], correct: "C" },
-        { q: "Overjustification etkisinin sonucu nedir?", options: ["İçsel motivasyon artar", "Dışsal ödül etkisiz kalır", "İçsel motivasyon düşer", "İçsel motivasyon değişmez"], correct: "C" },
-        { q: "Karar sonrası uyumsuzluğu azaltmak için insanlar ne yapar?", options: ["Seçilen alternatifi daha çok över", "Kararsız kalır", "Yeni alternatif arar", "Hiçbirini kabul etmez"], correct: "A" },
-        { q: "Korku uyandırıcı mesajlar ne zaman etkili olur?", options: ["Aşırı korku yaratıldığında", "Mantık içerdiğinde", "Tehdit ile çözüm birlikte verildiğinde", "Mizah içerdiğinde"], correct: "C" },
-        { q: "Mizahın iknaya katkısı nedir?", options: ["Ciddiyeti artırır", "Direnci düşürür, mesajı yumuşatır", "Mantığı keskinleştirir", "Konuyu karmaşıklaştırır"], correct: "B" },
-        { q: "Sleep effect (uyuyan etki) nedir?", options: ["Mesaj unutulur", "Kaynak etkisi artar", "Mesaj zamanla etkili olur, kaynak unutulur", "Kaynakla mesaj karıştırılır"], correct: "C" },
-        { q: "Door-in-the-face örneği hangisidir?", options: ["Önce kolay bir istek sunmak", "Sadece büyük istek yapmak", "Önce hayır demek, sonra evet", "Önce büyük istek, sonra küçüğü kabul ettirmek"], correct: "D" }
-    ];
-    const form = document.getElementById("quizForm");
-    questions.forEach((item, index) => {
-      const div = document.createElement("div");
-      div.className = "question";
-      div.innerHTML = `<strong>${index + 1}. ${item.q}</strong>`;
-      const group = document.createElement("div");
-      group.className = "options";
-      item.options.forEach((opt, optIndex) => {
-  const id = `q${index}_opt${optIndex}`;
-  const letter = String.fromCharCode(65 + optIndex); // A, B, C, D
-  group.innerHTML += `
-    <label>
-      <input type="radio" name="q${index}" value="${letter}" id="${id}"> (${letter}) ${opt}
-    </label>
-  `;
-});
-      div.appendChild(group);
-      const feedback = document.createElement("div");
-      feedback.id = `feedback${index}`;
-      div.appendChild(feedback);
-      form.appendChild(div);
-    });
+{q: "Self-serving bias (kendini kayırma yanlılığı) aşağıdakilerden hangisini ifade eder?", 
+q_en: "Which of the following describes the self-serving bias?", 
+options: ["Başarısızlığı kişisel hatalarla açıklamak", "Başarıyı dış etkenlere bağlamak", "Başarıyı kendine, başarısızlığı dış etkenlere atfetmek", "Diğerlerinin başarılarını küçümsemek"], 
+options_en: ["Explaining failure by personal mistakes", "Attributing success to external factors", "Attributing success to oneself and failure to external factors", "Downplaying others' achievements"], 
+correct: "C"},
+
+{q: "Bias blind spot kavramı neyi ifade eder?", 
+q_en: "What does the concept of bias blind spot refer to?", 
+options: ["Başkalarının ne düşündüğünü fark edememek", "Kendi önyargılarını görememe, ama başkalarınınkini fark etme eğilimi", "Ön yargılarla karar vermeyi normalleştirme", "Gözlemlenemeyen hatalı bilişler"], 
+options_en: ["Inability to see others' thoughts", "Tendency to see others’ biases but not one's own", "Normalizing biased decision-making", "Unobservable faulty cognitions"], 
+correct: "B"},
+
+{q: "Tutum davranışı en çok ne zaman etkiler?", 
+q_en: "When does attitude most influence behavior?", 
+options: ["Tutum genelse", "Davranış alışkanlıksa", "Sosyal baskı varsa", "Tutum güçlü ve özelse"], 
+options_en: ["When attitude is general", "When behavior is habitual", "When there is social pressure", "When attitude is strong and specific"], 
+correct: "D"},
+
+{q: "Cognitive dissonance ne zaman oluşur?", 
+q_en: "When does cognitive dissonance occur?", 
+options: ["Tartışma yaşandığında", "Yanlış bilgi alındığında", "Tutum ve davranış çeliştiğinde", "Duygular bastırıldığında"], 
+options_en: ["During an argument", "When incorrect information is received", "When attitudes and behaviors conflict", "When emotions are suppressed"], 
+correct: "C"},
+
+{q: "Öz-algı teorisine göre kişi ne zaman tutum belirler?", 
+q_en: "According to self-perception theory, when does a person form an attitude?", 
+options: ["Güçlü fikri varsa", "Kararsız olduğunda", "Davranışına bakarak", "Sosyal baskıyla"], 
+options_en: ["When they have a strong opinion", "When they are undecided", "By observing their own behavior", "Due to social pressure"], 
+correct: "C"},
+
+{q: "Overjustification etkisine örnek nedir?", 
+q_en: "Which is an example of the overjustification effect?", 
+options: ["Kitap okumayı sevip para alması", "Spor yapmayı bırakmak", "Zorla görevi yapmak", "Arkadaş zoruyla etkinliğe gitmek"], 
+options_en: ["Liking to read and getting paid for it", "Stopping exercise", "Doing a task by force", "Attending an event due to peer pressure"], 
+correct: "A"},
+
+{q: "İkna sürecinde etkili olmayan şey?", 
+q_en: "Which of the following is NOT effective in the persuasion process?", 
+options: ["Kaynak", "Mesaj", "Dinleyici fiziği", "Kanal"], 
+options_en: ["Source", "Message", "Listener’s physical appearance", "Channel"], 
+correct: "C"},
+
+{q: "Central route ne zaman işler?", 
+q_en: "When does the central route work?", 
+options: ["Dikkat dağınıksa", "Konu önemsizse", "Dinleyici ilgiliyse", "Mesaj kısa ise"], 
+options_en: ["When attention is scattered", "When the topic is unimportant", "When the listener is interested", "When the message is short"], 
+correct: "C"},
+
+{q: "Peripheral route örneği nedir?", 
+q_en: "Which is an example of the peripheral route?", 
+options: ["İçeriği detaylı incelemek", "Bilimsel kanıtlarla ikna olmak", "Ünlü reklamını görünce satın almak", "Yazılı metin analiz etmek"], 
+options_en: ["Examining content in detail", "Being persuaded by scientific evidence", "Buying after seeing a celebrity ad", "Analyzing a written text"], 
+correct: "C"},
+
+{q: "Aşağıdakilerden hangisi tutum bileşeni değildir?", 
+q_en: "Which of the following is NOT a component of attitude?", 
+options: ["Duygusal", "Bilişsel", "Sosyal baskı", "Davranışsal"], 
+options_en: ["Affective", "Cognitive", "Social pressure", "Behavioral"], 
+correct: "C"},
+
+{q: "Saying becomes believing etkisinin tanımı nedir?", 
+q_en: "What is the definition of the saying-becomes-believing effect?", 
+options: ["Başkalarının söylediğine hemen inanmak", "Söylediğimiz şeye sonradan gerçekten inanmak", "Kendi tutumumuzu değiştirmemek", "Gruptan gelen bilgiye karşı direnç göstermek"], 
+options_en: ["Immediately believing what others say", "Eventually believing what we say", "Not changing our own attitudes", "Resisting group information"], 
+correct: "B"},
+
+{q: "Bilişsel uyumsuzluk yaşayan biri hangi tepkiyi vererek bu durumu azaltabilir?", 
+q_en: "How can someone experiencing cognitive dissonance reduce it?", 
+options: ["Kararsız kalır", "Tutumunu davranışına göre değiştirir", "Gruptan ayrılır", "Yeni fikir üretir"], 
+options_en: ["Remain undecided", "Change attitude to match behavior", "Leave the group", "Develop a new idea"], 
+correct: "B"},
+
+{q: "Self-presentation teorisine göre insanlar neden davranışlarına uygun tutumlar ifade eder?", 
+q_en: "According to self-presentation theory, why do people express attitudes consistent with their behavior?", 
+options: ["Davranışlarını değiştirmek için", "Sosyal açıdan tutarlı görünmek için", "Düşünmeden hareket ettikleri için", "Kendi iç motivasyonlarıyla"], 
+options_en: ["To change their behavior", "To appear socially consistent", "Because they act without thinking", "Due to internal motivation"], 
+correct: "B"},
+
+{q: "“Sigarayı bırakmazsan ciğerlerin kararır” ifadesi hangi ikna tekniğidir?", 
+q_en: "Which persuasion technique is used in the phrase 'If you don’t quit smoking, your lungs will blacken'?", 
+options: ["Duygusal destek", "Korku uyandırıcı mesaj", "Mizahi yaklaşım", "Bilimsel açıklama"], 
+options_en: ["Emotional support", "Fear appeal", "Humorous approach", "Scientific explanation"], 
+correct: "B"},
+
+{q: "Bir mesaj kaynağının güvenilirliğini artıran unsur nedir?", 
+q_en: "What increases the credibility of a message source?", 
+options: ["Karmaşık kelimeler kullanması", "Yavaş ve duraksamalı konuşması", "Akıcı ve kendinden emin konuşması", "İleri yaşta olması"], 
+options_en: ["Using complex words", "Speaking slowly with pauses", "Speaking fluently and confidently", "Being older"], 
+correct: "C"},
+
+{q: "Primacy effect ne zaman daha baskındır?", 
+q_en: "When is the primacy effect more dominant?", 
+options: ["Son bilgi daha akılda kaldığında", "İlk bilgi diğerlerini etkilediğinde", "Ara bilgi önemli olduğunda", "Bilgi arası zaman uzadığında"], 
+options_en: ["When the last information is more memorable", "When the first information affects the rest", "When middle information is important", "When there is more time between information"], 
+correct: "B"},
+
+{q: "Door-in-the-face tekniği nasıl işler?", 
+q_en: "How does the door-in-the-face technique work?", 
+options: ["Önce küçük istek, sonra büyük istek", "Önce büyük istek, sonra daha küçük istek", "İstek yerine emir kullanma", "Karşı tarafı susturarak ikna etme"], 
+options_en: ["Small request first, then big request", "Large request first, then smaller one", "Using commands instead of requests", "Convincing by silencing the other"], 
+correct: "B"},
+
+{q: "Self-perception teorisinde özgürlük neden önemlidir?", 
+q_en: "Why is freedom important in self-perception theory?", 
+options: ["Zorla yapılan davranışlar daha güçlü etki eder", "Özgür yapılan davranışlar tutum için ipucu verir", "Toplum tarafından desteklenmelidir", "Bireyin cezalandırılması gerekir"], 
+options_en: ["Forced behaviors have stronger effects", "Freely chosen actions give clues about attitude", "It must be supported by society", "The individual must be punished"], 
+correct: "B"},
+
+{q: "Peripheral yol ile ikna edilen bir tutumun özelliği nedir?", 
+q_en: "What is a characteristic of an attitude formed through the peripheral route?", 
+options: ["Çok dirençlidir", "Kalıcıdır", "Yüzeyseldir", "Her durumda uygulanır"], 
+options_en: ["Very resistant", "Permanent", "Superficial", "Applicable in all situations"], 
+correct: "C"},
+
+{q: "Overjustification etkisinin sonucu nedir?", 
+q_en: "What is the result of the overjustification effect?", 
+options: ["İçsel motivasyon artar", "Dışsal ödül etkisiz kalır", "İçsel motivasyon düşer", "İçsel motivasyon değişmez"], 
+options_en: ["Intrinsic motivation increases", "External rewards become ineffective", "Intrinsic motivation decreases", "Intrinsic motivation remains unchanged"], 
+correct: "C"},
+
+{q: "Karar sonrası uyumsuzluğu azaltmak için insanlar ne yapar?", 
+q_en: "How do people reduce post-decision dissonance?", 
+options: ["Seçilen alternatifi daha çok över", "Kararsız kalır", "Yeni alternatif arar", "Hiçbirini kabul etmez"], 
+options_en: ["Praise the chosen option more", "Stay undecided", "Look for new alternatives", "Reject all options"], 
+correct: "A"},
+
+{q: "Korku uyandırıcı mesajlar ne zaman etkili olur?", 
+q_en: "When are fear-inducing messages effective?", 
+options: ["Aşırı korku yaratıldığında", "Mantık içerdiğinde", "Tehdit ile çözüm birlikte verildiğinde", "Mizah içerdiğinde"], 
+options_en: ["When excessive fear is created", "When it includes logic", "When threat and solution are given together", "When it includes humor"], 
+correct: "C"},
+
+{q: "Mizahın iknaya katkısı nedir?", 
+q_en: "What is the contribution of humor to persuasion?", 
+options: ["Ciddiyeti artırır", "Direnci düşürür, mesajı yumuşatır", "Mantığı keskinleştirir", "Konuyu karmaşıklaştırır"], 
+options_en: ["Increases seriousness", "Reduces resistance, softens the message", "Sharpens logic", "Complicates the topic"], 
+correct: "B"},
+
+{q: "Sleep effect (uyuyan etki) nedir?", 
+q_en: "What is the sleeper effect?", 
+options: ["Mesaj unutulur", "Kaynak etkisi artar", "Mesaj zamanla etkili olur, kaynak unutulur", "Kaynakla mesaj karıştırılır"], 
+options_en: ["The message is forgotten", "Source impact increases", "Message becomes effective over time, source is forgotten", "Message and source are confused"], 
+correct: "C"},
+
+{q: "Door-in-the-face örneği hangisidir?", 
+q_en: "Which is an example of the door-in-the-face technique?", 
+options: ["Önce kolay bir istek sunmak", "Sadece büyük istek yapmak", "Önce hayır demek, sonra evet", "Önce büyük istek, sonra küçüğü kabul ettirmek"], 
+options_en: ["Offering a small request first", "Making only a large request", "Saying no first, then yes", "Making a large request, then persuading with a smaller one"], 
+correct: "D"}    ];
+     const form = document.getElementById("quizForm");
+
+    function renderQuestions(language = "tr") {
+      form.innerHTML = "";
+      questions.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "question";
+        const questionText = language === "en" ? item.q_en : item.q;
+        const options = language === "en" ? item.options_en : item.options;
+        div.innerHTML = `<strong>${index + 1}. ${questionText}</strong>`;
+        const group = document.createElement("div");
+        group.className = "options";
+        options.forEach((opt, optIndex) => {
+          const id = `q${index}_opt${optIndex}`;
+          const letter = String.fromCharCode(65 + optIndex); // A, B, C, D
+          group.innerHTML += `
+            <label>
+              <input type="radio" name="q${index}" value="${letter}" id="${id}"> (${letter}) ${opt}
+            </label>
+          `;
+        });
+        div.appendChild(group);
+        const feedback = document.createElement("div");
+        feedback.id = `feedback${index}`;
+        div.appendChild(feedback);
+        form.appendChild(div);
+      });
+    }
+
     function checkAnswers() {
       let score = 0;
       questions.forEach((item, index) => {
@@ -157,6 +294,13 @@
       const result = document.getElementById("result");
       result.innerHTML = `Puanın: ${score} / ${questions.length} (${Math.round((score / questions.length) * 100)}%)`;
     }
+
+    function switchLanguage(lang) {
+      renderQuestions(lang);
+    }
+
+    // İlk yüklemede Türkçe göster
+    renderQuestions("tr");
   </script>
 </body>
 </html>
