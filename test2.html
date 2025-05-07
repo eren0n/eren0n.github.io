@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Test 2</title>
+  <title>Test 1</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -83,61 +82,224 @@
 </head>
 <body>
 
-  <h1>Test 2</h1>
+  <h1>Test 1</h1>
+  <div style="text-align:center; margin-bottom: 20px;">
+    <label for="languageSelect">Dil Seç / Select Language: </label>
+    <select id="languageSelect" onchange="switchLanguage(this.value)">
+      <option value="tr">Türkçe</option>
+      <option value="en">English</option>
+    </select>
+  </div>
   <form id="quizForm"></form>
   <button onclick="checkAnswers()">Cevapları Kontrol Et</button>
   <p id="result"></p>
 
   <script>
     const questions = [
-  { "q": "Heuristikler ne için kullanılır?", "options": ["Duygusal karar almak", "Karmaşık hesaplamalar yapmak", "Zihinsel kestirme yollarla karar vermek", "Algıları manipüle etmek"], "correct": "C" },
-  { "q": "Temsil edilebilirlik sezgisi (representativeness heuristic) neyi ifade eder?", "options": ["Geçmiş deneyimlere göre karar alma", "Bir şeyin olasılığını benzerliğe göre değerlendirme", "Karar alırken sayısal verilere odaklanma", "Duygusal yönlendirmeye göre seçim yapma"], "correct": "B" },
-  { "q": "Elde bulunabilirlik sezgisi (availability heuristic) hangi durumu etkiler?", "options": ["Nesnel veriye göre karar vermeyi", "Zor kararların ertelenmesini", "Kolay hatırlanan örneklerin kararları etkilemesini", "İstatistiksel analizlere yönelmeyi"], "correct": "C" },
-  { "q": "Overconfidence bias (aşırı güven yanlılığı) nedir?", "options": ["Kendi yeterliliğini küçümsemek", "Başka insanların fikirlerine aşırı güvenmek", "Kendi bilgilerine ve yargılarına gereğinden fazla güvenmek", "Kararsız kalmak"], "correct": "C" },
-  { "q": "Anchoring bias (çapa etkisi) en çok ne zaman ortaya çıkar?", "options": ["Kararsızlık durumunda", "İlk bilgiye fazla odaklanıldığında", "Tüm seçenekler değerlendirildiğinde", "Bilinçli analiz yapıldığında"], "correct": "B" },
-  { "q": "Confirmation bias (doğrulama yanlılığı) hangi davranışa yol açar?", "options": ["Farklı görüşleri araştırmak", "Sadece kendi inancını destekleyen bilgileri dikkate almak", "Tarafsız bilgi toplamaya çalışmak", "Kendi fikrine karşı çıkan kanıtları öne çıkarmak"], "correct": "B" },
-  { "q": "Bilişsel tutarsızlık (cognitive dissonance) durumunda kişi ne yapar?", "options": ["Tutumunu veya davranışını değiştirerek uyum sağlar", "Kararsız kalır", "Hatalı olduğuna inanmaz", "Durumu görmezden gelir"], "correct": "A" },
-  { "q": "Self-serving bias hangi durumu ifade eder?", "options": ["Başarıyı şansa, başarısızlığı kendine atfetmek", "Başarıyı kendine, başarısızlığı dış faktörlere atfetmek", "Diğerlerini suçlamak", "Kendi hatalarını abartmak"], "correct": "B" },
-  { "q": "Korku uyandırıcı mesajlar ne zaman daha etkilidir?", "options": ["Sadece tehdit içerdiğinde", "Çözüm önerisiyle birlikte sunulduğunda", "Çok şiddetli olduğunda", "Kısa ve genel olduğunda"], "correct": "B" },
-  { "q": "Peripheral route ile ikna edilen tutumun özelliği nedir?", "options": ["Kalıcıdır", "Yüzeyseldir", "Zorlukla değişir", "Rasyoneldir"], "correct": "B" },
-  { "q": "Tutumlar hangi koşulda davranışları daha güçlü etkiler?", "options": ["Genel olduklarında", "Sosyal baskı yüksekse", "Özel ve güçlü olduklarında", "Gizli kaldıklarında"], "correct": "C" },
-  { "q": "Mere exposure effect neyi ifade eder?", "options": ["Yetersiz maruziyetin ilgiyi artırmasını", "Bir şeye ne kadar maruz kalırsak, onu o kadar fazla beğenmemizi", "Maruz kalmamanın ilgiyi artırmasını", "Yeni olana karşı daha olumlu tutum geliştirmeyi"], "correct": "B" },
-  { "q": "Central route hangi durumda kullanılır?", "options": ["Konu önemsizse", "Dikkat düşükse", "Dinleyici konuya ilgiliyse", "Mesaj kısa ve yüzeyselse"], "correct": "C" },
-  { "q": "Primacy effect nedir?", "options": ["Son bilginin daha etkili olması", "İlk bilginin daha çok hatırlanması ve etkili olması", "Tüm bilgilerin eşit etkili olması", "Ara bilgilerin daha çok hatırlanması"], "correct": "B" },
-  { "q": "Self-presentation (öz sunum) teorisine göre birey neden tutumunu davranışına uygun hale getirir?", "options": ["Kendine tutarlı görünmek için", "Topluma karşı dürüst olmak için", "Davranışını değiştirmek için", "Motivasyonu artırmak için"], "correct": "A" },
-  { "q": "Attitude accessibility neyi ifade eder?", "options": ["Tutumların kararsız olması", "Tutumların hatırlanabilirliğinin yüksek olması", "Tutumun zayıf olması", "Davranışın unutulması"], "correct": "B" },
-  { "q": "Sleep effect (uyuyan etki) nedir?", "options": ["Mesajın unutulması", "Kaynağın zamanla etkisizleşmesi", "Mesajın zamanla daha etkili hale gelmesi", "Kaynağın hemen etkili olması"], "correct": "C" },
-  { "q": "Lowball tekniği nasıl işler?", "options": ["Yüksek teklif verip geri çekilmek", "Önce cazip teklif sunup sonra koşulları değiştirmek", "İkna için doğrudan baskı yapmak", "İlk başta tüm koşulları sunmak"], "correct": "B" },
-  { "q": "Sosyal psikolojide tutumun üç bileşeni nedir?", "options": ["Duygusal, davranışsal, bilişsel", "Davranışsal, sosyal, zihinsel", "Bilişsel, fizyolojik, duygusal", "Duygusal, refleksif, bilişsel"], "correct": "A" },
-  { "q": "Sosyal etki türlerinden compliance neyi ifade eder?", "options": ["İçselleştirme", "Zorla kabul ettirme", "Görünüşte katılma, içten katılmama", "Bağımsızlık gösterme"], "correct": "C" },
-  { "q": "Foot-in-the-door tekniği nedir?", "options": ["Büyük istekten sonra küçük istek yapmak", "Küçük istekle başlayıp sonra büyük isteği kabul ettirmek", "Açık tehdit sunmak", "İkna yerine zorlamak"], "correct": "B" },
-  { "q": "İnsanlar neden bilgi çelişkisi yaşadığında dissonance hisseder?", "options": ["Tüm bilgileri analiz etmek zorunda kaldıkları için", "Tutarsızlık psikolojik rahatsızlık yarattığı için", "Sosyal baskı yüzünden", "Düşünsel yorgunluk yüzünden"], "correct": "B" },
-  { "q": "Self-perception teorisi hangi durumda geçerlidir?", "options": ["Kişi davranışının nedenini bilmediğinde", "Kişi güçlü bir tutuma sahip olduğunda", "Kişi çok kararlıysa", "Tutumlar çok eskiyse"], "correct": "A" },
-  { "q": "Attitude-behavior inconsistency hangi durumda gözlenir?", "options": ["Tutumlar güçlü olduğunda", "Tutum davranışla örtüşmediğinde", "Tutum davranışı belirlediğinde", "Duygular davranışı etkilediğinde"], "correct": "B" },
-  { "q": "İkna edici mesajlarda kaynak etkisini artıran unsur hangisidir?", "options": ["Zayıf duruş", "Uzmanlık ve güvenilirlik", "Yavaş konuşma", "Anonimlik"], "correct": "B" }
-    ];
-    const form = document.getElementById("quizForm");
-    questions.forEach((item, index) => {
-      const div = document.createElement("div");
-      div.className = "question";
-      div.innerHTML = `<strong>${index + 1}. ${item.q}</strong>`;
-      const group = document.createElement("div");
-      group.className = "options";
-      item.options.forEach((opt, optIndex) => {
-  const id = `q${index}_opt${optIndex}`;
-  const letter = String.fromCharCode(65 + optIndex); // A, B, C, D
-  group.innerHTML += `
-    <label>
-      <input type="radio" name="q${index}" value="${letter}" id="${id}"> (${letter}) ${opt}
-    </label>
-  `;
-});
-      div.appendChild(group);
-      const feedback = document.createElement("div");
-      feedback.id = `feedback${index}`;
-      div.appendChild(feedback);
-      form.appendChild(div);
-    });
+{
+    "q": "Heuristikler ne için kullanılır?",
+    "q_en": "What are heuristics used for?",
+    "options": ["Duygusal karar almak", "Karmaşık hesaplamalar yapmak", "Zihinsel kestirme yollarla karar vermek", "Algıları manipüle etmek"],
+    "options_en": ["Making emotional decisions", "Performing complex calculations", "Making decisions through mental shortcuts", "Manipulating perceptions"],
+    "correct": "C"
+  },
+  {
+    "q": "Temsil edilebilirlik sezgisi (representativeness heuristic) neyi ifade eder?",
+    "q_en": "What does the representativeness heuristic refer to?",
+    "options": ["Geçmiş deneyimlere göre karar alma", "Bir şeyin olasılığını benzerliğe göre değerlendirme", "Karar alırken sayısal verilere odaklanma", "Duygusal yönlendirmeye göre seçim yapma"],
+    "options_en": ["Making decisions based on past experiences", "Judging the probability of something based on similarity", "Focusing on numerical data when making decisions", "Choosing based on emotional influence"],
+    "correct": "B"
+  },
+  {
+    "q": "Elde bulunabilirlik sezgisi (availability heuristic) hangi durumu etkiler?",
+    "q_en": "Which situation is influenced by the availability heuristic?",
+    "options": ["Nesnel veriye göre karar vermeyi", "Zor kararların ertelenmesini", "Kolay hatırlanan örneklerin kararları etkilemesini", "İstatistiksel analizlere yönelmeyi"],
+    "options_en": ["Making decisions based on objective data", "Postponing difficult decisions", "Being influenced by easily recalled examples", "Relying on statistical analysis"],
+    "correct": "C"
+  },
+  {
+    "q": "Overconfidence bias (aşırı güven yanlılığı) nedir?",
+    "q_en": "What is overconfidence bias?",
+    "options": ["Kendi yeterliliğini küçümsemek", "Başka insanların fikirlerine aşırı güvenmek", "Kendi bilgilerine ve yargılarına gereğinden fazla güvenmek", "Kararsız kalmak"],
+    "options_en": ["Underestimating one's own competence", "Overtrusting others' opinions", "Having excessive confidence in one's own knowledge and judgments", "Being indecisive"],
+    "correct": "C"
+  },
+  {
+    "q": "Anchoring bias (çapa etkisi) en çok ne zaman ortaya çıkar?",
+    "q_en": "When does anchoring bias most commonly occur?",
+    "options": ["Kararsızlık durumunda", "İlk bilgiye fazla odaklanıldığında", "Tüm seçenekler değerlendirildiğinde", "Bilinçli analiz yapıldığında"],
+    "options_en": ["In cases of indecision", "When too much focus is placed on initial information", "When all options are considered", "During deliberate analysis"],
+    "correct": "B"
+  },
+  {
+    "q": "Confirmation bias (doğrulama yanlılığı) hangi davranışa yol açar?",
+    "q_en": "What behavior does confirmation bias lead to?",
+    "options": ["Farklı görüşleri araştırmak", "Sadece kendi inancını destekleyen bilgileri dikkate almak", "Tarafsız bilgi toplamaya çalışmak", "Kendi fikrine karşı çıkan kanıtları öne çıkarmak"],
+    "options_en": ["Researching different opinions", "Only considering information that supports one's beliefs", "Trying to gather unbiased information", "Highlighting evidence against one's opinion"],
+    "correct": "B"
+  },
+  {
+    "q": "Bilişsel tutarsızlık (cognitive dissonance) durumunda kişi ne yapar?",
+    "q_en": "What does a person do in a state of cognitive dissonance?",
+    "options": ["Tutumunu veya davranışını değiştirerek uyum sağlar", "Kararsız kalır", "Hatalı olduğuna inanmaz", "Durumu görmezden gelir"],
+    "options_en": ["Adjusts attitude or behavior to reduce inconsistency", "Remains indecisive", "Refuses to believe they are wrong", "Ignores the situation"],
+    "correct": "A"
+  },
+  {
+    "q": "Self-serving bias hangi durumu ifade eder?",
+    "q_en": "What does the self-serving bias refer to?",
+    "options": ["Başarıyı şansa, başarısızlığı kendine atfetmek", "Başarıyı kendine, başarısızlığı dış faktörlere atfetmek", "Diğerlerini suçlamak", "Kendi hatalarını abartmak"],
+    "options_en": ["Attributing success to luck and failure to oneself", "Attributing success to oneself and failure to external factors", "Blaming others", "Exaggerating one’s own mistakes"],
+    "correct": "B"
+  },
+  {
+    "q": "Korku uyandırıcı mesajlar ne zaman daha etkilidir?",
+    "q_en": "When are fear-inducing messages more effective?",
+    "options": ["Sadece tehdit içerdiğinde", "Çözüm önerisiyle birlikte sunulduğunda", "Çok şiddetli olduğunda", "Kısa ve genel olduğunda"],
+    "options_en": ["When they only include a threat", "When presented with a solution", "When they are very intense", "When they are short and general"],
+    "correct": "B"
+  },
+  {
+    "q": "Peripheral route ile ikna edilen tutumun özelliği nedir?",
+    "q_en": "What characterizes an attitude formed via the peripheral route?",
+    "options": ["Kalıcıdır", "Yüzeyseldir", "Zorlukla değişir", "Rasyoneldir"],
+    "options_en": ["It is lasting", "It is superficial", "It is hard to change", "It is rational"],
+    "correct": "B"
+  },
+    {
+    "q": "Tutumlar hangi koşulda davranışları daha güçlü etkiler?",
+    "q_en": "Under what condition do attitudes influence behavior more strongly?",
+    "options": ["Genel olduklarında", "Sosyal baskı yüksekse", "Özel ve güçlü olduklarında", "Gizli kaldıklarında"],
+    "options_en": ["When they are general", "When social pressure is high", "When they are specific and strong", "When they remain hidden"],
+    "correct": "C"
+  },
+  {
+    "q": "Mere exposure effect neyi ifade eder?",
+    "q_en": "What does the mere exposure effect refer to?",
+    "options": ["Yetersiz maruziyetin ilgiyi artırmasını", "Bir şeye ne kadar maruz kalırsak, onu o kadar fazla beğenmemizi", "Maruz kalmamanın ilgiyi artırmasını", "Yeni olana karşı daha olumlu tutum geliştirmeyi"],
+    "options_en": ["Limited exposure increasing interest", "The more we are exposed to something, the more we like it", "Lack of exposure increasing interest", "Developing more positive attitudes toward new things"],
+    "correct": "B"
+  },
+  {
+    "q": "Central route hangi durumda kullanılır?",
+    "q_en": "When is the central route used?",
+    "options": ["Konu önemsizse", "Dikkat düşükse", "Dinleyici konuya ilgiliyse", "Mesaj kısa ve yüzeyselse"],
+    "options_en": ["When the topic is unimportant", "When attention is low", "When the audience is interested", "When the message is short and shallow"],
+    "correct": "C"
+  },
+  {
+    "q": "Primacy effect nedir?",
+    "q_en": "What is the primacy effect?",
+    "options": ["Son bilginin daha etkili olması", "İlk bilginin daha çok hatırlanması ve etkili olması", "Tüm bilgilerin eşit etkili olması", "Ara bilgilerin daha çok hatırlanması"],
+    "options_en": ["The most recent information being more influential", "The first information being more memorable and influential", "All information having equal impact", "Middle information being most memorable"],
+    "correct": "B"
+  },
+  {
+    "q": "Self-presentation (öz sunum) teorisine göre birey neden tutumunu davranışına uygun hale getirir?",
+    "q_en": "According to self-presentation theory, why does a person align their attitude with their behavior?",
+    "options": ["Kendine tutarlı görünmek için", "Topluma karşı dürüst olmak için", "Davranışını değiştirmek için", "Motivasyonu artırmak için"],
+    "options_en": ["To appear consistent to oneself", "To be honest with society", "To change behavior", "To increase motivation"],
+    "correct": "A"
+  },
+  {
+    "q": "Attitude accessibility neyi ifade eder?",
+    "q_en": "What does attitude accessibility refer to?",
+    "options": ["Tutumların kararsız olması", "Tutumların hatırlanabilirliğinin yüksek olması", "Tutumun zayıf olması", "Davranışın unutulması"],
+    "options_en": ["Attitudes being unstable", "Attitudes being highly retrievable", "Attitudes being weak", "Behavior being forgotten"],
+    "correct": "B"
+  },
+  {
+    "q": "Sleep effect (uyuyan etki) nedir?",
+    "q_en": "What is the sleeper effect?",
+    "options": ["Mesajın unutulması", "Kaynağın zamanla etkisizleşmesi", "Mesajın zamanla daha etkili hale gelmesi", "Kaynağın hemen etkili olması"],
+    "options_en": ["Forgetting the message", "The source becoming ineffective over time", "The message becoming more persuasive over time", "The source being immediately persuasive"],
+    "correct": "C"
+  },
+  {
+    "q": "Lowball tekniği nasıl işler?",
+    "q_en": "How does the lowball technique work?",
+    "options": ["Yüksek teklif verip geri çekilmek", "Önce cazip teklif sunup sonra koşulları değiştirmek", "İkna için doğrudan baskı yapmak", "İlk başta tüm koşulları sunmak"],
+    "options_en": ["Making a high offer and then withdrawing", "Offering an attractive deal first and then changing the terms", "Applying direct pressure to persuade", "Revealing all conditions from the start"],
+    "correct": "B"
+  },
+  {
+    "q": "Sosyal psikolojide tutumun üç bileşeni nedir?",
+    "q_en": "What are the three components of attitude in social psychology?",
+    "options": ["Duygusal, davranışsal, bilişsel", "Davranışsal, sosyal, zihinsel", "Bilişsel, fizyolojik, duygusal", "Duygusal, refleksif, bilişsel"],
+    "options_en": ["Affective, behavioral, cognitive", "Behavioral, social, mental", "Cognitive, physiological, affective", "Affective, reflexive, cognitive"],
+    "correct": "A"
+  },
+  {
+    "q": "Sosyal etki türlerinden compliance neyi ifade eder?",
+    "q_en": "What does compliance refer to as a type of social influence?",
+    "options": ["İçselleştirme", "Zorla kabul ettirme", "Görünüşte katılma, içten katılmama", "Bağımsızlık gösterme"],
+    "options_en": ["Internalization", "Forcing acceptance", "Outward agreement without inner acceptance", "Demonstrating independence"],
+    "correct": "C"
+  },
+  {
+    "q": "Foot-in-the-door tekniği nedir?",
+    "q_en": "What is the foot-in-the-door technique?",
+    "options": ["Büyük istekten sonra küçük istek yapmak", "Küçük istekle başlayıp sonra büyük isteği kabul ettirmek", "Açık tehdit sunmak", "İkna yerine zorlamak"],
+    "options_en": ["Making a small request after a large one", "Starting with a small request to gain compliance with a larger one", "Presenting an overt threat", "Forcing instead of persuading"],
+    "correct": "B"
+  },
+  {
+    "q": "İnsanlar neden bilgi çelişkisi yaşadığında dissonance hisseder?",
+    "q_en": "Why do people feel dissonance when experiencing conflicting information?",
+    "options": ["Tüm bilgileri analiz etmek zorunda kaldıkları için", "Tutarsızlık psikolojik rahatsızlık yarattığı için", "Sosyal baskı yüzünden", "Düşünsel yorgunluk yüzünden"],
+    "options_en": ["Because they must analyze all the information", "Because inconsistency creates psychological discomfort", "Because of social pressure", "Because of cognitive fatigue"],
+    "correct": "B"
+  },
+  {
+    "q": "Self-perception teorisi hangi durumda geçerlidir?",
+    "q_en": "When does self-perception theory apply?",
+    "options": ["Kişi davranışının nedenini bilmediğinde", "Kişi güçlü bir tutuma sahip olduğunda", "Kişi çok kararlıysa", "Tutumlar çok eskiyse"],
+    "options_en": ["When a person doesn't know the reason for their behavior", "When a person has strong attitudes", "When a person is very decisive", "When attitudes are very old"],
+    "correct": "A"
+  },
+  {
+    "q": "Attitude-behavior inconsistency hangi durumda gözlenir?",
+    "q_en": "When is attitude-behavior inconsistency observed?",
+    "options": ["Tutumlar güçlü olduğunda", "Tutum davranışla örtüşmediğinde", "Tutum davranışı belirlediğinde", "Duygular davranışı etkilediğinde"],
+    "options_en": ["When attitudes are strong", "When attitude does not match behavior", "When attitude determines behavior", "When emotions influence behavior"],
+    "correct": "B"
+  },
+  {
+    "q": "İkna edici mesajlarda kaynak etkisini artıran unsur hangisidir?",
+    "q_en": "Which factor enhances source credibility in persuasive messages?",
+    "options": ["Zayıf duruş", "Uzmanlık ve güvenilirlik", "Yavaş konuşma", "Anonimlik"],
+    "options_en": ["Weak posture", "Expertise and credibility", "Speaking slowly", "Anonymity"],
+    "correct": "B"
+  }  ];
+     const form = document.getElementById("quizForm");
+
+    function renderQuestions(language = "tr") {
+      form.innerHTML = "";
+      questions.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "question";
+        const questionText = language === "en" ? item.q_en : item.q;
+        const options = language === "en" ? item.options_en : item.options;
+        div.innerHTML = `<strong>${index + 1}. ${questionText}</strong>`;
+        const group = document.createElement("div");
+        group.className = "options";
+        options.forEach((opt, optIndex) => {
+          const id = `q${index}_opt${optIndex}`;
+          const letter = String.fromCharCode(65 + optIndex); // A, B, C, D
+          group.innerHTML += `
+            <label>
+              <input type="radio" name="q${index}" value="${letter}" id="${id}"> (${letter}) ${opt}
+            </label>
+          `;
+        });
+        div.appendChild(group);
+        const feedback = document.createElement("div");
+        feedback.id = `feedback${index}`;
+        div.appendChild(feedback);
+        form.appendChild(div);
+      });
+    }
+
     function checkAnswers() {
       let score = 0;
       questions.forEach((item, index) => {
@@ -158,6 +320,13 @@
       const result = document.getElementById("result");
       result.innerHTML = `Puanın: ${score} / ${questions.length} (${Math.round((score / questions.length) * 100)}%)`;
     }
+
+    function switchLanguage(lang) {
+      renderQuestions(lang);
+    }
+
+    // İlk yüklemede Türkçe göster
+    renderQuestions("tr");
   </script>
 </body>
 </html>
