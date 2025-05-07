@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Test 1</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      padding: 40px;
+      background-color: #f0f2f5;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #2c3e50;
+    }
+    .question {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-left: 6px solid #3498db;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+    .question strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #34495e;
+    }
+    .options label {
+      display: block;
+      background-color: #f7f9fb;
+      padding: 10px;
+      margin-bottom: 6px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .options input[type="radio"] {
+      margin-right: 10px;
+    }
+    .options label:hover {
+      background-color: #e6f1ff;
+      border-color: #3498db;
+    }
+    .correct {
+      color: #27ae60;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+    .wrong {
+      color: #e74c3c;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+    button {
+      display: block;
+      margin: 30px auto 20px auto;
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    #result {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Test 1</h1>
+  <form id="quizForm"></form>
+  <button onclick="checkAnswers()">Cevapları Kontrol Et</button>
+  <p id="result"></p>
+
+  <script>
+    const questions = [
+        { q: "Self-serving bias (kendini kayırma yanlılığı) aşağıdakilerden hangisini ifade eder?", options: ["Başarısızlığı kişisel hatalarla açıklamak", "Başarıyı dış etkenlere bağlamak", "Başarıyı kendine, başarısızlığı dış etkenlere atfetmek", "Diğerlerinin başarılarını küçümsemek"], correct: "C" },
+        { q: "Bias blind spot kavramı neyi ifade eder?", options: ["Başkalarının ne düşündüğünü fark edememek", "Kendi önyargılarını görememe, ama başkalarınınkini fark etme eğilimi", "Ön yargılarla karar vermeyi normalleştirme", "Gözlemlenemeyen hatalı bilişler"], correct: "B" },
+        { q: "Tutum davranışı en çok ne zaman etkiler?", options: ["Tutum genelse", "Davranış alışkanlıksa", "Sosyal baskı varsa", "Tutum güçlü ve özelse"], correct: "D" },
+        { q: "Cognitive dissonance ne zaman oluşur?", options: ["Tartışma yaşandığında", "Yanlış bilgi alındığında", "Tutum ve davranış çeliştiğinde", "Duygular bastırıldığında"], correct: "C" },
+        { q: "Öz-algı teorisine göre kişi ne zaman tutum belirler?", options: ["Güçlü fikri varsa", "Kararsız olduğunda", "Davranışına bakarak", "Sosyal baskıyla"], correct: "C" },
+        { q: "Overjustification etkisine örnek nedir?", options: ["Kitap okumayı sevip para alması", "Spor yapmayı bırakmak", "Zorla görevi yapmak", "Arkadaş zoruyla etkinliğe gitmek"], correct: "A" },
+        { q: "İkna sürecinde etkili olmayan şey?", options: ["Kaynak", "Mesaj", "Dinleyici fiziği", "Kanal"], correct: "C" },
+        { q: "Central route ne zaman işler?", options: ["Dikkat dağınıksa", "Konu önemsizse", "Dinleyici ilgiliyse", "Mesaj kısa ise"], correct: "C" },
+        { q: "Peripheral route örneği nedir?", options: ["İçeriği detaylı incelemek", "Bilimsel kanıtlarla ikna olmak", "Ünlü reklamını görünce satın almak", "Yazılı metin analiz etmek"], correct: "C" },
+        { q: "Aşağıdakilerden hangisi tutum bileşeni değildir?", options: ["Duygusal", "Bilişsel", "Sosyal baskı", "Davranışsal"], correct: "C" },
+        { q: "Saying becomes believing etkisinin tanımı nedir?", options: ["Başkalarının söylediğine hemen inanmak", "Söylediğimiz şeye sonradan gerçekten inanmak", "Kendi tutumumuzu değiştirmemek", "Gruptan gelen bilgiye karşı direnç göstermek"], correct: "B" },
+        { q: "Bilişsel uyumsuzluk yaşayan biri hangi tepkiyi vererek bu durumu azaltabilir?", options: ["Kararsız kalır", "Tutumunu davranışına göre değiştirir", "Gruptan ayrılır", "Yeni fikir üretir"], correct: "B" },
+        { q: "Self-presentation teorisine göre insanlar neden davranışlarına uygun tutumlar ifade eder?", options: ["Davranışlarını değiştirmek için", "Sosyal açıdan tutarlı görünmek için", "Düşünmeden hareket ettikleri için", "Kendi iç motivasyonlarıyla"], correct: "B" },
+        { q: "“Sigarayı bırakmazsan ciğerlerin kararır” ifadesi hangi ikna tekniğidir?", options: ["Duygusal destek", "Korku uyandırıcı mesaj", "Mizahi yaklaşım", "Bilimsel açıklama"], correct: "B" },
+        { q: "Bir mesaj kaynağının güvenilirliğini artıran unsur nedir?", options: ["Karmaşık kelimeler kullanması", "Yavaş ve duraksamalı konuşması", "Akıcı ve kendinden emin konuşması", "İleri yaşta olması"], correct: "C" },
+        { q: "Primacy effect ne zaman daha baskındır?", options: ["Son bilgi daha akılda kaldığında", "İlk bilgi diğerlerini etkilediğinde", "Ara bilgi önemli olduğunda", "Bilgi arası zaman uzadığında"], correct: "B" },
+        { q: "Door-in-the-face tekniği nasıl işler?", options: ["Önce küçük istek, sonra büyük istek", "Önce büyük istek, sonra daha küçük istek", "İstek yerine emir kullanma", "Karşı tarafı susturarak ikna etme"], correct: "B" },
+        { q: "Self-perception teorisinde özgürlük neden önemlidir?", options: ["Zorla yapılan davranışlar daha güçlü etki eder", "Özgür yapılan davranışlar tutum için ipucu verir", "Toplum tarafından desteklenmelidir", "Bireyin cezalandırılması gerekir"], correct: "B" },
+        { q: "Peripheral yol ile ikna edilen bir tutumun özelliği nedir?", options: ["Çok dirençlidir", "Kalıcıdır", "Yüzeyseldir", "Her durumda uygulanır"], correct: "C" },
+        { q: "Overjustification etkisinin sonucu nedir?", options: ["İçsel motivasyon artar", "Dışsal ödül etkisiz kalır", "İçsel motivasyon düşer", "İçsel motivasyon değişmez"], correct: "C" },
+        { q: "Karar sonrası uyumsuzluğu azaltmak için insanlar ne yapar?", options: ["Seçilen alternatifi daha çok över", "Kararsız kalır", "Yeni alternatif arar", "Hiçbirini kabul etmez"], correct: "A" },
+        { q: "Korku uyandırıcı mesajlar ne zaman etkili olur?", options: ["Aşırı korku yaratıldığında", "Mantık içerdiğinde", "Tehdit ile çözüm birlikte verildiğinde", "Mizah içerdiğinde"], correct: "C" },
+        { q: "Mizahın iknaya katkısı nedir?", options: ["Ciddiyeti artırır", "Direnci düşürür, mesajı yumuşatır", "Mantığı keskinleştirir", "Konuyu karmaşıklaştırır"], correct: "B" },
+        { q: "Sleep effect (uyuyan etki) nedir?", options: ["Mesaj unutulur", "Kaynak etkisi artar", "Mesaj zamanla etkili olur, kaynak unutulur", "Kaynakla mesaj karıştırılır"], correct: "C" },
+        { q: "Door-in-the-face örneği hangisidir?", options: ["Önce kolay bir istek sunmak", "Sadece büyük istek yapmak", "Önce hayır demek, sonra evet", "Önce büyük istek, sonra küçüğü kabul ettirmek"], correct: "D" }
+    ];
+    const form = document.getElementById("quizForm");
+    questions.forEach((item, index) => {
+      const div = document.createElement("div");
+      div.className = "question";
+      div.innerHTML = `<strong>${index + 1}. ${item.q}</strong>`;
+      const group = document.createElement("div");
+      group.className = "options";
+      item.options.forEach(opt => {
+        const id = `q${index}_opt${opt}`;
+        group.innerHTML += `
+          <label>
+            <input type="radio" name="q${index}" value="${opt}" id="${id}"> ${opt}
+          </label>
+        `;
+      });
+      div.appendChild(group);
+      const feedback = document.createElement("div");
+      feedback.id = `feedback${index}`;
+      div.appendChild(feedback);
+      form.appendChild(div);
+    });
+    function checkAnswers() {
+      let score = 0;
+      questions.forEach((item, index) => {
+        const selected = document.querySelector(`input[name="q${index}"]:checked`);
+        const feedback = document.getElementById(`feedback${index}`);
+        if (!selected) {
+          feedback.textContent = "Cevap seçilmedi.";
+          feedback.className = "wrong";
+        } else if (selected.value === item.correct) {
+          feedback.textContent = "Doğru!";
+          feedback.className = "correct";
+          score++;
+        } else {
+          feedback.textContent = `Yanlış. Doğru cevap: ${item.correct}`;
+          feedback.className = "wrong";
+        }
+      });
+      const result = document.getElementById("result");
+      result.innerHTML = `Puanın: ${score} / ${questions.length} (${Math.round((score / questions.length) * 100)}%)`;
+    }
+  </script>
+</body>
+</html>
