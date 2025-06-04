@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proje Sunumu: Sahte Baz İstasyonu Tespit Çözümü</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony (Stone, Teal) -->
+    <!-- Application Structure Plan: Bu uygulama, yöneticiye yönelik kapsamlı bir "proje panosu" (project dashboard) olarak tasarlanmıştır. Kullanıcı, sayfayı aşağı kaydırdıkça projenin tüm yönlerini adım adım keşfeder: giriş, sorunun detaylı açıklaması, tespit mekanizmaları, çözümün yazılım ve donanım bileşenleri, pazar potansiyeli, üretim süreci, maliyet analizleri, olası riskler ve finansal projeksiyonlar. Bu yapı, projenin her yönünü şeffaf ve anlaşılır bir şekilde sunarak, yöneticinin bilinçli bir karar vermesini kolaylaştırmak için seçilmiştir. Her bölüm, ana fikri destekleyen görsel ve metinsel içeriklerle zenginleştirilmiştir. -->
+    <!-- Visualization & Content Choices: 1. Sahte Baz Nedir? -> Hedef: Anlaşılırlık -> Sunum: HTML/CSS ile oluşturulmuş basit animasyonlu diyagram -> Etkileşim: Kaydırma ile tetiklenen animasyon -> Gerekçe: Teknik bir kavram olan IMSI Catcher saldırısını görsel ve basit bir şekilde açıklamak. 2. Pazar Potansiyeli -> Hedef: Karşılaştırma/Oran gösterme -> Sunum: Chart.js ile Donut Chart -> Etkileşim: Fare ile üzerine gelindiğinde segment detayları -> Gerekçe: Hedef pazarın büyüklüğünü ve segmentlerini bir bakışta göstermek. 3. Maliyet Dağılımı -> Hedef: Oran gösterme -> Sunum: Chart.js ile Pie Chart -> Etkileşim: Fare ile üzerine gelindiğinde segment detayları -> Gerekçe: Toplam maliyetin ana bileşenlerini görselleştirmek ve bütçe kalemlerini netleştirmek. 4. Finansal Projeksiyon -> Hedef: Değişimi gösterme -> Sunum: Chart.js ile Bar Chart -> Etkileşim: Araç ipuçları -> Gerekçe: Yatırım ve potansiyel gelir arasındaki ilişkiyi netleştirmek ve projenin finansal cazibesini vurgulamak. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F4; /* Stone 100 */
+            color: #44403C; /* Stone 700 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px; /* Max width for charts */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Base height for charts */
+            max-height: 400px; /* Max height for charts */
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px; /* Slightly taller on larger screens */
+            }
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .attack-flow-line {
+            position: absolute;
+            height: 2px;
+            background-color: #CC2936; /* Red for danger */
+            transform-origin: left center;
+            transform: scaleX(0);
+            transition: transform 1s ease-in-out;
+        }
+        .attack-flow-line.visible {
+            transform: scaleX(1);
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.375rem;
+            width: 0.75rem;
+            height: 0.75rem;
+            background-color: #A8A29E; /* Stone 400 */
+            border-radius: 9999px;
+            border: 2px solid #FFFFFF;
+        }
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 0.375rem;
+            top: 1rem;
+            height: calc(100% - 1rem);
+            width: 2px;
+            background-color: #E7E5E4; /* Stone 200 */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-stone-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold text-teal-700">Proje Önerisi</h1>
+                </div>
+                <nav class="hidden md:flex md:space-x-8">
+                    <a href="#problem-intro" class="text-stone-600 hover:text-teal-600 font-medium">Sorun</a>
+                    <a href="#detection" class="text-stone-600 hover:text-teal-600 font-medium">Tespit</a>
+                    <a href="#solution-details" class="text-stone-600 hover:text-teal-600 font-medium">Çözüm Detayları</a>
+                    <a href="#market" class="text-stone-600 hover:text-teal-600 font-medium">Pazar</a>
+                    <a href="#process" class="text-stone-600 hover:text-teal-600 font-medium">Süreç</a>
+                    <a href="#cost" class="text-stone-600 hover:text-teal-600 font-medium">Maliyet</a>
+                    <a href="#risks" class="text-stone-600 hover:text-teal-600 font-medium">Riskler</a>
+                    <a href="#summary" class="text-stone-600 hover:text-teal-600 font-medium">Özet</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-16">
+        <section id="hero" class="bg-white py-20 md:py-32">
+            <div class="max-w-4xl mx-auto text-center px-4">
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-stone-800">Görünmez Tehdit: Mobil İletişim Güvenliğiniz Ne Kadar Sağlam?</h2>
+                <p class="mt-6 text-lg text-stone-600">Sahte Baz İstasyonları (IMSI Catcher'lar), en kritik iş görüşmelerinizi, finansal verilerinizi ve şirket sırlarınızı sessizce ele geçirebilir. Bu risk, artık görmezden gelinemeyecek kadar büyük.</p>
+            </div>
+        </section>
+
+        <section id="problem-intro" class="py-20">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 fade-in">
+                    <h3 class="text-3xl font-bold text-stone-800">Sahte Baz Nedir?</h3>
+                    <p class="mt-4 text-lg text-stone-600">Sahte baz istasyonları, cep telefonlarını kandırarak kendilerini meşru bir operatör kulesi gibi gösteren ve iletişimi ele geçiren kötü niyetli cihazlardır. Bu saldırılar, mobil cihazlarımızın en temel güvenliğini tehdit etmektedir.</p>
+                </div>
+                <div class="relative flex flex-col md:flex-row items-center justify-around p-8 bg-white rounded-xl shadow-lg fade-in" style="min-height: 250px;">
+                    <div class="flex flex-col items-center text-center p-4">
+                        <span class="text-5xl mb-2">📱</span>
+                        <span class="font-bold">Sizin Telefonunuz</span>
+                    </div>
+
+                    <div class="flex flex-col items-center text-center p-4 mx-4 md:mx-8">
+                        <span class="text-5xl mb-2">🗼</span>
+                        <span class="font-bold text-red-600">Sahte Baz İstasyonu</span>
+                        <p class="text-sm text-stone-500">(IMSI Catcher)</p>
+                    </div>
+
+                    <div class="flex flex-col items-center text-center p-4">
+                        <span class="text-5xl mb-2">🛰️</span>
+                        <span class="font-bold">Gerçek Baz İstasyonu</span>
+                    </div>
+
+                    <div id="line1" class="attack-flow-line" style="width: 25%; left: 18%; top: 50%;"></div>
+                    <div id="line2" class="attack-flow-line" style="width: 25%; left: 57%; top: 50%;"></div>
+                </div>
+                 <div class="mt-8 text-center text-stone-600 max-w-2xl mx-auto fade-in">
+                    <p>Saldırgan, araya girerek telefonunuz ile gerçek ağ arasındaki tüm veri akışını (aramalar, mesajlar, internet trafiği) izleyebilir, kaydedebilir ve hatta değiştirebilir. Bu, kurumsal casusluk ve veri hırsızlığı için bir kapı aralar.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="detection" class="py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 fade-in">
+                    <h3 class="text-3xl font-bold text-stone-800">Sahte Baz Nasıl Tespit Edilir?</h3>
+                    <p class="mt-4 text-lg text-stone-600">Cihazımız, sahte baz istasyonlarının yaydığı anormal sinyal özelliklerini ve davranışlarını analiz ederek bu tehditleri algılar.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="p-6 border border-stone-200 rounded-lg bg-stone-50 fade-in">
+                        <div class="text-4xl text-teal-600 mb-4 text-center">📡</div>
+                        <h4 class="text-xl font-semibold mb-2">Sinyal Gücü Anormallikleri</h4>
+                        <p class="text-stone-600">Çevredeki baz istasyonlarının sinyal güçlerini sürekli izler. Aniden ortaya çıkan veya normalden çok daha güçlü olan sinyaller şüpheli kabul edilir.</p>
+                    </div>
+                    <div class="p-6 border border-stone-200 rounded-lg bg-stone-50 fade-in">
+                        <div class="text-4xl text-teal-600 mb-4 text-center">🔑</div>
+                        <h4 class="text-xl font-semibold mb-2">Şifreleme Durumu Kontrolü</h4>
+                        <p class="text-stone-600">Telefonun şifreleme seviyesini izler. 4G/5G'den 2G'ye zorla düşürme veya şifrelemenin devre dışı bırakılması gibi durumları tespit eder.</p>
+                    </div>
+                    <div class="p-6 border border-stone-200 rounded-lg bg-stone-50 fade-in">
+                        <div class="text-4xl text-teal-600 mb-4 text-center">🆔</div>
+                        <h4 class="text-xl font-semibold mb-2">Ağ Kimliği Değişimleri</h4>
+                        <p class="text-stone-600">Bağlanılan baz istasyonunun kimliğini (CID, LAC) takip eder. Hızlı ve mantıksız kimlik değişimleri alarm verir.</p>
+                    </div>
+                    <div class="p-6 border border-stone-200 rounded-lg bg-stone-50 fade-in">
+                        <div class="text-4xl text-teal-600 mb-4 text-center">🚨</div>
+                        <h4 class="text-xl font-semibold mb-2">Hücresel Protokol Analizi</h4>
+                        <p class="text-stone-600">Hücresel iletişim protokollerindeki anormallikleri ve standart dışı mesajlaşmaları yakalar.</p>
+                    </div>
+                    <div class="p-6 border border-stone-200 rounded-lg bg-stone-50 fade-in">
+                        <div class="text-4xl text-teal-600 mb-4 text-center">📍</div>
+                        <h4 class="text-xl font-semibold mb-2">Konum Alanı Takibi</h4>
+                        <p class="text-stone-600">Telefonun bulunduğu konum alanındaki ani ve şüpheli değişiklikleri izleyerek potansiyel tehditleri belirler.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution-details" class="py-20">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 fade-in">
+                    <h3 class="text-3xl font-bold text-stone-800">Çözümün Detayları: Yazılım ve Elektronik-Mekanik Bileşenler</h3>
+                    <p class="mt-4 text-lg text-stone-600">Projemiz, hem sofistike yazılım algoritmaları hem de hassas elektronik donanımı bir araya getirerek üstün bir tespit yeteneği sunar.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="bg-white p-8 rounded-xl shadow-lg fade-in">
+                        <h4 class="text-2xl font-bold text-teal-700 mb-6">Yazılım Tarafı</h4>
+                        <p class="text-stone-600 mb-4">Cihazımızın beyni olan yazılım, karmaşık sinyal verilerini işleyerek tehditleri ayırt eder ve kullanıcıya anlaşılır bir arayüz sunar.</p>
+                        <ul class="list-disc list-inside space-y-2 text-stone-600">
+                            <li>**Sinyal İşleme Algoritmaları:** RF verilerini analiz eden ve anormallikleri tespit eden özel algoritmalar.</li>
+                            <li>**Veri Analizi ve Makine Öğrenimi:** Zaman içindeki sinyal kalıplarını öğrenerek yanlış pozitifleri azaltma ve tespit doğruluğunu artırma.</li>
+                            <li>**Kullanıcı Arayüzü (UI):** Cihaz üzerindeki basit ekran ve/veya mobil uygulama üzerinden kolay kullanım ve uyarı yönetimi.</li>
+                            <li>**Veri Kaydı ve Raporlama:** Tespit edilen olayların detaylı loglarını tutma ve güvenlik analizleri için raporlama yeteneği.</li>
+                            <li>**Yazılım Güncellemeleri:** Yeni tehditlere karşı sürekli koruma sağlamak için uzaktan güncellenebilir mimari.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg fade-in">
+                        <h4 class="text-2xl font-bold text-teal-700 mb-6">Elektronik-Mekanik Tarafı</h4>
+                        <p class="text-stone-600 mb-4">Donanımımız, hassas RF alımı ve güvenilir veri işleme için özel olarak tasarlanmıştır.</p>
+                        <ul class="list-disc list-inside space-y-2 text-stone-600">
+                            <li>**Yüksek Hassasiyetli RF Alıcısı:** Geniş frekans aralığında mobil sinyalleri yakalama yeteneği.</li>
+                            <li>**Mikrodenetleyici/İşlemci:** Gerçek zamanlı sinyal işleme ve algoritma çalıştırma için yeterli işlem gücü.</li>
+                            <li>**Anten Sistemi:** Optimizasyonu yapılmış, çok yönlü veya yönlü antenler ile sinyal alım kalitesini artırma.</li>
+                            <li>**Güç Yönetimi:** Uzun pil ömrü ve taşınabilir kullanım için verimli güç tüketimi.</li>
+                            <li>**Dayanıklı Kasa Tasarımı:** Taşınabilirliği ve saha koşullarına dayanıklılığı sağlayacak ergonomik ve sağlam tasarım.</li>
+                            <li>**Görsel/İşitsel Uyarı Donanımı:** LED göstergeleri, sesli alarm ve titreşim motoru.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="market" class="py-20 bg-white">
+             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 fade-in">
+                    <h3 class="text-3xl font-bold text-stone-800">Pazar Fırsatı: Büyüyen Bir İhtiyaç</h3>
+                    <p class="mt-4 text-lg text-stone-600">Mobil güvenlik, artık bir tercih değil, bir zorunluluk. Çözümümüz, yüksek değerli müşteri segmentlerine hitap ediyor ve önemli bir pazar boşluğunu dolduruyor.</p>
+                </div>
+                <div class="bg-stone-50 p-8 rounded-xl shadow-lg fade-in">
+                    <div class="chart-container">
+                        <canvas id="marketChart"></canvas>
+                    </div>
+                    <p class="text-center mt-4 text-sm text-stone-500">Hedef Pazar Segmentleri Dağılımı</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="py-20">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 fade-in">
+                    <h3 class="text-3xl font-bold text-stone-800">Prototip ve Üretim Süreci</h3>
+                    <p class="mt-4 text-lg text-stone-600">Projemiz, titizlikle planlanmış aşamalardan geçerek en kısa sürede pazara sunulacaktır.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="fade-in">
+                        <h4 class="text-2xl font-bold text-teal-700 mb-6">Geliştirme Zaman Çizelgesi</h4>
+                        <ol>                  
+                            <li class="timeline-item">
+                                <time class="mb-1 text-sm font-normal leading-none text-stone-500">Ay 1-3</time>
+                                <h3 class="text-lg font-semibold text-stone-900">Araştırma ve Detaylı Planlama</h3>
+                                <p class="text-base font-normal text-stone-600">Pazar analizi, teknik gereksinimlerin belirlenmesi, mimari tasarım ve detaylı proje planının oluşturulması.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <time class="mb-1 text-sm font-normal leading-none text-stone-500">Ay 4-9</time>
+                                <h3 class="text-lg font-semibold text-stone-900">Ar-Ge ve Prototipleme</h3>
+                                <p class="text-base font-normal text-stone-600">Donanım kartı tasarımı, yazılım kodlaması, ilk çalışan prototipin üretilmesi ve temel fonksiyonellik testleri.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <time class="mb-1 text-sm font-normal leading-none text-stone-500">Ay 10-12</time>
+                                <h3 class="text-lg font-semibold text-stone-900">Kapsamlı Test ve Optimizasyon</h3>
+                                <p class="text-base font-normal text-stone-600">Saha testleri, performans optimizasyonu, güvenlik açığı testleri ve kullanıcı geri bildirimlerine göre iyileştirmeler.</p>
+                            </li>
+                             <li class="timeline-item">
+                                <time class="mb-1 text-sm font-normal leading-none text-stone-500">Ay 13-15</time>
+                                <h3 class="text-lg font-semibold text-stone-900">Sertifikasyon ve Üretim Hazırlığı</h3>
+                                <p class="text-base font-normal text-stone-600">Gerekli yasal sertifikasyon süreçleri, seri üretim için tedarik zinciri ve üretim hatlarının kurulması.</p>
+                            </li>
+                             <li class="timeline-item">
+                                <time class="mb-1 text-sm font-normal leading-none text-stone-500">Ay 16+</time>
+                                <h3 class="text-lg font-semibold text-stone-900">Pazara Sunum ve Destek</h3>
+                                <p class="text-base font-normal text-stone-600">Ürünün lansmanı, satış ve pazarlama faaliyetleri, satış sonrası destek ve sürekli ürün geliştirme.</p>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="fade-in text-center">
+                        <div class="text-9xl mb-4">⚙️</div>
+                        <h4 class="text-2xl font-bold text-stone-800">Verimli ve Hızlı Üretim</h4>
+                        <p class="text-lg text-stone-600">Geliştirme sürecimiz, hızlı prototipleme ve modüler tasarım prensipleriyle desteklenmektedir. Bu sayede, ürünün pazara çıkış süresi minimize edilecek ve değişen ihtiyaçlara hızla adapte olabilecektir.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cost" class="py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 fade-in">
+                    <h3 class="text-3xl font-bold text-stone-800">Maliyet Analizi: Gerekli Yatırım</h3>
+                    <p class="mt-4 text-lg text-stone-600">Bu yenilikçi ürünün geliştirilmesi ve pazara sunulması için detaylı bir maliyet analizi yapılmıştır. Aşağıdaki dağılım, ana yatırım kalemlerini göstermektedir.</p>
+                </div>
+                <div class="bg-stone-50 p-8 rounded-xl shadow-lg fade-in">
+                    <div class="chart-container">
+                        <canvas id="costChart"></canvas>
+                    </div>
+                    <p class="text-center mt-4 text-sm text-stone-500">Proje Maliyet Dağılımı (Tahmini)</p>
+                </div>
+                <div class="mt-8 text-center text-stone-600 max-w-2xl mx-auto fade-in">
+                    <p>Toplam tahmini proje maliyeti **X Milyon TL** olarak öngörülmektedir. Bu yatırım, şirketimizin mobil güvenlik pazarındaki konumunu güçlendirecek ve uzun vadede önemli getiriler sağlayacaktır.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="risks" class="py-20">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 fade-in">
+                    <h3 class="text-3xl font-bold text-stone-800">Olası Problemler ve Azaltma Stratejileri</h3>
+                    <p class="mt-4 text-lg text-stone-600">Her projede olduğu gibi, bu projenin de potansiyel riskleri bulunmaktadır. Bu riskleri proaktif olarak yönetmek için stratejiler geliştirilmiştir.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="p-6 border border-stone-200 rounded-lg bg-white fade-in">
+                        <div class="text-4xl text-red-600 mb-4 text-center">⚙️</div>
+                        <h4 class="text-xl font-semibold mb-2">Teknik Zorluklar</h4>
+                        <p class="text-stone-600">Sinyal karmaşıklığı, yanlış pozitif/negatif oranları, donanım entegrasyonu.</p>
+                        <p class="text-sm text-stone-500 mt-2">**Azaltma:** Deneyimli Ar-Ge ekibi, modüler tasarım, kapsamlı saha testleri, sürekli algoritma iyileştirmesi.</p>
+                    </div>
+                    <div class="p-6 border border-stone-200 rounded-lg bg-white fade-in">
+                        <div class="text-4xl text-red-600 mb-4 text-center">⚖️</div>
+                        <h4 class="text-xl font-semibold mb-2">Yasal ve Düzenleyici Engeller</h4>
+                        <p class="text-stone-600">Frekans spektrumu düzenlemeleri, gizlilik yasaları, uluslararası uyum.</p>
+                        <p class="text-sm text-stone-500 mt-2">**Azaltma:** Hukuk danışmanlığı, ilgili otoritelerle işbirliği, uluslararası standartlara uyum.</p>
+                    </div>
+                    <div class="p-6 border border-stone-200 rounded-lg bg-white fade-in">
+                        <div class="text-4xl text-red-600 mb-4 text-center">📊</div>
+                        <h4 class="text-xl font-semibold mb-2">Pazar Rekabeti ve Kabulü</h4>
+                        <p class="text-stone-600">Rakip ürünler, pazarın yeni teknolojiye adaptasyonu, fiyat hassasiyeti.</p>
+                        <p class="text-sm text-stone-500 mt-2">**Azaltma:** Benzersiz özellikler, agresif pazarlama, erken müşteri geri bildirimi, rekabetçi fiyatlandırma stratejisi.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="investment" class="py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                 <div class="text-center mb-12 fade-in">
+                    <h3 class="text-3xl font-bold text-stone-800">Yatırım ve Getiri Projeksiyonu</h3>
+                    <p class="mt-4 text-lg text-stone-600">Bu proje, stratejik bir yatırımla şirketimize önemli bir finansal getiri ve pazar liderliği vaat ediyor.</p>
+                </div>
+                <div class="bg-stone-50 p-8 rounded-xl fade-in">
+                    <div class="chart-container">
+                        <canvas id="roiChart"></canvas>
+                    </div>
+                    <p class="text-center mt-4 text-sm text-stone-500">İlk 3 Yıl Yatırım vs. Potansiyel Gelir (Çok Milyon TL)</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="summary" class="py-20">
+            <div class="max-w-4xl mx-auto text-center px-4">
+                <h3 class="text-3xl font-bold text-stone-800">Özet ve Eylem Çağrısı</h3>
+                <p class="mt-4 text-lg text-stone-600">Sahte baz istasyonları tehdidi, mobil iletişim güvenliği için ciddi bir risk oluşturmaktadır. Geliştireceğimiz tespit cihazı, bu tehdide karşı proaktif ve etkili bir çözüm sunarak şirketimize mobil güvenlik pazarında öncü bir rol kazandıracaktır.</p>
+                <p class="mt-4 text-lg text-stone-600">Bu proje, sadece yeni bir gelir kapısı açmakla kalmayacak, aynı zamanda şirketimizin inovasyon ve güvenlik alanındaki itibarını da güçlendirecektir. Detaylı fizibilite çalışması ve Ar-Ge sürecinin başlatılması için onayınızı talep ediyoruz.</p>
+                <button id="approveButton" class="mt-8 bg-teal-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-teal-700 transition-colors">
+                    Projeyi Onayla
+                </button>
+                <div id="confirmationLinkContainer" class="mt-8 hidden">
+                    <a href="Emin Misin?" target="_blank" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors inline-block">
+                        https://www.youtube.com/watch?v=B5_EbsFFNek
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-stone-800 text-white py-6">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            <p>&copy; 2025 Türkol Yazılım. Tüm Hakları Saklıdır.</p>
+            <p class="text-stone-400 mt-1">Ultra Süper Çok Gizli Proje Önerisi</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const marketCtx = document.getElementById('marketChart').getContext('2d');
+            new Chart(marketCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Kurumsal Müşteriler', 'Devlet Kurumları', 'Üst Düzey Yöneticiler', 'Diğer (Araştırma vb.)'],
+                    datasets: [{
+                        label: 'Pazar Segmenti',
+                        data: [45, 25, 20, 10],
+                        backgroundColor: [
+                            'rgba(13, 148, 136, 0.7)', // Teal
+                            'rgba(68, 64, 60, 0.7)',   // Stone
+                            'rgba(168, 162, 158, 0.7)', // Stone light
+                            'rgba(214, 211, 209, 0.7)' // Stone lighter
+                        ],
+                        borderColor: [
+                            'rgba(13, 148, 136, 1)',
+                            'rgba(68, 64, 60, 1)',
+                            'rgba(168, 162, 158, 1)',
+                            'rgba(214, 211, 209, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const costCtx = document.getElementById('costChart').getContext('2d');
+            new Chart(costCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Ar-Ge ve Geliştirme', 'Donanım ve Malzeme', 'Test ve Sertifikasyon', 'Pazarlama ve Satış', 'Genel Giderler'],
+                    datasets: [{
+                        label: 'Maliyet Dağılımı',
+                        data: [40, 25, 15, 10, 10],
+                        backgroundColor: [
+                            'rgba(13, 148, 136, 0.7)', // Teal
+                            'rgba(68, 64, 60, 0.7)',   // Stone
+                            'rgba(204, 41, 54, 0.7)',  // Red
+                            'rgba(168, 162, 158, 0.7)',// Stone light
+                            'rgba(214, 211, 209, 0.7)' // Stone lighter
+                        ],
+                        borderColor: [
+                            'rgba(13, 148, 136, 1)',
+                            'rgba(68, 64, 60, 1)',
+                            'rgba(204, 41, 54, 1)',
+                            'rgba(168, 162, 158, 1)',
+                            'rgba(214, 211, 209, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const roiCtx = document.getElementById('roiChart').getContext('2d');
+            new Chart(roiCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Yıl 1', 'Yıl 2', 'Yıl 3'],
+                    datasets: [{
+                        label: 'Yatırım (Milyon TL)',
+                        data: [2.5, 0.5, 0.5],
+                        backgroundColor: 'rgba(204, 41, 54, 0.6)',
+                        borderColor: 'rgba(204, 41, 54, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'Potansiyel Gelir (Milyon TL)',
+                        data: [1, 5, 12],
+                        backgroundColor: 'rgba(13, 148, 136, 0.6)',
+                        borderColor: 'rgba(13, 148, 136, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + 'M'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                             callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y + ' Milyon TL';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const faders = document.querySelectorAll('.fade-in');
+            const attackLines = document.querySelectorAll('.attack-flow-line');
+
+            const appearOptions = {
+                threshold: 0.2,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+            
+            attackLines.forEach(line => {
+                appearOnScroll.observe(line);
+            });
+
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Yeni eklenen buton işlevselliği
+            const approveButton = document.getElementById('approveButton');
+            const confirmationLinkContainer = document.getElementById('confirmationLinkContainer');
+
+            if (approveButton && confirmationLinkContainer) {
+                approveButton.addEventListener('click', function() {
+                    this.style.display = 'none'; // Onay butonunu gizle
+                    confirmationLinkContainer.classList.remove('hidden'); // Onay linkini göster
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
