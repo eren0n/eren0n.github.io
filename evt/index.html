@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YTÜ | Elektrikli Araç Teknolojileri Rehberi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- MathJax CDN for LaTeX rendering -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+            color: #374151; /* Dark gray text */
+        }
+        .container {
+            max-width: 1200px;
+        }
+        nav a {
+            transition: all 0.3s ease;
+        }
+        nav a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .section-header {
+            border-bottom: 2px solid #3b82f6; /* Blue underline for headers */
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            padding: 1.5rem;
+            transition: transform 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        /* Custom styles for image placeholders */
+        .placeholder-image {
+            background-color: #e0e7ff; /* Light blue */
+            color: #1e40af; /* Darker blue text */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            border: 1px dashed #60a5fa;
+            margin-top: 1rem;
+            overflow: hidden; /* Ensure text doesn't overflow */
+        }
+        .formula-box {
+            background-color: #ecfdf5; /* Light green */
+            border-left: 4px solid #10b981; /* Green border */
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+        }
+        .formula-box p {
+            margin-bottom: 0.5rem;
+        }
+        .formula-box .math-display {
+            font-family: 'Times New Roman', serif; /* For better formula rendering if MathJax fails */
+            font-size: 1.1rem;
+            display: block;
+            overflow-x: auto; /* Allow horizontal scrolling for long formulas */
+            padding: 0.5rem 0;
+        }
+        .hero-section {
+            background: linear-gradient(to right, #3b82f6, #10b981); /* Blue to Green gradient */
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-4 md:p-8 bg-gray-100 min-h-screen">
+
+        <!-- Hero Section -->
+        <header class="hero-section">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 animate-fade-in-down">EV Dünyası</h1>
+            <p class="text-xl md:text-2xl mb-6 animate-fade-in-up">Elektrikli Araç Teknolojileri Rehberi</p>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto opacity-90">Elektrikli araçların geleceğine adım atın! Bu rehberde, EV'lerin temel prensiplerinden en karmaşık bileşenlerine kadar her şeyi keşfedin.</p>
+        </header>
+
+        <!-- Navigation Bar -->
+        <nav class="flex flex-wrap justify-center gap-4 bg-white p-4 rounded-xl shadow-md mb-8 sticky top-0 z-10">
+            <a href="#bolum1" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 font-semibold text-sm md:text-base">Bölüm 1</a>
+            <a href="#bolum2" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 font-semibold text-sm md:text-base">Bölüm 2</a>
+            <a href="#bolum3" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 font-semibold text-sm md:text-base">Bölüm 3</a>
+            <a href="#bolum4" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 font-semibold text-sm md:text-base">Bölüm 4</a>
+            <a href="#bolum5" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 font-semibold text-sm md:text-base">Bölüm 5</a>
+            <a href="#bolum6" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 font-semibold text-sm md:text-base">Bölüm 6</a>
+            <a href="#bolum7" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 font-semibold text-sm md:text-base">Bölüm 7</a>
+            <a href="#bolum8" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 font-semibold text-sm md:text-base">Bölüm 8</a>
+            <a href="#bolum9" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 font-semibold text-sm md:text-base">Bölüm 9</a>
+        </nav>
+
+        <!-- Chapter 1: Elektrikli Araçlara Giriş ve Araç Dinamiği -->
+        <section id="bolum1" class="card">
+            <h2 class="text-3xl font-bold mb-4 section-header">Bölüm 1: Elektrikli Araçlara Giriş ve Araç Dinamiği</h2>
+            <p class="mb-6">Bu bölüm, elektrikli araçlara genel bir bakış sunarak tarihçeleri, evrimleri, türleri ve içten yanmalı motorlu araçlarla temel farkları hakkında bilgi verir. Ayrıca, bir elektrikli aracın ana bileşenleri tanıtılır.</p>
+
+            <h3 class="text-2xl font-semibold mb-3 text-blue-700">Temel Bilgiler</h3>
+            <ul class="list-disc pl-5 space-y-2 mb-6">
+                <li><span class="font-medium">Elektrikli Araçların Tarihi ve Evrimi:</span> Elektrikli araçların ilk ortaya çıkışından günümüze kadar nasıl geliştiği, önemli dönüm noktaları ve teknolojideki ilerlemeler.</li>
+                <li><span class="font-medium">Elektrikli Araç Türleri:</span> Bataryalı Elektrikli Araçlar (BEV), Hibrit Elektrikli Araçlar (HEV), Plug-in Hibrit Elektrikli Araçlar (PHEV) ve Yakıt Hücreli Elektrikli Araçlar (FCEV) gibi farklı EV türlerinin tanımları ve çalışma prensipleri.</li>
+                <li><span class="font-medium">EV'ler ve ICE Araçları Arasındaki Temel Farklar:</span> Güç aktarma organları, enerji depolama, yakıt verimliliği, emisyonlar ve bakım gibi konularda EV'ler ile geleneksel araçlar arasındaki karşılaştırmalar.</li>
+                <li><span class="font-medium">Elektrikli Araçların Bileşenleri:</span> Batarya paketi, elektrik motoru, güç elektroniği ünitesi (invertör), şarj cihazı, şanzıman ve kontrol üniteleri gibi temel bileşenlerin işlevleri.</li>
+            </ul>
+            <div class="placeholder-image">Elektrikli Araç Bileşenleri Şeması ve EV Türleri Karşılaştırması</div>
+
+            <h3 class="text-2xl font-semibold mb-3 text-blue-700">Formüller</h3>
+            <div class="formula-box">
+                <p><strong>Newton'ın İkinci Hareket Yasası:</strong></p>
+                <div class="math-display">$$F = ma$$</div>
+                <p>($F$: Kuvvet, $m$: Kütle, $a$: İvme)</p>
+            </div>
+            <div class="formula-box">
+                <p><strong>Kinematik Denklemler (Düzgün Hızlanma):</strong></p>
+                <div class="math-display">
+                    $$v = v_0 + at$$
+                    $$x = x_0 + v_0t + \frac{1}{2}at^2$$
+                    $$v^2 = v_0^2 + 2a(x - x_0)$$
+                </div>
+                <p>($v$: Son hız, $v_0$: İlk hız, $a$: İvme, $t$: Zaman, $x$: Son konum, $x_0$: İlk konum)</p>
+            </div>
+        </section>
+
+        <!-- Chapter 2: Tahrik Kuvvetleri ve Çekiş Dirençleri -->
+        <section id="bolum2" class="card">
+            <h2 class="text-3xl font-bold mb-4 section-header">Bölüm 2: Tahrik Kuvvetleri ve Çekiş Dirençleri</h2>
+            <p class="mb-6">Bu bölümde, bir aracın hareket etmesi için gerekli olan tahrik kuvvetleri ve bu hareketi engelleyen çeşitli dirençler detaylı olarak incelenir. Aracın performansı ve enerji tüketimi üzerinde doğrudan etkisi olan bu kuvvetlerin anlaşılması kritik öneme sahiptir.</p>
+
+            <h3 class="text-2xl font-semibold mb-3 text-blue-700">Temel Bilgiler</h3>
+            <ul class="list-disc pl-5 space-y-2 mb-6">
+                <li><span class="font-medium">Tahrik Kuvvetleri (Tractive Forces):</span> Aracın tekerlekleri tarafından üretilen ve aracı ileri doğru hareket ettiren kuvvetlerdir. Motorun torku ve tekerlek çapı ile ilişkilidir.</li>
+                <li><span class="font-medium">Yokuş Çıkma Kuvveti (Grade Resistance):</span> Aracın eğimli bir yolda yukarı doğru hareket etmesi için gereken ek kuvvettir. Aracın ağırlığı ve eğim açısı ile doğru orantılıdır.</li>
+                <li><span class="font-medium">Yuvarlanma Direnci (Rolling Resistance):</span> Lastiklerin yol yüzeyi ile teması ve deformasyonu sonucunda oluşan direnç kuvvetidir. Lastik tipi, basıncı, araç ağırlığı ve yol yüzeyi gibi faktörlere bağlıdır.</li>
+                <li><span class="font-medium">Aerodinamik Direnç (Aerodynamic Drag):</span> Aracın havayla olan sürtünmesi sonucunda oluşan dirençtir. Aracın hızı, ön yüzey alanı ve aerodinamik katsayısı ile doğrudan ilişkilidir.</li>
+            </ul>
+            <div class="placeholder-image">Araç Üzerindeki Kuvvetler Diyagramı ve Yokuş Direnci</div>
+
+            <h3 class="text-2xl font-semibold mb-3 text-blue-700">Formüller</h3>
+            <div class="formula-box">
+                <p><strong>Tahrik Kuvveti (Motor Torkundan):</strong></p>
+                <div class="math-display">$$F_{tractive} = \frac{T_{motor} \times i_{gearbox} \times \eta_{driveline}}{r_{wheel}}$$</div>
+                <p>($T_{motor}$: Motor torku, $i_{gearbox}$: Şanzıman oranı, $\eta_{driveline}$: Güç aktarma organı verimliliği, $r_{wheel}$: Tekerlek yarıçapı)</p>
+            </div>
+            <div class="formula-box">
+                <p><strong>Yokuş Çıkma Kuvveti ($F_{grade}$):</strong></p>
+                <div class="math-display">$$F_{grade} = m \times g \times \sin(\alpha)$$</div>
+                <p>($m$: Araç kütlesi, $g$: Yerçekimi ivmesi, $\alpha$: Eğim açısı)</p>
+            </div>
+            <div class="formula-box">
+                <p><strong>Yuvarlanma Direnci ($F_{rolling}$):</strong></p>
+                <div class="math-display">$$F_{rolling} = C_{rr} \times m \times g \times \cos(\alpha)$$</div>
+                <p>($C_{rr}$: Yuvarlanma direnci katsayısı, $m$: Araç kütlesi, $g$: Yerçekimi ivmesi, $\alpha$: Eğim açısı)</p>
+            </div>
+            <div class="formula-box">
+                <p><strong>Aerodinamik Direnç ($F_{aero}$):</strong></p>
+                <div class="math-display">$$F_{aero} = \frac{1}{2} \times \rho \times A \times C_d \times v^2$$</div>
+                <p>($\rho$: Havanın yoğunluğu, $A$: Aracın ön yüzey alanı, $C_d$: Sürükleme katsayısı, $v$: Araç hızı)</p>
+            </div>
+        </section>
+
+        <!-- Chapter 3: Sürüş Döngüleri ve Enerji Hesaplamaları -->
+        <section id="bolum3" class="card">
+            <h2 class="text-3xl font-bold mb-4 section-header">Bölüm 3: Sürüş Döngüleri ve Enerji Hesaplamaları</h2>
+            <p class="mb-6">Bu bölümde, araç performansını ve enerji tüketimini değerlendirmek için kullanılan standart sürüş döngüleri ile bu döngülerdeki enerji hesaplamalarının nasıl yapıldığı açıklanmaktadır.</p>
+
+            <h3 class="text-2xl font-semibold mb-3 text-blue-700">Temel Bilgiler</h3>
+            <ul class="list-disc pl-5 space-y-2 mb-6">
+                <li><span class="font-medium">Sürüş Döngüleri (Driving Cycles):</span> Farklı sürüş koşullarını temsil eden, hız-zaman profilleridir (FTP-75, NEDC, WLTP gibi).</li>
+                <li><span class="font-medium">Enerji Tüketimi Hesaplaması:</span> Belirli bir sürüş döngüsü boyunca aracın tükettiği toplam enerji miktarıdır.</li>
+                <li><span class="font-medium">Rejeneratif Frenleme (Regenerative Braking):</span> Frenleme sırasında aracın kinetik enerjisinin bir kısmının elektrik enerjisine dönüştürülerek bataryaya geri depolanması sürecidir.</li>
+            </ul>
+            <div class="placeholder-image">Sürüş Döngüsü Hız Profili Grafiği ve Rejeneratif Frenleme Akışı</div>
+
+            <h3 class="text-2xl font-semibold mb-3 text-blue-700">Formüller</h3>
+            <div class="formula-box">
+                <p><strong>Toplam Güç İhtiyacı ($P_{total}$):</strong></p>
+                <div class="math-display">$$P_{total} = (F_{rolling} + F_{aero} + F_{grade} + F_{acceleration}) \times v$$</div>
+                <p>($F_{acceleration}$: İvmelenme kuvveti, $v$: Araç hızı)</p>
+            </div>
+            <div class="formula-box">
+                <p><strong>Toplam Enerji Tüketimi ($E_{total}$):</strong></p>
+                <div class="math-display">$$E_{total} = \int P_{total}(t) \, dt \quad \text{veya} \quad E_{total} = \sum (P_{total\_i} \times \Delta t_i)$$</div>
+                <p>($P_{total}(t)$: Anlık güç, $\Delta t$: Zaman aralığı)</p>
+            </div>
+            <div class="formula-box">
+                <p><strong>Rejeneratif Frenleme ile Geri Kazanılan Enerji ($E_{regen}$):</strong></p>
+                <div class="math-display">$$E_{regen} = \eta_{regen} \times \frac{1}{2}m(v_{initial}^2 - v_{final}^2)$$</div>
+                <p>($\eta_{regen}$: Rejeneratif verimlilik, $m$: Kütle, $v_{initial}$: Başlangıç hızı, $v_{final}$: Son hız)</p>
+            </div>
+        </section>
+
+        <!-- Chapter 4: Elektrik Motorları ve Özellikleri -->
+        <section id="bolum4" class="card">
+            <h2 class="text-3xl font-bold mb-4 section-header">Bölüm 4: Elektrik Motorları ve Özellikleri</h2>
+            <p class="mb-6">Bu bölüm, elektrikli araçlarda kullanılan motor tiplerini, bunların çalışma prensiplerini, özelliklerini ve performans parametrelerini detaylı bir şekilde ele alır.</p>
+
+            <h3 class="text-2xl font-semibold mb-3 text-blue-700">Temel Bilgiler</h3>
+            <ul class="list-disc pl-5 space-y-2 mb-6">
+                <li><span class="font-medium">Elektrik Motoru Türleri:</span> DC motorlar, AC motorlar (Asenkron - İndüksiyon motorlar, Senkron motorlar - PMSM, WRSM).</li>
+                <li><span class="font-medium">Motor Karakteristikleri:</span> Tork-Hız Eğrileri, Güç-Hız Eğrileri, Verimlilik Haritaları.</li>
+                <li><span class="font-medium">Motor Kontrolü:</span> Motorun tork ve hızını kontrol etmek için kullanılan teknikler (örn. PWM).</li>
+            </ul>
+            <div class="placeholder-image">Farklı Motor Tiplerinin Kesit Görünümleri ve Tork-Hız Eğrisi</div>
+
+            <h3 class="text-2xl font-semibold mb-3 text-blue-700">Formüller</h3>
+            <div class="formula-box">
+                <p><strong>Elektrik Motorunun Ürettiği Mekanik Güç ($P_{mech}$):</strong></p>
+                <div class="math-display">$$P_{mech} = T_{motor} \times \omega_{motor}$$</div>
+                <p>($T_{motor}$: Motor torku, $\omega_{motor}$: Motor açısal hızı)</p>
+            </div>
+            <div class="formula-box">
+                <p><strong>Elektrik Motorunun Verimliliği ($\eta_{motor}$):</strong></p>
+                <div class="math-display">$$\eta_{motor} = \frac{P_{mech}}{P_{electrical\_in}}$$</div>
+                <p>($P_{electrical\_in}$: Motora sağlanan elektrik gücü)</p>
+            </div>
+            <div class="formula-box">
+                <p><strong>AC Motorlarda Senkron Hız ($N_s$):</strong></p>
+                <div class="math-display">$$N_s = \frac{120 \times f}{P}$$</div>
+                <p>($f$: Frekans, $P$: Kutup sayısı)</p>
+            </div>
+        </section>
+
+        <!-- Chapter 5: Batarya Teknolojileri ve Yönetimi -->
+        <section id="bolum5" class="card">
+            <h2 class="text-3xl font-bold mb-4 section-header">Bölüm 5: Batarya Teknolojileri ve Yönetimi</h2>
+            <p class="mb-6">Bu bölüm, elektrikli araçların enerji depolama birimi olan bataryaların temel prensiplerini, farklı batarya kimyalarını, performans parametrelerini ve batarya yönetim sistemlerinin önemini açıklar.</p>
+
+            <h3 class="text-2xl font-semibold mb-3 text-blue-700">Temel Bilgiler</h3>
+            <ul class="list-disc pl-5 space-y-2 mb-6">
+                <li><span class="font-medium">Batarya Kimyaları:</span> Lityum-İyon (Li-ion) bataryaların farklı varyantları (LFP, NMC, NCA vb.) ve özellikleri.</li>
+                <li><span class="font-medium">Batarya Parametreleri:</span> Gerilim, Akım, Kapasite (Ah, kWh), Enerji Yoğunluğu (Wh/kg), Güç Yoğunluğu (W/kg), İç Direnç, Şarj Durumu (SoC), Sağlık Durumu (SoH), Çevrim Ömrü.</li>
+                <li><span class="font-medium">Batarya Yönetim Sistemi (BMS):</span> Hücre dengelemesi, aşırı şarj/deşarj koruması, sıcaklık kontrolü ve SoC/SoH tahmini gibi görevleri.</li>
+            </ul>
+            <div class="placeholder-image">Batarya Paketi Diyagramı ve BMS İkonları</div>
+
+            <h3 class="text-2xl font-semibold mb-3 text-blue-700">Formüller</h3>
+            <div class="formula-box">
+                <p><strong>Batarya Enerjisi ($E_{battery}$):</strong></p>
+                <div class="math-display">$$E_{battery} = V_{nominal} \times C_{Ah}$$</div>
+                <p>($V_{nominal}$: Nominal gerilim, $C_{Ah}$: Kapasite (Ah))</p>
+            </div>
+            <div class="formula-box">
+                <p><strong>Batarya Gücü ($P_{battery}$):</strong></p>
+                <div class="math-display">$$P_{battery} = V_{battery} \times I_{battery}$$</div>
+                <p>($V_{battery}$: Anlık gerilim, $I_{battery}$: Akım)</p>
+            </div>
+            <div class="formula-box">
+                <p><strong>C-Rate (Şarj/Deşarj Oranı):</strong></p>
+                <div class="math-display}">$$\text{C-Rate} = \frac{\text{Akım (Amper)}}{\text{Kapasite (Ah)}}$$</div>
+            </div>
+            <div class="formula-box">
+                <p><strong>Şarj Durumu (SoC) Tahmini (Basit Coulomb Sayma):</strong></p>
+                <div class="math-display">$$\text{SoC}(t) = \text{SoC}(t_0) + \frac{\int_{t_0}^{t} I_{battery}(\tau) \, d\tau}{C_{Ah}} \times 100\%$$</div>
+                <p>($SoC(t_0)$: Başlangıç SoC, $I_{battery}$: Akım, $C_{Ah}$: Kapasite)</p>
+            </div>
+        </section>
+
+        <!-- Chapter 6: Güç Elektroniği ve Konvertörler -->
+        <section id="bolum6" class="card">
+            <h2 class="text-3xl font-bold mb-4 section-header">Bölüm 6: Güç Elektroniği ve Konvertörler</h2>
+            <p class="mb-6">Bu bölüm, elektrikli araçların kalbi sayılan güç elektroniği sistemlerini ve farklı konvertör tiplerini inceler. Güç elektroniği, bataryadan gelen gücün elektrik motoruna uygun forma dönüştürülmesinden sorumludur.</p>
+
+            <h3 class="text-2xl font-semibold mb-3 text-blue-700">Temel Bilgiler</h3>
+            <ul class="list-disc pl-5 space-y-2 mb-6">
+                <li><span class="font-medium">Güç Elektroniğinin Önemi:</span> Elektrikli araçlarda enerji dönüşümü, kontrol ve verimlilik için kritik role sahiptir.</li>
+                <li><span class="font-medium">Anahtar Güç Elektroniği Cihazları:</span> Diyotlar, Transistörler (IGBT, MOSFET).</li>
+                <li><span class="font-medium">Konvertör Türleri:</span> DC-DC Konvertörler (Boost, Buck), DC-AC Konvertörler (İnvertörler), AC-DC Konvertörler (Doğrultucular).</li>
+            </ul>
+            <div class="placeholder-image">Güç Akış Diyagramı ve Konvertör Şemaları</div>
+
+            <h3 class="text-2xl font-semibold mb-3 text-blue-700">Formüller</h3>
+            <div class="formula-box">
+                <p><strong>DC-DC Boost Konvertör Gerilim Oranı (İdeal):</strong></p>
+                <div class="math-display">$$V_{out} = V_{in} \times \frac{1}{1 - D}$$</div>
+                <p>($V_{out}$: Çıkış gerilimi, $V_{in}$: Giriş gerilimi, $D$: Çalışma çevrimi (Duty Cycle))</p>
+            </div>
+            <div class="formula-box">
+                <p><strong>DC-DC Buck Konvertör Gerilim Oranı (İdeal):</strong></p>
+                <div class="math-display">$$V_{out} = V_{in} \times D$$</div>
+                <p>($V_{out}$: Çıkış gerilimi, $V_{in}$: Giriş gerilimi, $D$: Çalışma çevrimi (Duty Cycle))</p>
+            </div>
+        </section>
+
+        <!-- Chapter 7: Şarj Teknolojileri ve Altyapı -->
+        <section id="bolum7" class="card">
+            <h2 class="text-3xl font-bold mb-4 section-header">Bölüm 7: Şarj Teknolojileri ve Altyapı</h2>
+            <p class="mb-6">Bu bölüm, elektrikli araçların şarj edilme yöntemlerini, farklı şarj seviyelerini, şarj istasyonlarını ve şarj altyapısının önemini inceler.</p>
+
+            <h3 class="text-2xl font-semibold mb-3 text-blue-700">Temel Bilgiler</h3>
+            <ul class="list-disc pl-5 space-y-2 mb-6">
+                <li><span class="font-medium">Şarj Modları/Seviyeleri:</span> Seviye 1 (Evde yavaş AC), Seviye 2 (Ticari/Evde hızlı AC), DC Hızlı Şarj (Seviye 3).</li>
+                <li><span class="font-medium">Şarj Bağlantı Standartları:</span> Type 1 (J1772), Type 2 (Mennekes), CCS (Combined Charging System), CHAdeMO, GBT, Tesla Supercharger.</li>
+                <li><span class="font-medium">Şarj Altyapısı:</span> Şarj istasyonları, operatörler, ödeme sistemleri, akıllı şarj (V2G, V2L).</li>
+                <li><span class="font-medium">Menzil Kaygısı:</span> Şarj süresi ve menzil kaygısının üstesinden gelme stratejileri.</li>
+            </ul>
+            <div class="placeholder-image">Farklı Şarj Seviyeleri ve Şarj Konektör Tipleri</div>
+
+            <h3 class="text-2xl font-semibold mb-3 text-blue-700">Formüller</h3>
+            <div class="formula-box">
+                <p><strong>Şarj Süresi Tahmini ($T_{charge}$):</strong></p>
+                <div class="math-display">$$T_{charge} = \frac{E_{battery\_needed}}{P_{charger} \times \eta_{charge}}$$</div>
+                <p>($E_{battery\_needed}$: Şarj edilecek enerji, $P_{charger}$: Şarj cihazı gücü, $\eta_{charge}$: Şarj verimliliği)</p>
+            </div>
+            <div class="formula-box">
+                <p><strong>Batarya Akımı (Şarj Sırasında) ($I_{charge}$):</strong></p>
+                <div class="math-display">$$I_{charge} = \frac{P_{charger}}{V_{battery}}$$</div>
+                <p>($P_{charger}$: Şarj cihazı gücü, $V_{battery}$: Batarya gerilimi)</p>
+            </div>
+        </section>
+
+        <!-- Chapter 8: Termal Yönetim Sistemleri -->
+        <section id="bolum8" class="card">
+            <h2 class="text-3xl font-bold mb-4 section-header">Bölüm 8: Termal Yönetim Sistemleri</h2>
+            <p class="mb-6">Bu bölüm, elektrikli araçlarda bataryaların, motorların ve güç elektroniği bileşenlerinin termal yönetiminin neden kritik olduğunu ve bu sistemlerin nasıl çalıştığını ele alır.</p>
+
+            <h3 class="2xl font-semibold mb-3 text-blue-700">Temel Bilgiler</h3>
+            <ul class="list-disc pl-5 space-y-2 mb-6">
+                <li><span class="font-medium">Termal Yönetimin Önemi:</span> Performans, verimlilik, güvenlik ve batarya ömrü için kritik.</li>
+                <li><span class="font-medium">Isı Kaynakları:</span> Batarya, elektrik motoru, güç elektroniği, şarj cihazı.</li>
+                <li><span class="font-medium">Isı Transfer Yöntemleri:</span> İletim (Conduction), Konveksiyon (Convection), Radyasyon (Radiation).</li>
+                <li><span class="font-medium">Soğutma Ortamları ve Bileşenleri:</span> Hava, sıvı soğutma (radyatörler, fanlar, pompalar, ısı eşanjörleri).</li>
+                <li><span class="font-medium">Termal Yönetim Stratejileri:</span> Aktif/Pasif soğutma, ısıtma, entegre sistemler.</li>
+            </ul>
+            <div class="placeholder-image">EV Termal Yönetim Sistemi Şeması ve Bileşenleri</div>
+
+            <h3 class="text-2xl font-semibold mb-3 text-blue-700">Formüller</h3>
+            <div class="formula-box">
+                <p><strong>Isı Transferi Oranı ($Q$ - Duyulur ısı için):</strong></p>
+                <div class="math-display">$$Q = mc_p \frac{\Delta T}{\Delta t}$$</div>
+                <p>($m$: Kütle, $c_p$: Özgül ısı, $\Delta T$: Sıcaklık değişimi, $\Delta t$: Zaman değişimi)</p>
+            </div>
+            <div class="formula-box">
+                <p><strong>Konveksiyonla Isı Transferi (Newton'ın Soğuma Yasası):</strong></p>
+                <div class="math-display">$$Q = h A (T_s - T_\infty)$$</div>
+                <p>($h$: Konveksiyonel ısı transfer katsayısı, $A$: Isı transfer alanı, $T_s$: Yüzey sıcaklığı, $T_\infty$: Akışkan sıcaklığı)</p>
+            </div>
+            <div class="formula-box">
+                <p><strong>Batarya Isı Üretimi ($Q_{bat}$):</strong></p>
+                <div class="math-display">$$Q_{bat} = I_{bat}^2 R_{int}$$</div>
+                <p>($I_{bat}$: Batarya akımı, $R_{int}$: Batarya iç direnci)</p>
+            </div>
+        </section>
+
+        <!-- Chapter 9: Modelleme ve Simülasyon -->
+        <section id="bolum9" class="card">
+            <h2 class="text-3xl font-bold mb-4 section-header">Bölüm 9: Modelleme ve Simülasyon</h2>
+            <p class="mb-6">Bu bölüm, elektrikli araç sistemlerinin analizi ve tasarımı için modelleme ve simülasyon tekniklerinin nasıl kullanıldığını ele alır.</p>
+
+            <h3 class="text-2xl font-semibold mb-3 text-blue-700">Temel Bilgiler</h3>
+            <ul class="list-disc pl-5 space-y-2 mb-6">
+                <li><span class="font-medium">Modelleme ve Simülasyonun Amacı:</span> Fiziksel prototip oluşturmadan sistemin davranışını tahmin etmek, tasarım alternatiflerini değerlendirmek, performansı optimize etmek.</li>
+                <li><span class="font-medium">Model Türleri:</span> Ampirik modeller, Fiziksel modeller, Elektrik-Eşdeğer Devre Modelleri (ECM).</li>
+                <li><span class="font-medium">Simülasyon Yazılımları:</span> MATLAB/Simulink, AMESim, GT-SUITE.</li>
+                <li><span class="font-medium">Model Doğrulama ve Kalibrasyon:</span> Simülasyon modellerinin gerçek dünya verileriyle karşılaştırılması ve ayarlanması.</li>
+            </ul>
+            <div class="placeholder-image">MATLAB/Simulink EV Modeli Örneği ve Simülasyon Grafiği</div>
+
+            <h3 class="text-2xl font-semibold mb-3 text-blue-700">Formüller (Modelleme Yaklaşımları)</h3>
+            <div class="formula-box">
+                <p><strong>Durum Uzayı Gösterimi (Genel):</strong></p>
+                <div class="math-display">$$\dot{x} = Ax + Bu$$</div>
+                <div class="math-display">$$y = Cx + Du$$</div>
+                <p>($x$: Durum vektörü, $u$: Giriş vektörü, $y$: Çıkış vektörü, $A,B,C,D$: Sistem matrisleri)</p>
+            </div>
+            <div class="formula-box">
+                <p><strong>Basit Batarya Eşdeğer Devre Modeli (ECM):</strong></p>
+                <div class="math-display}$$V_{oc} - I_{bat} R_0 - V_1 = V_{terminal}$$</div>
+                <div class="math-display}$$\dot{V_1} = \frac{1}{C_1} (I_{bat} - \frac{V_1}{R_1})$$</div>
+                <p>($V_{oc}$: Açık devre gerilimi, $R_0$: Seri direnç, $R_1, C_1$: RC elemanları, $I_{bat}$: Batarya akımı, $V_{terminal}$: Terminal gerilimi)</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center py-6 text-gray-600">
+            <p>&copy; 2025 YTÜ Elektrik Mühendisliği. Tüm Hakları Saklıdır.</p>
+            <p>Eğitim Amaçlı Hazırlanmıştır.</p>
+        </footer>
+
+    </div>
+
+    <!-- Smooth scrolling for navigation links -->
+    <script>
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
