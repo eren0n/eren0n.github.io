@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genel Test 1 | EV Dünyası</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+            color: #374151; /* Dark gray text */
+        }
+        .container {
+            max-width: 960px;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .question-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb; /* Light border for separation */
+        }
+        .question-item:last-child {
+            border-bottom: none;
+        }
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border: 1px solid #d1d5db; /* Default border */
+        }
+        .option-label:hover {
+            background-color: #f3f4f6; /* Light hover background */
+        }
+        .option-input {
+            margin-right: 0.75rem;
+        }
+        /* Styles for correct/incorrect answers after check */
+        .option-label.correct {
+            background-color: #d1fae5; /* Light green for correct */
+            border-color: #10b981; /* Green border */
+            font-weight: 600;
+        }
+        .option-label.incorrect {
+            background-color: #fee2e2; /* Light red for incorrect */
+            border-color: #ef4444; /* Red border */
+        }
+        .option-label.incorrect .option-text {
+            text-decoration: line-through; /* Strikethrough for incorrect chosen answer */
+        }
+        .result-box {
+            background-color: #ecfdf5; /* Light green background for results */
+            border-left: 4px solid #10b981; /* Green border */
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: none; /* Hidden by default */
+        }
+        .result-score {
+            color: #047857; /* Dark green */
+        }
+        .result-message {
+            color: #ef4444; /* Red for incorrect count */
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="container mx-auto">
+        <h1 class="text-4xl font-extrabold text-center text-blue-800 mb-8">Genel Test 1</h1>
+        <p class="text-xl text-center text-gray-700 mb-10">Elektrikli Araç Teknolojileri Konuları</p>
+
+        <form id="quizForm" class="card">
+            <!-- Question 1 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">1. Elektrikli araçların ilk popülerlik kazandığı dönem aşağıdakilerden hangisidir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="a" class="option-input">
+                        <span class="option-text">1800'lerin sonları ve 1900'lerin başları</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="b" class="option-input">
+                        <span class="option-text">1950'ler</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="c" class="option-input">
+                        <span class="option-text">1970'ler</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="d" class="option-input">
+                        <span class="option-text">2000'lerin başları</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="e" class="option-input">
+                        <span class="option-text">Günümüz</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">2. Newton'ın İkinci Hareket Yasası'nın formülü nedir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="a" class="option-input">
+                        <span class="option-text">E = mc²</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="b" class="option-input">
+                        <span class="option-text">P = VI</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="c" class="option-input">
+                        <span class="option-text">F = ma</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="d" class="option-input">
+                        <span class="option-text">V = IR</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="e" class="option-input">
+                        <span class="option-text">W = Fd</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">3. Bir aracı ileri doğru hareket ettiren kuvvetin adı nedir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="a" class="option-input">
+                        <span class="option-text">Aerodinamik direnç</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="b" class="option-input">
+                        <span class="option-text">Yuvarlanma direnci</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="c" class="option-input">
+                        <span class="option-text">Tahrik kuvveti</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="d" class="option-input">
+                        <span class="option-text">Yokuş çıkma kuvveti</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="e" class="option-input">
+                        <span class="option-text">Yerçekimi kuvveti</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">4. Aracın kinetik enerjisinin bir kısmının elektrik enerjisine dönüştürülerek bataryaya geri depolanması sürecine ne ad verilir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q4" value="a" class="option-input">
+                        <span class="option-text">Hızlı Şarj</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q4" value="b" class="option-input">
+                        <span class="option-text">Yavaş Şarj</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q4" value="c" class="option-input">
+                        <span class="option-text">Rejeneratif Frenleme</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q4" value="d" class="option-input">
+                        <span class="option-text">Hızlanma</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q4" value="e" class="option-input">
+                        <span class="option-text">Debriyajlama</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">5. Elektrik motorunun mekanik gücünü ($P_{mech}$) hesaplamak için hangi formül kullanılır?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="a" class="option-input">
+                        <span class="option-text">P = V * I</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="b" class="option-input">
+                        <span class="option-text">P = T * $\omega$</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="c" class="option-input">
+                        <span class="option-text">P = F * v</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="d" class="option-input">
+                        <span class="option-text">P = E / t</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="e" class="option-input">
+                        <span class="option-text">P = I^2 * R</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">6. Günümüz elektrikli araçlarında en yaygın kullanılan ana batarya teknolojisi hangisidir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="a" class="option-input">
+                        <span class="option-text">Nikel-Kadmiyum (NiCd) Bataryalar</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="b" class="option-input">
+                        <span class="option-text">Kurşun-Asit Bataryalar</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="c" class="option-input">
+                        <span class="option-text">Lityum-İyon (Li-ion) Bataryalar</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="d" class="option-input">
+                        <span class="option-text">Nikel-Metal Hidrit (NiMH) Bataryalar</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="e" class="option-input">
+                        <span class="option-text">Alkali Bataryalar</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">7. Bataryadan gelen DC gücünü AC motorun çalışması için gereken AC güce dönüştüren güç elektroniği bileşeni hangisidir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q7" value="a" class="option-input">
+                        <span class="option-text">DC-DC Konvertör</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q7" value="b" class="option-input">
+                        <span class="option-text">Doğrultucu</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q7" value="c" class="option-input">
+                        <span class="option-text">İnvertör</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q7" value="d" class="option-input">
+                        <span class="option-text">Diyot</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q7" value="e" class="option-input">
+                        <span class="option-text">Transistör</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">8. Evdeki standart prizlerden (örn. 220-240V) yapılan yavaş şarj modu hangisidir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q8" value="a" class="option-input">
+                        <span class="option-text">Seviye 1 (AC Şarj)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q8" value="b" class="option-input">
+                        <span class="option-text">Seviye 2 (AC Şarj)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q8" value="c" class="option-input">
+                        <span class="option-text">DC Hızlı Şarj (Seviye 3)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q8" value="d" class="option-input">
+                        <span class="option-text">Akıllı Şarj</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q8" value="e" class="option-input">
+                        <span class="option-text">V2G Şarj</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">9. Elektrikli araçlarda termal yönetimin en kritik önemi hangi bileşenin ömrü ve güvenliği ile doğrudan ilişkilidir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q9" value="a" class="option-input">
+                        <span class="option-text">Şanzıman</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q9" value="b" class="option-input">
+                        <span class="option-text">Lastikler</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q9" value="c" class="option-input">
+                        <span class="option-text">Batarya</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q9" value="d" class="option-input">
+                        <span class="option-text">Direksiyon sistemi</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q9" value="e" class="option-input">
+                        <span class="option-text">Aydınlatma sistemi</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">10. Modelleme ve simülasyonun temel amacı nedir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q10" value="a" class="option-input">
+                        <span class="option-text">Sadece araçların estetiğini geliştirmek</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q10" value="b" class="option-input">
+                        <span class="option-text">Fiziksel prototip oluşturmadan önce sistemin davranışını tahmin etmek</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q10" value="c" class="option-input">
+                        <span class="option-text">Yalnızca maliyetleri artırmak</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q10" value="d" class="option-input">
+                        <span class="option-text">Yalnızca mekanik parçaların üretimini hızlandırmak</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q10" value="e" class="option-input">
+                        <span class="option-text">Sadece batarya kapasitesini ölçmek</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">11. Bir elektrikli aracın enerji tüketimini değerlendirmek için kullanılan standart hız-zaman profillerine ne ad verilir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q11" value="a" class="option-input">
+                        <span class="option-text">Güç eğrileri</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q11" value="b" class="option-input">
+                        <span class="option-text">Sürüş döngüleri</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q11" value="c" class="option-input">
+                        <span class="option-text">Tork haritaları</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q11" value="d" class="option-input">
+                        <span class="option-text">Termal profiller</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q11" value="e" class="option-input">
+                        <span class="option-text">Şarj profilleri</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">12. Yuvarlanma direnci hangi faktörden EN AZ etkilenir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q12" value="a" class="option-input">
+                        <span class="option-text">Lastik basıncı</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q12" value="b" class="option-input">
+                        <span class="option-text">Araç ağırlığı</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q12" value="c" class="option-input">
+                        <span class="option-text">Yol yüzeyi</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q12" value="d" class="option-input">
+                        <span class="option-text">Hava sıcaklığı</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q12" value="e" class="option-input">
+                        <span class="option-text">Lastik tipi</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">13. Elektrik motorunun farklı tork ve hız noktalarındaki verimliliğini gösteren grafiklere ne ad verilir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q13" value="a" class="option-input">
+                        <span class="option-text">Tork-Hız Eğrisi</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q13" value="b" class="option-input">
+                        <span class="option-text">Güç-Hız Eğrisi</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q13" value="c" class="option-input">
+                        <span class="option-text">Verimlilik Haritası</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q13" value="d" class="option-input">
+                        <span class="option-text">Performans Eğrisi</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q13" value="e" class="option-input">
+                        <span class="option-text">Akım-Gerilim Karakteristiği</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">14. Bataryanın depolayabileceği toplam enerji miktarını ifade eden parametre hangisidir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q14" value="a" class="option-input">
+                        <span class="option-text">Gerilim (Voltage)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q14" value="b" class="option-input">
+                        <span class="option-text">Akım (Current)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q14" value="c" class="option-input">
+                        <span class="option-text">Kapasite (Capacity)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q14" value="d" class="option-input">
+                        <span class="option-text">İç Direnç (Internal Resistance)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q14" value="e" class="option-input">
+                        <span class="option-text">Çevrim Ömrü (Cycle Life)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">15. Giriş geriliminden daha yüksek bir çıkış gerilimi sağlayan DC-DC konvertör türü hangisidir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q15" value="a" class="option-input">
+                        <span class="option-text">Buck Konvertör</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q15" value="b" class="option-input">
+                        <span class="option-text">Boost Konvertör</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q15" value="c" class="option-input">
+                        <span class="option-text">Buck-Boost Konvertör</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q15" value="d" class="option-input">
+                        <span class="option-text">Doğrultucu</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q15" value="e" class="option-input">
+                        <span class="option-text">İnvertör</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">16. Avrupa ve Türkiye'de yaygın olan tek veya üç fazlı AC şarj standardı hangisidir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q16" value="a" class="option-input">
+                        <span class="option-text">Type 1 (J1772)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q16" value="b" class="option-input">
+                        <span class="option-text">Type 2 (Mennekes)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q16" value="c" class="option-input">
+                        <span class="option-text">CHAdeMO</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q16" value="d" class="option-input">
+                        <span class="option-text">CCS (Combined Charging System)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q16" value="e" class="option-input">
+                        <span class="option-text">GBT</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">17. Termal yönetimde ısı transferi yöntemlerinden hangisi doğrudan temas gerektirir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q17" value="a" class="option-input">
+                        <span class="option-text">Radyasyon (Işıma)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q17" value="b" class="option-input">
+                        <span class="option-text">Konveksiyon (Taşınım)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q17" value="c" class="option-input">
+                        <span class="option-text">İletim (Conduction)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q17" value="d" class="option-input">
+                        <span class="option-text">Erime</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q17" value="e" class="option-input">
+                        <span class="option-text">Yoğuşma</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">18. Simülasyon modellerinin gerçek dünya verileriyle karşılaştırılması ve ayarlanması sürecine ne ad verilir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q18" value="a" class="option-input">
+                        <span class="option-text">Veri Sıkıştırma</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q18" value="b" class="option-input">
+                        <span class="option-text">Model Doğrulama ve Kalibrasyon</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q18" value="c" class="option-input">
+                        <span class="option-text">Algoritma Geliştirme</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q18" value="d" class="option-input">
+                        <span class="option-text">Hızlandırma Testi</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q18" value="e" class="option-input">
+                        <span class="option-text">Yazılım Yüklemesi</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">19. Hızlanma denklemlerinden hangisi, ilk hız, ivme ve zaman verildiğinde son hızı hesaplamak için kullanılır?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q19" value="a" class="option-input">
+                        <span class="option-text">x = x0 + v0t + 0.5at²</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q19" value="b" class="option-input">
+                        <span class="option-text">v² = v0² + 2a(x - x0)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q19" value="c" class="option-input">
+                        <span class="option-text">v = v0 + at</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q19" value="d" class="option-input">
+                        <span class="option-text">F = ma</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q19" value="e" class="option-input">
+                        <span class="option-text">P = Fv</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">20. Yokuş çıkma kuvveti için kullanılan formülde 'alfa' neyi temsil eder?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q20" value="a" class="option-input">
+                        <span class="option-text">Hava yoğunluğunu</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q20" value="b" class="option-input">
+                        <span class="option-text">Sürükleme katsayısını</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q20" value="c" class="option-input">
+                        <span class="option-text">Yol eğim açısını</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q20" value="d" class="option-input">
+                        <span class="option-text">Yuvarlanma direnci katsayısını</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q20" value="e" class="option-input">
+                        <span class="option-text">Tekerlek yarıçapını</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 21 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">21. Bir bataryanın birim ağırlık veya hacim başına depolayabileceği enerji miktarına ne ad verilir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q21" value="a" class="option-input">
+                        <span class="option-text">Güç Yoğunluğu</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q21" value="b" class="option-input">
+                        <span class="option-text">C-Rate</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q21" value="c" class="option-input">
+                        <span class="option-text">İç Direnç</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q21" value="d" class="option-input">
+                        <span class="option-text">Enerji Yoğunluğu</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q21" value="e" class="option-input">
+                        <span class="option-text">Şarj Durumu</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 22 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">22. İdeal bir Buck Konvertörün çıkış gerilimi (Vout) formülü nedir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q22" value="a" class="option-input">
+                        <span class="option-text">Vout = Vin / (1 - D)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q22" value="b" class="option-input">
+                        <span class="option-text">Vout = Vin * D</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q22" value="c" class="option-input">
+                        <span class="option-text">Vout = Vin * (1 + D)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q22" value="d" class="option-input">
+                        <span class="option-text">Vout = Vin / D</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q22" value="e" class="option-input">
+                        <span class="option-text">Vout = Vin * sin(D)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 23 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">23. "Menzil kaygısı" (Range Anxiety) terimi ne anlama gelir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q23" value="a" class="option-input">
+                        <span class="option-text">Elektrikli araçların yüksek fiyatları nedeniyle yaşanan kaygı</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q23" value="b" class="option-input">
+                        <span class="option-text">Yetersiz şarj altyapısı nedeniyle yolda kalma korkusu</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q23" value="c" class="option-input">
+                        <span class="option-text">Batarya ömrünün kısa olması endişesi</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q23" value="d" class="option-input">
+                        <span class="option-text">Elektrikli araçların performans düşüşü endişesi</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q23" value="e" class="option-input">
+                        <span class="option-text">Yüksek bakım maliyetleri endişesi</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 24 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">24. Bataryanın iç direncinden dolayı oluşan ısıyı hesaplamak için kullanılan temel formül nedir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q24" value="a" class="option-input">
+                        <span class="option-text">Q = mc * Delta T</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q24" value="b" class="option-input">
+                        <span class="option-text">Q = hA * (Ts - T_infinity)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q24" value="c" class="option-input">
+                        <span class="option-text">Q_bat = Ibat^2 * Rint</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q24" value="d" class="option-input">
+                        <span class="option-text">Q = -kA * dT/dx</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q24" value="e" class="option-input">
+                        <span class="option-text">Q = V * I</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 25 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">25. Bataryaların davranışını direnç ve kapasitörlerle modellemek için kullanılan model türüne ne denir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q25" value="a" class="option-input">
+                        <span class="option-text">Termal Model</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q25" value="b" class="option-input">
+                        <span class="option-text">Motor Modeli</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q25" value="c" class="option-input">
+                        <span class="option-text">Elektrik-Eşdeğer Devre Modeli (ECM)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q25" value="d" class="option-input">
+                        <span class="option-text">Sürüş Dinamiği Modeli</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q25" value="e" class="option-input">
+                        <span class="option-text">Basitleştirilmiş Model</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <button type="button" id="checkAnswersBtn" class="bg-blue-600 text-white px-8 py-4 rounded-md hover:bg-blue-700 font-bold text-xl inline-block transition transform hover:scale-105 shadow-lg">
+                    Cevapları Kontrol Et
+                </button>
+            </div>
+        </form>
+
+        <div id="results" class="result-box">
+            <p>Doğru Cevaplar: <span id="correctCount" class="result-score"></span></p>
+            <p>Yanlış Cevaplar: <span id="incorrectCount" class="result-message"></span></p>
+            <p>Boş Bırakılanlar: <span id="unansweredCount" class="result-message"></span></p>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            q1: 'a', // Bölüm 1
+            q2: 'c', // Bölüm 1
+            q3: 'c', // Bölüm 2
+            q4: 'c', // Bölüm 3
+            q5: 'b', // Bölüm 4
+            q6: 'd', // Bölüm 5
+            q7: 'c', // Bölüm 6
+            q8: 'a', // Bölüm 7
+            q9: 'c', // Bölüm 8
+            q10: 'b', // Bölüm 9
+            q11: 'b', // Bölüm 3
+            q12: 'd', // Bölüm 2
+            q13: 'c', // Bölüm 4
+            q14: 'c', // Bölüm 5
+            q15: 'b', // Bölüm 6
+            q16: 'b', // Bölüm 7
+            q17: 'c', // Bölüm 8
+            q18: 'b', // Bölüm 9
+            q19: 'c', // Bölüm 1
+            q20: 'c', // Bölüm 2
+            q21: 'd', // Bölüm 5
+            q22: 'b', // Bölüm 6
+            q23: 'b', // Bölüm 7
+            q24: 'c', // Bölüm 8
+            q25: 'c'  // Bölüm 9
+        };
+
+        const checkAnswersBtn = document.getElementById('checkAnswersBtn');
+        const quizForm = document.getElementById('quizForm');
+        const resultsDiv = document.getElementById('results');
+        const correctCountSpan = document.getElementById('correctCount');
+        const incorrectCountSpan = document.getElementById('incorrectCount');
+        const unansweredCountSpan = document.getElementById('unansweredCount');
+
+        checkAnswersBtn.addEventListener('click', () => {
+            let correct = 0;
+            let incorrect = 0;
+            let unanswered = 0;
+
+            // Loop through each question
+            for (let i = 1; i <= 25; i++) { // Changed loop limit to 25
+                const questionName = `q${i}`;
+                const selectedOption = quizForm.querySelector(`input[name="${questionName}"]:checked`);
+                const questionElement = selectedOption ? selectedOption.closest('.question-item') : quizForm.querySelector(`input[name="${questionName}"]`).closest('.question-item');
+                
+                // Reset styles from previous check
+                questionElement.querySelectorAll('.option-label').forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    label.querySelector('.option-text').style.textDecoration = 'none';
+                });
+
+                if (selectedOption) {
+                    const userAnswer = selectedOption.value;
+                    const correctAnswer = correctAnswers[questionName];
+
+                    if (userAnswer === correctAnswer) {
+                        correct++;
+                        selectedOption.closest('.option-label').classList.add('correct');
+                    } else {
+                        incorrect++;
+                        selectedOption.closest('.option-label').classList.add('incorrect');
+                        // Show correct answer for incorrect attempts
+                        const correctLabel = questionElement.querySelector(`input[value="${correctAnswer}"]`).closest('.option-label');
+                        correctLabel.classList.add('correct');
+                    }
+                } else {
+                    unanswered++;
+                    // Show correct answer for unanswered questions
+                    const correctAnswer = correctAnswers[questionName];
+                    const correctLabel = questionElement.querySelector(`input[value="${correctAnswer}"]`).closest('.option-label');
+                    correctLabel.classList.add('correct');
+                }
+            }
+
+            // Display results summary
+            correctCountSpan.textContent = correct;
+            incorrectCountSpan.textContent = incorrect;
+            unansweredCountSpan.textContent = unanswered;
+            resultsDiv.style.display = 'block'; // Show results box
+
+            // Optionally, disable further attempts after checking
+            quizForm.querySelectorAll('input[type="radio"]').forEach(input => {
+                input.disabled = true;
+            });
+            checkAnswersBtn.disabled = true;
+            checkAnswersBtn.classList.remove('hover:bg-blue-700');
+            checkAnswersBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        });
+    </script>
+</body>
+</html>
