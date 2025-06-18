@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genel Test 2 | EV Dünyası</title>
+    <title>Genel Test 2 | YTÜ ELM</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -16,6 +16,10 @@
                 }
             }
         }
+    </script>
+    <!-- MathJax CDN for LaTeX rendering -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
     <style>
         body {
@@ -744,27 +748,27 @@
 
             <!-- Question 25 -->
             <div class="question-item">
-                <p class="font-semibold text-lg mb-3">25. Durum uzayı gösterimi formülünde 'u' neyi temsil eder?</p>
+                <p class="font-semibold text-lg mb-3">25. Simülasyon yazılımlarından hangisi genellikle fiziksel temelli (physical-based) modellemeler için kullanılır?</p>
                 <div class="space-y-2">
                     <label class="option-label">
                         <input type="radio" name="q25" value="a" class="option-input">
-                        <span class="option-text">Çıkış vektörünü</span>
+                        <span class="option-text">Microsoft Excel</span>
                     </label>
                     <label class="option-label">
                         <input type="radio" name="q25" value="b" class="option-input">
-                        <span class="option-text">Durum vektörünü</span>
+                        <span class="option-text">Google Sheets</span>
                     </label>
                     <label class="option-label">
                         <input type="radio" name="q25" value="c" class="option-input">
-                        <span class="option-text">Giriş vektörünü</span>
+                        <span class="option-text">AMESim veya GT-SUITE</span>
                     </label>
                     <label class="option-label">
                         <input type="radio" name="q25" value="d" class="option-input">
-                        <span class="option-text">Sistem matrisini</span>
+                        <span class="option-text">Web Tarayıcısı</span>
                     </label>
                     <label class="option-label">
                         <input type="radio" name="q25" value="e" class="option-input">
-                        <span class="option-text">Sabit bir katsayıyı</span>
+                        <span class="option-text">Video düzenleme yazılımı</span>
                     </label>
                 </div>
             </div>
@@ -805,19 +809,20 @@
             q18: 'b', // Bölüm 9 - Ampirik modeller
             q19: 'b', // Bölüm 1 - EV ve ICE farkı
             q20: 'b', // Bölüm 2 - Yerçekimi ivmesi
-            q21: 'b', // Bölüm 5 - Batarya enerjisi
+            q21: 'd', // Bölüm 5 - Enerji Yoğunluğu (Genel Test 1'den düzeltildi)
             q22: 'c', // Bölüm 6 - Yüksek güçlü anahtarlama elemanları
             q23: 'c', // Bölüm 7 - Akıllı Şarj faydası
             q24: 'c', // Bölüm 8 - Pasif soğutma
-            q25: 'c'  // Bölüm 9 - Durum uzayı gösterimi 'u'
+            q25: 'c'  // Bölüm 9 - Fiziksel temelli simülasyon yazılımları
         };
 
-        const checkAnswersBtn = document.getElementById('checkAnswersBtn');
         const quizForm = document.getElementById('quizForm');
         const resultsDiv = document.getElementById('results');
         const correctCountSpan = document.getElementById('correctCount');
         const incorrectCountSpan = document.getElementById('incorrectCount');
         const unansweredCountSpan = document.getElementById('unansweredCount');
+        const checkAnswersBtn = document.getElementById('checkAnswersBtn');
+
 
         checkAnswersBtn.addEventListener('click', () => {
             let correct = 0;
@@ -873,6 +878,13 @@
             checkAnswersBtn.classList.remove('hover:bg-blue-700');
             checkAnswersBtn.classList.add('opacity-50', 'cursor-not-allowed');
         });
+
+        // Add this to ensure MathJax typesets all formulas after the page loads
+        window.onload = function() {
+            if (typeof MathJax !== 'undefined') {
+                MathJax.typesetPromise();
+            }
+        };
     </script>
 </body>
 </html>
