@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genel Test 1 | EV Dünyası</title>
+    <title>Genel Test 1 | YTÜ ELM</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -16,6 +16,10 @@
                 }
             }
         }
+    </script>
+    <!-- MathJax CDN for LaTeX rendering -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
     <style>
         body {
@@ -100,23 +104,23 @@
                 <div class="space-y-2">
                     <label class="option-label">
                         <input type="radio" name="q1" value="a" class="option-input">
-                        <span class="option-text">1800'lerin sonları ve 1900'lerin başları</span>
+                        <span class="option-text">Bataryalı Elektrikli Araç (BEV)</span>
                     </label>
                     <label class="option-label">
                         <input type="radio" name="q1" value="b" class="option-input">
-                        <span class="option-text">1950'ler</span>
+                        <span class="option-text">Hibrit Elektrikli Araç (HEV)</span>
                     </label>
                     <label class="option-label">
                         <input type="radio" name="q1" value="c" class="option-input">
-                        <span class="option-text">1970'ler</span>
+                        <span class="option-text">Dizel Motorlu Araç</span>
                     </label>
                     <label class="option-label">
                         <input type="radio" name="q1" value="d" class="option-input">
-                        <span class="option-text">2000'lerin başları</span>
+                        <span class="option-text">Plug-in Hibrit Elektrikli Araç (PHEV)</span>
                     </label>
                     <label class="option-label">
                         <input type="radio" name="q1" value="e" class="option-input">
-                        <span class="option-text">Günümüz</span>
+                        <span class="option-text">Yakıt Hücreli Elektrikli Araç (FCEV)</span>
                     </label>
                 </div>
             </div>
@@ -790,7 +794,7 @@
             q3: 'c', // Bölüm 2
             q4: 'c', // Bölüm 3
             q5: 'b', // Bölüm 4
-            q6: 'd', // Bölüm 5
+            q6: 'c', // Bölüm 5
             q7: 'c', // Bölüm 6
             q8: 'a', // Bölüm 7
             q9: 'c', // Bölüm 8
@@ -812,12 +816,13 @@
             q25: 'c'  // Bölüm 9
         };
 
-        const checkAnswersBtn = document.getElementById('checkAnswersBtn');
         const quizForm = document.getElementById('quizForm');
         const resultsDiv = document.getElementById('results');
         const correctCountSpan = document.getElementById('correctCount');
         const incorrectCountSpan = document.getElementById('incorrectCount');
         const unansweredCountSpan = document.getElementById('unansweredCount');
+        const checkAnswersBtn = document.getElementById('checkAnswersBtn');
+
 
         checkAnswersBtn.addEventListener('click', () => {
             let correct = 0;
@@ -825,7 +830,7 @@
             let unanswered = 0;
 
             // Loop through each question
-            for (let i = 1; i <= 25; i++) { // Changed loop limit to 25
+            for (let i = 1; i <= 25; i++) {
                 const questionName = `q${i}`;
                 const selectedOption = quizForm.querySelector(`input[name="${questionName}"]:checked`);
                 const questionElement = selectedOption ? selectedOption.closest('.question-item') : quizForm.querySelector(`input[name="${questionName}"]`).closest('.question-item');
@@ -873,6 +878,13 @@
             checkAnswersBtn.classList.remove('hover:bg-blue-700');
             checkAnswersBtn.classList.add('opacity-50', 'cursor-not-allowed');
         });
+
+        // Add this to ensure MathJax typesets all formulas after the page loads
+        window.onload = function() {
+            if (typeof MathJax !== 'undefined') {
+                MathJax.typesetPromise();
+            }
+        };
     </script>
 </body>
 </html>
