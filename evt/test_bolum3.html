@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bölüm 3 Testi | EV Dünyası</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+            color: #374151; /* Dark gray text */
+        }
+        .container {
+            max-width: 960px;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .question-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb; /* Light border for separation */
+        }
+        .question-item:last-child {
+            border-bottom: none;
+        }
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border: 1px solid #d1d5db; /* Default border */
+        }
+        .option-label:hover {
+            background-color: #f3f4f6; /* Light hover background */
+        }
+        .option-input {
+            margin-right: 0.75rem;
+        }
+        /* Styles for correct/incorrect answers after check */
+        .option-label.correct {
+            background-color: #d1fae5; /* Light green for correct */
+            border-color: #10b981; /* Green border */
+            font-weight: 600;
+        }
+        .option-label.incorrect {
+            background-color: #fee2e2; /* Light red for incorrect */
+            border-color: #ef4444; /* Red border */
+        }
+        .option-label.incorrect .option-text {
+            text-decoration: line-through; /* Strikethrough for incorrect chosen answer */
+        }
+        .result-box {
+            background-color: #ecfdf5; /* Light green background for results */
+            border-left: 4px solid #10b981; /* Green border */
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: none; /* Hidden by default */
+        }
+        .result-score {
+            color: #047857; /* Dark green */
+        }
+        .result-message {
+            color: #ef4444; /* Red for incorrect count */
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="container mx-auto">
+        <h1 class="text-4xl font-extrabold text-center text-blue-800 mb-8">Bölüm 3 Testi</h1>
+        <p class="text-xl text-center text-gray-700 mb-10">Sürüş Döngüleri ve Enerji Hesaplamaları</p>
+
+        <form id="quizForm" class="card">
+            <!-- Question 1 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">1. Sürüş döngüleri (driving cycles) neyi temsil eder?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="a" class="option-input">
+                        <span class="option-text">Motorun maksimum tork kapasitesini</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="b" class="option-input">
+                        <span class="option-text">Farklı sürüş koşullarını temsil eden hız-zaman profillerini</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="c" class="option-input">
+                        <span class="option-text">Bataryanın ömrünü</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="d" class="option-input">
+                        <span class="option-text">Şarj süresini</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="e" class="option-input">
+                        <span class="option-text">Aracın maksimum hızını</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">2. Rejeneratif frenleme sürecinde ne olur?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="a" class="option-input">
+                        <span class="option-text">Yakıt deposu yeniden dolar</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="b" class="option-input">
+                        <span class="option-text">Aracın kinetik enerjisi ısıya dönüşür ve kaybedilir</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="c" class="option-input">
+                        <span class="option-text">Aracın kinetik enerjisinin bir kısmı elektrik enerjisine dönüştürülerek bataryaya depolanır</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="d" class="option-input">
+                        <span class="option-text">Motor ekstra güç üretir</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="e" class="option-input">
+                        <span class="option-text">Lastik aşınması artar</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">3. Aşağıdakilerden hangisi yaygın bir sürüş döngüsü ÖRNEĞİ DEĞİLDİR?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="a" class="option-input">
+                        <span class="option-text">WLTP</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="b" class="option-input">
+                        <span class="option-text">FTP-75</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="c" class="option-input">
+                        <span class="option-text">NEDC</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="d" class="option-input">
+                        <span class="option-text">EVTC (Electric Vehicle Test Cycle)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="e" class="option-input">
+                        <span class="option-text">HWFET</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">4. Toplam güç ihtiyacı ($P_{total}$) formülünde, aracın tüm direnç kuvvetlerinin (yuvarlanma, aerodinamik, yokuş, ivmelenme) toplamı hangi faktörle çarpılır?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q4" value="a" class="option-input">
+                        <span class="option-text">Aracın kütlesi</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q4" value="b" class="option-input">
+                        <span class="option-text">Aracın anlık hızı</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q4" value="c" class="option-input">
+                        <span class="option-text">Motor torku</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q4" value="d" class="option-input">
+                        <span class="option-text">Batarya kapasitesi</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q4" value="e" class="option-input">
+                        <span class="option-text">Yerçekimi ivmesi</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">5. Enerji verimliliği açısından, rejeneratif frenlemenin elektrikli araçlara sağladığı en büyük avantaj nedir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="a" class="option-input">
+                        <span class="option-text">Maksimum hızı artırması</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="b" class="option-input">
+                        <span class="option-text">Lastik ömrünü uzatması</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="c" class="option-input">
+                        <span class="option-text">Enerji geri kazanımı sayesinde menzili artırması</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="d" class="option-input">
+                        <span class="option-text">Araç ağırlığını azaltması</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="e" class="option-input">
+                        <span class="option-text">Sadece yokuş aşağı inerken çalışması</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">6. Bir sürüş döngüsü boyunca toplam enerji tüketimi nasıl hesaplanır?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="a" class="option-input">
+                        <span class="option-text">Sadece başlangıç ve bitiş hızıyla</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="b" class="option-input">
+                        <span class="option-text">Ortalama güç ihtiyacının zamanla çarpılmasıyla</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="c" class="option-input">
+                        <span class="option-text">Anlık güç tüketimlerinin zaman boyunca entegrasyonuyla</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="d" class="option-input">
+                        <span class="option-text">Araç ağırlığı ve katedilen mesafenin çarpılmasıyla</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="e" class="option-input">
+                        <span class="option-text">Motorun maksimum gücüyle</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">7. Enerji tüketimi hesaplamalarında, '$\Delta t$' neyi ifade eder?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q7" value="a" class="option-input">
+                        <span class="option-text">Toplam yolculuk süresi</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q7" value="b" class="option-input">
+                        <span class="option-text">Ortalama hız</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q7" value="c" class="option-input">
+                        <span class="option-text">Zaman aralığı</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q7" value="d" class="option-input">
+                        <span class="option-text">Maksimum güç</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q7" value="e" class="option-input">
+                        <span class="option-text">Sürüş döngüsünün toplam mesafesi</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">8. Rejeneratif frenleme verimliliğini ($ \eta_{regen} $) etkileyen faktörler arasında hangisi bulunmaz?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q8" value="a" class="option-input">
+                        <span class="option-text">Batarya sıcaklığı</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q8" value="b" class="option-input">
+                        <span class="option-text">Bataryanın şarj durumu (SoC)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q8" value="c" class="option-input">
+                        <span class="option-text">Güç elektroniği verimliliği</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q8" value="d" class="option-input">
+                        <span class="option-text">Ortam ışığı şiddeti</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q8" value="e" class="option-input">
+                        <span class="option-text">Elektrik motoru verimliliği</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">9. Anlık enerji tüketimi formülü nedir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q9" value="a" class="option-input">
+                        <span class="option-text">E = P / $\Delta t$</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q9" value="b" class="option-input">
+                        <span class="option-text">E = P x $\Delta t$</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q9" value="c" class="option-input">
+                        <span class="option-text">E = mgh</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q9" value="d" class="option-input">
+                        <span class="option-text">E = 0.5mv²</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q9" value="e" class="option-input">
+                        <span class="option-text">E = Fd</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">10. Sürüş döngüleri, elektrikli araçların hangi özelliklerini değerlendirmek için kullanılır?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q10" value="a" class="option-input">
+                        <span class="option-text">Sadece batarya kapasitesini</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q10" value="b" class="option-input">
+                        <span class="option-text">Yalnızca maksimum hızı</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q10" value="c" class="option-input">
+                        <span class="option-text">Menzil, enerji tüketimi ve emisyonları</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q10" value="d" class="option-input">
+                        <span class="option-text">Şarj süresi ve şarj istasyonu bulunabilirliğini</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q10" value="e" class="option-input">
+                        <span class="option-text">Aracın iç mekan genişliğini</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <button type="button" id="checkAnswersBtn" class="bg-blue-600 text-white px-8 py-4 rounded-md hover:bg-blue-700 font-bold text-xl inline-block transition transform hover:scale-105 shadow-lg">
+                    Cevapları Kontrol Et
+                </button>
+            </div>
+        </form>
+
+        <div id="results" class="result-box">
+            <p>Doğru Cevaplar: <span id="correctCount" class="result-score"></span></p>
+            <p>Yanlış Cevaplar: <span id="incorrectCount" class="result-message"></span></p>
+            <p>Boş Bırakılanlar: <span id="unansweredCount" class="result-message"></span></p>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            q1: 'b', // Farklı sürüş koşullarını temsil eden hız-zaman profillerini
+            q2: 'c', // Aracın kinetik enerjisinin bir kısmı elektrik enerjisine dönüştürülerek bataryaya depolanır
+            q3: 'd', // EVTC (Bu uydurulmuş bir isim, diğerleri yaygın döngüler)
+            q4: 'b', // Aracın anlık hızı
+            q5: 'c', // Enerji geri kazanımı sayesinde menzili artırması
+            q6: 'c', // Anlık güç tüketimlerinin zaman boyunca entegrasyonuyla
+            q7: 'c', // Zaman aralığı
+            q8: 'd', // Ortam ışığı şiddeti (Termal yönetimle veya şarjla ilgili değil)
+            q9: 'b', // E = P x Delta t
+            q10: 'c' // Menzil, enerji tüketimi ve emisyonları
+        };
+
+        const checkAnswersBtn = document.getElementById('checkAnswersBtn');
+        const quizForm = document.getElementById('quizForm');
+        const resultsDiv = document.getElementById('results');
+        const correctCountSpan = document.getElementById('correctCount');
+        const incorrectCountSpan = document.getElementById('incorrectCount');
+        const unansweredCountSpan = document.getElementById('unansweredCount');
+
+        checkAnswersBtn.addEventListener('click', () => {
+            let correct = 0;
+            let incorrect = 0;
+            let unanswered = 0;
+
+            // Loop through each question
+            for (let i = 1; i <= 10; i++) {
+                const questionName = `q${i}`;
+                const selectedOption = quizForm.querySelector(`input[name="${questionName}"]:checked`);
+                const questionElement = selectedOption ? selectedOption.closest('.question-item') : quizForm.querySelector(`input[name="${questionName}"]`).closest('.question-item');
+                
+                // Reset styles from previous check
+                questionElement.querySelectorAll('.option-label').forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    label.querySelector('.option-text').style.textDecoration = 'none';
+                });
+
+                if (selectedOption) {
+                    const userAnswer = selectedOption.value;
+                    const correctAnswer = correctAnswers[questionName];
+
+                    if (userAnswer === correctAnswer) {
+                        correct++;
+                        selectedOption.closest('.option-label').classList.add('correct');
+                    } else {
+                        incorrect++;
+                        selectedOption.closest('.option-label').classList.add('incorrect');
+                        // Show correct answer for incorrect attempts
+                        const correctLabel = questionElement.querySelector(`input[value="${correctAnswer}"]`).closest('.option-label');
+                        correctLabel.classList.add('correct');
+                    }
+                } else {
+                    unanswered++;
+                    // Show correct answer for unanswered questions
+                    const correctAnswer = correctAnswers[questionName];
+                    const correctLabel = questionElement.querySelector(`input[value="${correctAnswer}"]`).closest('.option-label');
+                    correctLabel.classList.add('correct');
+                }
+            }
+
+            // Display results summary
+            correctCountSpan.textContent = correct;
+            incorrectCountSpan.textContent = incorrect;
+            unansweredCountSpan.textContent = unanswered;
+            resultsDiv.style.display = 'block'; // Show results box
+
+            // Optionally, disable further attempts after checking
+            quizForm.querySelectorAll('input[type="radio"]').forEach(input => {
+                input.disabled = true;
+            });
+            checkAnswersBtn.disabled = true;
+            checkAnswersBtn.classList.remove('hover:bg-blue-700');
+            checkAnswersBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        });
+    </script>
+</body>
+</html>
