@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genel Test 3 | EV Dünyası</title>
+    <title>Genel Test 3 | YTÜ ELM</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -16,6 +16,10 @@
                 }
             }
         }
+    </script>
+    <!-- MathJax CDN for LaTeX rendering -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
     <style>
         body {
@@ -812,12 +816,13 @@
             q25: 'c'  // Bölüm 9 - Fiziksel temelli simülasyon yazılımları
         };
 
-        const checkAnswersBtn = document.getElementById('checkAnswersBtn');
         const quizForm = document.getElementById('quizForm');
         const resultsDiv = document.getElementById('results');
         const correctCountSpan = document.getElementById('correctCount');
         const incorrectCountSpan = document.getElementById('incorrectCount');
         const unansweredCountSpan = document.getElementById('unansweredCount');
+        const checkAnswersBtn = document.getElementById('checkAnswersBtn'); // Button reference added here for clarity
+
 
         checkAnswersBtn.addEventListener('click', () => {
             let correct = 0;
@@ -873,6 +878,13 @@
             checkAnswersBtn.classList.remove('hover:bg-blue-700');
             checkAnswersBtn.classList.add('opacity-50', 'cursor-not-allowed');
         });
+
+        // Add this to ensure MathJax typesets all formulas after the page loads
+        window.onload = function() {
+            if (typeof MathJax !== 'undefined') {
+                MathJax.typesetPromise();
+            }
+        };
     </script>
 </body>
 </html>
