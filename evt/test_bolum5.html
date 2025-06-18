@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bölüm 5 Testi | EV Dünyası</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+            color: #374151; /* Dark gray text */
+        }
+        .container {
+            max-width: 960px;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .question-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb; /* Light border for separation */
+        }
+        .question-item:last-child {
+            border-bottom: none;
+        }
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border: 1px solid #d1d5db; /* Default border */
+        }
+        .option-label:hover {
+            background-color: #f3f4f6; /* Light hover background */
+        }
+        .option-input {
+            margin-right: 0.75rem;
+        }
+        /* Styles for correct/incorrect answers after check */
+        .option-label.correct {
+            background-color: #d1fae5; /* Light green for correct */
+            border-color: #10b981; /* Green border */
+            font-weight: 600;
+        }
+        .option-label.incorrect {
+            background-color: #fee2e2; /* Light red for incorrect */
+            border-color: #ef4444; /* Red border */
+        }
+        .option-label.incorrect .option-text {
+            text-decoration: line-through; /* Strikethrough for incorrect chosen answer */
+        }
+        .result-box {
+            background-color: #ecfdf5; /* Light green background for results */
+            border-left: 4px solid #10b981; /* Green border */
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: none; /* Hidden by default */
+        }
+        .result-score {
+            color: #047857; /* Dark green */
+        }
+        .result-message {
+            color: #ef4444; /* Red for incorrect count */
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="container mx-auto">
+        <h1 class="text-4xl font-extrabold text-center text-blue-800 mb-8">Bölüm 5 Testi</h1>
+        <p class="text-xl text-center text-gray-700 mb-10">Batarya Teknolojileri ve Yönetimi</p>
+
+        <form id="quizForm" class="card">
+            <!-- Question 1 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">1. Günümüz elektrikli araçlarının büyük çoğunluğunda kullanılan ana batarya teknolojisi hangisidir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="a" class="option-input">
+                        <span class="option-text">Nikel-Kadmiyum (NiCd) Bataryalar</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="b" class="option-input">
+                        <span class="option-text">Kurşun-Asit Bataryalar</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="c" class="option-input">
+                        <span class="option-text">Nikel-Metal Hidrit (NiMH) Bataryalar</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="d" class="option-input">
+                        <span class="option-text">Lityum-İyon (Li-ion) Bataryalar</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q1" value="e" class="option-input">
+                        <span class="option-text">Alkali Bataryalar</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">2. Bataryanın depolayabileceği toplam enerji miktarını ifade eden parametre hangisidir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="a" class="option-input">
+                        <span class="option-text">Gerilim (Voltage)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="b" class="option-input">
+                        <span class="option-text">Akım (Current)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="c" class="option-input">
+                        <span class="option-text">Kapasite (Capacity)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="d" class="option-input">
+                        <span class="option-text">İç Direnç (Internal Resistance)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q2" value="e" class="option-input">
+                        <span class="option-text">Çevrim Ömrü (Cycle Life)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">3. Bir bataryanın birim ağırlık veya hacim başına depolayabileceği enerji miktarına ne ad verilir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="a" class="option-input">
+                        <span class="option-text">Güç Yoğunluğu</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="b" class="option-input">
+                        <span class="option-text">C-Rate</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="c" class="option-input">
+                        <span class="option-text">İç Direnç</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="d" class="option-input">
+                        <span class="option-text">Enerji Yoğunluğu</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q3" value="e" class="option-input">
+                        <span class="option-text">Şarj Durumu</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">4. Batarya Yönetim Sistemi (BMS) temel olarak hangi görevi üstlenmez?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q4" value="a" class="option-input">
+                        <span class="option-text">Hücre dengelemesi (cell balancing)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q4" value="b" class="option-input">
+                        <span class="option-text">Aşırı şarj/deşarj koruması</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q4" value="c" class="option-input">
+                        <span class="option-text">Araç lastiklerinin hava basıncını ayarlama</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q4" value="d" class="option-input">
+                        <span class="option-text">Sıcaklık kontrolü</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q4" value="e" class="option-input">
+                        <span class="option-text">Şarj Durumu (SoC) ve Sağlık Durumu (SoH) tahmini</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">5. Bataryanın nominal gerilimi ($V_{nominal}$) ve kapasitesi ($C_{Ah}$) bilindiğinde, batarya enerjisi ($E_{battery}$) nasıl hesaplanır?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="a" class="option-input">
+                        <span class="option-text">E_battery = V_nominal / C_Ah</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="b" class="option-input">
+                        <span class="option-text">E_battery = V_nominal * C_Ah</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="c" class="option-input">
+                        <span class="option-text">E_battery = V_nominal + C_Ah</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="d" class="option-input">
+                        <span class="option-text">E_battery = V_nominal - C_Ah</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q5" value="e" class="option-input">
+                        <span class="option-text">E_battery = V_nominal ^ 2 * C_Ah</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">6. C-Rate, bataryanın hangi özelliğini gösterir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="a" class="option-input">
+                        <span class="option-text">Toplam ömrünü</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="b" class="option-input">
+                        <span class="option-text">Depoladığı enerji miktarını</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="c" class="option-input">
+                        <span class="option-text">Kapasitesine oranla ne kadar hızlı şarj/deşarj edildiğini</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="d" class="option-input">
+                        <span class="option-text">İçindeki hücre sayısını</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q6" value="e" class="option-input">
+                        <span class="option-text">Çalışma sıcaklığını</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">7. Bataryanın kendi içindeki elektriksel dirence ne ad verilir? Yüksek olması enerji kaybına ve ısınmaya neden olur.</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q7" value="a" class="option-input">
+                        <span class="option-text">Terminal Direnci</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q7" value="b" class="option-input">
+                        <span class="option-text">Yük Direnci</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q7" value="c" class="option-input">
+                        <span class="option-text">İç Direnç</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q7" value="d" class="option-input">
+                        <span class="option-text">Dış Direnç</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q7" value="e" class="option-input">
+                        <span class="option-text">Çevrim Direnci</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">8. Bataryanın dolu kapasitesine göre mevcut şarj seviyesini (%) gösteren parametre hangisidir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q8" value="a" class="option-input">
+                        <span class="option-text">SoH (State of Health)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q8" value="b" class="option-input">
+                        <span class="option-text">SoC (State of Charge)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q8" value="c" class="option-input">
+                        <span class="option-text">C-Rate</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q8" value="d" class="option-input">
+                        <span class="option-text">DoD (Depth of Discharge)</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q8" value="e" class="option-input">
+                        <span class="option-text">EOL (End of Life)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">9. Lityum-iyon bataryalar için aşağıdakilerden hangisi doğrudur?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q9" value="a" class="option-input">
+                        <span class="option-text">Düşük enerji yoğunluğuna sahiptirler</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q9" value="b" class="option-input">
+                        <span class="option-text">Genellikle hafıza etkisi gösterirler</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q9" value="c" class="option-input">
+                        <span class="option-text">Yüksek güç yoğunluğu ve uzun çevrim ömrü sunarlar</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q9" value="d" class="option-input">
+                        <span class="option-text">Kurşun-asit bataryalardan daha ağırdırlar</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q9" value="e" class="option-input">
+                        <span class="option-text">Sadece düşük sıcaklıklarda verimli çalışırlar</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question-item">
+                <p class="font-semibold text-lg mb-3">10. Batarya ömrünü kısaltabilecek veya güvenlik riski oluşturabilecek durumlar nelerdir?</p>
+                <div class="space-y-2">
+                    <label class="option-label">
+                        <input type="radio" name="q10" value="a" class="option-input">
+                        <span class="option-text">Optimal sıcaklık aralığında çalışma</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q10" value="b" class="option-input">
+                        <span class="option-text">Dengeli hücre gerilimleri</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q10" value="c" class="option-input">
+                        <span class="option-text">Aşırı şarj veya aşırı deşarj</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q10" value="d" class="option-input">
+                        <span class="option-text">Düşük C-Rate ile şarj</span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="q10" value="e" class="option-input">
+                        <span class="option-text">Yavaş şarj</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <button type="button" id="checkAnswersBtn" class="bg-blue-600 text-white px-8 py-4 rounded-md hover:bg-blue-700 font-bold text-xl inline-block transition transform hover:scale-105 shadow-lg">
+                    Cevapları Kontrol Et
+                </button>
+            </div>
+        </form>
+
+        <div id="results" class="result-box">
+            <p>Doğru Cevaplar: <span id="correctCount" class="result-score"></span></p>
+            <p>Yanlış Cevaplar: <span id="incorrectCount" class="result-message"></span></p>
+            <p>Boş Bırakılanlar: <span id="unansweredCount" class="result-message"></span></p>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            q1: 'd', // Lityum-İyon (Li-ion) Bataryalar
+            q2: 'c', // Kapasite (Capacity)
+            q3: 'd', // Enerji Yoğunluğu
+            q4: 'c', // Araç lastiklerinin hava basıncını ayarlama
+            q5: 'b', // E_battery = V_nominal * C_Ah
+            q6: 'c', // Kapasitesine oranla ne kadar hızlı şarj/deşarj edildiğini
+            q7: 'c', // İç Direnç
+            q8: 'b', // SoC (State of Charge)
+            q9: 'c', // Yüksek güç yoğunluğu ve uzun çevrim ömrü sunarlar
+            q10: 'c' // Aşırı şarj veya aşırı deşarj
+        };
+
+        const checkAnswersBtn = document.getElementById('checkAnswersBtn');
+        const quizForm = document.getElementById('quizForm');
+        const resultsDiv = document.getElementById('results');
+        const correctCountSpan = document.getElementById('correctCount');
+        const incorrectCountSpan = document.getElementById('incorrectCount');
+        const unansweredCountSpan = document.getElementById('unansweredCount');
+
+        checkAnswersBtn.addEventListener('click', () => {
+            let correct = 0;
+            let incorrect = 0;
+            let unanswered = 0;
+
+            // Loop through each question
+            for (let i = 1; i <= 10; i++) {
+                const questionName = `q${i}`;
+                const selectedOption = quizForm.querySelector(`input[name="${questionName}"]:checked`);
+                const questionElement = selectedOption ? selectedOption.closest('.question-item') : quizForm.querySelector(`input[name="${questionName}"]`).closest('.question-item');
+                
+                // Reset styles from previous check
+                questionElement.querySelectorAll('.option-label').forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    label.querySelector('.option-text').style.textDecoration = 'none';
+                });
+
+                if (selectedOption) {
+                    const userAnswer = selectedOption.value;
+                    const correctAnswer = correctAnswers[questionName];
+
+                    if (userAnswer === correctAnswer) {
+                        correct++;
+                        selectedOption.closest('.option-label').classList.add('correct');
+                    } else {
+                        incorrect++;
+                        selectedOption.closest('.option-label').classList.add('incorrect');
+                        // Show correct answer for incorrect attempts
+                        const correctLabel = questionElement.querySelector(`input[value="${correctAnswer}"]`).closest('.option-label');
+                        correctLabel.classList.add('correct');
+                    }
+                } else {
+                    unanswered++;
+                    // Show correct answer for unanswered questions
+                    const correctAnswer = correctAnswers[questionName];
+                    const correctLabel = questionElement.querySelector(`input[value="${correctAnswer}"]`).closest('.option-label');
+                    correctLabel.classList.add('correct');
+                }
+            }
+
+            // Display results summary
+            correctCountSpan.textContent = correct;
+            incorrectCountSpan.textContent = incorrect;
+            unansweredCountSpan.textContent = unanswered;
+            resultsDiv.style.display = 'block'; // Show results box
+
+            // Optionally, disable further attempts after checking
+            quizForm.querySelectorAll('input[type="radio"]').forEach(input => {
+                input.disabled = true;
+            });
+            checkAnswersBtn.disabled = true;
+            checkAnswersBtn.classList.remove('hover:bg-blue-700');
+            checkAnswersBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        });
+    </script>
+</body>
+</html>
