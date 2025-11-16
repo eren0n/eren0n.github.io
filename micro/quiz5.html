@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-tr="Test 5: Program Akışı ve Kesme Mekanizması" data-en="Quiz 5: Program Flow and Interrupt Mechanism">Test 5: Program Akışı ve Kesme Mekanizması</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .option-btn {
+            transition: all 0.3s ease;
+        }
+        .option-btn:hover {
+            transform: translateX(5px);
+        }
+        .option-btn.selected {
+            background-color: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        .option-btn.correct {
+            background-color: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+        .option-btn.incorrect {
+            background-color: #ef4444;
+            color: white;
+            border-color: #ef4444;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="gradient-bg text-white shadow-lg">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold" data-tr="Konu 5 Testi" data-en="Topic 5 Quiz">Konu 5 Testi</h1>
+                <div class="flex gap-4">
+                    <button id="langToggle" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">EN</button>
+                    <a href="index.html" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mx-auto px-6 py-12 max-w-4xl">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-purple-600 mb-2" data-tr="Program Akışı ve Kesme Mekanizması" data-en="Program Flow and Interrupt Mechanism">Program Akışı ve Kesme Mekanizması</h2>
+                <div class="flex justify-between items-center text-gray-600">
+                    <p><span data-tr="Soru" data-en="Question">Soru</span> <span id="currentQuestion">1</span> / <span id="totalQuestions">10</span></p>
+                    <p><span data-tr="Puan" data-en="Score">Puan</span>: <span id="score">0</span></p>
+                </div>
+            </div>
+
+            <div id="quizContainer"></div>
+
+            <div class="flex justify-between mt-8">
+                <button id="prevBtn" class="bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-400 transition disabled:opacity-50" disabled data-tr="Önceki" data-en="Previous">Önceki</button>
+                <button id="nextBtn" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition" data-tr="Sonraki" data-en="Next">Sonraki</button>
+                <button id="submitBtn" class="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition hidden" data-tr="Testi Bitir" data-en="Submit Quiz">Testi Bitir</button>
+            </div>
+        </div>
+
+        <div id="resultModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-xl p-8 max-w-md w-full">
+                <h3 class="text-2xl font-bold mb-4 text-purple-600" data-tr="Test Sonucu" data-en="Quiz Result">Test Sonucu</h3>
+                <p class="text-xl mb-6"><span data-tr="Puanınız" data-en="Your Score">Puanınız</span>: <span id="finalScore" class="font-bold text-purple-600"></span> / 10</p>
+                <p id="resultMessage" class="mb-6 text-gray-700"></p>
+                <div class="flex gap-4">
+                    <button onclick="location.reload()" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition flex-1" data-tr="Tekrar Dene" data-en="Try Again">Tekrar Dene</button>
+                    <a href="index.html" class="bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-400 transition flex-1 text-center" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizData = {
+            tr: [
+                {
+                    question: "if-else yapısında koşul FALSE olduğunda ne olur?",
+                    options: ["Program durur", "if bloğu çalışır", "else bloğu çalışır", "Hata verir"],
+                    correct: 2
+                },
+                {
+                    question: "Mantıksal AND (&&) operatörü ne zaman TRUE döner?",
+                    options: ["En az bir koşul doğruysa", "Hiçbir koşul doğru değilse", "Tüm koşullar doğruysa", "İlk koşul doğruysa"],
+                    correct: 2
+                },
+                {
+                    question: "pinMode(pin, INPUT_PULLUP) komutu ne yapar?",
+                    options: ["Pini çıkış olarak ayarlar", "Dahili pull-up direnci aktif eder", "Dahili pull-down direnci aktif eder", "Pini analog moda alır"],
+                    correct: 1
+                },
+                {
+                    question: "map() fonksiyonu ne işe yarar?",
+                    options: ["Bellek haritası oluşturur", "Bir değeri bir aralıktan başka bir aralığa dönüştürür", "Pin konumunu belirler", "Grafik çizer"],
+                    correct: 1
+                },
+                {
+                    question: "PIR sensörü neyi algılar?",
+                    options: ["Işık seviyesi", "Sıcaklık", "Hareket (ısı yayan cisimlerin hareketi)", "Ses"],
+                    correct: 2
+                },
+                {
+                    question: "Ultrasonik sensör mesafe ölçümünde hangi fonksiyon kullanılır?",
+                    options: ["analogRead()", "digitalRead()", "pulseIn()", "delay()"],
+                    correct: 2
+                },
+                {
+                    question: "Servo motor kaç derece arasında hareket edebilir?",
+                    options: ["0-90°", "0-180°", "0-270°", "0-360°"],
+                    correct: 1
+                },
+                {
+                    question: "Interrupt (kesme) fonksiyonları hangi pinlerde kullanılabilir (standart Arduino)?",
+                    options: ["Tüm pinlerde", "Sadece analog pinlerde", "Pin 2 ve 3'te", "Sadece PWM pinlerinde"],
+                    correct: 2
+                },
+                {
+                    question: "volatile anahtar kelimesi ne zaman kullanılır?",
+                    options: ["Tüm değişkenlerde", "Interrupt içinde değiştirilen değişkenlerde", "Sadece global değişkenlerde", "Sadece loop() içindeki değişkenlerde"],
+                    correct: 1
+                },
+                {
+                    question: "delay() fonksiyonunun dezavantajı nedir?",
+                    options: ["Çok fazla bellek kullanır", "Programı durdurur (blocking)", "Sadece loop()'ta çalışır", "Hatalı sonuç verir"],
+                    correct: 1
+                }
+            ],
+            en: [
+                {
+                    question: "What happens when the condition in if-else structure is FALSE?",
+                    options: ["Program stops", "if block executes", "else block executes", "Throws error"],
+                    correct: 2
+                },
+                {
+                    question: "When does the logical AND (&&) operator return TRUE?",
+                    options: ["If at least one condition is true", "If no condition is true", "If all conditions are true", "If first condition is true"],
+                    correct: 2
+                },
+                {
+                    question: "What does pinMode(pin, INPUT_PULLUP) command do?",
+                    options: ["Sets pin as output", "Activates internal pull-up resistor", "Activates internal pull-down resistor", "Sets pin to analog mode"],
+                    correct: 1
+                },
+                {
+                    question: "What does the map() function do?",
+                    options: ["Creates memory map", "Converts value from one range to another", "Determines pin location", "Draws graphics"],
+                    correct: 1
+                },
+                {
+                    question: "What does a PIR sensor detect?",
+                    options: ["Light level", "Temperature", "Motion (movement of heat-emitting objects)", "Sound"],
+                    correct: 2
+                },
+                {
+                    question: "Which function is used for distance measurement with ultrasonic sensor?",
+                    options: ["analogRead()", "digitalRead()", "pulseIn()", "delay()"],
+                    correct: 2
+                },
+                {
+                    question: "What range of degrees can a servo motor move?",
+                    options: ["0-90°", "0-180°", "0-270°", "0-360°"],
+                    correct: 1
+                },
+                {
+                    question: "On which pins can interrupt functions be used (standard Arduino)?",
+                    options: ["All pins", "Only analog pins", "Pin 2 and 3", "Only PWM pins"],
+                    correct: 2
+                },
+                {
+                    question: "When is the volatile keyword used?",
+                    options: ["For all variables", "For variables modified in interrupts", "Only for global variables", "Only for variables in loop()"],
+                    correct: 1
+                },
+                {
+                    question: "What is the disadvantage of the delay() function?",
+                    options: ["Uses too much memory", "Blocks the program (blocking)", "Only works in loop()", "Gives incorrect results"],
+                    correct: 1
+                }
+            ]
+        };
+    </script>
+    <script src="quiz.js"></script>
+    <script src="language.js"></script>
+</body>
+</html>

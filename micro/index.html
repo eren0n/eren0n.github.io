@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mikroişlemci Tabanlı Sistem Tasarımı</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl md:text-3xl font-bold" data-tr="Mikroişlemci Tabanlı Sistem Tasarımı" data-en="Microprocessor-Based System Design">
+                    Mikroişlemci Tabanlı Sistem Tasarımı
+                </h1>
+                <button id="langToggle" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">
+                    EN
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-16 fade-in">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4" data-tr="Gömülü Sistemler Ders Notu" data-en="Embedded Systems Course Notes">
+                Gömülü Sistemler Ders Notu
+            </h2>
+            <p class="text-xl md:text-2xl mb-8 opacity-90" data-tr="ARM Cortex-M3 ve Arduino ile Pratik Uygulamalar" data-en="Practical Applications with ARM Cortex-M3 and Arduino">
+                ARM Cortex-M3 ve Arduino ile Pratik Uygulamalar
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#topics" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition inline-block" data-tr="Konulara Başla" data-en="Start Learning">
+                    Konulara Başla
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Topics Section -->
+    <section id="topics" class="container mx-auto px-6 py-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800" data-tr="Konu Özetleri" data-en="Topic Summaries">
+            Konu Özetleri
+        </h2>
+
+        <!-- Topic 1 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8 card-hover fade-in">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
+                <h3 class="text-2xl font-bold text-purple-600 mb-4 md:mb-0">
+                    <span data-tr="Konu 1: Gömülü Sistemlerin Yükselişi ve ARM Cortex-M3" data-en="Topic 1: Rise of Embedded Systems and ARM Cortex-M3">
+                        Konu 1: Gömülü Sistemlerin Yükselişi ve ARM Cortex-M3
+                    </span>
+                </h3>
+                <a href="quiz1.html" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition font-semibold whitespace-nowrap" data-tr="Testi Başlat" data-en="Start Quiz">
+                    Testi Başlat
+                </a>
+            </div>
+            <div class="prose max-w-none text-gray-700">
+                <p class="mb-4 leading-relaxed" data-tr="Dersimizin odak noktası, modern gömülü sistemlerin tasarım ilkeleri ve uygulamalarıdır. Bu bağlamda, CPU'nun ötesindeki bilgisayar mimarisine, donanım/yazılım arayüzünün temellerine ve sensörler aracılığıyla fiziksel dünyayı algılama ve kontrol etme tekniklerine değineceğiz." data-en="Our course focuses on design principles and applications of modern embedded systems. We will cover computer architecture beyond the CPU, fundamentals of hardware/software interface, and techniques for sensing and controlling the physical world through sensors.">
+                    Dersimizin odak noktası, modern gömülü sistemlerin tasarım ilkeleri ve uygulamalarıdır. Bu bağlamda, CPU'nun ötesindeki bilgisayar mimarisine, donanım/yazılım arayüzünün temellerine ve sensörler aracılığıyla fiziksel dünyayı algılama ve kontrol etme tekniklerine değineceğiz.
+                </p>
+                <p class="mb-4 leading-relaxed" data-tr="Bu dersin temel motivasyonu, 'her yerde gömülü' (embedded everywhere) olarak adlandırdığımız patlamadır. Bu patlamayı yönlendiren başlıca teknoloji trendleri:" data-en="The fundamental motivation of this course is the explosion we call 'embedded everywhere'. The main technology trends driving this explosion:">
+                    Bu dersin temel motivasyonu, "her yerde gömülü" (embedded everywhere) olarak adlandırdığımız patlamadır. Bu patlamayı yönlendiren başlıca teknoloji trendleri:
+                </p>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li><strong>Bell Yasası (Bell's Law):</strong> Yaklaşık her on yılda bir, yeni bir programlama platformu ve arayüzü temel alan, daha düşük fiyatlı yeni bir bilgi işlem sınıfının ortaya çıkması. Bu evrim, ana bilgisayarlardan (mainframe) başlayıp günümüzün fiziksel dünya ile etkileşime giren sistemlerine (CPSD) kadar uzanmıştır.</li>
+                    <li><strong>Moore Yasası (Moore's Law):</strong> Entegre devre (IC) üzerindeki transistör sayısının yaklaşık her iki yılda bir ikiye katlanması. Bu, işlem gücünde sürekli bir artış sağlar.</li>
+                    <li><strong>Maliyet ve Güç Tüketimindeki Düşüş:</strong>
+                        <ul class="list-circle pl-6 mt-2 space-y-1">
+                            <li>Depolama: HDD, DRAM ve özellikle Flash belleklerin MByte başına maliyeti sürekli olarak düşmektedir.</li>
+                            <li>Sensörler: MEMS ivmeölçerler gibi sensörlerin hem fiyatı hem de güç tüketimi hızla azalmaktadır (10-25 μA).</li>
+                            <li>Enerji Hasadı: Piezoelektrik, termoelektrik, RF ve güneş pilleri gibi çeşitli yöntemlerle ortamdan enerji toplama.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <h4 class="text-lg font-semibold mb-2 mt-4" data-tr="ARM Cortex-M3 Mimarisi:" data-en="ARM Cortex-M3 Architecture:">ARM Cortex-M3 Mimarisi:</h4>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li>Çevre Birimleri: DMA (Doğrudan Bellek Erişimi), ADC (Analog-Dijital Dönüştürücü), UART/USART (Seri İletişim), PWM (Darbe Genişlik Modülasyonu)</li>
+                    <li>Yazmaçlar: R0-R7 (low registers), R8-R12 (high registers), R13 (Stack Pointer - SP), R14 (Link Register - LR), R15 (Program Counter - PC)</li>
+                    <li><strong>APSR (Application Program Status Register) Bayrakları:</strong>
+                        <ul class="list-circle pl-6 mt-2 space-y-1">
+                            <li>N (Negative): Sonuç negatifse 1 olur</li>
+                            <li>Z (Zero): Sonuç sıfırsa 1 olur</li>
+                            <li>C (Carry): Toplama işleminde bir elde (carry) oluşursa 1 olur</li>
+                            <li>V (Overflow): İşaretli (signed) bir taşma meydana gelirse 1 olur</li>
+                        </ul>
+                    </li>
+                    <li>Adres Alanı: Kod (Code), SRAM ve Çevre Birimleri (Peripheral) için özel adres aralıkları</li>
+                    <li>Komut Seti: ADC (Add with Carry), ADD (Topla), CMP (Karşılaştır), MOV (Taşı)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Topic 2 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8 card-hover fade-in">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
+                <h3 class="text-2xl font-bold text-purple-600 mb-4 md:mb-0">
+                    <span data-tr="Konu 2: Komut Seti Mimarisi (ISA) ve Adresleme Modları" data-en="Topic 2: Instruction Set Architecture (ISA) and Addressing Modes">
+                        Konu 2: Komut Seti Mimarisi (ISA) ve Adresleme Modları
+                    </span>
+                </h3>
+                <a href="quiz2.html" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition font-semibold whitespace-nowrap" data-tr="Testi Başlat" data-en="Start Quiz">
+                    Testi Başlat
+                </a>
+            </div>
+            <div class="prose max-w-none text-gray-700">
+                <p class="mb-4 leading-relaxed">Bilgisayar bağlamında "mimari" teriminin birden fazla anlamı vardır. Bu ders notlarında mimari üç ana seviyede inceleniyor:</p>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li><strong>Bilgisayar Organizasyonu (Mikromimari):</strong> Kontrol ve veri yolları, pipeline (boru hattı) tasarımı ve önbellek (cache) tasarımı gibi donanımsal iç uygulamalarla ilgilidir.</li>
+                    <li><strong>Sistem Tasarımı (Platform Mimarisi):</strong> Bellek ve G/Ç (I/O) veriyolları, bellek denetleyicileri ve DMA (Doğrudan Bellek Erişimi) gibi bileşenlerin nasıl bir araya geldiğini tanımlar.</li>
+                    <li><strong>Komut Seti Mimarisi (ISA):</strong> Bizim en çok odaklanacağımız seviye budur. Donanım ve yazılım arasındaki arayüzü tanımlar.</li>
+                </ul>
+                <h4 class="text-lg font-semibold mb-2 mt-4">ISA'nın Kapsamı:</h4>
+                <p class="mb-3">Bir ISA şunları kapsar: Komut seti, Yazmaç seti, Bellek ve adresleme modları, Kelime boyutları, Veri formatları, Çalışma modları, Durum kodları.</p>
+                <h4 class="text-lg font-semibold mb-2 mt-4">ARM Cortex-M3 (v7M Profili):</h4>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li>Yalnızca <strong>Thumb-2</strong> komut setini kullanır</li>
+                    <li>Donanımsal bölme (HW Divide) işlemine sahiptir</li>
+                    <li>32-bitlik bellek haritası: Kod, SRAM, Çevre Birimleri, Harici RAM, Sistem bölgeleri</li>
+                </ul>
+                <h4 class="text-lg font-semibold mb-2">Adresleme Modları:</h4>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li><strong>Offset Adresleme:</strong> [&lt;Rn&gt;, &lt;offset&gt;] - Bir baz yazmaç değerine bir offset eklenir veya çıkarılır ve sonuç bellek adresi olarak kullanılır.</li>
+                    <li><strong>Ön-İndeksli Adresleme:</strong> [&lt;Rn&gt;, &lt;offset&gt;]! - Offset, baz yazmaca uygulanır; elde edilen yeni adres bellek erişimi için kullanılır ve bu yeni adres baz yazmacın üzerine geri yazılır.</li>
+                    <li><strong>Sonra-İndeksli Adresleme:</strong> [&lt;Rn&gt;], &lt;offset&gt; - Önce baz yazmacın mevcut değeri bellek adresi olarak kullanılır, ardından offset bu değere uygulanır ve sonuç baz yazmaca geri yazılır.</li>
+                </ul>
+                <h4 class="text-lg font-semibold mb-2">MPU vs MCU:</h4>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><strong>Mikroişlemci (MPU):</strong> Temel olarak bir ALU, yazmaçlar ve bir kontrol biriminden oluşur. Çalışması için harici bileşenlere (bellek, G/Ç çevre birimleri, saat vb.) ihtiyacı vardır.</li>
+                    <li><strong>Mikrodenetleyici (MCU):</strong> Tek bir yonga üzerinde bir bilgisayar sistemidir. İşlemci çekirdeği, RAM ve ROM/Flash, Seri ve paralel G/Ç portları, Zamanlayıcılar, Kesme yönetimi, A/D, D/A dönüştürücüler gibi tüm bileşenleri içerir.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Topic 3 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8 card-hover fade-in">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
+                <h3 class="text-2xl font-bold text-purple-600 mb-4 md:mb-0">
+                    <span id="topic3-title" data-tr="Konu 3: Arduino Platformu ve Dijital/Analog G/Ç" data-en="Topic 3: Arduino Platform and Digital/Analog I/O">Konu 3: Arduino Platformu ve Dijital/Analog G/Ç</span>
+                </h3>
+                <a href="quiz3.html" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition font-semibold whitespace-nowrap" id="topic3-quiz" data-tr="Testi Başlat" data-en="Start Quiz">
+                    Testi Başlat
+                </a>
+            </div>
+            <div class="prose max-w-none text-gray-700">
+                <h4 class="text-lg font-semibold mb-2 mt-2" id="topic3-section1" data-tr="1. Temel Ayrım: Bilgisayar, SoC ve Mikrodenetleyici" data-en="1. Key Distinction: Computer, SoC and Microcontroller">1. Temel Ayrım: Bilgisayar, SoC ve Mikrodenetleyici</h4>
+                <p class="mb-3" id="topic3-intro" data-tr="Geçen hafta konuştuğumuz gibi, bir MPU ile MCU arasındaki temel farkı tekrar netleştirelim:" data-en="As we discussed last week, let's clarify the fundamental difference between MPU and MCU:">Geçen hafta konuştuğumuz gibi, bir MPU ile MCU arasındaki temel farkı tekrar netleştirelim:</p>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li id="topic3-mpu" data-tr="Genel Bilgisayar (MPU Tabanlı): Mikroişlemci (MPU), bellek (Non-volatile ve Volatile) ve çevre birimlerinin (Peripheral) ayrı bileşenler olarak bir veriyolu (bus) üzerinde bağlandığı sistemlerdir." data-en="General Computer (MPU Based): Systems where microprocessor (MPU), memory (Non-volatile and Volatile) and peripherals are connected as separate components on a bus."><strong>Genel Bilgisayar (MPU Tabanlı):</strong> Mikroişlemci (MPU), bellek (Non-volatile ve Volatile) ve çevre birimlerinin (Peripheral) ayrı bileşenler olarak bir veriyolu (bus) üzerinde bağlandığı sistemlerdir.</li>
+                    <li id="topic3-mcu" data-tr="Mikrodenetleyici (MCU): Mikroişlemci, bellek ve çevre birimlerinin tümünün tek bir yonga (single chip) üzerine entegre edildiği sistemlerdir." data-en="Microcontroller (MCU): Systems where microprocessor, memory and all peripherals are integrated on a single chip."><strong>Mikrodenetleyici (MCU):</strong> Mikroişlemci, bellek ve çevre birimlerinin tümünün tek bir yonga (single chip) üzerine entegre edildiği sistemlerdir.</li>
+                    <li id="topic3-soc" data-tr="Bu ikisinin arasında bir de ARM Cortex A serisi gibi 'Application (A) oriented' işlemciler (SoC - System on a Chip) bulunur. Raspberry Pi ve BeagleBoard gibi kartlarda bulunan bu işlemciler MCU ile genel bilgisayar arasında bir yerdedir, Linux gibi bir işletim sistemi çalıştırırlar ve MCU'lardan daha pahalıdırlar." data-en="Between these two, there are 'Application (A) oriented' processors (SoC - System on a Chip) like ARM Cortex A series. Found in boards like Raspberry Pi and BeagleBoard, these processors are between MCU and general computers, run operating systems like Linux, and are more expensive than MCUs.">Bu ikisinin arasında bir de ARM Cortex A serisi gibi "Application (A) oriented" işlemciler (SoC - System on a Chip) bulunur. Raspberry Pi ve BeagleBoard gibi kartlarda bulunan bu işlemciler MCU ile genel bilgisayar arasında bir yerdedir, Linux gibi bir işletim sistemi çalıştırırlar ve MCU'lardan daha pahalıdırlar.</li>
+                </ul>
+                <p class="mb-4" id="topic3-focus" data-tr="Bizim dersimizin odağı ise ARM Cortex M (M - Microcontroller) serisi ve Arduino'da kullanılan 8-bit AVR işlemciler gibi gerçek mikrodenetleyiciler olacaktır." data-en="Our course will focus on real microcontrollers such as ARM Cortex M (M - Microcontroller) series and 8-bit AVR processors used in Arduino.">Bizim dersimizin odağı ise ARM Cortex M (M - Microcontroller) serisi ve Arduino'da kullanılan 8-bit AVR işlemciler gibi gerçek mikrodenetleyiciler olacaktır.</p>
+                
+                <h4 class="text-lg font-semibold mb-2 mt-4" id="topic3-section2" data-tr="2. Arduino Platformuna Giriş" data-en="2. Introduction to Arduino Platform">2. Arduino Platformuna Giriş</h4>
+                <p class="mb-3" id="topic3-arduino-intro" data-tr="Bu derste pratik uygulamalar için Arduino'yu kullanacağız. Arduino, esnek ve kullanımı kolay donanım ve yazılıma dayalı açık kaynaklı bir elektronik prototipleme platformudur." data-en="In this course, we will use Arduino for practical applications. Arduino is an open-source electronic prototyping platform based on flexible, easy-to-use hardware and software.">Bu derste pratik uygulamalar için Arduino'yu kullanacağız. Arduino, esnek ve kullanımı kolay donanım ve yazılıma dayalı açık kaynaklı bir elektronik prototipleme platformudur.</p>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic3-hardware" data-tr="Arduino Donanımı (Uno Örneği):" data-en="Arduino Hardware (Uno Example):">Arduino Donanımı (Uno Örneği):</h5>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li id="topic3-mcu-chip"><strong>MCU:</strong> Çoğu Arduino (Uno gibi) kartının kalbi, 8-bit bir AVR ATmega serisi mikrodenetleyicidir (örneğin, ATmega328P).</li>
+                    <li id="topic3-components"><strong>Temel Bileşenler:</strong> Bir Arduino Uno kartı üzerinde MCU'ya ek olarak USB jakı, 16 MHz kristal osilatör, voltaj regülatörleri ve G/Ç pinleri (Digital, Analog, Power) bulunur.</li>
+                    <li id="topic3-specs"><strong>Uno Özellikleri:</strong> 8-bit RISC mimarisi, 32 kB Flash (ROM), 2 kB RAM, 16 MHz saat hızı, 14 dijital ve 6 analog pin.</li>
+                    <li id="topic3-shields"><strong>Shield'ler (Kalkanlar):</strong> Arduino'lara Ethernet, motor kontrolü veya veri kaydı gibi ekstra özellikler eklemek için kullanılan genişletme kartlarıdır.</li>
+                </ul>
+                
+                <h4 class="text-lg font-semibold mb-2 mt-4" id="topic3-section3" data-tr="3. Arduino Yazılımı (IDE)" data-en="3. Arduino Software (IDE)">3. Arduino Yazılımı (IDE)</h4>
+                <p class="mb-3" id="topic3-ide-intro" data-tr="Arduino'yu programlamak için Arduino IDE (Tümleşik Geliştirme Ortamı) adı verilen bir yazılım kullanıyoruz." data-en="We use software called Arduino IDE (Integrated Development Environment) to program Arduino.">Arduino'yu programlamak için Arduino IDE (Tümleşik Geliştirme Ortamı) adı verilen bir yazılım kullanıyoruz.</p>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li id="topic3-sketch"><strong>Sketch (Taslak):</strong> Arduino programlarına "sketch" adı verilir.</li>
+                    <li id="topic3-language"><strong>Programlama Dili:</strong> C ve C++'a benzeyen bir dil kullanılır.</li>
+                    <li id="topic3-structure"><strong>Temel Yapı:</strong> Her Arduino sketch'inde iki zorunlu fonksiyon bulunur:
+                        <ul class="list-circle pl-6 mt-2 space-y-1">
+                            <li id="topic3-setup"><strong>setup():</strong> Arduino'ya güç verildiğinde veya resetlendiğinde sadece bir kez çalışır. Değişkenleri, pin modlarını ve kütüphaneleri başlatmak için kullanılır.</li>
+                            <li id="topic3-loop"><strong>loop():</strong> setup() bittikten sonra başlayan ve kartın gücü kesilene kadar sürekli olarak tekrarlanan (döngüye giren) ana fonksiyondur.</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h4 class="text-lg font-semibold mb-2 mt-4" id="topic3-section4">4. Temel Kavramlar: Giriş/Çıkış (I/O)</h4>
+                <p class="mb-3" id="topic3-io-intro">Mikrodenetleyiciler, dış dünyadan sensörler (Input Transducers) aracılığıyla veri alır ve motorlar/LED'ler (Output Transducers) gibi aktüatörleri kontrol eder.</p>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic3-digital-title">Dijital G/Ç</h5>
+                <p class="mb-2" id="topic3-digital-intro">Tüm mikroişlemciler dahili olarak dijitaldir. Dijital sinyal, ikili bir sinyaldir: ya HIGH (1, 5V) ya da LOW (0, 0V).</p>
+                <p class="mb-2 font-semibold" id="topic3-digital-functions">Önemli Fonksiyonlar:</p>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li id="topic3-pinmode"><strong>pinMode(pin, mode):</strong> Bir pini INPUT (giriş) veya OUTPUT (çıkış) olarak ayarlar.</li>
+                    <li id="topic3-digitalwrite"><strong>digitalWrite(pin, value):</strong> Bir çıkış pinine HIGH veya LOW değeri yazar (örn. LED yakmak).</li>
+                    <li id="topic3-digitalread"><strong>digitalRead(pin):</strong> Bir giriş pininden HIGH veya LOW değeri okur (örn. buton durumu).</li>
+                </ul>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic3-analog-input-title">Analog Giriş (ADC)</h5>
+                <p class="mb-2" id="topic3-analog-intro">Analog sinyaller, 0V ve 5V arasında sürekli bir voltaj aralığına sahiptir. Mikrodenetleyiciler dijital olduğu için bu analog sinyalleri dijitale çevirmeleri gerekir. Bu işleme ADC (Analog-to-Digital Converter) denir.</p>
+                <p class="mb-2" id="topic3-adc-resolution">Arduino Uno'da 10-bit çözünürlüklü bir ADC bulunur. Bu, 0V ile 5V arasındaki voltajı, 0 ile 1023 arasında bir tamsayı değere (1024 farklı seviye) haritalayacağı anlamına gelir.</p>
+                <p class="mb-2 font-semibold" id="topic3-analog-function">Önemli Fonksiyon:</p>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li id="topic3-analogread"><strong>analogRead(pin):</strong> Belirtilen analog pinden (örn. A0) 0-1023 arasında bir değer okur.</li>
+                </ul>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic3-pwm-title">Analog Çıkış (PWM)</h5>
+                <p class="mb-2" id="topic3-pwm-intro">Arduino'dan "analog" çıkış almak için analogWrite(pin, value) fonksiyonu kullanılır. Bu, aslında gerçek bir analog voltaj çıkışı değil, PWM (Darbe Genişlik Modülasyonu) sinyalidir. Değer 0 ile 255 arasında olur.</p>
+                
+                <h4 class="text-lg font-semibold mb-2 mt-4" id="topic3-section5">5. "Hello, World!": Blink (LED Yakıp Söndürme)</h4>
+                <p class="mb-3" id="topic3-blink-intro">Mikrodenetleyicilerin "Hello, World!" uygulaması LED yakıp söndürmektir (Blink). Bu basit örnek, temel yapıyı anlamamızı sağlar.</p>
+            </div>
+        </div>
+
+        <!-- Topic 4 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8 card-hover fade-in">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
+                <h3 class="text-2xl font-bold text-indigo-600 mb-4 md:mb-0">
+                    <span id="topic4-title" data-tr="Konu 4: Arduino Derleme Süreci ve Seri İletişim" data-en="Topic 4: Arduino Compilation Process and Serial Communication">Konu 4: Arduino Derleme Süreci ve Seri İletişim</span>
+                </h3>
+                <a href="quiz4.html" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition font-semibold whitespace-nowrap" id="topic4-quiz" data-tr="Testi Başlat" data-en="Start Quiz">
+                    Testi Başlat
+                </a>
+            </div>
+            <div class="prose max-w-none text-gray-700">
+                <h4 class="text-lg font-semibold mb-2 mt-2" id="topic4-section1" data-tr="1. Arduino Derleme Süreci (Toolchain)" data-en="1. Arduino Compilation Process (Toolchain)">1. Arduino Derleme Süreci (Toolchain)</h4>
+                <p class="mb-3" id="topic4-compile-intro" data-tr="Arduino IDE'de yazdığımız kodu kartımıza yüklerken arka planda neler oluyor?" data-en="What happens behind the scenes when we upload our code to the board in Arduino IDE?">Arduino IDE'de yazdığımız kodu kartımıza yüklerken arka planda neler oluyor?</p>
+                <ol class="list-decimal pl-6 space-y-2 mb-4">
+                    <li id="topic4-step1"><strong>.ino dosyası:</strong> Arduino IDE'de yazdığımız sketch dosyası.</li>
+                    <li id="topic4-step2"><strong>.cpp (C++ dosyası):</strong> IDE, .ino dosyanızı standart bir C++ dosyasına dönüştürür. Bunu yaparken setup() ve loop() fonksiyonlarınızın etrafına gerekli başlık dosyalarını (headers) ve bir main() fonksiyonu ekler.</li>
+                    <li id="topic4-step3"><strong>.o dosyaları (Object files - Nesne dosyaları):</strong> C++ kodu, avr-g++ (C++ derleyicisi) veya avr-gcc (C derleyicisi) tarafından makine kodu içeren .o dosyalarına derlenir (compile). Her .cpp dosyası için bir .o dosyası oluşturulur.</li>
+                    <li id="topic4-step4"><strong>.elf dosyası (Executable and Linkable Format):</strong> Tüm .o dosyaları, avr-gcc linker (bağlayıcı) tarafından birleştirilerek tek bir .elf dosyası oluşturulur. Bu, çalıştırılabilir bir dosyadır, ancak debug bilgileri de içerir.</li>
+                    <li id="topic4-step5"><strong>.hex dosyası (Intel Hex format):</strong> avr-objcopy aracı, .elf dosyasından debug bilgilerini çıkararak sadece Flash belleğe yazılması gereken makine kodunu içeren .hex dosyasını oluşturur. Bu dosya, mikrodenetleyicinin anlayabileceği formattadır.</li>
+                    <li id="topic4-step6"><strong>Upload (Yükleme):</strong> avrdude (AVR Downloader/Uploader) adlı bir araç, .hex dosyasını USB üzerinden Arduino'ya yükler ve bu kod Flash ROM'a (program belleğine) yazılır. Artık Arduino'yu her resetlediğinizde bu kod çalışır.</li>
+                </ol>
+                
+                <h4 class="text-lg font-semibold mb-2 mt-4" id="topic4-section2">2. C Programlama Temelleri: Veri Türleri</h4>
+                <p class="mb-3" id="topic4-types-intro">Mikrodenetleyici programlamada, bellek sınırlı olduğu için doğru veri türünü seçmek önemlidir.</p>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li id="topic4-void"><strong>void:</strong> Fonksiyonun değer döndürmediğini belirtir (örn: void setup()).</li>
+                    <li id="topic4-boolean"><strong>boolean:</strong> true (1) veya false (0) değerlerini alır. 1 byte bellek kullanır.</li>
+                    <li id="topic4-byte"><strong>byte:</strong> 0 ile 255 arasında işaretsiz (unsigned) bir tamsayı (8-bit). 1 byte bellek.</li>
+                    <li id="topic4-char"><strong>char:</strong> -128 ile +127 arasında işaretli bir tamsayı veya tek bir ASCII karakteri saklar (8-bit). 1 byte bellek.</li>
+                    <li id="topic4-int"><strong>int:</strong> Arduino Uno'da 16-bit işaretli bir tamsayıdır. -32,768 ile +32,767 arasında değer alabilir. 2 byte bellek.</li>
+                    <li id="topic4-float"><strong>float:</strong> Ondalıklı sayıları (floating point - kayan noktalı sayı) saklamak için kullanılır. -3.4028235E+38 ile +3.4028235E+38 arasında değer alabilir. 4 byte bellek.</li>
+                    <li id="topic4-array"><strong>Array (Dizi):</strong> Aynı türden birden fazla değeri saklamak için kullanılır. Örnek: int pinler[] = {2, 3, 4, 5};</li>
+                    <li id="topic4-string"><strong>String (Metin):</strong> Karakter dizileridir. İki şekilde tanımlanabilir:
+                        <ul class="list-circle pl-6 mt-2 space-y-1">
+                            <li id="topic4-string-array">char myString[] = "Arduino"; (C tarzı, daha hafif)</li>
+                            <li id="topic4-string-object">String myString = "Arduino"; (Arduino String nesnesi, daha kolay kullanım)</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h4 class="text-lg font-semibold mb-2 mt-4" id="topic4-section3">3. Seri İletişim (Serial Communication)</h4>
+                <p class="mb-3" id="topic4-serial-intro">Arduino ile bilgisayar veya başka cihazlar arasında veri alışverişi yapmak için seri iletişim kullanılır. Arduino Uno'da UART protokolü üzerinden çalışan bir seri port bulunur.</p>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic4-pins">TX ve RX Pinleri:</h5>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li id="topic4-tx"><strong>TX (Transmit - İletim):</strong> Arduino'nun veri gönderdiği pin (Pin 1).</li>
+                    <li id="topic4-rx"><strong>RX (Receive - Alma):</strong> Arduino'nun veri aldığı pin (Pin 0).</li>
+                    <li id="topic4-cross"><strong>Çapraz Bağlantı:</strong> İki Arduino birbirine bağlanacaksa, bir Arduino'nun TX pini diğerinin RX pinine, ve bir Arduino'nun RX pini diğerinin TX pinine bağlanır (cross-connect).</li>
+                </ul>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic4-baud">Baud Rate (İletim Hızı):</h5>
+                <p class="mb-3" id="topic4-baud-desc">İletişim hızını belirler. Saniyede gönderilen bit sayısını (bits per second - bps) ifade eder. Yaygın değerler: 9600, 115200. Her iki cihaz da aynı baud rate'e ayarlanmalıdır.</p>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic4-functions">Temel Fonksiyonlar:</h5>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li id="topic4-begin"><strong>Serial.begin(baudRate):</strong> Seri iletişimi başlatır. Genellikle setup() içinde çağrılır. Örnek: Serial.begin(9600);</li>
+                    <li id="topic4-print"><strong>Serial.print(data):</strong> Seri porta veri gönderir, ancak satır sonu (newline) eklemez.</li>
+                    <li id="topic4-println"><strong>Serial.println(data):</strong> Seri porta veri gönderir ve satır sonu ekler.</li>
+                    <li id="topic4-formats">Serial.println() ile veri formatı belirtebilirsiniz:
+                        <ul class="list-circle pl-6 mt-2 space-y-1">
+                            <li id="topic4-bin">Serial.println(value, BIN); → İkili (binary) formatta yazdır.</li>
+                            <li id="topic4-hex">Serial.println(value, HEX); → Onaltılık (hexadecimal) formatta yazdır.</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h4 class="text-lg font-semibold mb-2 mt-4" id="topic4-section4">4. Analog Sensör Okuma</h4>
+                <p class="mb-3" id="topic4-sensor-intro">Gerçek dünyada, sıcaklık, ışık, nem gibi birçok fiziksel büyüklük sürekli (analog) değişir. Sensörler bu büyüklükleri elektriksel sinyale (genellikle voltaja) dönüştürür. Mikrodenetleyici, bu analog voltajı ADC ile 0-1023 arası dijital bir sayıya çevirir.</p>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic4-quantization">Niceleme (Quantization):</h5>
+                <p class="mb-3" id="topic4-quantization-desc">Analog bir sinyali dijitale çevirirken, sonsuz sayıdaki olası analog değeri, sonlu sayıda dijital seviyeye yuvarlarız. Bu işleme quantization (niceleme) denir. Arduino Uno'nun 10-bit ADC'si 1024 seviye sunar, bu da her seviyenin yaklaşık 4.88 mV (5V / 1024) temsil ettiği anlamına gelir.</p>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic4-divider">Voltaj Bölücü (Voltage Divider):</h5>
+                <p class="mb-3" id="topic4-divider-desc">Birçok sensör (örn. potansiyometre, LDR, termistör) üç bacaklıdır ve bir voltaj bölücü devresi gibi çalışır. Orta bacağındaki voltaj, sensörün direnç değerine bağlı olarak değişir.</p>
+                <p class="mb-3 font-semibold" id="topic4-formula">Formül:</p>
+                <p class="mb-4 ml-4" id="topic4-formula-text">V_out = V_in × (R2 / (R1 + R2))</p>
+                
+                <h4 class="text-lg font-semibold mb-2 mt-4" id="topic4-section5">5. PWM ve Duty Cycle</h4>
+                <p class="mb-3" id="topic4-pwm-intro">PWM, dijital bir sinyalin ON ve OFF olma süresini değiştirerek ortalama bir voltaj elde etmeyi sağlar.</p>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li id="topic4-duty"><strong>Duty Cycle:</strong> Sinyalin bir periyotta HIGH (ON) kaldığı sürenin yüzdesidir. Örneğin, %75 duty cycle, ortalama 3.75V (5V × 0.75) demektir.</li>
+                    <li id="topic4-analogwrite"><strong>analogWrite(pin, value):</strong> 0 ile 255 arasında bir değer alır. 0 = %0 duty cycle (0V), 255 = %100 duty cycle (5V), 128 ≈ %50 duty cycle (≈2.5V).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Topic 5 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8 card-hover fade-in">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
+                <h3 class="text-2xl font-bold text-pink-600 mb-4 md:mb-0">
+                    <span id="topic5-title" data-tr="Konu 5: Program Akışı, Sensörler ve Kesme Mekanizması" data-en="Topic 5: Program Flow, Sensors and Interrupt Mechanism">Konu 5: Program Akışı, Sensörler ve Kesme Mekanizması</span>
+                </h3>
+                <a href="quiz5.html" class="bg-pink-600 text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition font-semibold whitespace-nowrap" id="topic5-quiz" data-tr="Testi Başlat" data-en="Start Quiz">
+                    Testi Başlat
+                </a>
+            </div>
+            <div class="prose max-w-none text-gray-700">
+                <h4 class="text-lg font-semibold mb-2 mt-2" id="topic5-section1" data-tr="1. Program Akış Kontrolü (Flow Control)" data-en="1. Program Flow Control">1. Program Akış Kontrolü (Flow Control)</h4>
+                <p class="mb-3" id="topic5-flow-intro" data-tr="Programlarımızın sadece sırayla satır satır çalışmamasını, belirli koşullara göre farklı yollar izlemesini sağlayan yapılara program akış kontrolü denir. Arduino C dilinde bu yapıları if-else yapıları ile oluştururuz." data-en="Structures that allow our programs to follow different paths based on certain conditions, rather than just running line by line, are called program flow control. In Arduino C, we create these structures with if-else statements.">Programlarımızın sadece sırayla satır satır çalışmamasını, belirli koşullara göre farklı yollar izlemesini sağlayan yapılara program akış kontrolü denir. Arduino C dilinde bu yapıları if-else yapıları ile oluştururuz.</p>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic5-if-structures">if Yapıları:</h5>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li id="topic5-if"><strong>if (Eğer):</strong> Eğer koşul doğru (true) ise, belirli kod bloğu çalıştırılır.</li>
+                    <li id="topic5-if-else"><strong>if-else (Eğer-Değilse):</strong> Koşul doğruysa bir blok, yanlışsa başka bir blok çalışır.</li>
+                    <li id="topic5-if-elseif"><strong>if-else if-else (Eğer-VeyaEğer-Değilse):</strong> Birden fazla koşulu sırayla kontrol etmek için kullanılır.</li>
+                </ul>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic5-comparison">Karşılaştırma Operatörleri:</h5>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li id="topic5-greater">x > y → x, y'den büyük mü?</li>
+                    <li id="topic5-less">x < y → x, y'den küçük mü?</li>
+                    <li id="topic5-greater-equal">x >= y → x, y'den büyük veya eşit mi?</li>
+                    <li id="topic5-less-equal">x <= y → x, y'den küçük veya eşit mi?</li>
+                    <li id="topic5-equal">x == y → x, y'ye eşit mi? (DİKKAT: Çift eşittir ==)</li>
+                    <li id="topic5-not-equal">x != y → x, y'ye eşit değil mi?</li>
+                </ul>
+                
+                <h4 class="text-lg font-semibold mb-2 mt-4" id="topic5-section2">2. Mantıksal Operatörler (Logical Operators)</h4>
+                <p class="mb-3" id="topic5-logical-intro">Birden fazla koşulu birleştirmek için mantıksal operatörler kullanılır:</p>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li id="topic5-and"><strong>AND (Ve) - &&:</strong> Tüm koşullar doğru olmalıdır. Örnek: if (val > 10 && val < 20) → val hem 10'dan büyük hem de 20'den küçük olmalı.</li>
+                    <li id="topic5-or"><strong>OR (Veya) - ||:</strong> En az bir koşul doğru olmalıdır. Örnek: if (brightness == 0 || brightness == 255) → brightness ya 0 ya da 255 olmalı.</li>
+                </ul>
+                
+                <h4 class="text-lg font-semibold mb-2 mt-4" id="topic5-section3">3. Sensörler ile Veri Okuma</h4>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic5-digital-input">Dijital Giriş Okuma:</h5>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li id="topic5-pulldown"><strong>Pull-down Direnci:</strong> Butona basılmadığında pini LOW (0V) seviyesinde tutmak için GND'ye bağlanan harici bir dirençtir.</li>
+                    <li id="topic5-pullup"><strong>INPUT_PULLUP:</strong> Arduino'nun bazı pinlerinde dahili pull-up dirençleri vardır. pinMode(pin, INPUT_PULLUP) ile etkinleştirilir. Bu durumda, butona basılmadığında pin HIGH, basıldığında LOW olur.</li>
+                </ul>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic5-map-function">map() Fonksiyonu:</h5>
+                <p class="mb-3" id="topic5-map-desc">Bir değeri bir aralıktan başka bir aralığa eşler (map). Örneğin, 0-1023 arası bir ADC değerini 0-100 arası bir yüzdeye çevirmek için kullanılır.</p>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic5-sensor-examples">Sensör Örnekleri:</h5>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li id="topic5-pir"><strong>PIR (Pasif Kızılötesi) Sensör:</strong> Hareket algılama için kullanılır. Dijital çıkış verir (HIGH = hareket var, LOW = hareket yok). Isı yayan cisimlerin (insan, hayvan) hareketini algılar.</li>
+                    <li id="topic5-mq2"><strong>MQ-2 Duman/Gaz Sensörü:</strong> Duman veya gaz yoğunluğuna göre analog bir voltaj çıkışı verir. analogRead() ile okunur.</li>
+                    <li id="topic5-ultrasonic"><strong>Ultrasonik Sensör (HC-SR04):</strong> Mesafe ölçümü için kullanılır. Trigger (tetik) pinine kısa bir sinyal gönderilir, ses dalgası gönderilir ve Echo (yankı) pininden geri dönme süresi okunur. pulseIn() fonksiyonu ile bu süre ölçülür ve mesafe hesaplanır.</li>
+                </ul>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic5-sensor-characteristics">Sensör Özellikleri:</h5>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li id="topic5-accuracy"><strong>Accuracy (Doğruluk):</strong> Ölçülen değerin gerçek değere ne kadar yakın olduğudur.</li>
+                    <li id="topic5-precision"><strong>Precision (Hassasiyet/Kesinlik):</strong> Tekrarlanan ölçümlerin birbirine ne kadar yakın olduğudur.</li>
+                    <li id="topic5-error"><strong>Error (Hata):</strong> Ölçüm ile gerçek değer arasındaki farktır.</li>
+                    <li id="topic5-hysteresis"><strong>Hysteresis (Histerezis):</strong> Sensörün giriş değeri artarken ve azalırken farklı çıkışlar vermesidir. Bir tür gecikme etkisidir.</li>
+                </ul>
+                
+                <h4 class="text-lg font-semibold mb-2 mt-4" id="topic5-section4">4. Aktüatörler (Actuators)</h4>
+                <p class="mb-3" id="topic5-actuator-intro">Aktüatörler, elektrik sinyallerini fiziksel harekete veya çıkışa dönüştüren cihazlardır.</p>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic5-lcd">LCD Ekran:</h5>
+                <p class="mb-3" id="topic5-lcd-desc">16x2 veya 20x4 gibi metin tabanlı LCD ekranlar, bilgileri kullanıcıya göstermek için yaygın olarak kullanılır. Arduino'da LiquidCrystal.h kütüphanesi ile kontrol edilir.</p>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic5-servo">Servo Motor:</h5>
+                <p class="mb-3" id="topic5-servo-desc">Genellikle 0° ile 180° arasında belirli bir açıya konumlanabilen motorlardır. Servo.h kütüphanesi kullanılır. myservo.write(angle) komutu ile istenen açı belirtilir.</p>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic5-stepper">Step Motor (Stepper Motor):</h5>
+                <p class="mb-3" id="topic5-stepper-desc">Hassas konum kontrolü gerektiren uygulamalarda (3D yazıcılar, CNC makineleri) kullanılır. Belirli sayıda adımla döner. Stepper.h kütüphanesi ile kontrol edilir. Yüksek akım gereksinimi olduğu için genellikle bir sürücü devresi (örn. Darlington Array - ULN2003) gerektirir.</p>
+                
+                <h4 class="text-lg font-semibold mb-2 mt-4" id="topic5-section5">5. Gelişmiş Zamanlama ve Kesmeler (Interrupts)</h4>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic5-interrupt-intro">Kesme (Interrupt) Nedir?</h5>
+                <p class="mb-3" id="topic5-interrupt-desc">Normalde Arduino loop() fonksiyonunu sürekli tekrarlar. Ancak bazen, bir düğmeye basılması gibi acil bir olay olduğunda, loop() içinde ne yapıyorsa bırakıp hemen o olaya müdahale etmesi gerekir. İşte bu "acil müdahale" mekanizmasına interrupt (kesme) denir. Arduino Uno'da interrupt için Pin 2 ve Pin 3 kullanılabilir.</p>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic5-attachinterrupt">attachInterrupt() Fonksiyonu:</h5>
+                <p class="mb-3" id="topic5-attachinterrupt-desc">Kesmeyi ayarlamak için kullanılır. Parametreleri: pin numarası, çağrılacak fonksiyon, ve mod (RISING: LOW'dan HIGH'a geçiş, FALLING: HIGH'dan LOW'a geçiş, CHANGE: herhangi bir değişim).</p>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic5-volatile">volatile Anahtar Kelimesi:</h5>
+                <p class="mb-3" id="topic5-volatile-desc">Interrupt içinde değiştirilen global değişkenlerin başına volatile yazılmalıdır. Bu, derleyiciye bu değişkenin beklenmedik şekilde (interrupt tarafından) değişebileceğini bildirir.</p>
+                
+                <h5 class="font-semibold mb-2 mt-3" id="topic5-timer">Timer Kütüphanesi (Non-blocking Timing):</h5>
+                <p class="mb-3" id="topic5-timer-intro">Arduino'da delay() fonksiyonu kullanmak, programın tamamını durdurur (blocking). Bu sırada başka işlemler yapılamaz. Timer kütüphanesi ise, arka planda zaman tutarak, belirli aralıklarla fonksiyon çağırmamıza izin verir (non-blocking).</p>
+                <ul class="list-disc pl-6 space-y-2 mb-4">
+                    <li id="topic5-every"><strong>t.every(ms, function):</strong> Her X milisaniyede bir fonksiyonu çağırır.</li>
+                    <li id="topic5-after"><strong>t.after(ms, function):</strong> X milisaniye sonra bir kez fonksiyonu çağırır.</li>
+                    <li id="topic5-oscillate"><strong>t.oscillate(pin, period, HIGH/LOW):</strong> Bir pini belirli periyotta otomatik olarak HIGH ve LOW arasında değiştirir (örn. LED yanıp sönme).</li>
+                    <li id="topic5-update"><strong>t.update():</strong> loop() içinde sürekli çağrılmalıdır. Zamanlayıcıların çalışması için gereklidir.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <p data-tr="© 2025 Mikroişlemci Tabanlı Sistem Tasarımı - Tüm hakları saklıdır" data-en="© 2025 Microprocessor-Based System Design - All rights reserved">
+                © 2025 Mikroişlemci Tabanlı Sistem Tasarımı - Tüm hakları saklıdır
+            </p>
+        </div>
+    </footer>
+
+    <script src="language.js"></script>
+</body>
+</html>

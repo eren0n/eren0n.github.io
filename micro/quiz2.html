@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-tr="Test 2: ISA ve Adresleme Modları" data-en="Quiz 2: ISA and Addressing Modes">Test 2: ISA ve Adresleme Modları</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .option-btn {
+            transition: all 0.3s ease;
+        }
+        .option-btn:hover {
+            transform: translateX(5px);
+        }
+        .option-btn.selected {
+            background-color: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        .option-btn.correct {
+            background-color: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+        .option-btn.incorrect {
+            background-color: #ef4444;
+            color: white;
+            border-color: #ef4444;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="gradient-bg text-white shadow-lg">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold" data-tr="Konu 2 Testi" data-en="Topic 2 Quiz">Konu 2 Testi</h1>
+                <div class="flex gap-4">
+                    <button id="langToggle" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">EN</button>
+                    <a href="index.html" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mx-auto px-6 py-12 max-w-4xl">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-purple-600 mb-2" data-tr="ISA ve Adresleme Modları" data-en="ISA and Addressing Modes">ISA ve Adresleme Modları</h2>
+                <div class="flex justify-between items-center text-gray-600">
+                    <p><span data-tr="Soru" data-en="Question">Soru</span> <span id="currentQuestion">1</span> / <span id="totalQuestions">10</span></p>
+                    <p><span data-tr="Puan" data-en="Score">Puan</span>: <span id="score">0</span></p>
+                </div>
+            </div>
+
+            <div id="quizContainer"></div>
+
+            <div class="flex justify-between mt-8">
+                <button id="prevBtn" class="bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-400 transition disabled:opacity-50" disabled data-tr="Önceki" data-en="Previous">Önceki</button>
+                <button id="nextBtn" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition" data-tr="Sonraki" data-en="Next">Sonraki</button>
+                <button id="submitBtn" class="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition hidden" data-tr="Testi Bitir" data-en="Submit Quiz">Testi Bitir</button>
+            </div>
+        </div>
+
+        <div id="resultModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-xl p-8 max-w-md w-full">
+                <h3 class="text-2xl font-bold mb-4 text-purple-600" data-tr="Test Sonucu" data-en="Quiz Result">Test Sonucu</h3>
+                <p class="text-xl mb-6"><span data-tr="Puanınız" data-en="Your Score">Puanınız</span>: <span id="finalScore" class="font-bold text-purple-600"></span> / 10</p>
+                <p id="resultMessage" class="mb-6 text-gray-700"></p>
+                <div class="flex gap-4">
+                    <button onclick="location.reload()" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition flex-1" data-tr="Tekrar Dene" data-en="Try Again">Tekrar Dene</button>
+                    <a href="index.html" class="bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-400 transition flex-1 text-center" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizData = {
+            tr: [
+                {
+                    question: "ISA (Instruction Set Architecture) neyi tanımlar?",
+                    options: ["Sadece donanım mimarisini", "Donanım ve yazılım arasındaki arayüzü", "Sadece yazılım arayüzünü", "İşletim sistemi katmanını"],
+                    correct: 1
+                },
+                {
+                    question: "Aşağıdaki mimari seviyelerinden hangisi ISA'yı içerir?",
+                    options: ["Mikromimari", "Platform Mimarisi", "Komut Seti Mimarisi", "İşletim Sistemi Mimarisi"],
+                    correct: 2
+                },
+                {
+                    question: "Cortex-M3 hangi ARM profil sürümüne aittir?",
+                    options: ["v7A (Application)", "v7R (Real-time)", "v7M (Microcontroller)", "v8A (Application)"],
+                    correct: 2
+                },
+                {
+                    question: "Cortex-M3 hangi komut setini kullanır?",
+                    options: ["ARM komut seti", "Thumb komut seti", "Thumb-2 komut seti", "MIPS komut seti"],
+                    correct: 2
+                },
+                {
+                    question: "Offset adresleme modunun formatı nedir?",
+                    options: ["[<Rn>]", "[<Rn>, <offset>]", "[<Rn>, <offset>]!", "[<Rn>], <offset>"],
+                    correct: 1
+                },
+                {
+                    question: "Ön-indeksli (Pre-indexed) adresleme modunda offset uygulandıktan SONRA ne olur?",
+                    options: ["Hiçbir şey olmaz", "Baz yazmaç güncellenir", "Program Counter artar", "Stack boşalır"],
+                    correct: 1
+                },
+                {
+                    question: "Mikroişlemci (MPU) ve Mikrodenetleyici (MCU) arasındaki temel fark nedir?",
+                    options: ["MPU daha hızlıdır", "MCU tek yonga üzerinde tam bir sistemdir", "MPU daha ucuzdur", "MCU daha fazla belleğe sahiptir"],
+                    correct: 1
+                },
+                {
+                    question: "Bir MPU'nun çalışması için aşağıdakilerden hangisine ihtiyacı YOKTUR?",
+                    options: ["Harici bellek", "Saat sinyali (clock)", "Dokunmatik ekran", "G/Ç çevre birimleri"],
+                    correct: 2
+                },
+                {
+                    question: "MCU (Mikrodenetleyici) tek bir yonga üzerinde aşağıdakilerden hangisini İÇERMEZ?",
+                    options: ["İşlemci çekirdeği", "RAM ve ROM/Flash", "Monitör ekranı", "Zamanlayıcılar (Timers)"],
+                    correct: 2
+                },
+                {
+                    question: "Cortex-M3'ün donanımsal olarak desteklediği özel işlem nedir?",
+                    options: ["Çarpma", "Bölme (HW Divide)", "Karekök", "Logaritma"],
+                    correct: 1
+                }
+            ],
+            en: [
+                {
+                    question: "What does ISA (Instruction Set Architecture) define?",
+                    options: ["Only hardware architecture", "Interface between hardware and software", "Only software interface", "Operating system layer"],
+                    correct: 1
+                },
+                {
+                    question: "Which of the following architectural levels includes ISA?",
+                    options: ["Microarchitecture", "Platform Architecture", "Instruction Set Architecture", "Operating System Architecture"],
+                    correct: 2
+                },
+                {
+                    question: "Which ARM profile version does Cortex-M3 belong to?",
+                    options: ["v7A (Application)", "v7R (Real-time)", "v7M (Microcontroller)", "v8A (Application)"],
+                    correct: 2
+                },
+                {
+                    question: "Which instruction set does Cortex-M3 use?",
+                    options: ["ARM instruction set", "Thumb instruction set", "Thumb-2 instruction set", "MIPS instruction set"],
+                    correct: 2
+                },
+                {
+                    question: "What is the format of offset addressing mode?",
+                    options: ["[<Rn>]", "[<Rn>, <offset>]", "[<Rn>, <offset>]!", "[<Rn>], <offset>"],
+                    correct: 1
+                },
+                {
+                    question: "In pre-indexed addressing mode, what happens AFTER the offset is applied?",
+                    options: ["Nothing happens", "Base register is updated", "Program Counter increases", "Stack empties"],
+                    correct: 1
+                },
+                {
+                    question: "What is the fundamental difference between Microprocessor (MPU) and Microcontroller (MCU)?",
+                    options: ["MPU is faster", "MCU is a complete system on a single chip", "MPU is cheaper", "MCU has more memory"],
+                    correct: 1
+                },
+                {
+                    question: "Which of the following does an MPU NOT need to operate?",
+                    options: ["External memory", "Clock signal", "Touch screen", "I/O peripherals"],
+                    correct: 2
+                },
+                {
+                    question: "What does an MCU (Microcontroller) NOT include on a single chip?",
+                    options: ["Processor core", "RAM and ROM/Flash", "Monitor screen", "Timers"],
+                    correct: 2
+                },
+                {
+                    question: "What special operation does Cortex-M3 support in hardware?",
+                    options: ["Multiplication", "Division (HW Divide)", "Square root", "Logarithm"],
+                    correct: 1
+                }
+            ]
+        };
+    </script>
+    <script src="quiz.js"></script>
+    <script src="language.js"></script>
+</body>
+</html>

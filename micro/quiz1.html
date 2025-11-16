@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-tr="Test 1: Gömülü Sistemler ve ARM Cortex-M3" data-en="Quiz 1: Embedded Systems and ARM Cortex-M3">Test 1: Gömülü Sistemler ve ARM Cortex-M3</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .option-btn {
+            transition: all 0.3s ease;
+        }
+        .option-btn:hover {
+            transform: translateX(5px);
+        }
+        .option-btn.selected {
+            background-color: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        .option-btn.correct {
+            background-color: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+        .option-btn.incorrect {
+            background-color: #ef4444;
+            color: white;
+            border-color: #ef4444;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="gradient-bg text-white shadow-lg">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold" data-tr="Konu 1 Testi" data-en="Topic 1 Quiz">Konu 1 Testi</h1>
+                <div class="flex gap-4">
+                    <button id="langToggle" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">EN</button>
+                    <a href="index.html" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mx-auto px-6 py-12 max-w-4xl">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-purple-600 mb-2" data-tr="Gömülü Sistemler ve ARM Cortex-M3" data-en="Embedded Systems and ARM Cortex-M3">Gömülü Sistemler ve ARM Cortex-M3</h2>
+                <div class="flex justify-between items-center text-gray-600">
+                    <p><span data-tr="Soru" data-en="Question">Soru</span> <span id="currentQuestion">1</span> / <span id="totalQuestions">10</span></p>
+                    <p><span data-tr="Puan" data-en="Score">Puan</span>: <span id="score">0</span></p>
+                </div>
+            </div>
+
+            <div id="quizContainer"></div>
+
+            <div class="flex justify-between mt-8">
+                <button id="prevBtn" class="bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-400 transition disabled:opacity-50" disabled data-tr="Önceki" data-en="Previous">Önceki</button>
+                <button id="nextBtn" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition" data-tr="Sonraki" data-en="Next">Sonraki</button>
+                <button id="submitBtn" class="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition hidden" data-tr="Testi Bitir" data-en="Submit Quiz">Testi Bitir</button>
+            </div>
+        </div>
+
+        <div id="resultModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-xl p-8 max-w-md w-full">
+                <h3 class="text-2xl font-bold mb-4 text-purple-600" data-tr="Test Sonucu" data-en="Quiz Result">Test Sonucu</h3>
+                <p class="text-xl mb-6"><span data-tr="Puanınız" data-en="Your Score">Puanınız</span>: <span id="finalScore" class="font-bold text-purple-600"></span> / 10</p>
+                <p id="resultMessage" class="mb-6 text-gray-700"></p>
+                <div class="flex gap-4">
+                    <button onclick="location.reload()" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition flex-1" data-tr="Tekrar Dene" data-en="Try Again">Tekrar Dene</button>
+                    <a href="index.html" class="bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-400 transition flex-1 text-center" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizData = {
+            tr: [
+                {
+                    question: "Bell Yasası'na göre yaklaşık kaç yılda bir yeni bir bilgi işlem sınıfı ortaya çıkar?",
+                    options: ["5 yıl", "10 yıl", "15 yıl", "20 yıl"],
+                    correct: 1
+                },
+                {
+                    question: "Moore Yasası'na göre entegre devre üzerindeki transistör sayısı yaklaşık ne kadar sürede ikiye katlanır?",
+                    options: ["Her yıl", "Her 2 yılda", "Her 3 yılda", "Her 5 yılda"],
+                    correct: 1
+                },
+                {
+                    question: "Aşağıdakilerden hangisi enerji hasadı (Energy Harvesting) yöntemi DEĞİLDİR?",
+                    options: ["Piezoelektrik", "Termoelektrik", "Elektromanyetik indüksiyon", "USB şarj"],
+                    correct: 3
+                },
+                {
+                    question: "ARM Cortex-M3 mimarisinde kaç adet genel amaçlı 'low register' bulunur?",
+                    options: ["4 (R0-R3)", "8 (R0-R7)", "12 (R0-R11)", "16 (R0-R15)"],
+                    correct: 1
+                },
+                {
+                    question: "APSR (Application Program Status Register) yazmacında bulunan bayraklardan hangisi işaretli (signed) taşmayı gösterir?",
+                    options: ["N (Negative)", "Z (Zero)", "C (Carry)", "V (Overflow)"],
+                    correct: 3
+                },
+                {
+                    question: "R13 yazmacı hangi özel amaç için kullanılır?",
+                    options: ["Program Counter", "Stack Pointer", "Link Register", "Status Register"],
+                    correct: 1
+                },
+                {
+                    question: "Farklı üreticilerin Cortex-M3 tabanlı ürünleri arasındaki temel fark nedir?",
+                    options: ["CPU hızı", "Komut seti", "Çevre birimleri (Peripherals)", "Yazmaç sayısı"],
+                    correct: 2
+                },
+                {
+                    question: "Aşağıdakilerden hangisi Cortex-M3'ün çevre birimlerinden biri DEĞİLDİR?",
+                    options: ["DMA", "GPU", "ADC", "UART"],
+                    correct: 1
+                },
+                {
+                    question: "APSR yazmacında Z (Zero) bayrağı ne zaman 1 olur?",
+                    options: ["Sonuç negatifse", "Sonuç sıfırsa", "Elde (carry) oluşursa", "Taşma olursa"],
+                    correct: 1
+                },
+                {
+                    question: "Cortex-M3 bellek haritasında aşağıdakilerden hangisi için özel adres alanı YOKTUR?",
+                    options: ["Kod (Code)", "SRAM", "Çevre Birimleri (Peripheral)", "Cache"],
+                    correct: 3
+                }
+            ],
+            en: [
+                {
+                    question: "According to Bell's Law, approximately how many years does it take for a new computing class to emerge?",
+                    options: ["5 years", "10 years", "15 years", "20 years"],
+                    correct: 1
+                },
+                {
+                    question: "According to Moore's Law, approximately how often does the number of transistors on an integrated circuit double?",
+                    options: ["Every year", "Every 2 years", "Every 3 years", "Every 5 years"],
+                    correct: 1
+                },
+                {
+                    question: "Which of the following is NOT an energy harvesting method?",
+                    options: ["Piezoelectric", "Thermoelectric", "Electromagnetic induction", "USB charging"],
+                    correct: 3
+                },
+                {
+                    question: "How many general-purpose 'low registers' are there in ARM Cortex-M3 architecture?",
+                    options: ["4 (R0-R3)", "8 (R0-R7)", "12 (R0-R11)", "16 (R0-R15)"],
+                    correct: 1
+                },
+                {
+                    question: "Which flag in APSR (Application Program Status Register) indicates signed overflow?",
+                    options: ["N (Negative)", "Z (Zero)", "C (Carry)", "V (Overflow)"],
+                    correct: 3
+                },
+                {
+                    question: "What is the special purpose of the R13 register?",
+                    options: ["Program Counter", "Stack Pointer", "Link Register", "Status Register"],
+                    correct: 1
+                },
+                {
+                    question: "What is the main difference between Cortex-M3 based products from different manufacturers?",
+                    options: ["CPU speed", "Instruction set", "Peripherals", "Register count"],
+                    correct: 2
+                },
+                {
+                    question: "Which of the following is NOT a peripheral of Cortex-M3?",
+                    options: ["DMA", "GPU", "ADC", "UART"],
+                    correct: 1
+                },
+                {
+                    question: "When does the Z (Zero) flag in APSR become 1?",
+                    options: ["If result is negative", "If result is zero", "If carry occurs", "If overflow occurs"],
+                    correct: 1
+                },
+                {
+                    question: "Which of the following does NOT have a dedicated address space in Cortex-M3 memory map?",
+                    options: ["Code", "SRAM", "Peripheral", "Cache"],
+                    correct: 3
+                }
+            ]
+        };
+    </script>
+    <script src="quiz.js"></script>
+    <script src="language.js"></script>
+</body>
+</html>

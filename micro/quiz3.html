@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-tr="Test 3: Arduino ve Dijital/Analog G/Ç" data-en="Quiz 3: Arduino and Digital/Analog I/O">Test 3: Arduino ve Dijital/Analog G/Ç</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .option-btn {
+            transition: all 0.3s ease;
+        }
+        .option-btn:hover {
+            transform: translateX(5px);
+        }
+        .option-btn.selected {
+            background-color: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        .option-btn.correct {
+            background-color: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+        .option-btn.incorrect {
+            background-color: #ef4444;
+            color: white;
+            border-color: #ef4444;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="gradient-bg text-white shadow-lg">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold" data-tr="Konu 3 Testi" data-en="Topic 3 Quiz">Konu 3 Testi</h1>
+                <div class="flex gap-4">
+                    <button id="langToggle" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">EN</button>
+                    <a href="index.html" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mx-auto px-6 py-12 max-w-4xl">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-purple-600 mb-2" data-tr="Arduino ve Dijital/Analog G/Ç" data-en="Arduino and Digital/Analog I/O">Arduino ve Dijital/Analog G/Ç</h2>
+                <div class="flex justify-between items-center text-gray-600">
+                    <p><span data-tr="Soru" data-en="Question">Soru</span> <span id="currentQuestion">1</span> / <span id="totalQuestions">10</span></p>
+                    <p><span data-tr="Puan" data-en="Score">Puan</span>: <span id="score">0</span></p>
+                </div>
+            </div>
+
+            <div id="quizContainer"></div>
+
+            <div class="flex justify-between mt-8">
+                <button id="prevBtn" class="bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-400 transition disabled:opacity-50" disabled data-tr="Önceki" data-en="Previous">Önceki</button>
+                <button id="nextBtn" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition" data-tr="Sonraki" data-en="Next">Sonraki</button>
+                <button id="submitBtn" class="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition hidden" data-tr="Testi Bitir" data-en="Submit Quiz">Testi Bitir</button>
+            </div>
+        </div>
+
+        <div id="resultModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-xl p-8 max-w-md w-full">
+                <h3 class="text-2xl font-bold mb-4 text-purple-600" data-tr="Test Sonucu" data-en="Quiz Result">Test Sonucu</h3>
+                <p class="text-xl mb-6"><span data-tr="Puanınız" data-en="Your Score">Puanınız</span>: <span id="finalScore" class="font-bold text-purple-600"></span> / 10</p>
+                <p id="resultMessage" class="mb-6 text-gray-700"></p>
+                <div class="flex gap-4">
+                    <button onclick="location.reload()" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition flex-1" data-tr="Tekrar Dene" data-en="Try Again">Tekrar Dene</button>
+                    <a href="index.html" class="bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-400 transition flex-1 text-center" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizData = {
+            tr: [
+                {
+                    question: "Arduino Uno kartında hangi mikrodenetleyici kullanılır?",
+                    options: ["ATmega168", "ATmega328P", "ATmega2560", "ATtiny85"],
+                    correct: 1
+                },
+                {
+                    question: "Arduino Uno'nun Flash (ROM) bellek kapasitesi ne kadardır?",
+                    options: ["16 kB", "32 kB", "64 kB", "128 kB"],
+                    correct: 1
+                },
+                {
+                    question: "setup() fonksiyonu ne zaman çalışır?",
+                    options: ["Her döngüde", "Arduino'ya güç verildiğinde sadece bir kez", "Sadece düğmeye basıldığında", "Her saniyede bir"],
+                    correct: 1
+                },
+                {
+                    question: "digitalWrite(pin, HIGH) komutu ne yapar?",
+                    options: ["Pini giriş olarak ayarlar", "Pine 0V verir", "Pine 5V verir", "Pinden değer okur"],
+                    correct: 2
+                },
+                {
+                    question: "Arduino Uno'da ADC kaç bit çözünürlüğe sahiptir?",
+                    options: ["8-bit", "10-bit", "12-bit", "16-bit"],
+                    correct: 1
+                },
+                {
+                    question: "analogRead() fonksiyonu hangi aralıkta değer döndürür?",
+                    options: ["0-255", "0-511", "0-1023", "0-4095"],
+                    correct: 2
+                },
+                {
+                    question: "Arduino Uno'da kaç adet analog giriş pini vardır?",
+                    options: ["4", "6", "8", "10"],
+                    correct: 1
+                },
+                {
+                    question: "PWM sinyalinde Duty Cycle nedir?",
+                    options: ["Sinyalin frekansı", "Sinyalin genliği", "Sinyalin ON kaldığı sürenin yüzdesi", "Sinyalin fazı"],
+                    correct: 2
+                },
+                {
+                    question: "analogWrite(pin, 255) komutu yaklaşık kaç voltluk çıkış sağlar?",
+                    options: ["0V", "2.5V", "3.3V", "5V"],
+                    correct: 3
+                },
+                {
+                    question: "Arduino Uno'nun saat hızı (clock frequency) ne kadardır?",
+                    options: ["8 MHz", "16 MHz", "20 MHz", "32 MHz"],
+                    correct: 1
+                }
+            ],
+            en: [
+                {
+                    question: "Which microcontroller is used on the Arduino Uno board?",
+                    options: ["ATmega168", "ATmega328P", "ATmega2560", "ATtiny85"],
+                    correct: 1
+                },
+                {
+                    question: "What is the Flash (ROM) memory capacity of Arduino Uno?",
+                    options: ["16 kB", "32 kB", "64 kB", "128 kB"],
+                    correct: 1
+                },
+                {
+                    question: "When does the setup() function run?",
+                    options: ["Every loop", "Only once when Arduino is powered", "Only when button is pressed", "Every second"],
+                    correct: 1
+                },
+                {
+                    question: "What does digitalWrite(pin, HIGH) command do?",
+                    options: ["Sets pin as input", "Outputs 0V to pin", "Outputs 5V to pin", "Reads value from pin"],
+                    correct: 2
+                },
+                {
+                    question: "How many bits of resolution does the ADC on Arduino Uno have?",
+                    options: ["8-bit", "10-bit", "12-bit", "16-bit"],
+                    correct: 1
+                },
+                {
+                    question: "What range of values does the analogRead() function return?",
+                    options: ["0-255", "0-511", "0-1023", "0-4095"],
+                    correct: 2
+                },
+                {
+                    question: "How many analog input pins does Arduino Uno have?",
+                    options: ["4", "6", "8", "10"],
+                    correct: 1
+                },
+                {
+                    question: "What is Duty Cycle in a PWM signal?",
+                    options: ["Signal frequency", "Signal amplitude", "Percentage of time signal is ON", "Signal phase"],
+                    correct: 2
+                },
+                {
+                    question: "What voltage output does analogWrite(pin, 255) command provide approximately?",
+                    options: ["0V", "2.5V", "3.3V", "5V"],
+                    correct: 3
+                },
+                {
+                    question: "What is the clock frequency of Arduino Uno?",
+                    options: ["8 MHz", "16 MHz", "20 MHz", "32 MHz"],
+                    correct: 1
+                }
+            ]
+        };
+    </script>
+    <script src="quiz.js"></script>
+    <script src="language.js"></script>
+</body>
+</html>

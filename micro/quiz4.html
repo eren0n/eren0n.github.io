@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-tr="Test 4: Derleme Süreci ve Seri İletişim" data-en="Quiz 4: Compilation Process and Serial Communication">Test 4: Derleme Süreci ve Seri İletişim</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .option-btn {
+            transition: all 0.3s ease;
+        }
+        .option-btn:hover {
+            transform: translateX(5px);
+        }
+        .option-btn.selected {
+            background-color: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        .option-btn.correct {
+            background-color: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+        .option-btn.incorrect {
+            background-color: #ef4444;
+            color: white;
+            border-color: #ef4444;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="gradient-bg text-white shadow-lg">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold" data-tr="Konu 4 Testi" data-en="Topic 4 Quiz">Konu 4 Testi</h1>
+                <div class="flex gap-4">
+                    <button id="langToggle" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">EN</button>
+                    <a href="index.html" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mx-auto px-6 py-12 max-w-4xl">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-purple-600 mb-2" data-tr="Derleme Süreci ve Seri İletişim" data-en="Compilation Process and Serial Communication">Derleme Süreci ve Seri İletişim</h2>
+                <div class="flex justify-between items-center text-gray-600">
+                    <p><span data-tr="Soru" data-en="Question">Soru</span> <span id="currentQuestion">1</span> / <span id="totalQuestions">10</span></p>
+                    <p><span data-tr="Puan" data-en="Score">Puan</span>: <span id="score">0</span></p>
+                </div>
+            </div>
+
+            <div id="quizContainer"></div>
+
+            <div class="flex justify-between mt-8">
+                <button id="prevBtn" class="bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-400 transition disabled:opacity-50" disabled data-tr="Önceki" data-en="Previous">Önceki</button>
+                <button id="nextBtn" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition" data-tr="Sonraki" data-en="Next">Sonraki</button>
+                <button id="submitBtn" class="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition hidden" data-tr="Testi Bitir" data-en="Submit Quiz">Testi Bitir</button>
+            </div>
+        </div>
+
+        <div id="resultModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-xl p-8 max-w-md w-full">
+                <h3 class="text-2xl font-bold mb-4 text-purple-600" data-tr="Test Sonucu" data-en="Quiz Result">Test Sonucu</h3>
+                <p class="text-xl mb-6"><span data-tr="Puanınız" data-en="Your Score">Puanınız</span>: <span id="finalScore" class="font-bold text-purple-600"></span> / 10</p>
+                <p id="resultMessage" class="mb-6 text-gray-700"></p>
+                <div class="flex gap-4">
+                    <button onclick="location.reload()" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition flex-1" data-tr="Tekrar Dene" data-en="Try Again">Tekrar Dene</button>
+                    <a href="index.html" class="bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-400 transition flex-1 text-center" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizData = {
+            tr: [
+                {
+                    question: "Arduino derleme sürecinde .ino dosyası önce hangi formata dönüştürülür?",
+                    options: [".hex", ".c veya .cpp", ".o (object)", ".elf"],
+                    correct: 1
+                },
+                {
+                    question: "Arduino kodunu derlemek için hangi derleyici kullanılır?",
+                    options: ["gcc", "avr-gcc", "arm-gcc", "clang"],
+                    correct: 1
+                },
+                {
+                    question: "Arduino'ya kod yüklemek için hangi program kullanılır?",
+                    options: ["avr-gcc", "avr-objcopy", "avrdude", "avr-ld"],
+                    correct: 2
+                },
+                {
+                    question: "Arduino'da int veri tipi kaç byte yer kaplar?",
+                    options: ["1 byte", "2 byte", "4 byte", "8 byte"],
+                    correct: 1
+                },
+                {
+                    question: "byte veri tipi hangi aralıkta değer alabilir?",
+                    options: ["-128 ile 127", "0 ile 127", "0 ile 255", "-255 ile 255"],
+                    correct: 2
+                },
+                {
+                    question: "Seri iletişimde TX ve RX pinleri nasıl bağlanır?",
+                    options: ["TX-TX, RX-RX", "TX-RX çapraz", "TX ve RX aynı pine", "Paralel bağlantı"],
+                    correct: 1
+                },
+                {
+                    question: "Serial.begin(9600) komutunda 9600 ne anlama gelir?",
+                    options: ["Bellek boyutu", "Baud rate (veri hızı)", "Pin numarası", "Zaman aşımı"],
+                    correct: 1
+                },
+                {
+                    question: "Serial.println() ile Serial.print() arasındaki fark nedir?",
+                    options: ["println daha hızlıdır", "println satır sonu ekler", "print daha fazla veri gönderir", "Hiçbir fark yoktur"],
+                    correct: 1
+                },
+                {
+                    question: "Gerilim bölücü formülünde V_out nasıl hesaplanır?",
+                    options: ["V_in × R1/R2", "V_in × R2/(R1+R2)", "V_in × (R1+R2)/R2", "V_in / (R1+R2)"],
+                    correct: 1
+                },
+                {
+                    question: "float veri tipi kaç byte yer kaplar?",
+                    options: ["1 byte", "2 byte", "4 byte", "8 byte"],
+                    correct: 2
+                }
+            ],
+            en: [
+                {
+                    question: "In Arduino compilation process, what format is .ino file first converted to?",
+                    options: [".hex", ".c or .cpp", ".o (object)", ".elf"],
+                    correct: 1
+                },
+                {
+                    question: "Which compiler is used to compile Arduino code?",
+                    options: ["gcc", "avr-gcc", "arm-gcc", "clang"],
+                    correct: 1
+                },
+                {
+                    question: "Which program is used to upload code to Arduino?",
+                    options: ["avr-gcc", "avr-objcopy", "avrdude", "avr-ld"],
+                    correct: 2
+                },
+                {
+                    question: "How many bytes does the int data type occupy in Arduino?",
+                    options: ["1 byte", "2 bytes", "4 bytes", "8 bytes"],
+                    correct: 1
+                },
+                {
+                    question: "What range of values can the byte data type hold?",
+                    options: ["-128 to 127", "0 to 127", "0 to 255", "-255 to 255"],
+                    correct: 2
+                },
+                {
+                    question: "How are TX and RX pins connected in serial communication?",
+                    options: ["TX-TX, RX-RX", "TX-RX cross-connect", "TX and RX to same pin", "Parallel connection"],
+                    correct: 1
+                },
+                {
+                    question: "What does 9600 mean in Serial.begin(9600) command?",
+                    options: ["Memory size", "Baud rate (data speed)", "Pin number", "Timeout"],
+                    correct: 1
+                },
+                {
+                    question: "What is the difference between Serial.println() and Serial.print()?",
+                    options: ["println is faster", "println adds line ending", "print sends more data", "No difference"],
+                    correct: 1
+                },
+                {
+                    question: "How is V_out calculated in voltage divider formula?",
+                    options: ["V_in × R1/R2", "V_in × R2/(R1+R2)", "V_in × (R1+R2)/R2", "V_in / (R1+R2)"],
+                    correct: 1
+                },
+                {
+                    question: "How many bytes does the float data type occupy?",
+                    options: ["1 byte", "2 bytes", "4 bytes", "8 bytes"],
+                    correct: 2
+                }
+            ]
+        };
+    </script>
+    <script src="quiz.js"></script>
+    <script src="language.js"></script>
+</body>
+</html>
