@@ -6,6 +6,7 @@
     <title>YTÜ - Enerji Yönetimi Sınavı (Bölüm 2)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="translations.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -40,13 +41,17 @@
                     YTÜ
                 </div>
                 <div>
-                    <h1 class="text-lg sm:text-xl font-bold text-blue-900 leading-tight">Akıllı Evler ve Enerji Yönetimi</h1>
+                    <h1 class="text-lg sm:text-xl font-bold text-blue-900 leading-tight" data-translate="siteTitle" data-section="common">Akıllı Evler ve Enerji Yönetimi</h1>
                     <p class="text-xs sm:text-sm text-gray-500">Bölüm 2 Sınavı</p>
                 </div>
             </div>
-            <div class="hidden sm:block text-right">
-                <span class="block text-sm font-semibold text-blue-800">Sınava Hazırlan</span>
-                <span class="block text-xs text-gray-500">Ders Özeti Serisi</span>
+            <div class="flex items-center gap-4">
+                <button id="lang-switch-btn" class="px-3 py-2 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors duration-200 border border-blue-200" aria-label="Dil değiştir">
+                    <span class="text-sm font-semibold">🇬🇧 EN</span>
+                </button>
+                <div class="hidden sm:block text-right">
+                <span class="block text-sm font-semibold text-blue-800" data-translate="prepareForExam" data-section="common">Sınava Hazırlan</span>
+                <span class="block text-xs text-gray-500" data-translate="courseNotesSeries" data-section="common">Ders Özeti Serisi</span>
             </div>
         </div>
     </header>
@@ -66,9 +71,7 @@
                 </div>
 
             <div class="mt-12 text-center">
-                <button type="submit" id="submit-btn" class="bg-blue-800 text-white font-bold py-3 px-10 rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-300">
-                    Sınavı Bitir
-                </button>
+                <button type="submit" id="submit-btn" class="bg-blue-800 text-white font-bold py-3 px-10 rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-300" data-translate="finishExam" data-section="quiz">Sınavı Bitir</button>
             </div>
         </form>
 
@@ -79,180 +82,355 @@
 
     <footer class="bg-blue-900 text-blue-100 py-8 mt-12">
         <div class="max-w-6xl mx-auto px-4 text-center">
-            <p class="text-sm">&copy; 2025 eren0n. Tüm hakları saklıdır.</p>
-            <p class="text-xs mt-2 opacity-60">Sınavınızda Başarılar.</p>
+            <p class="text-sm" data-translate="footer.copyright" data-section="common">&copy; 2025 eren0n. Tüm hakları saklıdır.</p>
+            <p class="text-xs mt-2 opacity-60" data-translate="footer.goodLuck" data-section="common">Sınavınızda Başarılar.</p>
         </div>
     </footer>
 
     <script>
-        // Soru Veri Seti (2. PDF'ten)
-        const quizData = [
-            {
-                id: 1,
-                question: "Sistemden elektrik enerjisi kullanan bir cihaza veya cihazlar topluluğuna ne ad verilir?",
-                options: [
-                    "Kaynak (Source)",
-                    "Yük (Load)",
-                    "Alternatör (Alternator)",
-                    "Devre (Circuit)"
-                ],
-                correctAnswer: "Yük (Load)"
-            },
-            {
-                id: 2,
-                question: "Evlerde kullanılan aydınlatma, fanlar, buzdolapları, ısıtıcılar ve televizyonlar hangi yük kategorisine girer?",
-                options: [
-                    "Ticari Yük (Commercial load)",
-                    "Endüstriyel Yük (Industrial load)",
-                    "Evsel Yük (Domestic load)",
-                    "Belediye Yükü (Municipal load)"
-                ],
-                correctAnswer: "Evsel Yük (Domestic load)"
-            },
-            {
-                id: 3,
-                question: "Tramvaylar, troleybüsler ve trenlerin oluşturduğu yük grubu aşağıdakilerden hangisidir?",
-                options: [
-                    "Çekiş Yükleri (Traction loads)",
-                    "Sulama Yükleri (Irrigation load)",
-                    "Elektronik Yükler (Electronics loads)",
-                    "Ticari Yükler (Commercial load)"
-                ],
-                correctAnswer: "Çekiş Yükleri (Traction loads)"
-            },
-            {
-                id: 4,
-                question: "Tüketicilerin belirsiz ve değişken taleplerinden kaynaklanan, zamana göre değişen yüke ne ad verilir?",
-                options: [
-                    "Sabit Yük (Fixed Load)",
-                    "Bağlı Yük (Connected Load)",
-                    "Değişken Yük (Variable Load)",
-                    "Ortalama Yük (Average Load)"
-                ],
-                correctAnswer: "Değişken Yük (Variable Load)"
-            },
-            {
-                id: 5,
-                question: "Aşağıdakilerden hangisi 'Değişken Yük'ün' (Variable Load) santral üzerindeki etkilerinden biridir?",
-                options: [
-                    "Üretim maliyetini artırması",
-                    "Santralin daha verimli çalışmasını sağlaması",
-                    "Gereken ekipman ihtiyacını azaltması",
-                    "Yakıt tüketimini düşürmesi"
-                ],
-                correctAnswer: "Üretim maliyetini artırması"
-            },
-            {
-                id: 6,
-                question: "Bir sisteme bağlı *tüm* cihazların nominal (etiket) güçlerinin toplamına ne denir?",
-                options: [
-                    "Maksimum Talep (Maximum Demand)",
-                    "Ortalama Yük (Average Load)",
-                    "Bağlı Yük (Connected Load)",
-                    "Talep Faktörü (Demand Factor)"
-                ],
-                correctAnswer: "Bağlı Yük (Connected Load)"
-            },
-            {
-                id: 7,
-                question: "Belirli bir dönem (gün, ay, yıl) içinde sistemden çekilen en yüksek güce (kW veya MW) ne ad verilir?",
-                options: [
-                    "Yük Faktörü (Load Factor)",
-                    "Maksimum Talep (Maximum Demand / Peak Load)",
-                    "Ortalama Yük (Average Load)",
-                    "Bağlı Yük (Connected Load)"
-                ],
-                correctAnswer: "Maksimum Talep (Maximum Demand / Peak Load)"
-            },
-            {
-                id: 8,
-                question: "Bir güç santralinin kurulu kapasitesini (installed capacity) belirlemek için bilinmesi gereken en önemli değer hangisidir?",
-                options: [
-                    "Maksimum Talep",
-                    "Ortalama Yük",
-                    "Toplam Bağlı Yük",
-                    "Yük Faktörü"
-                ],
-                correctAnswer: "Maksimum Talep"
-            },
-            {
-                id: 9,
-                question: "'Maksimum Talep'in (Max. demand) 'Toplam Bağlı Yük'e (Total connected load) oranı' olarak tanımlanan faktör hangisidir?",
-                options: [
-                    "Yük Faktörü (Load Factor)",
-                    "Çeşitlilik Faktörü (Diversity Factor)",
-                    "Talep Faktörü (Demand Factor)",
-                    "Kapasite Faktörü (Capacity Factor)"
-                ],
-                correctAnswer: "Talep Faktörü (Demand Factor)"
-            },
-            {
-                id: 10,
-                question: "Belirli bir dönemde üretilen toplam enerjinin (kWh), o dönemin toplam saat sayısına bölünmesiyle hangi değer bulunur?",
-                options: [
-                    "Ortalama Yük (Average Load)",
-                    "Maksimum Talep (Maximum Demand)",
-                    "Anlık Talep (Instantaneous Demand)",
-                    "Yedek Kapasite (Reserve Capacity)"
-                ],
-                correctAnswer: "Ortalama Yük (Average Load)"
-            },
-            {
-                id: 11,
-                question: "'Ortalama Yük'ün (Average load) 'Maksimum Talep'e (Max. demand) oranı' olan ve sistemin kullanım verimliliğini gösteren faktör hangisidir?",
-                options: [
-                    "Talep Faktörü (Demand Factor)",
-                    "Yük Faktörü (Load Factor)",
-                    "Çeşitlilik Faktörü (Diversity Factor)",
-                    "Kullanım Faktörü (Use Factor)"
-                ],
-                correctAnswer: "Yük Faktörü (Load Factor)"
-            },
-            {
-                id: 12,
-                question: "Tüketicilerin bireysel maksimum taleplerinin *toplamının*, santral üzerindeki *toplam* maksimum talebe oranına ne denir?",
-                options: [
-                    "Talep Faktörü (Demand Factor)",
-                    "Yük Faktörü (Load Factor)",
-                    "Çeşitlilik Faktörü (Diversity Factor)",
-                    "Kapasite Faktörü (Capacity Factor)"
-                ],
-                correctAnswer: "Çeşitlilik Faktörü (Diversity Factor)"
-            },
-            {
-                id: 13,
-                question: "'Fiilen üretilen enerjinin', 'santralin o dönemde üretebileceği maksimum olası enerjiye' oranına ne denir?",
-                options: [
-                    "Santral Kapasite Faktörü (Plant Capacity Factor)",
-                    "Santral Kullanım Faktörü (Plant Use Factor)",
-                    "Yük Faktörü (Load Factor)",
-                    "Yedek Kapasite (Reserve Capacity)"
-                ],
-                correctAnswer: "Santral Kapasite Faktörü (Plant Capacity Factor)"
-            },
-            {
-                id: 14,
-                question: "Yükün (kW veya MW) zamana (saat) göre değişimini gösteren grafiğe ne ad verilir?",
-                options: [
-                    "Yük Süreklilik Eğrisi (Load Duration Curve)",
-                    "Yük Faktörü Eğrisi (Load Factor Curve)",
-                    "Talep Grafiği (Demand Chart)",
-                    "Yük Eğrisi (Load Curve)"
-                ],
-                correctAnswer: "Yük Eğrisi (Load Curve)"
-            },
-            {
-                id: 15,
-                question: "Bir yük eğrisindeki yük değerlerinin büyükten küçüğe doğru sıralanmasıyla elde edilen ve 'baz yük' ile 'puant yük' santrallerinin seçiminde kullanılan grafik hangisidir?",
-                options: [
-                    "Yük Süreklilik Eğrisi (Load Duration Curve)",
-                    "Günlük Yük Eğrisi (Daily Load Curve)",
-                    "Çeşitlilik Grafiği (Diversity Chart)",
-                    "Kapasite Eğrisi (Capacity Curve)"
-                ],
-                correctAnswer: "Yük Süreklilik Eğrisi (Load Duration Curve)"
-            }
-        ];
+        // Bilingual Quiz Data (Chapter 2: Load Management)
+        const quizDataBilingual = {
+            tr: [
+                {
+                    id: 1,
+                    question: "Sistemden elektrik enerjisi kullanan bir cihaza veya cihazlar topluluğuna ne ad verilir?",
+                    options: [
+                        "Kaynak (Source)",
+                        "Yük (Load)",
+                        "Alternatör (Alternator)",
+                        "Devre (Circuit)"
+                    ],
+                    correctAnswer: "Yük (Load)"
+                },
+                {
+                    id: 2,
+                    question: "Evlerde kullanılan aydınlatma, fanlar, buzdolapları, ısıtıcılar ve televizyonlar hangi yük kategorisine girer?",
+                    options: [
+                        "Ticari Yük (Commercial load)",
+                        "Endüstriyel Yük (Industrial load)",
+                        "Evsel Yük (Domestic load)",
+                        "Belediye Yükü (Municipal load)"
+                    ],
+                    correctAnswer: "Evsel Yük (Domestic load)"
+                },
+                {
+                    id: 3,
+                    question: "Tramvaylar, troleybüsler ve trenlerin oluşturduğu yük grubu aşağıdakilerden hangisidir?",
+                    options: [
+                        "Çekiş Yükleri (Traction loads)",
+                        "Sulama Yükleri (Irrigation load)",
+                        "Elektronik Yükler (Electronics loads)",
+                        "Ticari Yükler (Commercial load)"
+                    ],
+                    correctAnswer: "Çekiş Yükleri (Traction loads)"
+                },
+                {
+                    id: 4,
+                    question: "Tüketicilerin belirsiz ve değişken taleplerinden kaynaklanan, zamana göre değişen yüke ne ad verilir?",
+                    options: [
+                        "Sabit Yük (Fixed Load)",
+                        "Bağlı Yük (Connected Load)",
+                        "Değişken Yük (Variable Load)",
+                        "Ortalama Yük (Average Load)"
+                    ],
+                    correctAnswer: "Değişken Yük (Variable Load)"
+                },
+                {
+                    id: 5,
+                    question: "Aşağıdakilerden hangisi 'Değişken Yük'ün' (Variable Load) santral üzerindeki etkilerinden biridir?",
+                    options: [
+                        "Üretim maliyetini artırması",
+                        "Santralin daha verimli çalışmasını sağlaması",
+                        "Gereken ekipman ihtiyacını azaltması",
+                        "Yakıt tüketimini düşürmesi"
+                    ],
+                    correctAnswer: "Üretim maliyetini artırması"
+                },
+                {
+                    id: 6,
+                    question: "Bir sisteme bağlı *tüm* cihazların nominal (etiket) güçlerinin toplamına ne denir?",
+                    options: [
+                        "Maksimum Talep (Maximum Demand)",
+                        "Ortalama Yük (Average Load)",
+                        "Bağlı Yük (Connected Load)",
+                        "Talep Faktörü (Demand Factor)"
+                    ],
+                    correctAnswer: "Bağlı Yük (Connected Load)"
+                },
+                {
+                    id: 7,
+                    question: "Belirli bir dönem (gün, ay, yıl) içinde sistemden çekilen en yüksek güce (kW veya MW) ne ad verilir?",
+                    options: [
+                        "Yük Faktörü (Load Factor)",
+                        "Maksimum Talep (Maximum Demand / Peak Load)",
+                        "Ortalama Yük (Average Load)",
+                        "Bağlı Yük (Connected Load)"
+                    ],
+                    correctAnswer: "Maksimum Talep (Maximum Demand / Peak Load)"
+                },
+                {
+                    id: 8,
+                    question: "Bir güç santralinin kurulu kapasitesini (installed capacity) belirlemek için bilinmesi gereken en önemli değer hangisidir?",
+                    options: [
+                        "Maksimum Talep",
+                        "Ortalama Yük",
+                        "Toplam Bağlı Yük",
+                        "Yük Faktörü"
+                    ],
+                    correctAnswer: "Maksimum Talep"
+                },
+                {
+                    id: 9,
+                    question: "'Maksimum Talep'in (Max. demand) 'Toplam Bağlı Yük'e (Total connected load) oranı' olarak tanımlanan faktör hangisidir?",
+                    options: [
+                        "Yük Faktörü (Load Factor)",
+                        "Çeşitlilik Faktörü (Diversity Factor)",
+                        "Talep Faktörü (Demand Factor)",
+                        "Kapasite Faktörü (Capacity Factor)"
+                    ],
+                    correctAnswer: "Talep Faktörü (Demand Factor)"
+                },
+                {
+                    id: 10,
+                    question: "Belirli bir dönemde üretilen toplam enerjinin (kWh), o dönemin toplam saat sayısına bölünmesiyle hangi değer bulunur?",
+                    options: [
+                        "Ortalama Yük (Average Load)",
+                        "Maksimum Talep (Maximum Demand)",
+                        "Anlık Talep (Instantaneous Demand)",
+                        "Yedek Kapasite (Reserve Capacity)"
+                    ],
+                    correctAnswer: "Ortalama Yük (Average Load)"
+                },
+                {
+                    id: 11,
+                    question: "'Ortalama Yük'ün (Average load) 'Maksimum Talep'e (Max. demand) oranı' olan ve sistemin kullanım verimliliğini gösteren faktör hangisidir?",
+                    options: [
+                        "Talep Faktörü (Demand Factor)",
+                        "Yük Faktörü (Load Factor)",
+                        "Çeşitlilik Faktörü (Diversity Factor)",
+                        "Kullanım Faktörü (Use Factor)"
+                    ],
+                    correctAnswer: "Yük Faktörü (Load Factor)"
+                },
+                {
+                    id: 12,
+                    question: "Tüketicilerin bireysel maksimum taleplerinin *toplamının*, santral üzerindeki *toplam* maksimum talebe oranına ne denir?",
+                    options: [
+                        "Talep Faktörü (Demand Factor)",
+                        "Yük Faktörü (Load Factor)",
+                        "Çeşitlilik Faktörü (Diversity Factor)",
+                        "Kapasite Faktörü (Capacity Factor)"
+                    ],
+                    correctAnswer: "Çeşitlilik Faktörü (Diversity Factor)"
+                },
+                {
+                    id: 13,
+                    question: "'Fiilen üretilen enerjinin', 'santralin o dönemde üretebileceği maksimum olası enerjiye' oranına ne denir?",
+                    options: [
+                        "Santral Kapasite Faktörü (Plant Capacity Factor)",
+                        "Santral Kullanım Faktörü (Plant Use Factor)",
+                        "Yük Faktörü (Load Factor)",
+                        "Yedek Kapasite (Reserve Capacity)"
+                    ],
+                    correctAnswer: "Santral Kapasite Faktörü (Plant Capacity Factor)"
+                },
+                {
+                    id: 14,
+                    question: "Yükün (kW veya MW) zamana (saat) göre değişimini gösteren grafiğe ne ad verilir?",
+                    options: [
+                        "Yük Süreklilik Eğrisi (Load Duration Curve)",
+                        "Yük Faktörü Eğrisi (Load Factor Curve)",
+                        "Talep Grafiği (Demand Chart)",
+                        "Yük Eğrisi (Load Curve)"
+                    ],
+                    correctAnswer: "Yük Eğrisi (Load Curve)"
+                },
+                {
+                    id: 15,
+                    question: "Bir yük eğrisindeki yük değerlerinin büyükten küçüğe doğru sıralanmasıyla elde edilen ve 'baz yük' ile 'puant yük' santrallerinin seçiminde kullanılan grafik hangisidir?",
+                    options: [
+                        "Yük Süreklilik Eğrisi (Load Duration Curve)",
+                        "Günlük Yük Eğrisi (Daily Load Curve)",
+                        "Çeşitlilik Grafiği (Diversity Chart)",
+                        "Kapasite Eğrisi (Capacity Curve)"
+                    ],
+                    correctAnswer: "Yük Süreklilik Eğrisi (Load Duration Curve)"
+                }
+            ],
+            en: [
+                {
+                    id: 1,
+                    question: "What is the name given to a device or group of devices that use electrical energy from the system?",
+                    options: [
+                        "Source",
+                        "Load",
+                        "Alternator",
+                        "Circuit"
+                    ],
+                    correctAnswer: "Load"
+                },
+                {
+                    id: 2,
+                    question: "Lighting, fans, refrigerators, heaters, and televisions used in homes fall into which load category?",
+                    options: [
+                        "Commercial load",
+                        "Industrial load",
+                        "Domestic load",
+                        "Municipal load"
+                    ],
+                    correctAnswer: "Domestic load"
+                },
+                {
+                    id: 3,
+                    question: "Which of the following is the load group formed by trams, trolleybuses, and trains?",
+                    options: [
+                        "Traction loads",
+                        "Irrigation load",
+                        "Electronics loads",
+                        "Commercial load"
+                    ],
+                    correctAnswer: "Traction loads"
+                },
+                {
+                    id: 4,
+                    question: "What is the name of the load that varies over time, arising from the uncertain and variable demands of consumers?",
+                    options: [
+                        "Fixed Load",
+                        "Connected Load",
+                        "Variable Load",
+                        "Average Load"
+                    ],
+                    correctAnswer: "Variable Load"
+                },
+                {
+                    id: 5,
+                    question: "Which of the following is one of the effects of 'Variable Load' on the power plant?",
+                    options: [
+                        "Increases production cost",
+                        "Enables the plant to operate more efficiently",
+                        "Reduces required equipment needs",
+                        "Lowers fuel consumption"
+                    ],
+                    correctAnswer: "Increases production cost"
+                },
+                {
+                    id: 6,
+                    question: "What is the sum of the nominal (nameplate) powers of *all* devices connected to a system called?",
+                    options: [
+                        "Maximum Demand",
+                        "Average Load",
+                        "Connected Load",
+                        "Demand Factor"
+                    ],
+                    correctAnswer: "Connected Load"
+                },
+                {
+                    id: 7,
+                    question: "What is the highest power (kW or MW) drawn from the system during a specific period (day, month, year) called?",
+                    options: [
+                        "Load Factor",
+                        "Maximum Demand / Peak Load",
+                        "Average Load",
+                        "Connected Load"
+                    ],
+                    correctAnswer: "Maximum Demand / Peak Load"
+                },
+                {
+                    id: 8,
+                    question: "What is the most important value that needs to be known to determine the installed capacity of a power plant?",
+                    options: [
+                        "Maximum Demand",
+                        "Average Load",
+                        "Total Connected Load",
+                        "Load Factor"
+                    ],
+                    correctAnswer: "Maximum Demand"
+                },
+                {
+                    id: 9,
+                    question: "Which factor is defined as the 'ratio of Maximum Demand to Total Connected Load'?",
+                    options: [
+                        "Load Factor",
+                        "Diversity Factor",
+                        "Demand Factor",
+                        "Capacity Factor"
+                    ],
+                    correctAnswer: "Demand Factor"
+                },
+                {
+                    id: 10,
+                    question: "Which value is found by dividing the total energy produced (kWh) in a specific period by the total number of hours in that period?",
+                    options: [
+                        "Average Load",
+                        "Maximum Demand",
+                        "Instantaneous Demand",
+                        "Reserve Capacity"
+                    ],
+                    correctAnswer: "Average Load"
+                },
+                {
+                    id: 11,
+                    question: "Which factor is the 'ratio of Average Load to Maximum Demand' and indicates the utilization efficiency of the system?",
+                    options: [
+                        "Demand Factor",
+                        "Load Factor",
+                        "Diversity Factor",
+                        "Use Factor"
+                    ],
+                    correctAnswer: "Load Factor"
+                },
+                {
+                    id: 12,
+                    question: "What is the ratio of the *sum* of individual maximum demands of consumers to the *total* maximum demand on the power plant called?",
+                    options: [
+                        "Demand Factor",
+                        "Load Factor",
+                        "Diversity Factor",
+                        "Capacity Factor"
+                    ],
+                    correctAnswer: "Diversity Factor"
+                },
+                {
+                    id: 13,
+                    question: "What is the ratio of 'actual energy produced' to 'the maximum possible energy that the plant could produce in that period' called?",
+                    options: [
+                        "Plant Capacity Factor",
+                        "Plant Use Factor",
+                        "Load Factor",
+                        "Reserve Capacity"
+                    ],
+                    correctAnswer: "Plant Capacity Factor"
+                },
+                {
+                    id: 14,
+                    question: "What is the graph showing the variation of load (kW or MW) versus time (hours) called?",
+                    options: [
+                        "Load Duration Curve",
+                        "Load Factor Curve",
+                        "Demand Chart",
+                        "Load Curve"
+                    ],
+                    correctAnswer: "Load Curve"
+                },
+                {
+                    id: 15,
+                    question: "Which graph is obtained by arranging load values from a load curve in descending order and is used in selecting 'base load' and 'peak load' power plants?",
+                    options: [
+                        "Load Duration Curve",
+                        "Daily Load Curve",
+                        "Diversity Chart",
+                        "Capacity Curve"
+                    ],
+                    correctAnswer: "Load Duration Curve"
+                }
+            ]
+        };
+
+        // Get quiz data based on current language
+        function getQuizData() {
+            const lang = getLanguage();
+            return quizDataBilingual[lang] || quizDataBilingual.tr;
+        }
 
         
         document.addEventListener('DOMContentLoaded', () => {
@@ -263,13 +441,16 @@
 
             // 1. Sınavı Yükle
             function loadQuiz() {
+                const quizData = getQuizData();
+                const lang = getLanguage();
+                const questionText = translate('question', 'quiz');
                 let quizHTML = '';
                 quizData.forEach((q, index) => {
                     // Soru başlığı
                     quizHTML += `
                         <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100" id="question-card-${q.id}">
                             <p class="text-lg font-semibold text-gray-800">
-                                Soru ${index + 1}: ${q.question}
+                                ${questionText} ${index + 1}: ${q.question}
                             </p>
                             <div class="space-y-3 mt-4" id="options-container-${q.id}">
                     `;
@@ -293,8 +474,15 @@
             function showResults(event) {
                 event.preventDefault(); // Formun sayfayı yenilemesini engelle
 
+                const quizData = getQuizData();
                 let score = 0;
                 let wrongAnswersHTML = ''; // Yanlış cevaplar için HTML
+                
+                // Get translation texts
+                const lang = getLanguage();
+                const yourAnswerText = translate('yourAnswer', 'quiz');
+                const correctAnswerText = translate('correctAnswer', 'quiz');
+                const leftBlankText = translate('leftBlank', 'quiz');
                 
                 quizData.forEach(q => {
                     const card = document.getElementById(`question-card-${q.id}`);
@@ -336,8 +524,8 @@
                         wrongAnswersHTML += `
                             <div class="p-4 border-b border-gray-200">
                                 <p class="font-semibold text-gray-800">${q.question}</p>
-                                <p class="text-red-600 mt-2"><strong>Sizin Cevabınız:</strong> ${userAnswer || 'Boş bırakıldı'}</p>
-                                <p class="text-green-600 mt-1"><strong>Doğru Cevap:</strong> ${correctAnswer}</p>
+                                <p class="text-red-600 mt-2"><strong>${yourAnswerText}:</strong> ${userAnswer || leftBlankText}</p>
+                                <p class="text-green-600 mt-1"><strong>${correctAnswerText}:</strong> ${correctAnswer}</p>
                             </div>
                         `;
                     }
@@ -345,23 +533,30 @@
 
                 // Sonuçları üstte göster
                 const scorePercentage = Math.round((score / quizData.length) * 100);
+                const examResultText = translate('examResult', 'quiz');
+                const scoreText = translate('score', 'quiz');
+                const correctText = translate('correct', 'quiz');
+                const wrongText = translate('wrong', 'quiz');
+                const wrongQuestionsTitle = translate('wrongQuestionsTitle', 'quiz');
+                const congratulations = translate('congratulations', 'quiz');
+                
                 resultsContainer.innerHTML = `
-                    <h2 class="text-3xl font-bold text-center text-blue-900">Sınav Sonucu</h2>
-                    <p class="text-5xl font-bold text-center my-4">${scorePercentage} Puan</p>
+                    <h2 class="text-3xl font-bold text-center text-blue-900">${examResultText}</h2>
+                    <p class="text-5xl font-bold text-center my-4">${scorePercentage} ${scoreText}</p>
                     <div class="flex justify-center gap-6 text-center text-lg">
-                        <span class="font-semibold text-green-600">Doğru: ${score}</span>
-                        <span class="font-semibold text-red-600">Yanlış: ${quizData.length - score}</span>
+                        <span class="font-semibold text-green-600">${correctText}: ${score}</span>
+                        <span class="font-semibold text-red-600">${wrongText}: ${quizData.length - score}</span>
                     </div>
                     
                     ${wrongAnswersHTML ? `
                         <hr class="my-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Yanlış Sorular ve Doğruları</h3>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">${wrongQuestionsTitle}</h3>
                         <div class="border border-gray-200 rounded-lg overflow-hidden">
                             ${wrongAnswersHTML}
                         </div>
                     ` : `
                         <hr class="my-8">
-                        <p class="text-center text-2xl font-bold text-green-600">🎉 Tebrikler! Tüm soruları doğru cevapladınız! 🎉</p>
+                        <p class="text-center text-2xl font-bold text-green-600">${congratulations}</p>
                     `}
                 `;
 
@@ -375,6 +570,12 @@
             // Olayları Bağla
             loadQuiz();
             quizForm.addEventListener('submit', showResults);
+        
+            // Re-render quiz when language changes
+            document.addEventListener('languageChanged', () => {
+                loadQuiz();
+                updatePageTranslations();
+            });
         });
     </script>
 </body>

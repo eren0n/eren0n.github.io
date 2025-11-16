@@ -6,6 +6,7 @@
     <title>YTÜ - Enerji Yönetimi Sınavı (Bölüm 3)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="translations.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -40,13 +41,17 @@
                     YTÜ
                 </div>
                 <div>
-                    <h1 class="text-lg sm:text-xl font-bold text-blue-900 leading-tight">Akıllı Evler ve Enerji Yönetimi</h1>
+                    <h1 class="text-lg sm:text-xl font-bold text-blue-900 leading-tight" data-translate="siteTitle" data-section="common">Akıllı Evler ve Enerji Yönetimi</h1>
                     <p class="text-xs sm:text-sm text-gray-500">Bölüm 3 Sınavı</p>
                 </div>
             </div>
-            <div class="hidden sm:block text-right">
-                <span class="block text-sm font-semibold text-blue-800">Sınava Hazırlan</span>
-                <span class="block text-xs text-gray-500">Ders Özeti Serisi</span>
+            <div class="flex items-center gap-4">
+                <button id="lang-switch-btn" class="px-3 py-2 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors duration-200 border border-blue-200" aria-label="Dil değiştir">
+                    <span class="text-sm font-semibold">🇬🇧 EN</span>
+                </button>
+                <div class="hidden sm:block text-right">
+                <span class="block text-sm font-semibold text-blue-800" data-translate="prepareForExam" data-section="common">Sınava Hazırlan</span>
+                <span class="block text-xs text-gray-500" data-translate="courseNotesSeries" data-section="common">Ders Özeti Serisi</span>
             </div>
         </div>
     </header>
@@ -66,9 +71,7 @@
                 </div>
 
             <div class="mt-12 text-center">
-                <button type="submit" id="submit-btn" class="bg-blue-800 text-white font-bold py-3 px-10 rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-300">
-                    Sınavı Bitir
-                </button>
+                <button type="submit" id="submit-btn" class="bg-blue-800 text-white font-bold py-3 px-10 rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-300" data-translate="finishExam" data-section="quiz">Sınavı Bitir</button>
             </div>
         </form>
 
@@ -79,180 +82,355 @@
 
     <footer class="bg-blue-900 text-blue-100 py-8 mt-12">
         <div class="max-w-6xl mx-auto px-4 text-center">
-            <p class="text-sm">&copy; 2025 eren0n. Tüm hakları saklıdır.</p>
-            <p class="text-xs mt-2 opacity-60">Sınavınızda Başarılar.</p>
+            <p class="text-sm" data-translate="footer.copyright" data-section="common">&copy; 2025 eren0n. Tüm hakları saklıdır.</p>
+            <p class="text-xs mt-2 opacity-60" data-translate="footer.goodLuck" data-section="common">Sınavınızda Başarılar.</p>
         </div>
     </footer>
 
     <script>
-        // Soru Veri Seti (3. PDF'ten)
-        const quizData = [
-            {
-                id: 1,
-                question: "1972-2006 yılları arasındaki verilere göre en ucuz enerji kaynağı olarak kalan hangisidir?",
-                options: [
-                    "Kömür (Coal)",
-                    "Doğal Gaz (Natural Gas)",
-                    "Petrol Ürünleri (Petroleum Products)",
-                    "Elektrik (Electricity)"
-                ],
-                correctAnswer: "Kömür (Coal)"
-            },
-            {
-                id: 2,
-                question: "'Dağıtık Enerji Kaynakları' (Distributed Energy Resources) nasıl tanımlanır?",
-                options: [
-                    "Sadece büyük barajlarda üretilen enerji",
-                    "Dağıtım şebekesine veya tüketicinin sayaç tarafına bağlanan enerji kaynakları",
-                    "Sadece fosil yakıtlardan elde edilen enerji",
-                    "Ülkeler arası taşınan enerji hatları"
-                ],
-                correctAnswer: "Dağıtım şebekesine veya tüketicinin sayaç tarafına bağlanan enerji kaynakları"
-            },
-            {
-                id: 3,
-                question: "Aşağıdakilerden hangisi 'Yeni Nesil' (New Generation) bir Dağıtık Enerji Kaynağı (DER) örneğidir?",
-                options: [
-                    "Mikrotürbin (Microturbine)",
-                    "Gaz Türbini (Gas Turbine)",
-                    "Güneş (Solar)",
-                    "Hepsi"
-                ],
-                correctAnswer: "Güneş (Solar)"
-            },
-            {
-                id: 4,
-                question: "Elektrik tedarikçileri için tarifeleri belirlerken tipik olarak en yüksek maliyet kategorisi hangisidir?",
-                options: [
-                    "İletim ve dağıtım sistemleri",
-                    "İdari maliyetler (maaşlar, sigorta)",
-                    "Yakıt maliyetleri",
-                    "Santralin işletme maliyeti (Generation plant operation)"
-                ],
-                correctAnswer: "Santralin işletme maliyeti (Generation plant operation)"
-            },
-            {
-                id: 5,
-                question: "Tedarikçiler, elektrik maliyetlerini paylaştırmak için genellikle hangi üç ana müşteri tipini dikkate alır?",
-                options: [
-                    "Evsel, Ticari ve Endüstriyel",
-                    "Devlet, Özel Sektör ve Tarımsal",
-                    "Şehir, Kırsal ve Banliyö",
-                    "Yüksek Gerilim, Orta Gerilim ve Alçak Gerilim"
-                ],
-                correctAnswer: "Evsel, Ticari ve Endüstriyel"
-            },
-            {
-                id: 6,
-                question: "Tedarikçilerin faturalandırmada kullandığı 'Billing Demand' (Faturalandırılan Talep) genellikle neye göre belirlenir?",
-                options: [
-                    "Müşterinin ay içindeki ortalama tüketimine",
-                    "Müşterinin ay içindeki en yüksek (peak) talebine",
-                    "Müşterinin toplam bağlı yüküne",
-                    "Müşterinin sözleşme gücüne"
-                ],
-                correctAnswer: "Müşterinin ay içindeki en yüksek (peak) talebine"
-            },
-            {
-                id: 7,
-                question: "Tedarikçiler neden 'Peak Demand' (Puant Talep) için ek bir bedel (Demand Charge) talep eder?",
-                options: [
-                    "Müşterileri daha az enerji tüketmeye teşvik etmek için",
-                    "Müşterileri zirve (peak) taleplerini 'tıraşlamaya' (shave) teşvik etmek için",
-                    "İdari maliyetleri karşılamak için",
-                    "Devletin koyduğu vergileri yansıtmak için"
-                ],
-                correctAnswer: "Müşterileri zirve (peak) taleplerini 'tıraşlamaya' (shave) teşvik etmek için"
-            },
-            {
-                id: 8,
-                question: "Güç Faktörü (Power Factor) nasıl tanımlanır?",
-                options: [
-                    "Reaktif Gücün (kVAR) Toplam Güce (kVA) oranı",
-                    "Gerçek Gücün (kW) Reaktif Güce (kVAR) oranı",
-                    "Gerçek Gücün (kW) Toplam Güce (kVA) oranı",
-                    "Toplam Gücün (kVA) Gerçek Güce (kW) oranı"
-                ],
-                correctAnswer: "Gerçek Gücün (kW) Toplam Güce (kVA) oranı"
-            },
-            {
-                id: 9,
-                question: "Tedarikçiler, müşterileri düşük güç faktörü (örn. < 0.9) için neden cezalandırır?",
-                options: [
-                    "Düşük PF, şebekede voltaj dalgalanmalarına neden olduğu için",
-                    "Düşük PF, aynı gerçek güç (kW) için daha yüksek toplam güç (kVA) çekilmesini gerektirdiği için",
-                    "Düşük PF, sayaçların yanlış ölçüm yapmasına neden olduğu için",
-                    "Düşük PF, sadece endüstriyel tesislerde meydana geldiği için"
-                ],
-                correctAnswer: "Düşük PF, aynı gerçek güç (kW) için daha yüksek toplam güç (kVA) çekilmesini gerektirdiği için"
-            },
-            {
-                id: 10,
-                question: "Bir faturada 'Ratchet Clause' (Geçmişe Bağlı Talep Maddesi) bulunmasının anlamı nedir?",
-                options: [
-                    "Müşterinin faturasının, son 12 ayın en yüksek talebinin belli bir yüzdesinden az olamayacağı",
-                    "Müşterinin faturasının, enflasyon oranına göre otomatik olarak artacağı",
-                    "Müşterinin faturasının, tükettikçe birim fiyatının düşeceği (azalan blok)",
-                    "Müşterinin faturasının, yakıt maliyetlerindeki artışları yansıtacağı"
-                ],
-                correctAnswer: "Müşterinin faturasının, son 12 ayın en yüksek talebinin belli bir yüzdesinden az olamayacağı"
-            },
-            {
-                id: 11,
-                question: "'Yakıt Maliyeti Ayarlaması' (Fuel Cost Adjustment) maddesi ne işe yarar?",
-                options: [
-                    "Müşterinin yakıt tasarrufunu ödüllendirmek",
-                    "Tedarikçinin, birincil enerji (kömür, gaz vb.) fiyatlarındaki dalgalanmaları faturaya yansıtması",
-                    "Ulaşım sektöründeki akaryakıt zamlarını dengelemek",
-                    "Yenilenebilir enerji kaynaklarını teşvik etmek"
-                ],
-                correctAnswer: "Tedarikçinin, birincil enerji (kömür, gaz vb.) fiyatlarındaki dalgalanmaları faturaya yansıtması"
-            },
-            {
-                id: 12,
-                question: "'Ters Blok Fiyatlandırma' (Inverted Block Pricing) tarifesi nasıl çalışır?",
-                options: [
-                    "Enerji tüketimi arttıkça birim fiyat artar",
-                    "Enerji tüketimi arttıkça birim fiyat azalır",
-                    "Günün saatlerine göre fiyat değişir",
-                    "Mevsimlere göre fiyat değişir"
-                ],
-                correctAnswer: "Enerji tüketimi arttıkça birim fiyat artar"
-            },
-            {
-                id: 13,
-                question: "Elektrik maliyetinin gün içinde 'on-peak' (puant/pahalı) ve 'off-peak' (puant dışı/ucuz) olarak değiştiği tarife hangisidir?",
-                options: [
-                    "Blok Fiyatlandırma (Block Pricing)",
-                    "Zaman Esaslı Tarife (Time-of-Use - TOU)",
-                    "Gerçek Zamanlı Fiyatlandırma (RTP)",
-                    "Düz Tarife (Flat Rate)"
-                ],
-                correctAnswer: "Zaman Esaslı Tarife (Time-of-Use - TOU)"
-            },
-            {
-                id: 14,
-                question: "Elektrik maliyetinin *saatlik olarak* değiştiği ve fiyatların genellikle saatler öncesinden duyurulduğu en dinamik tarife hangisidir?",
-                options: [
-                    "Blok Fiyatlandırma (Block Pricing)",
-                    "Zaman Esaslı Tarife (Time-of-Use - TOU)",
-                    "Gerçek Zamanlı Fiyatlandırma (Real-Time-Pricing - RTP)",
-                    "Mevsimsel Tarife (Seasonal Rate)"
-                ],
-                correctAnswer: "Gerçek Zamanlı Fiyatlandırma (Real-Time-Pricing - RTP)"
-            },
-            {
-                id: 15,
-                question: "Türkiye'de 'Serbest Tüketici' (Eligible Consumer) limitlerinin yıllar içinde düşürülmesinin en önemli sonucu ne olmuştur?",
-                options: [
-                    "Enerji tüketiminin azalması",
-                    "Tüketicilerin tedarikçilerini serbestçe seçebilmesi ve rekabetin artması",
-                    "Tüm faturaların devlet tarafından sübvanse edilmesi",
-                    "Sadece yenilenebilir enerji kullanımına izin verilmesi"
-                ],
-                correctAnswer: "Tüketicilerin tedarikçilerini serbestçe seçebilmesi ve rekabetin artması"
-            }
-        ];
+        // Bilingual Quiz Data (Chapter 3: Electric Costs and Tariffs)
+        const quizDataBilingual = {
+            tr: [
+                {
+                    id: 1,
+                    question: "1972-2006 yılları arasındaki verilere göre en ucuz enerji kaynağı olarak kalan hangisidir?",
+                    options: [
+                        "Kömür (Coal)",
+                        "Doğal Gaz (Natural Gas)",
+                        "Petrol Ürünleri (Petroleum Products)",
+                        "Elektrik (Electricity)"
+                    ],
+                    correctAnswer: "Kömür (Coal)"
+                },
+                {
+                    id: 2,
+                    question: "'Dağıtık Enerji Kaynakları' (Distributed Energy Resources) nasıl tanımlanır?",
+                    options: [
+                        "Sadece büyük barajlarda üretilen enerji",
+                        "Dağıtım şebekesine veya tüketicinin sayaç tarafına bağlanan enerji kaynakları",
+                        "Sadece fosil yakıtlardan elde edilen enerji",
+                        "Ülkeler arası taşınan enerji hatları"
+                    ],
+                    correctAnswer: "Dağıtım şebekesine veya tüketicinin sayaç tarafına bağlanan enerji kaynakları"
+                },
+                {
+                    id: 3,
+                    question: "Aşağıdakilerden hangisi 'Yeni Nesil' (New Generation) bir Dağıtık Enerji Kaynağı (DER) örneğidir?",
+                    options: [
+                        "Mikrotürbin (Microturbine)",
+                        "Gaz Türbini (Gas Turbine)",
+                        "Güneş (Solar)",
+                        "Hepsi"
+                    ],
+                    correctAnswer: "Güneş (Solar)"
+                },
+                {
+                    id: 4,
+                    question: "Elektrik tedarikçileri için tarifeleri belirlerken tipik olarak en yüksek maliyet kategorisi hangisidir?",
+                    options: [
+                        "İletim ve dağıtım sistemleri",
+                        "İdari maliyetler (maaşlar, sigorta)",
+                        "Yakıt maliyetleri",
+                        "Santralin işletme maliyeti (Generation plant operation)"
+                    ],
+                    correctAnswer: "Santralin işletme maliyeti (Generation plant operation)"
+                },
+                {
+                    id: 5,
+                    question: "Tedarikçiler, elektrik maliyetlerini paylaştırmak için genellikle hangi üç ana müşteri tipini dikkate alır?",
+                    options: [
+                        "Evsel, Ticari ve Endüstriyel",
+                        "Devlet, Özel Sektör ve Tarımsal",
+                        "Şehir, Kırsal ve Banliyö",
+                        "Yüksek Gerilim, Orta Gerilim ve Alçak Gerilim"
+                    ],
+                    correctAnswer: "Evsel, Ticari ve Endüstriyel"
+                },
+                {
+                    id: 6,
+                    question: "Tedarikçilerin faturalandırmada kullandığı 'Billing Demand' (Faturalandırılan Talep) genellikle neye göre belirlenir?",
+                    options: [
+                        "Müşterinin ay içindeki ortalama tüketimine",
+                        "Müşterinin ay içindeki en yüksek (peak) talebine",
+                        "Müşterinin toplam bağlı yüküne",
+                        "Müşterinin sözleşme gücüne"
+                    ],
+                    correctAnswer: "Müşterinin ay içindeki en yüksek (peak) talebine"
+                },
+                {
+                    id: 7,
+                    question: "Tedarikçiler neden 'Peak Demand' (Puant Talep) için ek bir bedel (Demand Charge) talep eder?",
+                    options: [
+                        "Müşterileri daha az enerji tüketmeye teşvik etmek için",
+                        "Müşterileri zirve (peak) taleplerini 'tıraşlamaya' (shave) teşvik etmek için",
+                        "İdari maliyetleri karşılamak için",
+                        "Devletin koyduğu vergileri yansıtmak için"
+                    ],
+                    correctAnswer: "Müşterileri zirve (peak) taleplerini 'tıraşlamaya' (shave) teşvik etmek için"
+                },
+                {
+                    id: 8,
+                    question: "Güç Faktörü (Power Factor) nasıl tanımlanır?",
+                    options: [
+                        "Reaktif Gücün (kVAR) Toplam Güce (kVA) oranı",
+                        "Gerçek Gücün (kW) Reaktif Güce (kVAR) oranı",
+                        "Gerçek Gücün (kW) Toplam Güce (kVA) oranı",
+                        "Toplam Gücün (kVA) Gerçek Güce (kW) oranı"
+                    ],
+                    correctAnswer: "Gerçek Gücün (kW) Toplam Güce (kVA) oranı"
+                },
+                {
+                    id: 9,
+                    question: "Tedarikçiler, müşterileri düşük güç faktörü (örn. < 0.9) için neden cezalandırır?",
+                    options: [
+                        "Düşük PF, şebekede voltaj dalgalanmalarına neden olduğu için",
+                        "Düşük PF, aynı gerçek güç (kW) için daha yüksek toplam güç (kVA) çekilmesini gerektirdiği için",
+                        "Düşük PF, sayaçların yanlış ölçüm yapmasına neden olduğu için",
+                        "Düşük PF, sadece endüstriyel tesislerde meydana geldiği için"
+                    ],
+                    correctAnswer: "Düşük PF, aynı gerçek güç (kW) için daha yüksek toplam güç (kVA) çekilmesini gerektirdiği için"
+                },
+                {
+                    id: 10,
+                    question: "Bir faturada 'Ratchet Clause' (Geçmişe Bağlı Talep Maddesi) bulunmasının anlamı nedir?",
+                    options: [
+                        "Müşterinin faturasının, son 12 ayın en yüksek talebinin belli bir yüzdesinden az olamayacağı",
+                        "Müşterinin faturasının, enflasyon oranına göre otomatik olarak artacağı",
+                        "Müşterinin faturasının, tükettikçe birim fiyatının düşeceği (azalan blok)",
+                        "Müşterinin faturasının, yakıt maliyetlerindeki artışları yansıtacağı"
+                    ],
+                    correctAnswer: "Müşterinin faturasının, son 12 ayın en yüksek talebinin belli bir yüzdesinden az olamayacağı"
+                },
+                {
+                    id: 11,
+                    question: "'Yakıt Maliyeti Ayarlaması' (Fuel Cost Adjustment) maddesi ne işe yarar?",
+                    options: [
+                        "Müşterinin yakıt tasarrufunu ödüllendirmek",
+                        "Tedarikçinin, birincil enerji (kömür, gaz vb.) fiyatlarındaki dalgalanmaları faturaya yansıtması",
+                        "Ulaşım sektöründeki akaryakıt zamlarını dengelemek",
+                        "Yenilenebilir enerji kaynaklarını teşvik etmek"
+                    ],
+                    correctAnswer: "Tedarikçinin, birincil enerji (kömür, gaz vb.) fiyatlarındaki dalgalanmaları faturaya yansıtması"
+                },
+                {
+                    id: 12,
+                    question: "'Ters Blok Fiyatlandırma' (Inverted Block Pricing) tarifesi nasıl çalışır?",
+                    options: [
+                        "Enerji tüketimi arttıkça birim fiyat artar",
+                        "Enerji tüketimi arttıkça birim fiyat azalır",
+                        "Günün saatlerine göre fiyat değişir",
+                        "Mevsimlere göre fiyat değişir"
+                    ],
+                    correctAnswer: "Enerji tüketimi arttıkça birim fiyat artar"
+                },
+                {
+                    id: 13,
+                    question: "Elektrik maliyetinin gün içinde 'on-peak' (puant/pahalı) ve 'off-peak' (puant dışı/ucuz) olarak değiştiği tarife hangisidir?",
+                    options: [
+                        "Blok Fiyatlandırma (Block Pricing)",
+                        "Zaman Esaslı Tarife (Time-of-Use - TOU)",
+                        "Gerçek Zamanlı Fiyatlandırma (RTP)",
+                        "Düz Tarife (Flat Rate)"
+                    ],
+                    correctAnswer: "Zaman Esaslı Tarife (Time-of-Use - TOU)"
+                },
+                {
+                    id: 14,
+                    question: "Elektrik maliyetinin *saatlik olarak* değiştiği ve fiyatların genellikle saatler öncesinden duyurulduğu en dinamik tarife hangisidir?",
+                    options: [
+                        "Blok Fiyatlandırma (Block Pricing)",
+                        "Zaman Esaslı Tarife (Time-of-Use - TOU)",
+                        "Gerçek Zamanlı Fiyatlandırma (Real-Time-Pricing - RTP)",
+                        "Mevsimsel Tarife (Seasonal Rate)"
+                    ],
+                    correctAnswer: "Gerçek Zamanlı Fiyatlandırma (Real-Time-Pricing - RTP)"
+                },
+                {
+                    id: 15,
+                    question: "Türkiye'de 'Serbest Tüketici' (Eligible Consumer) limitlerinin yıllar içinde düşürülmesinin en önemli sonucu ne olmuştur?",
+                    options: [
+                        "Enerji tüketiminin azalması",
+                        "Tüketicilerin tedarikçilerini serbestçe seçebilmesi ve rekabetin artması",
+                        "Tüm faturaların devlet tarafından sübvanse edilmesi",
+                        "Sadece yenilenebilir enerji kullanımına izin verilmesi"
+                    ],
+                    correctAnswer: "Tüketicilerin tedarikçilerini serbestçe seçebilmesi ve rekabetin artması"
+                }
+            ],
+            en: [
+                {
+                    id: 1,
+                    question: "According to data from 1972-2006, which energy source remained the cheapest?",
+                    options: [
+                        "Coal",
+                        "Natural Gas",
+                        "Petroleum Products",
+                        "Electricity"
+                    ],
+                    correctAnswer: "Coal"
+                },
+                {
+                    id: 2,
+                    question: "How are 'Distributed Energy Resources' (DER) defined?",
+                    options: [
+                        "Only energy produced in large dams",
+                        "Energy sources connected to distribution grid or customer side of the meter",
+                        "Only energy obtained from fossil fuels",
+                        "Energy lines transmitted between countries"
+                    ],
+                    correctAnswer: "Energy sources connected to distribution grid or customer side of the meter"
+                },
+                {
+                    id: 3,
+                    question: "Which of the following is an example of a 'New Generation' Distributed Energy Resource (DER)?",
+                    options: [
+                        "Microturbine",
+                        "Gas Turbine",
+                        "Solar",
+                        "All of them"
+                    ],
+                    correctAnswer: "Solar"
+                },
+                {
+                    id: 4,
+                    question: "What is typically the highest cost category for electricity suppliers when determining tariffs?",
+                    options: [
+                        "Transmission and distribution systems",
+                        "Administrative costs (salaries, insurance)",
+                        "Fuel costs",
+                        "Generation plant operation"
+                    ],
+                    correctAnswer: "Generation plant operation"
+                },
+                {
+                    id: 5,
+                    question: "What three main customer types do suppliers typically consider when allocating electricity costs?",
+                    options: [
+                        "Domestic, Commercial, and Industrial",
+                        "Government, Private Sector, and Agricultural",
+                        "Urban, Rural, and Suburban",
+                        "High Voltage, Medium Voltage, and Low Voltage"
+                    ],
+                    correctAnswer: "Domestic, Commercial, and Industrial"
+                },
+                {
+                    id: 6,
+                    question: "How is 'Billing Demand' used by suppliers in billing typically determined?",
+                    options: [
+                        "Customer's average consumption during the month",
+                        "Customer's highest (peak) demand during the month",
+                        "Customer's total connected load",
+                        "Customer's contract capacity"
+                    ],
+                    correctAnswer: "Customer's highest (peak) demand during the month"
+                },
+                {
+                    id: 7,
+                    question: "Why do suppliers charge an additional fee (Demand Charge) for 'Peak Demand'?",
+                    options: [
+                        "To encourage customers to consume less energy",
+                        "To encourage customers to 'shave' their peak demands",
+                        "To cover administrative costs",
+                        "To reflect government-imposed taxes"
+                    ],
+                    correctAnswer: "To encourage customers to 'shave' their peak demands"
+                },
+                {
+                    id: 8,
+                    question: "How is Power Factor defined?",
+                    options: [
+                        "Ratio of Reactive Power (kVAR) to Total Power (kVA)",
+                        "Ratio of Real Power (kW) to Reactive Power (kVAR)",
+                        "Ratio of Real Power (kW) to Total Power (kVA)",
+                        "Ratio of Total Power (kVA) to Real Power (kW)"
+                    ],
+                    correctAnswer: "Ratio of Real Power (kW) to Total Power (kVA)"
+                },
+                {
+                    id: 9,
+                    question: "Why do suppliers penalize customers for low power factor (e.g., < 0.9)?",
+                    options: [
+                        "Because low PF causes voltage fluctuations in the grid",
+                        "Because low PF requires higher total power (kVA) drawn for the same real power (kW)",
+                        "Because low PF causes incorrect meter readings",
+                        "Because low PF only occurs in industrial facilities"
+                    ],
+                    correctAnswer: "Because low PF requires higher total power (kVA) drawn for the same real power (kW)"
+                },
+                {
+                    id: 10,
+                    question: "What does a 'Ratchet Clause' in a bill mean?",
+                    options: [
+                        "Customer's bill cannot be less than a percentage of the highest demand in the last 12 months",
+                        "Customer's bill will automatically increase according to inflation rate",
+                        "Customer's bill will have decreasing unit prices as consumption increases (declining block)",
+                        "Customer's bill will reflect increases in fuel costs"
+                    ],
+                    correctAnswer: "Customer's bill cannot be less than a percentage of the highest demand in the last 12 months"
+                },
+                {
+                    id: 11,
+                    question: "What is the purpose of a 'Fuel Cost Adjustment' clause?",
+                    options: [
+                        "To reward customer's fuel savings",
+                        "For the supplier to reflect fluctuations in primary energy (coal, gas, etc.) prices to the bill",
+                        "To balance fuel price increases in the transportation sector",
+                        "To incentivize renewable energy sources"
+                    ],
+                    correctAnswer: "For the supplier to reflect fluctuations in primary energy (coal, gas, etc.) prices to the bill"
+                },
+                {
+                    id: 12,
+                    question: "How does 'Inverted Block Pricing' tariff work?",
+                    options: [
+                        "Unit price increases as energy consumption increases",
+                        "Unit price decreases as energy consumption increases",
+                        "Price varies by time of day",
+                        "Price varies by season"
+                    ],
+                    correctAnswer: "Unit price increases as energy consumption increases"
+                },
+                {
+                    id: 13,
+                    question: "Which tariff has electricity costs varying during the day as 'on-peak' (expensive) and 'off-peak' (cheap)?",
+                    options: [
+                        "Block Pricing",
+                        "Time-of-Use (TOU)",
+                        "Real-Time-Pricing (RTP)",
+                        "Flat Rate"
+                    ],
+                    correctAnswer: "Time-of-Use (TOU)"
+                },
+                {
+                    id: 14,
+                    question: "Which is the most dynamic tariff where electricity costs vary *hourly* and prices are typically announced hours in advance?",
+                    options: [
+                        "Block Pricing",
+                        "Time-of-Use (TOU)",
+                        "Real-Time-Pricing (RTP)",
+                        "Seasonal Rate"
+                    ],
+                    correctAnswer: "Real-Time-Pricing (RTP)"
+                },
+                {
+                    id: 15,
+                    question: "What has been the most important result of lowering 'Eligible Consumer' limits in Turkey over the years?",
+                    options: [
+                        "Reduction in energy consumption",
+                        "Consumers being able to freely choose their suppliers and increased competition",
+                        "All bills being subsidized by the government",
+                        "Only renewable energy being allowed for use"
+                    ],
+                    correctAnswer: "Consumers being able to freely choose their suppliers and increased competition"
+                }
+            ]
+        };
+
+        // Get quiz data based on current language
+        function getQuizData() {
+            const lang = getLanguage();
+            return quizDataBilingual[lang] || quizDataBilingual.tr;
+        }
 
         
         document.addEventListener('DOMContentLoaded', () => {
@@ -263,13 +441,16 @@
 
             // 1. Sınavı Yükle
             function loadQuiz() {
+                const quizData = getQuizData();
+                const lang = getLanguage();
+                const questionText = translate('question', 'quiz');
                 let quizHTML = '';
                 quizData.forEach((q, index) => {
                     // Soru başlığı
                     quizHTML += `
                         <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100" id="question-card-${q.id}">
                             <p class="text-lg font-semibold text-gray-800">
-                                Soru ${index + 1}: ${q.question}
+                                ${questionText} ${index + 1}: ${q.question}
                             </p>
                             <div class="space-y-3 mt-4" id="options-container-${q.id}">
                     `;
@@ -293,8 +474,15 @@
             function showResults(event) {
                 event.preventDefault(); // Formun sayfayı yenilemesini engelle
 
+                const quizData = getQuizData();
                 let score = 0;
                 let wrongAnswersHTML = ''; // Yanlış cevaplar için HTML
+                
+                // Get translation texts
+                const lang = getLanguage();
+                const yourAnswerText = translate('yourAnswer', 'quiz');
+                const correctAnswerText = translate('correctAnswer', 'quiz');
+                const leftBlankText = translate('leftBlank', 'quiz');
                 
                 quizData.forEach(q => {
                     const card = document.getElementById(`question-card-${q.id}`);
@@ -336,8 +524,8 @@
                         wrongAnswersHTML += `
                             <div class="p-4 border-b border-gray-200">
                                 <p class="font-semibold text-gray-800">${q.question}</p>
-                                <p class="text-red-600 mt-2"><strong>Sizin Cevabınız:</strong> ${userAnswer || 'Boş bırakıldı'}</p>
-                                <p class="text-green-600 mt-1"><strong>Doğru Cevap:</strong> ${correctAnswer}</p>
+                                <p class="text-red-600 mt-2"><strong>${yourAnswerText}:</strong> ${userAnswer || leftBlankText}</p>
+                                <p class="text-green-600 mt-1"><strong>${correctAnswerText}:</strong> ${correctAnswer}</p>
                             </div>
                         `;
                     }
@@ -345,23 +533,30 @@
 
                 // Sonuçları üstte göster
                 const scorePercentage = Math.round((score / quizData.length) * 100);
+                const examResultText = translate('examResult', 'quiz');
+                const scoreText = translate('score', 'quiz');
+                const correctText = translate('correct', 'quiz');
+                const wrongText = translate('wrong', 'quiz');
+                const wrongQuestionsTitle = translate('wrongQuestionsTitle', 'quiz');
+                const congratulations = translate('congratulations', 'quiz');
+                
                 resultsContainer.innerHTML = `
-                    <h2 class="text-3xl font-bold text-center text-blue-900">Sınav Sonucu</h2>
-                    <p class="text-5xl font-bold text-center my-4">${scorePercentage} Puan</p>
+                    <h2 class="text-3xl font-bold text-center text-blue-900">${examResultText}</h2>
+                    <p class="text-5xl font-bold text-center my-4">${scorePercentage} ${scoreText}</p>
                     <div class="flex justify-center gap-6 text-center text-lg">
-                        <span class="font-semibold text-green-600">Doğru: ${score}</span>
-                        <span class="font-semibold text-red-600">Yanlış: ${quizData.length - score}</span>
+                        <span class="font-semibold text-green-600">${correctText}: ${score}</span>
+                        <span class="font-semibold text-red-600">${wrongText}: ${quizData.length - score}</span>
                     </div>
                     
                     ${wrongAnswersHTML ? `
                         <hr class="my-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Yanlış Sorular ve Doğruları</h3>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">${wrongQuestionsTitle}</h3>
                         <div class="border border-gray-200 rounded-lg overflow-hidden">
                             ${wrongAnswersHTML}
                         </div>
                     ` : `
                         <hr class="my-8">
-                        <p class="text-center text-2xl font-bold text-green-600">🎉 Tebrikler! Tüm soruları doğru cevapladınız! 🎉</p>
+                        <p class="text-center text-2xl font-bold text-green-600">${congratulations}</p>
                     `}
                 `;
 
@@ -375,6 +570,12 @@
             // Olayları Bağla
             loadQuiz();
             quizForm.addEventListener('submit', showResults);
+        
+            // Re-render quiz when language changes
+            document.addEventListener('languageChanged', () => {
+                loadQuiz();
+                updatePageTranslations();
+            });
         });
     </script>
 </body>

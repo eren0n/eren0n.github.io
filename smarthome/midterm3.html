@@ -6,6 +6,7 @@
     <title>YTÜ - Enerji Yönetimi Sınavı (Karma 3)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="translations.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -40,13 +41,17 @@
                     YTÜ
                 </div>
                 <div>
-                    <h1 class="text-lg sm:text-xl font-bold text-blue-900 leading-tight">Akıllı Evler ve Enerji Yönetimi</h1>
+                    <h1 class="text-lg sm:text-xl font-bold text-blue-900 leading-tight" data-translate="siteTitle" data-section="common">Akıllı Evler ve Enerji Yönetimi</h1>
                     <p class="text-xs sm:text-sm text-gray-500">Karma Sınav 3 (Bölüm 1-4)</p>
                 </div>
             </div>
-            <div class="hidden sm:block text-right">
-                <span class="block text-sm font-semibold text-blue-800">Sınava Hazırlan</span>
-                <span class="block text-xs text-gray-500">Ders Özeti Serisi</span>
+            <div class="flex items-center gap-4">
+                <button id="lang-switch-btn" class="px-3 py-2 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors duration-200 border border-blue-200" aria-label="Dil değiştir">
+                    <span class="text-sm font-semibold">🇬🇧 EN</span>
+                </button>
+                <div class="hidden sm:block text-right">
+                <span class="block text-sm font-semibold text-blue-800" data-translate="prepareForExam" data-section="common">Sınava Hazırlan</span>
+                <span class="block text-xs text-gray-500" data-translate="courseNotesSeries" data-section="common">Ders Özeti Serisi</span>
             </div>
         </div>
     </header>
@@ -66,9 +71,7 @@
                 </div>
 
             <div class="mt-12 text-center">
-                <button type="submit" id="submit-btn" class="bg-blue-800 text-white font-bold py-3 px-10 rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-300">
-                    Sınavı Bitir
-                </button>
+                <button type="submit" id="submit-btn" class="bg-blue-800 text-white font-bold py-3 px-10 rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-300" data-translate="finishExam" data-section="quiz">Sınavı Bitir</button>
             </div>
         </form>
 
@@ -79,182 +82,356 @@
 
     <footer class="bg-blue-900 text-blue-100 py-8 mt-12">
         <div class="max-w-6xl mx-auto px-4 text-center">
-            <p class="text-sm">&copy; 2025 eren0n. Tüm hakları saklıdır.</p>
-            <p class="text-xs mt-2 opacity-60">Sınavınızda Başarılar.</p>
+            <p class="text-sm" data-translate="footer.copyright" data-section="common">&copy; 2025 eren0n. Tüm hakları saklıdır.</p>
+            <p class="text-xs mt-2 opacity-60" data-translate="footer.goodLuck" data-section="common">Sınavınızda Başarılar.</p>
         </div>
     </footer>
 
     <script>
-        // Soru Veri Seti (Tüm PDF'lerden Karma 3)
-        const quizData = [
-            {
-                id: 1,
-                question: "(Bölüm 1) Enerji yönetiminin 'akılcı ve etkin kullanım' (judicious and effective use) tanımındaki temel amaç nedir?",
-                options: [
-                    "Kârı maksimize etmek ve maliyetleri minimize etmek",
-                    "Sadece yenilenebilir enerji kaynakları kullanmak",
-                    "Çevresel farkındalığı artırmak",
-                    "Enerji ithalatını tamamen durdurmak"
-                ],
-                correctAnswer: "Kârı maksimize etmek ve maliyetleri minimize etmek"
-            },
-            {
-                id: 2,
-                question: "(Bölüm 1) Binaların ısıtma, soğutma ve aydınlatılmasının küresel CO2 emisyonlarındaki payı yaklaşık ne kadardır?",
-                options: [
-                    "%5",
-                    "%10",
-                    "%25",
-                    "%50"
-                ],
-                correctAnswer: "%50"
-            },
-            {
-                id: 3,
-                question: "(Bölüm 2) Bir güç sisteminin 'Yük Faktörü' (Load Factor) 1'e yakınsa (yüksekse) bu ne anlama gelir?",
-                options: [
-                    "Sistem çok verimsiz çalışmaktadır.",
-                    "Talep, zaman içinde çok fazla değişiklik göstermektedir.",
-                    "Talep, zaman içinde daha düz (uniform) bir desene sahiptir ve sistem verimli çalışmaktadır.",
-                    "Santralin maksimum talebi, kapasitesinin çok üzerindedir."
-                ],
-                correctAnswer: "Talep, zaman içinde daha düz (uniform) bir desene sahiptir ve sistem verimli çalışmaktadır."
-            },
-            {
-                id: 4,
-                question: "(Bölüm 2) Tüketicilerin bireysel maksimum taleplerinin *toplamının*, santralin maksimum talebine oranına ne denir?",
-                options: [
-                    "Yük Faktörü (Load Factor)",
-                    "Talep Faktörü (Demand Factor)",
-                    "Çeşitlilik Faktörü (Diversity Factor)",
-                    "Kapasite Faktörü (Capacity Factor)"
-                ],
-                correctAnswer: "Çeşitlilik Faktörü (Diversity Factor)"
-            },
-            {
-                id: 5,
-                question: "(Bölüm 3) Bir faturada, müşterinin düşük Güç Faktörü (PF) nedeniyle cezalandırılmasının nedeni nedir?",
-                options: [
-                    "Aynı iş (kW) için şebekeden daha fazla toplam akım (kVA) çekmesi ve kayıplara neden olması",
-                    "Sayaçların yavaş dönmesine neden olması",
-                    "Sadece konutlarda meydana gelmesi",
-                    "Yenilenebilir enerji kullanımını engellemesi"
-                ],
-                correctAnswer: "Aynı iş (kW) için şebekeden daha fazla toplam akım (kVA) çekmesi ve kayıplara neden olması"
-            },
-            {
-                id: 6,
-                question: "(Bölüm 3) Günün saatlerini 'on-peak' (pahalı) ve 'off-peak' (ucuz) olarak ayıran tarife tipi hangisidir?",
-                options: [
-                    "Gerçek Zamanlı Fiyatlandırma (RTP)",
-                    "Düz Tarife (Flat Rate)",
-                    "Ters Blok Tarife (Inverted Block)",
-                    "Zaman Esaslı Tarife (Time-of-Use - TOU)"
-                ],
-                correctAnswer: "Zaman Esaslı Tarife (Time-of-Use - TOU)"
-            },
-            {
-                id: 7,
-                question: "(Bölüm 4) Mühendislik ekonomisinde, farklı zamanlardaki nakit akışlarını toplayabilmek için hepsini tek bir zamana (genellikle bugüne) getirme işlemine ne denir?",
-                options: [
-                    "Enflasyon Hesaplaması",
-                    "İskonto Etme (Discounting)",
-                    "Faiz Hesaplaması (Compounding)",
-                    "Nakit Akışı Analizi"
-                ],
-                correctAnswer: "İskonto Etme (Discounting)"
-            },
-            {
-                id: 8,
-                question: "(Bölüm 4) Bir projenin ekonomik ömrü boyunca *tüm maliyetlerini* (ilk yatırım + işletme + bakım) bugünkü değere indirgeyerek alternatifleri karşılaştıran yöntem nedir?",
-                options: [
-                    "Geri Dönüş Oranı (ROR)",
-                    "Basit Geri Ödeme (SPB)",
-                    "Yaşam Döngüsü Maliyeti (LCC)",
-                    "Net Bugünkü Değer (NPW)"
-                ],
-                correctAnswer: "Yaşam Döngüsü Maliyeti (LCC)"
-            },
-            {
-                id: 9,
-                question: "(Bölüm 1) Bir ülkenin GSYİH'si (GDP) başına düşen enerji tüketimini ölçen ve verimlilik göstergesi olan kavrama ne ad verilir?",
-                options: [
-                    "Enerji Yoğunluğu (Energy Intensity)",
-                    "Kişi Başı Tüketim (Per Capita Consumption)",
-                    "Yük Faktörü (Load Factor)",
-                    "Kurulu Güç (Installed Capacity)"
-                ],
-                correctAnswer: "Enerji Yoğunluğu (Energy Intensity)"
-            },
-            {
-                id: 10,
-                question: "(Bölüm 2) Yük değerlerinin *büyükten küçüğe* doğru sıralanarak çizildiği ve baz yük/puant yük santral seçiminde kullanılan eğri hangisidir?",
-                options: [
-                    "Yük Eğrisi (Load Curve)",
-                    "Yük Süreklilik Eğrisi (Load Duration Curve)",
-                    "Kapasite Faktörü Eğrisi",
-                    "Talep Eğrisi"
-                ],
-                correctAnswer: "Yük Süreklilik Eğrisi (Load Duration Curve)"
-            },
-            {
-                id: 11,
-                question: "(Bölüm 3) Fiyatın saatlik olarak değiştiği ve müşterilere kısa süre önceden bildirildiği en dinamik tarife hangisidir?",
-                options: [
-                    "Gerçek Zamanlı Fiyatlandırma (RTP)",
-                    "Zaman Esaslı Tarife (TOU)",
-                    "Mevsimsel Tarife",
-                    "Blok Fiyatlandırma"
-                ],
-                correctAnswer: "Gerçek Zamanlı Fiyatlandırma (RTP)"
-            },
-            {
-                id: 12,
-                question: "(Bölüm 4) Bir projenin 'Basit Geri Ödeme Süresi' (SPB) hesaplanırken hangisi *ihmal edilir*?",
-                options: [
-                    "İlk Yatırım Maliyeti",
-                    "Yıllık Tasarruf Miktarı",
-                    "Paranın Zaman Değeri",
-                    "Projenin Adı"
-                ],
-                correctAnswer: "Paranın Zaman Değeri"
-            },
-            {
-                id: 13,
-                question: "(Bölüm 3) Mikrotürbin ve Gaz Türbini, Dağıtık Enerji Kaynaklarının (DER) hangi sınıfına girer?",
-                options: [
-                    "Yeni Nesil (New Generation)",
-                    "Geleneksel (Conventional)",
-                    "Yenilenebilir (Renewable)",
-                    "Nükleer (Nuclear)"
-                ],
-                correctAnswer: "Geleneksel (Conventional)"
-            },
-            {
-                id: 14,
-                question: "(Bölüm 4) Bir projenin Net Bugünkü Değerinin (NPW) pozitif (NPW > 0) çıkması ne anlama gelir?",
-                options: [
-                    "Proje başa baştır.",
-                    "Proje ekonomik olarak kârlıdır ve kabul edilebilir.",
-                    "Proje zarar etmektedir ve reddedilmelidir.",
-                    "Projenin geri ödeme süresi 1 yıldan azdır."
-                ],
-                correctAnswer: "Proje ekonomik olarak kârlıdır ve kabul edilebilir."
-            },
-            {
-                id: 15,
-                question: "(Bölüm 2) Bir sisteme bağlı tüm cihazların etiket (nominal) güçlerinin toplamına ne ad verilir?",
-                options: [
-                    "Ortalama Yük (Average Load)",
-                    "Maksimum Talep (Maximum Demand)",
-                    "Bağlı Yük (Connected Load)",
-                    "Anlık Talep (Instantaneous Demand)"
-                ],
-                correctAnswer: "Bağlı Yük (Connected Load)"
-            }
-        ];
+        // Bilingual Quiz Data - Both Turkish and English
+        const quizDataBilingual = {
+            tr: [
+                {
+                    id: 1,
+                    question: "(Bölüm 1) Enerji yönetiminin 'akılcı ve etkin kullanım' (judicious and effective use) tanımındaki temel amaç nedir?",
+                    options: [
+                        "Kârı maksimize etmek ve maliyetleri minimize etmek",
+                        "Sadece yenilenebilir enerji kaynakları kullanmak",
+                        "Çevresel farkındalığı artırmak",
+                        "Enerji ithalatını tamamen durdurmak"
+                    ],
+                    correctAnswer: "Kârı maksimize etmek ve maliyetleri minimize etmek"
+                },
+                {
+                    id: 2,
+                    question: "(Bölüm 1) Binaların ısıtma, soğutma ve aydınlatılmasının küresel CO2 emisyonlarındaki payı yaklaşık ne kadardır?",
+                    options: [
+                        "%5",
+                        "%10",
+                        "%25",
+                        "%50"
+                    ],
+                    correctAnswer: "%50"
+                },
+                {
+                    id: 3,
+                    question: "(Bölüm 2) Bir güç sisteminin 'Yük Faktörü' (Load Factor) 1'e yakınsa (yüksekse) bu ne anlama gelir?",
+                    options: [
+                        "Sistem çok verimsiz çalışmaktadır.",
+                        "Talep, zaman içinde çok fazla değişiklik göstermektedir.",
+                        "Talep, zaman içinde daha düz (uniform) bir desene sahiptir ve sistem verimli çalışmaktadır.",
+                        "Santralin maksimum talebi, kapasitesinin çok üzerindedir."
+                    ],
+                    correctAnswer: "Talep, zaman içinde daha düz (uniform) bir desene sahiptir ve sistem verimli çalışmaktadır."
+                },
+                {
+                    id: 4,
+                    question: "(Bölüm 2) Tüketicilerin bireysel maksimum taleplerinin *toplamının*, santralin maksimum talebine oranına ne denir?",
+                    options: [
+                        "Yük Faktörü (Load Factor)",
+                        "Talep Faktörü (Demand Factor)",
+                        "Çeşitlilik Faktörü (Diversity Factor)",
+                        "Kapasite Faktörü (Capacity Factor)"
+                    ],
+                    correctAnswer: "Çeşitlilik Faktörü (Diversity Factor)"
+                },
+                {
+                    id: 5,
+                    question: "(Bölüm 3) Bir faturada, müşterinin düşük Güç Faktörü (PF) nedeniyle cezalandırılmasının nedeni nedir?",
+                    options: [
+                        "Aynı iş (kW) için şebekeden daha fazla toplam akım (kVA) çekmesi ve kayıplara neden olması",
+                        "Sayaçların yavaş dönmesine neden olması",
+                        "Sadece konutlarda meydana gelmesi",
+                        "Yenilenebilir enerji kullanımını engellemesi"
+                    ],
+                    correctAnswer: "Aynı iş (kW) için şebekeden daha fazla toplam akım (kVA) çekmesi ve kayıplara neden olması"
+                },
+                {
+                    id: 6,
+                    question: "(Bölüm 3) Günün saatlerini 'on-peak' (pahalı) ve 'off-peak' (ucuz) olarak ayıran tarife tipi hangisidir?",
+                    options: [
+                        "Gerçek Zamanlı Fiyatlandırma (RTP)",
+                        "Düz Tarife (Flat Rate)",
+                        "Ters Blok Tarife (Inverted Block)",
+                        "Zaman Esaslı Tarife (Time-of-Use - TOU)"
+                    ],
+                    correctAnswer: "Zaman Esaslı Tarife (Time-of-Use - TOU)"
+                },
+                {
+                    id: 7,
+                    question: "(Bölüm 4) Mühendislik ekonomisinde, farklı zamanlardaki nakit akışlarını toplayabilmek için hepsini tek bir zamana (genellikle bugüne) getirme işlemine ne denir?",
+                    options: [
+                        "Enflasyon Hesaplaması",
+                        "İskonto Etme (Discounting)",
+                        "Faiz Hesaplaması (Compounding)",
+                        "Nakit Akışı Analizi"
+                    ],
+                    correctAnswer: "İskonto Etme (Discounting)"
+                },
+                {
+                    id: 8,
+                    question: "(Bölüm 4) Bir projenin ekonomik ömrü boyunca *tüm maliyetlerini* (ilk yatırım + işletme + bakım) bugünkü değere indirgeyerek alternatifleri karşılaştıran yöntem nedir?",
+                    options: [
+                        "Geri Dönüş Oranı (ROR)",
+                        "Basit Geri Ödeme (SPB)",
+                        "Yaşam Döngüsü Maliyeti (LCC)",
+                        "Net Bugünkü Değer (NPW)"
+                    ],
+                    correctAnswer: "Yaşam Döngüsü Maliyeti (LCC)"
+                },
+                {
+                    id: 9,
+                    question: "(Bölüm 1) Bir ülkenin GSYİH'si (GDP) başına düşen enerji tüketimini ölçen ve verimlilik göstergesi olan kavrama ne ad verilir?",
+                    options: [
+                        "Enerji Yoğunluğu (Energy Intensity)",
+                        "Kişi Başı Tüketim (Per Capita Consumption)",
+                        "Yük Faktörü (Load Factor)",
+                        "Kurulu Güç (Installed Capacity)"
+                    ],
+                    correctAnswer: "Enerji Yoğunluğu (Energy Intensity)"
+                },
+                {
+                    id: 10,
+                    question: "(Bölüm 2) Yük değerlerinin *büyükten küçüğe* doğru sıralanarak çizildiği ve baz yük/puant yük santral seçiminde kullanılan eğri hangisidir?",
+                    options: [
+                        "Yük Eğrisi (Load Curve)",
+                        "Yük Süreklilik Eğrisi (Load Duration Curve)",
+                        "Kapasite Faktörü Eğrisi",
+                        "Talep Eğrisi"
+                    ],
+                    correctAnswer: "Yük Süreklilik Eğrisi (Load Duration Curve)"
+                },
+                {
+                    id: 11,
+                    question: "(Bölüm 3) Fiyatın saatlik olarak değiştiği ve müşterilere kısa süre önceden bildirildiği en dinamik tarife hangisidir?",
+                    options: [
+                        "Gerçek Zamanlı Fiyatlandırma (RTP)",
+                        "Zaman Esaslı Tarife (TOU)",
+                        "Mevsimsel Tarife",
+                        "Blok Fiyatlandırma"
+                    ],
+                    correctAnswer: "Gerçek Zamanlı Fiyatlandırma (RTP)"
+                },
+                {
+                    id: 12,
+                    question: "(Bölüm 4) Bir projenin 'Basit Geri Ödeme Süresi' (SPB) hesaplanırken hangisi *ihmal edilir*?",
+                    options: [
+                        "İlk Yatırım Maliyeti",
+                        "Yıllık Tasarruf Miktarı",
+                        "Paranın Zaman Değeri",
+                        "Projenin Adı"
+                    ],
+                    correctAnswer: "Paranın Zaman Değeri"
+                },
+                {
+                    id: 13,
+                    question: "(Bölüm 3) Mikrotürbin ve Gaz Türbini, Dağıtık Enerji Kaynaklarının (DER) hangi sınıfına girer?",
+                    options: [
+                        "Yeni Nesil (New Generation)",
+                        "Geleneksel (Conventional)",
+                        "Yenilenebilir (Renewable)",
+                        "Nükleer (Nuclear)"
+                    ],
+                    correctAnswer: "Geleneksel (Conventional)"
+                },
+                {
+                    id: 14,
+                    question: "(Bölüm 4) Bir projenin Net Bugünkü Değerinin (NPW) pozitif (NPW > 0) çıkması ne anlama gelir?",
+                    options: [
+                        "Proje başa baştır.",
+                        "Proje ekonomik olarak kârlıdır ve kabul edilebilir.",
+                        "Proje zarar etmektedir ve reddedilmelidir.",
+                        "Projenin geri ödeme süresi 1 yıldan azdır."
+                    ],
+                    correctAnswer: "Proje ekonomik olarak kârlıdır ve kabul edilebilir."
+                },
+                {
+                    id: 15,
+                    question: "(Bölüm 2) Bir sisteme bağlı tüm cihazların etiket (nominal) güçlerinin toplamına ne ad verilir?",
+                    options: [
+                        "Ortalama Yük (Average Load)",
+                        "Maksimum Talep (Maximum Demand)",
+                        "Bağlı Yük (Connected Load)",
+                        "Anlık Talep (Instantaneous Demand)"
+                    ],
+                    correctAnswer: "Bağlı Yük (Connected Load)"
+                }
+            ],
+            en: [
+                {
+                    id: 1,
+                    question: "(Chapter 1) What is the main goal in the definition of energy management as 'judicious and effective use'?",
+                    options: [
+                        "Maximizing profit and minimizing costs",
+                        "Using only renewable energy sources",
+                        "Increasing environmental awareness",
+                        "Completely stopping energy imports"
+                    ],
+                    correctAnswer: "Maximizing profit and minimizing costs"
+                },
+                {
+                    id: 2,
+                    question: "(Chapter 1) What is the approximate share of building heating, cooling, and lighting in global CO2 emissions?",
+                    options: [
+                        "5%",
+                        "10%",
+                        "25%",
+                        "50%"
+                    ],
+                    correctAnswer: "50%"
+                },
+                {
+                    id: 3,
+                    question: "(Chapter 2) What does it mean when a power system's 'Load Factor' is close to 1 (high)?",
+                    options: [
+                        "The system is operating very inefficiently.",
+                        "Demand varies greatly over time.",
+                        "Demand has a more uniform pattern over time and the system operates efficiently.",
+                        "The maximum demand of the power plant is far above its capacity."
+                    ],
+                    correctAnswer: "Demand has a more uniform pattern over time and the system operates efficiently."
+                },
+                {
+                    id: 4,
+                    question: "(Chapter 2) What is the ratio of the *sum* of consumers' individual maximum demands to the power plant's maximum demand called?",
+                    options: [
+                        "Load Factor",
+                        "Demand Factor",
+                        "Diversity Factor",
+                        "Capacity Factor"
+                    ],
+                    correctAnswer: "Diversity Factor"
+                },
+                {
+                    id: 5,
+                    question: "(Chapter 3) Why is a customer penalized for low Power Factor (PF) in a bill?",
+                    options: [
+                        "Drawing more total current (kVA) from the grid for the same work (kW) and causing losses",
+                        "Causing meters to run slowly",
+                        "Only occurring in residential buildings",
+                        "Preventing renewable energy use"
+                    ],
+                    correctAnswer: "Drawing more total current (kVA) from the grid for the same work (kW) and causing losses"
+                },
+                {
+                    id: 6,
+                    question: "(Chapter 3) What type of tariff separates hours of the day into 'on-peak' (expensive) and 'off-peak' (cheap)?",
+                    options: [
+                        "Real-Time Pricing (RTP)",
+                        "Flat Rate",
+                        "Inverted Block",
+                        "Time-of-Use Tariff (TOU)"
+                    ],
+                    correctAnswer: "Time-of-Use Tariff (TOU)"
+                },
+                {
+                    id: 7,
+                    question: "(Chapter 4) In engineering economics, what is the process of bringing all cash flows at different times to a single time (usually today) in order to add them called?",
+                    options: [
+                        "Inflation Calculation",
+                        "Discounting",
+                        "Compounding",
+                        "Cash Flow Analysis"
+                    ],
+                    correctAnswer: "Discounting"
+                },
+                {
+                    id: 8,
+                    question: "(Chapter 4) What method compares alternatives by discounting *all costs* (initial investment + operation + maintenance) over a project's economic life to present value?",
+                    options: [
+                        "Rate of Return (ROR)",
+                        "Simple Payback (SPB)",
+                        "Life Cycle Cost (LCC)",
+                        "Net Present Worth (NPW)"
+                    ],
+                    correctAnswer: "Life Cycle Cost (LCC)"
+                },
+                {
+                    id: 9,
+                    question: "(Chapter 1) What is the concept called that measures a country's energy consumption per GDP and is an efficiency indicator?",
+                    options: [
+                        "Energy Intensity",
+                        "Per Capita Consumption",
+                        "Load Factor",
+                        "Installed Capacity"
+                    ],
+                    correctAnswer: "Energy Intensity"
+                },
+                {
+                    id: 10,
+                    question: "(Chapter 2) Which curve shows load values sorted from *largest to smallest* and is used in selecting base load/peak load power plants?",
+                    options: [
+                        "Load Curve",
+                        "Load Duration Curve",
+                        "Capacity Factor Curve",
+                        "Demand Curve"
+                    ],
+                    correctAnswer: "Load Duration Curve"
+                },
+                {
+                    id: 11,
+                    question: "(Chapter 3) What is the most dynamic tariff where prices change hourly and are announced to customers shortly in advance?",
+                    options: [
+                        "Real-Time Pricing (RTP)",
+                        "Time-of-Use Tariff (TOU)",
+                        "Seasonal Tariff",
+                        "Block Pricing"
+                    ],
+                    correctAnswer: "Real-Time Pricing (RTP)"
+                },
+                {
+                    id: 12,
+                    question: "(Chapter 4) What is *neglected* when calculating a project's 'Simple Payback Period' (SPB)?",
+                    options: [
+                        "Initial Investment Cost",
+                        "Annual Savings Amount",
+                        "Time Value of Money",
+                        "Project Name"
+                    ],
+                    correctAnswer: "Time Value of Money"
+                },
+                {
+                    id: 13,
+                    question: "(Chapter 3) Which class of Distributed Energy Resources (DER) do Microturbines and Gas Turbines belong to?",
+                    options: [
+                        "New Generation",
+                        "Conventional",
+                        "Renewable",
+                        "Nuclear"
+                    ],
+                    correctAnswer: "Conventional"
+                },
+                {
+                    id: 14,
+                    question: "(Chapter 4) What does it mean when a project's Net Present Worth (NPW) is positive (NPW > 0)?",
+                    options: [
+                        "The project breaks even.",
+                        "The project is economically profitable and acceptable.",
+                        "The project is losing money and should be rejected.",
+                        "The project's payback period is less than 1 year."
+                    ],
+                    correctAnswer: "The project is economically profitable and acceptable."
+                },
+                {
+                    id: 15,
+                    question: "(Chapter 2) What is the sum of the nameplate (nominal) powers of all devices connected to a system called?",
+                    options: [
+                        "Average Load",
+                        "Maximum Demand",
+                        "Connected Load",
+                        "Instantaneous Demand"
+                    ],
+                    correctAnswer: "Connected Load"
+                }
+            ]
+        };
 
-        
+        // Get quiz data based on current language
+        function getQuizData() {
+            const lang = getLanguage();
+            return quizDataBilingual[lang] || quizDataBilingual.tr;
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const quizContainer = document.getElementById('quiz-container');
             const quizForm = document.getElementById('quiz-form');
@@ -263,13 +440,16 @@
 
             // 1. Sınavı Yükle
             function loadQuiz() {
+                const quizData = getQuizData(); // Get language-specific quiz data
+                const lang = getLanguage();
+                const questionText = translate('question', 'quiz');
                 let quizHTML = '';
                 quizData.forEach((q, index) => {
                     // Soru başlığı
                     quizHTML += `
                         <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100" id="question-card-${q.id}">
                             <p class="text-lg font-semibold text-gray-800">
-                                Soru ${index + 1}: ${q.question}
+                                ${questionText} ${index + 1}: ${q.question}
                             </p>
                             <div class="space-y-3 mt-4" id="options-container-${q.id}">
                     `;
@@ -293,6 +473,14 @@
             function showResults(event) {
                 event.preventDefault(); // Formun sayfayı yenilemesini engelle
 
+                const quizData = getQuizData(); // Get language-specific quiz data
+                
+                // Get translation texts first
+                const lang = getLanguage();
+                const yourAnswerText = translate('yourAnswer', 'quiz');
+                const correctAnswerText = translate('correctAnswer', 'quiz');
+                const leftBlankText = translate('leftBlank', 'quiz');
+                
                 let score = 0;
                 let wrongAnswersHTML = ''; // Yanlış cevaplar için HTML
                 
@@ -336,8 +524,8 @@
                         wrongAnswersHTML += `
                             <div class="p-4 border-b border-gray-200">
                                 <p class="font-semibold text-gray-800">${q.question}</p>
-                                <p class="text-red-600 mt-2"><strong>Sizin Cevabınız:</strong> ${userAnswer || 'Boş bırakıldı'}</p>
-                                <p class="text-green-600 mt-1"><strong>Doğru Cevap:</strong> ${correctAnswer}</p>
+                                <p class="text-red-600 mt-2"><strong>${yourAnswerText}:</strong> ${userAnswer || leftBlankText}</p>
+                                <p class="text-green-600 mt-1"><strong>${correctAnswerText}:</strong> ${correctAnswer}</p>
                             </div>
                         `;
                     }
@@ -345,23 +533,30 @@
 
                 // Sonuçları üstte göster
                 const scorePercentage = Math.round((score / quizData.length) * 100);
+                const examResultText = translate('examResult', 'quiz');
+                const scoreText = translate('score', 'quiz');
+                const correctText = translate('correct', 'quiz');
+                const wrongText = translate('wrong', 'quiz');
+                const wrongQuestionsTitle = translate('wrongQuestionsTitle', 'quiz');
+                const congratulations = translate('congratulations', 'quiz');
+                
                 resultsContainer.innerHTML = `
-                    <h2 class="text-3xl font-bold text-center text-blue-900">Sınav Sonucu</h2>
-                    <p class="text-5xl font-bold text-center my-4">${scorePercentage} Puan</p>
+                    <h2 class="text-3xl font-bold text-center text-blue-900">${examResultText}</h2>
+                    <p class="text-5xl font-bold text-center my-4">${scorePercentage} ${scoreText}</p>
                     <div class="flex justify-center gap-6 text-center text-lg">
-                        <span class="font-semibold text-green-600">Doğru: ${score}</span>
-                        <span class="font-semibold text-red-600">Yanlış: ${quizData.length - score}</span>
+                        <span class="font-semibold text-green-600">${correctText}: ${score}</span>
+                        <span class="font-semibold text-red-600">${wrongText}: ${quizData.length - score}</span>
                     </div>
                     
                     ${wrongAnswersHTML ? `
                         <hr class="my-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Yanlış Sorular ve Doğruları</h3>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">${wrongQuestionsTitle}</h3>
                         <div class="border border-gray-200 rounded-lg overflow-hidden">
                             ${wrongAnswersHTML}
                         </div>
                     ` : `
                         <hr class="my-8">
-                        <p class="text-center text-2xl font-bold text-green-600">🎉 Tebrikler! Tüm soruları doğru cevapladınız! 🎉</p>
+                        <p class="text-center text-2xl font-bold text-green-600">${congratulations}</p>
                     `}
                 `;
 
@@ -375,6 +570,12 @@
             // Olayları Bağla
             loadQuiz();
             quizForm.addEventListener('submit', showResults);
+        
+            // Re-render quiz when language changes
+            document.addEventListener('languageChanged', () => {
+                loadQuiz();
+                updatePageTranslations();
+            });
         });
     </script>
 </body>

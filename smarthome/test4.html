@@ -6,6 +6,7 @@
     <title>YTÜ - Enerji Yönetimi Sınavı (Bölüm 4)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="translations.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -40,13 +41,17 @@
                     YTÜ
                 </div>
                 <div>
-                    <h1 class="text-lg sm:text-xl font-bold text-blue-900 leading-tight">Akıllı Evler ve Enerji Yönetimi</h1>
+                    <h1 class="text-lg sm:text-xl font-bold text-blue-900 leading-tight" data-translate="siteTitle" data-section="common">Akıllı Evler ve Enerji Yönetimi</h1>
                     <p class="text-xs sm:text-sm text-gray-500">Bölüm 4 Sınavı</p>
                 </div>
             </div>
-            <div class="hidden sm:block text-right">
-                <span class="block text-sm font-semibold text-blue-800">Sınava Hazırlan</span>
-                <span class="block text-xs text-gray-500">Ders Özeti Serisi</span>
+            <div class="flex items-center gap-4">
+                <button id="lang-switch-btn" class="px-3 py-2 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors duration-200 border border-blue-200" aria-label="Dil değiştir">
+                    <span class="text-sm font-semibold">🇬🇧 EN</span>
+                </button>
+                <div class="hidden sm:block text-right">
+                <span class="block text-sm font-semibold text-blue-800" data-translate="prepareForExam" data-section="common">Sınava Hazırlan</span>
+                <span class="block text-xs text-gray-500" data-translate="courseNotesSeries" data-section="common">Ders Özeti Serisi</span>
             </div>
         </div>
     </header>
@@ -66,9 +71,7 @@
                 </div>
 
             <div class="mt-12 text-center">
-                <button type="submit" id="submit-btn" class="bg-blue-800 text-white font-bold py-3 px-10 rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-300">
-                    Sınavı Bitir
-                </button>
+                <button type="submit" id="submit-btn" class="bg-blue-800 text-white font-bold py-3 px-10 rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-300" data-translate="finishExam" data-section="quiz">Sınavı Bitir</button>
             </div>
         </form>
 
@@ -79,180 +82,355 @@
 
     <footer class="bg-blue-900 text-blue-100 py-8 mt-12">
         <div class="max-w-6xl mx-auto px-4 text-center">
-            <p class="text-sm">&copy; 2025 eren0n. Tüm hakları saklıdır.</p>
-            <p class="text-xs mt-2 opacity-60">Sınavınızda Başarılar.</p>
+            <p class="text-sm" data-translate="footer.copyright" data-section="common">&copy; 2025 eren0n. Tüm hakları saklıdır.</p>
+            <p class="text-xs mt-2 opacity-60" data-translate="footer.goodLuck" data-section="common">Sınavınızda Başarılar.</p>
         </div>
     </footer>
 
     <script>
-        // Soru Veri Seti (4. PDF'ten)
-        const quizData = [
-            {
-                id: 1,
-                question: "Enerji verimliliği projelerinin (retrofit) ekonomik olarak değerli (worthwhile) olması için temel koşul nedir?",
-                options: [
-                    "Projenin 1 yıldan kısa sürmesi",
-                    "Başlangıç maliyetlerinin, projenin ömrü boyunca elde edilen tasarrufların toplamından düşük olması",
-                    "Projede en son teknolojinin kullanılması",
-                    "Projenin devlet tarafından finanse edilmesi"
-                ],
-                correctAnswer: "Başlangıç maliyetlerinin, projenin ömrü boyunca elde edilen tasarrufların toplamından düşük olması"
-            },
-            {
-                id: 2,
-                question: "Mühendislik ekonomisinde, farklı yıllardaki para miktarlarının (tasarruf ve harcamalar) doğrudan toplanamamasının ana nedeni nedir?",
-                options: [
-                    "Vergi oranlarının değişmesi",
-                    "Paranın zaman değeri (Time value of money)",
-                    "Muhasebe kayıtlarının zorluğu",
-                    "Proje ömrünün belirsizliği"
-                ],
-                correctAnswer: "Paranın zaman değeri (Time value of money)"
-            },
-            {
-                id: 3,
-                question: "Borç alınan paranın (Principal - P) kullanımı için alınan ücrete ne ad verilir?",
-                options: [
-                    "Enflasyon (&lambda;)",
-                    "Faiz (Interest - I)",
-                    "Vergi (Tax - t)",
-                    "Nakit Akışı (Cash Flow)"
-                ],
-                correctAnswer: "Faiz (Interest - I)"
-            },
-            {
-                id: 4,
-                question: "Hangi faiz hesaplama yönteminde, faiz her dönemin sonunda anaparaya eklenir ve bir sonraki dönemde faiz, bu yeni toplam (anapara + faiz) üzerinden hesaplanır?",
-                options: [
-                    "Basit Faiz (Simple Interest)",
-                    "Bileşik Faiz (Compounded Interest)",
-                    "Nominal Faiz (Nominal Interest)",
-                    "Negatif Faiz (Negative Interest)"
-                ],
-                correctAnswer: "Bileşik Faiz (Compounded Interest)"
-            },
-            {
-                id: 5,
-                question: "Bileşik faizde, bugünkü değeri (P) olan bir paranın N yıl sonraki gelecekteki değerini (F) %i faiz oranıyla hesaplayan formül nedir?",
-                options: [
-                    "F = P * (1 + N*i)",
-                    "F = P * (1 + i / N)",
-                    "F = P * (1 + i) / N",
-                    "F = P * (1 + i)^N"
-                ],
-                correctAnswer: "F = P * (1 + i)^N"
-            },
-            {
-                id: 6,
-                question: "Enflasyon (&lambda;) oranının, paranın gelecekteki satın alma gücü üzerindeki etkisi nedir?",
-                options: [
-                    "Paranın satın alma gücünü artırır",
-                    "Paranın satın alma gücünü azaltır",
-                    "Paranın satın alma gücünü etkilemez",
-                    "Sadece faiz oranını etkiler"
-                ],
-                correctAnswer: "Paranın satın alma gücünü azaltır"
-            },
-            {
-                id: 7,
-                question: "Hem faiz (i) hem de enflasyonu (&lambda;) hesaba katan 'bileşik faiz oranı' (composite interest rate - &theta;) nasıl hesaplanır?",
-                options: [
-                    "&theta; = (i + &lambda;) / (1 + &lambda;)",
-                    "&theta; = i - &lambda;",
-                    "&theta; = (i - &lambda;) / (1 + &lambda;)",
-                    "&theta; = i + &lambda;"
-                ],
-                correctAnswer: "&theta; = (i - &lambda;) / (1 + &lambda;)"
-            },
-            {
-                id: 8,
-                question: "Enflasyon (&lambda;) ve vergi oranını (t) da hesaba katan nihai bileşik faiz oranı (&theta;) formülü nedir?",
-                options: [
-                    "&theta; = [(1 - t)i - &lambda;] / (1 + &lambda;)",
-                    "&theta; = [(1 + t)i - &lambda;] / (1 - &lambda;)",
-                    "&theta; = (i - t - &lambda;) / (1 + &lambda;)",
-                    "&theta; = (1 - t) * (i - &lambda;)"
-                ],
-                correctAnswer: "&theta; = [(1 - t)i - &lambda;] / (1 + &lambda;)"
-            },
-            {
-                id: 9,
-                question: "Belirli bir dönemdeki (örn. bir yıl) toplam nakit girişleri (tasarruflar) ile toplam nakit çıkışları (maliyetler) arasındaki farka ne ad verilir?",
-                options: [
-                    "Faiz (Interest)",
-                    "Bilanço (Balance Sheet)",
-                    "Nakit Akışı (Cash Flow)",
-                    "Amortisman (Depreciation)"
-                ],
-                correctAnswer: "Nakit Akışı (Cash Flow)"
-            },
-            {
-                id: 10,
-                question: "Gelecekteki (N yıl sonra) tek bir meblağın (F) *bugünkü değerini* (P) bulmak için kullanılan faktör nedir?",
-                options: [
-                    "Tek Seferlik Bugünkü Değer Faktörü (SPPW)",
-                    "Tek Seferlik Gelecek Değer Faktörü (SPCA)",
-                    "Üniform Seri Bugünkü Değer Faktörü (USPW)",
-                    "Üniform Seri Sermaye Kurtarma Faktörü (USCR)"
-                ],
-                correctAnswer: "Tek Seferlik Bugünkü Değer Faktörü (SPPW)"
-            },
-            {
-                id: 11,
-                question: "N yıl boyunca *her yıl* elde edilecek sabit (A) bir tasarrufun *toplam bugünkü değerini* (P) bulmak için hangi faktör kullanılır?",
-                options: [
-                    "SPPW",
-                    "SPCA",
-                    "USPW",
-                    "USCR"
-                ],
-                correctAnswer: "USPW"
-            },
-            {
-                id: 12,
-                question: "Proje ömrü boyunca tüm nakit akışlarının (ilk yatırım ve yıllık tasarruflar) bugünkü değerlerinin toplamını bulan yönteme ne ad verilir?",
-                options: [
-                    "Net Bugünkü Değer (NPW)",
-                    "Geri Ödeme Süresi (Payback Period)",
-                    "Fayda-Maliyet Oranı (BCR)",
-                    "Yaşam Döngüsü Maliyeti (LCC)"
-                ],
-                correctAnswer: "Net Bugünkü Değer (NPW)"
-            },
-            {
-                id: 13,
-                question: "Net Bugünkü Değer (NPW) yöntemine göre bir projenin ekonomik olarak uygulanabilir (viable) olması için kriter nedir?",
-                options: [
-                    "NPW = 0",
-                    "NPW < 0",
-                    "NPW >= 0",
-                    "NPW = İlk Yatırım"
-                ],
-                correctAnswer: "NPW >= 0"
-            },
-            {
-                id: 14,
-                question: "Bir projenin ilk yatırım maliyetini geri kazanmak için gereken süreyi (Yıl) hesaplayan yönteme ne ad verilir?",
-                options: [
-                    "Net Bugünkü Değer (NPW)",
-                    "Geri Ödeme Süresi (Payback Period)",
-                    "İç Verim Oranı (ROR)",
-                    "Yaşam Döngüsü Maliyeti (LCC)"
-                ],
-                correctAnswer: "Geri Ödeme Süresi (Payback Period)"
-            },
-            {
-                id: 15,
-                question: "Farklı proje alternatiflerini (örn. A kazanı vs B kazanı) karşılaştırırken, her bir alternatifin tüm proje ömrü boyunca *toplam maliyetini* (ilk yatırım + işletme) bugünkü değere indirgeyen yönteme ne ad verilir?",
-                options: [
-                    "Net Bugünkü Değer (NPW) Analizi",
-                    "Basit Geri Ödeme (SPB) Analizi",
-                    "Fayda-Maliyet Oranı (BCR) Analizi",
-                    "Yaşam Döngüsü Maliyeti (LCC) Analizi"
-                ],
-                correctAnswer: "Yaşam Döngüsü Maliyeti (LCC) Analizi"
-            }
-        ];
+        // Bilingual Quiz Data (Chapter 4: Engineering Economics)
+        const quizDataBilingual = {
+            tr: [
+                {
+                    id: 1,
+                    question: "Enerji verimliliği projelerinin (retrofit) ekonomik olarak değerli (worthwhile) olması için temel koşul nedir?",
+                    options: [
+                        "Projenin 1 yıldan kısa sürmesi",
+                        "Başlangıç maliyetlerinin, projenin ömrü boyunca elde edilen tasarrufların toplamından düşük olması",
+                        "Projede en son teknolojinin kullanılması",
+                        "Projenin devlet tarafından finanse edilmesi"
+                    ],
+                    correctAnswer: "Başlangıç maliyetlerinin, projenin ömrü boyunca elde edilen tasarrufların toplamından düşük olması"
+                },
+                {
+                    id: 2,
+                    question: "Mühendislik ekonomisinde, farklı yıllardaki para miktarlarının (tasarruf ve harcamalar) doğrudan toplanamamasının ana nedeni nedir?",
+                    options: [
+                        "Vergi oranlarının değişmesi",
+                        "Paranın zaman değeri (Time value of money)",
+                        "Muhasebe kayıtlarının zorluğu",
+                        "Proje ömrünün belirsizliği"
+                    ],
+                    correctAnswer: "Paranın zaman değeri (Time value of money)"
+                },
+                {
+                    id: 3,
+                    question: "Borç alınan paranın (Principal - P) kullanımı için alınan ücrete ne ad verilir?",
+                    options: [
+                        "Enflasyon (&lambda;)",
+                        "Faiz (Interest - I)",
+                        "Vergi (Tax - t)",
+                        "Nakit Akışı (Cash Flow)"
+                    ],
+                    correctAnswer: "Faiz (Interest - I)"
+                },
+                {
+                    id: 4,
+                    question: "Hangi faiz hesaplama yönteminde, faiz her dönemin sonunda anaparaya eklenir ve bir sonraki dönemde faiz, bu yeni toplam (anapara + faiz) üzerinden hesaplanır?",
+                    options: [
+                        "Basit Faiz (Simple Interest)",
+                        "Bileşik Faiz (Compounded Interest)",
+                        "Nominal Faiz (Nominal Interest)",
+                        "Negatif Faiz (Negative Interest)"
+                    ],
+                    correctAnswer: "Bileşik Faiz (Compounded Interest)"
+                },
+                {
+                    id: 5,
+                    question: "Bileşik faizde, bugünkü değeri (P) olan bir paranın N yıl sonraki gelecekteki değerini (F) %i faiz oranıyla hesaplayan formül nedir?",
+                    options: [
+                        "F = P * (1 + N*i)",
+                        "F = P * (1 + i / N)",
+                        "F = P * (1 + i) / N",
+                        "F = P * (1 + i)^N"
+                    ],
+                    correctAnswer: "F = P * (1 + i)^N"
+                },
+                {
+                    id: 6,
+                    question: "Enflasyon (&lambda;) oranının, paranın gelecekteki satın alma gücü üzerindeki etkisi nedir?",
+                    options: [
+                        "Paranın satın alma gücünü artırır",
+                        "Paranın satın alma gücünü azaltır",
+                        "Paranın satın alma gücünü etkilemez",
+                        "Sadece faiz oranını etkiler"
+                    ],
+                    correctAnswer: "Paranın satın alma gücünü azaltır"
+                },
+                {
+                    id: 7,
+                    question: "Hem faiz (i) hem de enflasyonu (&lambda;) hesaba katan 'bileşik faiz oranı' (composite interest rate - &theta;) nasıl hesaplanır?",
+                    options: [
+                        "&theta; = (i + &lambda;) / (1 + &lambda;)",
+                        "&theta; = i - &lambda;",
+                        "&theta; = (i - &lambda;) / (1 + &lambda;)",
+                        "&theta; = i + &lambda;"
+                    ],
+                    correctAnswer: "&theta; = (i - &lambda;) / (1 + &lambda;)"
+                },
+                {
+                    id: 8,
+                    question: "Enflasyon (&lambda;) ve vergi oranını (t) da hesaba katan nihai bileşik faiz oranı (&theta;) formülü nedir?",
+                    options: [
+                        "&theta; = [(1 - t)i - &lambda;] / (1 + &lambda;)",
+                        "&theta; = [(1 + t)i - &lambda;] / (1 - &lambda;)",
+                        "&theta; = (i - t - &lambda;) / (1 + &lambda;)",
+                        "&theta; = (1 - t) * (i - &lambda;)"
+                    ],
+                    correctAnswer: "&theta; = [(1 - t)i - &lambda;] / (1 + &lambda;)"
+                },
+                {
+                    id: 9,
+                    question: "Belirli bir dönemdeki (örn. bir yıl) toplam nakit girişleri (tasarruflar) ile toplam nakit çıkışları (maliyetler) arasındaki farka ne ad verilir?",
+                    options: [
+                        "Faiz (Interest)",
+                        "Bilanço (Balance Sheet)",
+                        "Nakit Akışı (Cash Flow)",
+                        "Amortisman (Depreciation)"
+                    ],
+                    correctAnswer: "Nakit Akışı (Cash Flow)"
+                },
+                {
+                    id: 10,
+                    question: "Gelecekteki (N yıl sonra) tek bir meblağın (F) *bugünkü değerini* (P) bulmak için kullanılan faktör nedir?",
+                    options: [
+                        "Tek Seferlik Bugünkü Değer Faktörü (SPPW)",
+                        "Tek Seferlik Gelecek Değer Faktörü (SPCA)",
+                        "Üniform Seri Bugünkü Değer Faktörü (USPW)",
+                        "Üniform Seri Sermaye Kurtarma Faktörü (USCR)"
+                    ],
+                    correctAnswer: "Tek Seferlik Bugünkü Değer Faktörü (SPPW)"
+                },
+                {
+                    id: 11,
+                    question: "N yıl boyunca *her yıl* elde edilecek sabit (A) bir tasarrufun *toplam bugünkü değerini* (P) bulmak için hangi faktör kullanılır?",
+                    options: [
+                        "SPPW",
+                        "SPCA",
+                        "USPW",
+                        "USCR"
+                    ],
+                    correctAnswer: "USPW"
+                },
+                {
+                    id: 12,
+                    question: "Proje ömrü boyunca tüm nakit akışlarının (ilk yatırım ve yıllık tasarruflar) bugünkü değerlerinin toplamını bulan yönteme ne ad verilir?",
+                    options: [
+                        "Net Bugünkü Değer (NPW)",
+                        "Geri Ödeme Süresi (Payback Period)",
+                        "Fayda-Maliyet Oranı (BCR)",
+                        "Yaşam Döngüsü Maliyeti (LCC)"
+                    ],
+                    correctAnswer: "Net Bugünkü Değer (NPW)"
+                },
+                {
+                    id: 13,
+                    question: "Net Bugünkü Değer (NPW) yöntemine göre bir projenin ekonomik olarak uygulanabilir (viable) olması için kriter nedir?",
+                    options: [
+                        "NPW = 0",
+                        "NPW < 0",
+                        "NPW >= 0",
+                        "NPW = İlk Yatırım"
+                    ],
+                    correctAnswer: "NPW >= 0"
+                },
+                {
+                    id: 14,
+                    question: "Bir projenin ilk yatırım maliyetini geri kazanmak için gereken süreyi (Yıl) hesaplayan yönteme ne ad verilir?",
+                    options: [
+                        "Net Bugünkü Değer (NPW)",
+                        "Geri Ödeme Süresi (Payback Period)",
+                        "İç Verim Oranı (ROR)",
+                        "Yaşam Döngüsü Maliyeti (LCC)"
+                    ],
+                    correctAnswer: "Geri Ödeme Süresi (Payback Period)"
+                },
+                {
+                    id: 15,
+                    question: "Farklı proje alternatiflerini (örn. A kazanı vs B kazanı) karşılaştırırken, her bir alternatifin tüm proje ömrü boyunca *toplam maliyetini* (ilk yatırım + işletme) bugünkü değere indirgeyen yönteme ne ad verilir?",
+                    options: [
+                        "Net Bugünkü Değer (NPW) Analizi",
+                        "Basit Geri Ödeme (SPB) Analizi",
+                        "Fayda-Maliyet Oranı (BCR) Analizi",
+                        "Yaşam Döngüsü Maliyeti (LCC) Analizi"
+                    ],
+                    correctAnswer: "Yaşam Döngüsü Maliyeti (LCC) Analizi"
+                }
+            ],
+            en: [
+                {
+                    id: 1,
+                    question: "What is the basic condition for energy efficiency (retrofit) projects to be economically worthwhile?",
+                    options: [
+                        "The project must take less than 1 year",
+                        "Initial costs must be lower than the sum of savings obtained over the project's lifetime",
+                        "The project must use the latest technology",
+                        "The project must be financed by the government"
+                    ],
+                    correctAnswer: "Initial costs must be lower than the sum of savings obtained over the project's lifetime"
+                },
+                {
+                    id: 2,
+                    question: "In engineering economics, what is the main reason why different years' monetary amounts (savings and expenses) cannot be directly added?",
+                    options: [
+                        "Changes in tax rates",
+                        "Time value of money",
+                        "Difficulty in accounting records",
+                        "Uncertainty of project lifetime"
+                    ],
+                    correctAnswer: "Time value of money"
+                },
+                {
+                    id: 3,
+                    question: "What is the fee charged for the use of borrowed money (Principal - P) called?",
+                    options: [
+                        "Inflation (&lambda;)",
+                        "Interest (I)",
+                        "Tax (t)",
+                        "Cash Flow"
+                    ],
+                    correctAnswer: "Interest (I)"
+                },
+                {
+                    id: 4,
+                    question: "In which interest calculation method is interest added to the principal at the end of each period, and in the next period, interest is calculated on this new total (principal + interest)?",
+                    options: [
+                        "Simple Interest",
+                        "Compounded Interest",
+                        "Nominal Interest",
+                        "Negative Interest"
+                    ],
+                    correctAnswer: "Compounded Interest"
+                },
+                {
+                    id: 5,
+                    question: "What is the formula for calculating the future value (F) of money with present value (P) after N years with compound interest rate i?",
+                    options: [
+                        "F = P * (1 + N*i)",
+                        "F = P * (1 + i / N)",
+                        "F = P * (1 + i) / N",
+                        "F = P * (1 + i)^N"
+                    ],
+                    correctAnswer: "F = P * (1 + i)^N"
+                },
+                {
+                    id: 6,
+                    question: "What is the effect of inflation rate (&lambda;) on the future purchasing power of money?",
+                    options: [
+                        "Increases the purchasing power of money",
+                        "Decreases the purchasing power of money",
+                        "Does not affect the purchasing power of money",
+                        "Only affects the interest rate"
+                    ],
+                    correctAnswer: "Decreases the purchasing power of money"
+                },
+                {
+                    id: 7,
+                    question: "How is the 'composite interest rate' (&theta;) calculated, which accounts for both interest (i) and inflation (&lambda;)?",
+                    options: [
+                        "&theta; = (i + &lambda;) / (1 + &lambda;)",
+                        "&theta; = i - &lambda;",
+                        "&theta; = (i - &lambda;) / (1 + &lambda;)",
+                        "&theta; = i + &lambda;"
+                    ],
+                    correctAnswer: "&theta; = (i - &lambda;) / (1 + &lambda;)"
+                },
+                {
+                    id: 8,
+                    question: "What is the formula for the final composite interest rate (&theta;) that also accounts for inflation (&lambda;) and tax rate (t)?",
+                    options: [
+                        "&theta; = [(1 - t)i - &lambda;] / (1 + &lambda;)",
+                        "&theta; = [(1 + t)i - &lambda;] / (1 - &lambda;)",
+                        "&theta; = (i - t - &lambda;) / (1 + &lambda;)",
+                        "&theta; = (1 - t) * (i - &lambda;)"
+                    ],
+                    correctAnswer: "&theta; = [(1 - t)i - &lambda;] / (1 + &lambda;)"
+                },
+                {
+                    id: 9,
+                    question: "What is the difference between total cash inflows (savings) and total cash outflows (costs) in a specific period (e.g., one year) called?",
+                    options: [
+                        "Interest",
+                        "Balance Sheet",
+                        "Cash Flow",
+                        "Depreciation"
+                    ],
+                    correctAnswer: "Cash Flow"
+                },
+                {
+                    id: 10,
+                    question: "What is the factor used to find the *present value* (P) of a single future amount (F) in N years called?",
+                    options: [
+                        "Single Payment Present Worth Factor (SPPW)",
+                        "Single Payment Compound Amount Factor (SPCA)",
+                        "Uniform Series Present Worth Factor (USPW)",
+                        "Uniform Series Capital Recovery Factor (USCR)"
+                    ],
+                    correctAnswer: "Single Payment Present Worth Factor (SPPW)"
+                },
+                {
+                    id: 11,
+                    question: "Which factor is used to find the *total present value* (P) of a fixed (A) savings to be obtained *each year* over N years?",
+                    options: [
+                        "SPPW",
+                        "SPCA",
+                        "USPW",
+                        "USCR"
+                    ],
+                    correctAnswer: "USPW"
+                },
+                {
+                    id: 12,
+                    question: "What is the method called that finds the sum of the present values of all cash flows (initial investment and annual savings) over the project lifetime?",
+                    options: [
+                        "Net Present Worth (NPW)",
+                        "Payback Period",
+                        "Benefit-Cost Ratio (BCR)",
+                        "Life Cycle Cost (LCC)"
+                    ],
+                    correctAnswer: "Net Present Worth (NPW)"
+                },
+                {
+                    id: 13,
+                    question: "According to the Net Present Worth (NPW) method, what is the criterion for a project to be economically viable?",
+                    options: [
+                        "NPW = 0",
+                        "NPW < 0",
+                        "NPW >= 0",
+                        "NPW = Initial Investment"
+                    ],
+                    correctAnswer: "NPW >= 0"
+                },
+                {
+                    id: 14,
+                    question: "What is the method called that calculates the time (Years) required to recover a project's initial investment cost?",
+                    options: [
+                        "Net Present Worth (NPW)",
+                        "Payback Period",
+                        "Rate of Return (ROR)",
+                        "Life Cycle Cost (LCC)"
+                    ],
+                    correctAnswer: "Payback Period"
+                },
+                {
+                    id: 15,
+                    question: "When comparing different project alternatives (e.g., Boiler A vs Boiler B), what is the method called that reduces the *total cost* (initial investment + operation) of each alternative over the entire project lifetime to present value?",
+                    options: [
+                        "Net Present Worth (NPW) Analysis",
+                        "Simple Payback (SPB) Analysis",
+                        "Benefit-Cost Ratio (BCR) Analysis",
+                        "Life Cycle Cost (LCC) Analysis"
+                    ],
+                    correctAnswer: "Life Cycle Cost (LCC) Analysis"
+                }
+            ]
+        };
+
+        // Get quiz data based on current language
+        function getQuizData() {
+            const lang = getLanguage();
+            return quizDataBilingual[lang] || quizDataBilingual.tr;
+        }
 
         
         document.addEventListener('DOMContentLoaded', () => {
@@ -263,13 +441,16 @@
 
             // 1. Sınavı Yükle
             function loadQuiz() {
+                const quizData = getQuizData();
+                const lang = getLanguage();
+                const questionText = translate('question', 'quiz');
                 let quizHTML = '';
                 quizData.forEach((q, index) => {
                     // Soru başlığı
                     quizHTML += `
                         <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100" id="question-card-${q.id}">
                             <p class="text-lg font-semibold text-gray-800">
-                                Soru ${index + 1}: ${q.question}
+                                ${questionText} ${index + 1}: ${q.question}
                             </p>
                             <div class="space-y-3 mt-4" id="options-container-${q.id}">
                     `;
@@ -294,8 +475,15 @@
             function showResults(event) {
                 event.preventDefault(); // Formun sayfayı yenilemesini engelle
 
+                const quizData = getQuizData();
                 let score = 0;
                 let wrongAnswersHTML = ''; // Yanlış cevaplar için HTML
+                
+                // Get translation texts
+                const lang = getLanguage();
+                const yourAnswerText = translate('yourAnswer', 'quiz');
+                const correctAnswerText = translate('correctAnswer', 'quiz');
+                const leftBlankText = translate('leftBlank', 'quiz');
                 
                 quizData.forEach(q => {
                     const card = document.getElementById(`question-card-${q.id}`);
@@ -337,8 +525,8 @@
                         wrongAnswersHTML += `
                             <div class="p-4 border-b border-gray-200">
                                 <p class="font-semibold text-gray-800">${q.question}</p>
-                                <p class="text-red-600 mt-2"><strong>Sizin Cevabınız:</strong> ${userAnswer || 'Boş bırakıldı'}</p>
-                                <p class="text-green-600 mt-1"><strong>Doğru Cevap:</strong> ${correctAnswer}</p>
+                                <p class="text-red-600 mt-2"><strong>${yourAnswerText}:</strong> ${userAnswer || leftBlankText}</p>
+                                <p class="text-green-600 mt-1"><strong>${correctAnswerText}:</strong> ${correctAnswer}</p>
                             </div>
                         `;
                     }
@@ -346,23 +534,30 @@
 
                 // Sonuçları üstte göster
                 const scorePercentage = Math.round((score / quizData.length) * 100);
+                const examResultText = translate('examResult', 'quiz');
+                const scoreText = translate('score', 'quiz');
+                const correctText = translate('correct', 'quiz');
+                const wrongText = translate('wrong', 'quiz');
+                const wrongQuestionsTitle = translate('wrongQuestionsTitle', 'quiz');
+                const congratulations = translate('congratulations', 'quiz');
+                
                 resultsContainer.innerHTML = `
-                    <h2 class="text-3xl font-bold text-center text-blue-900">Sınav Sonucu</h2>
-                    <p class="text-5xl font-bold text-center my-4">${scorePercentage} Puan</p>
+                    <h2 class="text-3xl font-bold text-center text-blue-900">${examResultText}</h2>
+                    <p class="text-5xl font-bold text-center my-4">${scorePercentage} ${scoreText}</p>
                     <div class="flex justify-center gap-6 text-center text-lg">
-                        <span class="font-semibold text-green-600">Doğru: ${score}</span>
-                        <span class="font-semibold text-red-600">Yanlış: ${quizData.length - score}</span>
+                        <span class="font-semibold text-green-600">${correctText}: ${score}</span>
+                        <span class="font-semibold text-red-600">${wrongText}: ${quizData.length - score}</span>
                     </div>
                     
                     ${wrongAnswersHTML ? `
                         <hr class="my-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Yanlış Sorular ve Doğruları</h3>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">${wrongQuestionsTitle}</h3>
                         <div class="border border-gray-200 rounded-lg overflow-hidden">
                             ${wrongAnswersHTML}
                         </div>
                     ` : `
                         <hr class="my-8">
-                        <p class="text-center text-2xl font-bold text-green-600">🎉 Tebrikler! Tüm soruları doğru cevapladınız! 🎉</p>
+                        <p class="text-center text-2xl font-bold text-green-600">${congratulations}</p>
                     `}
                 `;
 
@@ -376,6 +571,12 @@
             // Olayları Bağla
             loadQuiz();
             quizForm.addEventListener('submit', showResults);
+        
+            // Re-render quiz when language changes
+            document.addEventListener('languageChanged', () => {
+                loadQuiz();
+                updatePageTranslations();
+            });
         });
     </script>
 </body>

@@ -6,6 +6,7 @@
     <title>YTÜ - Enerji Yönetimi Sınavı (Karma 2)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="translations.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -40,13 +41,18 @@
                     YTÜ
                 </div>
                 <div>
-                    <h1 class="text-lg sm:text-xl font-bold text-blue-900 leading-tight">Akıllı Evler ve Enerji Yönetimi</h1>
-                    <p class="text-xs sm:text-sm text-gray-500">Karma Sınav 2 (Bölüm 1-4)</p>
+                    <h1 class="text-lg sm:text-xl font-bold text-blue-900 leading-tight" data-translate="siteTitle" data-section="common">Akıllı Evler ve Enerji Yönetimi</h1>
+                    <p class="text-xs sm:text-sm text-gray-500"><span data-translate="mixedExam" data-section="quiz">Karma Sınav</span> 2 (<span data-translate="chapters" data-section="quiz">Bölüm 1-4</span>)</p>
                 </div>
             </div>
-            <div class="hidden sm:block text-right">
-                <span class="block text-sm font-semibold text-blue-800">Sınava Hazırlan</span>
-                <span class="block text-xs text-gray-500">Ders Özeti Serisi</span>
+            <div class="flex items-center gap-4">
+                <button id="lang-switch-btn" class="px-3 py-2 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors duration-200 border border-blue-200" aria-label="Dil değiştir">
+                    <span class="text-sm font-semibold">🇬🇧 EN</span>
+                </button>
+                <div class="hidden sm:block text-right">
+                    <span class="block text-sm font-semibold text-blue-800" data-translate="prepareForExam" data-section="common">Sınava Hazırlan</span>
+                    <span class="block text-xs text-gray-500" data-translate="courseNotesSeries" data-section="common">Ders Özeti Serisi</span>
+                </div>
             </div>
         </div>
     </header>
@@ -54,8 +60,8 @@
     <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-10">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">Karma Değerlendirme Sınavı 2 (Bölüm 1-4)</h2>
-            <p class="text-gray-600 leading-relaxed">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4"><span data-translate="mixedExam" data-section="quiz">Karma Değerlendirme Sınavı</span> 2 (<span data-translate="chapters" data-section="quiz">Bölüm 1-4</span>)</h2>
+            <p class="text-gray-600 leading-relaxed" data-translate="examIntro" data-section="quiz">
                 Bu sınav, dersin ilk dört bölümündeki (PDF 1-4) temel kavramsal bilgilerinizi ölçmek için hazırlanmıştır. 
                 15 adet çoktan seçmeli sözel soru bulunmaktadır. Başarılar!
             </p>
@@ -66,7 +72,7 @@
                 </div>
 
             <div class="mt-12 text-center">
-                <button type="submit" id="submit-btn" class="bg-blue-800 text-white font-bold py-3 px-10 rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-300">
+                <button type="submit" id="submit-btn" class="bg-blue-800 text-white font-bold py-3 px-10 rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-300" data-translate="finishExam" data-section="quiz">
                     Sınavı Bitir
                 </button>
             </div>
@@ -79,182 +85,356 @@
 
     <footer class="bg-blue-900 text-blue-100 py-8 mt-12">
         <div class="max-w-6xl mx-auto px-4 text-center">
-            <p class="text-sm">&copy; 2025 eren0n. Tüm hakları saklıdır.</p>
-            <p class="text-xs mt-2 opacity-60">Sınavınızda Başarılar.</p>
+            <p class="text-sm" data-translate="footer.copyright" data-section="common">&copy; 2025 eren0n. Tüm hakları saklıdır.</p>
+            <p class="text-xs mt-2 opacity-60" data-translate="footer.goodLuck" data-section="common">Sınavınızda Başarılar.</p>
         </div>
     </footer>
 
     <script>
-        // Soru Veri Seti (Tüm PDF'lerden Karma 2)
-        const quizData = [
-            {
-                id: 1,
-                question: "(Bölüm 2) 'Yük Eğrisi'nin (Load Curve) altında kalan alan neyi ifade eder?",
-                options: [
-                    "O dönemdeki maksimum talebi (kW)",
-                    "O dönemde üretilen toplam enerjiyi (kWh)",
-                    "Santralin kurulu kapasitesini (MW)",
-                    "O dönemdeki ortalama yükü (kW)"
-                ],
-                correctAnswer: "O dönemde üretilen toplam enerjiyi (kWh)"
-            },
-            {
-                id: 2,
-                question: "(Bölüm 4) Ekonomik analizde 'Basit Geri Ödeme' (SPB) yönteminin, 'İskontolu Geri Ödeme' (DPB) yönteminden temel farkı nedir?",
-                options: [
-                    "SPB, paranın zaman değerini ihmal eder; DPB ise hesaba katar.",
-                    "SPB, sadece endüstriyel projelerde kullanılır.",
-                    "SPB, enflasyonu dikkate alır, DPB almaz.",
-                    "SPB, daha uzun bir geri ödeme süresi verir."
-                ],
-                correctAnswer: "SPB, paranın zaman değerini ihmal eder; DPB ise hesaba katar."
-            },
-            {
-                id: 3,
-                question: "(Bölüm 1) Türkiye'nin 2015 yılındaki kişi başı enerji tüketiminin (1.6 toe) OECD ortalamasına (4.2 toe) göre durumu, slaytlarda nasıl adlandırılmıştır?",
-                options: [
-                    "Yüksek verimlilik (High efficiency)",
-                    "Düşük tüketim (Underconsumption)",
-                    "Hızlı büyüme (Rapid growth)",
-                    "Durgunluk (Stagnation)"
-                ],
-                correctAnswer: "Düşük tüketim (Underconsumption)"
-            },
-            {
-                id: 4,
-                question: "(Bölüm 3) 'Azalan Blok Fiyatlandırma' (Descending Block Rate) tarifesi nasıl çalışır?",
-                options: [
-                    "Enerji tüketimi arttıkça birim fiyat artar.",
-                    "Enerji tüketimi arttıkça birim fiyat azalır.",
-                    "Fiyatlar günün saatine göre değişir.",
-                    "Fiyatlar sadece yaz aylarında azalır."
-                ],
-                correctAnswer: "Enerji tüketimi arttıkça birim fiyat azalır."
-            },
-            {
-                id: 5,
-                question: "(Bölüm 2) Bir santralin 'Yedek Kapasitesi' (Reserve Capacity) nasıl hesaplanır?",
-                options: [
-                    "Santral Kapasitesi - Ortalama Yük",
-                    "Santral Kapasitesi - Maksimum Talep",
-                    "Maksimum Talep - Ortalama Yük",
-                    "Toplam Bağlı Yük - Maksimum Talep"
-                ],
-                correctAnswer: "Santral Kapasitesi - Maksimum Talep"
-            },
-            {
-                id: 6,
-                question: "(Bölüm 4) N yıl boyunca *her yıl* sabit (A) bir ödeme yaparak bugünkü (P) bir borcu kapatmak için gereken yıllık (A) miktarını bulan faktör nedir?",
-                options: [
-                    "SPPW (Tek Seferlik Bugünkü Değer)",
-                    "SPCA (Tek Seferlik Gelecek Değer)",
-                    "USPW (Üniform Seri Bugünkü Değer)",
-                    "USCR (Üniform Seri Sermaye Kurtarma)"
-                ],
-                correctAnswer: "USCR (Üniform Seri Sermaye Kurtarma)"
-            },
-            {
-                id: 7,
-                question: "(Bölüm 1) Asit yağmurlarına neden olan ve özellikle kömür/fuel oil yakan santrallerden salınan birincil gaz hangisidir?",
-                options: [
-                    "CO2 (Karbondioksit)",
-                    "SO2 (Kükürt Dioksit)",
-                    "CH4 (Metan)",
-                    "N2O (Diazot Monoksit)"
-                ],
-                correctAnswer: "SO2 (Kükürt Dioksit)"
-            },
-            {
-                id: 8,
-                question: "(Bölüm 3) Bir faturada, tedarikçinin müşterinin kendi trafosuna sahip olması (customer-owned transformer) durumunda indirim yapması, hangi tarife bileşeni kapsamındadır?",
-                options: [
-                    "Hizmet Seviyesi (Service Level)",
-                    "Güç Faktörü Maddesi (Power Factor Clause)",
-                    "Ratchet Clause",
-                    "Yakıt Maliyeti Ayarlaması"
-                ],
-                correctAnswer: "Hizmet Seviyesi (Service Level)"
-            },
-            {
-                id: 9,
-                question: "(Bölüm 4) Ekonomik analizde 'enflasyon' (&lambda;) kavramı neyi ifade eder?",
-                options: [
-                    "Paranın faiz getirisi oranını",
-                    "Projenin toplam maliyetini",
-                    "Mal ve hizmetlerin fiyatının zamanla artış oranını",
-                    "Devletin aldığı vergi oranını"
-                ],
-                correctAnswer: "Mal ve hizmetlerin fiyatının zamanla artış oranını"
-            },
-            {
-                id: 10,
-                question: "(Bölüm 2) Sokak aydınlatması ve su temini için gereken pompaların oluşturduğu yük kategorisi hangisidir?",
-                options: [
-                    "Evsel Yük (Domestic load)",
-                    "Belediye Yükü (Municipal load)",
-                    "Ticari Yük (Commercial load)",
-                    "Endüstriyel Yük (Industrial load)"
-                ],
-                correctAnswer: "Belediye Yükü (Municipal load)"
-            },
-            {
-                id: 11,
-                question: "(Bölüm 3) Aşağıdakilerden hangisi 'Geleneksel' (Conventional) bir Dağıtık Enerji Kaynağı (DER) örneğidir?",
-                options: [
-                    "Yakıt Hücresi (Fuel Cell)",
-                    "Güneş (Solar)",
-                    "Gaz Türbini (Gas Turbine)",
-                    "Rüzgar (Wind)"
-                ],
-                correctAnswer: "Gaz Türbini (Gas Turbine)"
-            },
-            {
-                id: 12,
-                question: "(Bölüm 4) Bir projenin 'Fayda-Maliyet Oranı' (BCR) yöntemine göre ekonomik olarak kabul edilebilir olması için kriter nedir?",
-                options: [
-                    "BCR = 0",
-                    "BCR < 1.0",
-                    "BCR > 1.0",
-                    "BCR = 1.0"
-                ],
-                correctAnswer: "BCR > 1.0"
-            },
-            {
-                id: 13,
-                question: "(Bölüm 1) Enerji yönetimi sayesinde, yeni teknolojiler ve süreçler kullanarak şirketlerin maliyet tasarrufunun yanı sıra elde ettiği ek fayda nedir?",
-                options: [
-                    "Daha fazla hammadde tüketimi",
-                    "Üretkenlik artışı (productivity improvement)",
-                    "Daha fazla personel istihdamı",
-                    "Daha düşük vergi ödemesi"
-                ],
-                correctAnswer: "Üretkenlik artışı (productivity improvement)"
-            },
-            {
-                id: 14,
-                question: "(Bölüm 4) Bir projenin Net Bugünkü Değerini (NPW) sıfıra eşitleyen 'iskonto oranını' bulan ekonomik analiz yöntemi hangisidir?",
-                options: [
-                    "Geri Dönüş Oranı (Rate of Return - ROR)",
-                    "Geri Ödeme Süresi (Payback Period)",
-                    "Fayda-Maliyet Oranı (BCR)",
-                    "Yaşam Döngüsü Maliyeti (LCC)"
-                ],
-                correctAnswer: "Geri Dönüş Oranı (Rate of Return - ROR)"
-            },
-            {
-                id: 15,
-                question: "(Bölüm 3) Elektrik tarifesini belirlerken dikkate alınan 'İdari Maliyetler' (Administrative costs) neleri içerir?",
-                options: [
-                    "Sadece santralde kullanılan yakıtın maliyetini",
-                    "Sadece iletim hatlarının maliyetini",
-                    "Yönetim, teknik personel maaşları, sigorta ve bakım maliyetlerini",
-                    "Sadece devlet vergilerini"
-                ],
-                correctAnswer: "Yönetim, teknik personel maaşları, sigorta ve bakım maliyetlerini"
-            }
-        ];
+        // Bilingual Quiz Data - Both Turkish and English
+        const quizDataBilingual = {
+            tr: [
+                {
+                    id: 1,
+                    question: "(Bölüm 2) 'Yük Eğrisi'nin (Load Curve) altında kalan alan neyi ifade eder?",
+                    options: [
+                        "O dönemdeki maksimum talebi (kW)",
+                        "O dönemde üretilen toplam enerjiyi (kWh)",
+                        "Santralin kurulu kapasitesini (MW)",
+                        "O dönemdeki ortalama yükü (kW)"
+                    ],
+                    correctAnswer: "O dönemde üretilen toplam enerjiyi (kWh)"
+                },
+                {
+                    id: 2,
+                    question: "(Bölüm 4) Ekonomik analizde 'Basit Geri Ödeme' (SPB) yönteminin, 'İskontolu Geri Ödeme' (DPB) yönteminden temel farkı nedir?",
+                    options: [
+                        "SPB, paranın zaman değerini ihmal eder; DPB ise hesaba katar.",
+                        "SPB, sadece endüstriyel projelerde kullanılır.",
+                        "SPB, enflasyonu dikkate alır, DPB almaz.",
+                        "SPB, daha uzun bir geri ödeme süresi verir."
+                    ],
+                    correctAnswer: "SPB, paranın zaman değerini ihmal eder; DPB ise hesaba katar."
+                },
+                {
+                    id: 3,
+                    question: "(Bölüm 1) Türkiye'nin 2015 yılındaki kişi başı enerji tüketiminin (1.6 toe) OECD ortalamasına (4.2 toe) göre durumu, slaytlarda nasıl adlandırılmıştır?",
+                    options: [
+                        "Yüksek verimlilik (High efficiency)",
+                        "Düşük tüketim (Underconsumption)",
+                        "Hızlı büyüme (Rapid growth)",
+                        "Durgunluk (Stagnation)"
+                    ],
+                    correctAnswer: "Düşük tüketim (Underconsumption)"
+                },
+                {
+                    id: 4,
+                    question: "(Bölüm 3) 'Azalan Blok Fiyatlandırma' (Descending Block Rate) tarifesi nasıl çalışır?",
+                    options: [
+                        "Enerji tüketimi arttıkça birim fiyat artar.",
+                        "Enerji tüketimi arttıkça birim fiyat azalır.",
+                        "Fiyatlar günün saatine göre değişir.",
+                        "Fiyatlar sadece yaz aylarında azalır."
+                    ],
+                    correctAnswer: "Enerji tüketimi arttıkça birim fiyat azalır."
+                },
+                {
+                    id: 5,
+                    question: "(Bölüm 2) Bir santralin 'Yedek Kapasitesi' (Reserve Capacity) nasıl hesaplanır?",
+                    options: [
+                        "Santral Kapasitesi - Ortalama Yük",
+                        "Santral Kapasitesi - Maksimum Talep",
+                        "Maksimum Talep - Ortalama Yük",
+                        "Toplam Bağlı Yük - Maksimum Talep"
+                    ],
+                    correctAnswer: "Santral Kapasitesi - Maksimum Talep"
+                },
+                {
+                    id: 6,
+                    question: "(Bölüm 4) N yıl boyunca *her yıl* sabit (A) bir ödeme yaparak bugünkü (P) bir borcu kapatmak için gereken yıllık (A) miktarını bulan faktör nedir?",
+                    options: [
+                        "SPPW (Tek Seferlik Bugünkü Değer)",
+                        "SPCA (Tek Seferlik Gelecek Değer)",
+                        "USPW (Üniform Seri Bugünkü Değer)",
+                        "USCR (Üniform Seri Sermaye Kurtarma)"
+                    ],
+                    correctAnswer: "USCR (Üniform Seri Sermaye Kurtarma)"
+                },
+                {
+                    id: 7,
+                    question: "(Bölüm 1) Asit yağmurlarına neden olan ve özellikle kömür/fuel oil yakan santrallerden salınan birincil gaz hangisidir?",
+                    options: [
+                        "CO2 (Karbondioksit)",
+                        "SO2 (Kükürt Dioksit)",
+                        "CH4 (Metan)",
+                        "N2O (Diazot Monoksit)"
+                    ],
+                    correctAnswer: "SO2 (Kükürt Dioksit)"
+                },
+                {
+                    id: 8,
+                    question: "(Bölüm 3) Bir faturada, tedarikçinin müşterinin kendi trafosuna sahip olması (customer-owned transformer) durumunda indirim yapması, hangi tarife bileşeni kapsamındadır?",
+                    options: [
+                        "Hizmet Seviyesi (Service Level)",
+                        "Güç Faktörü Maddesi (Power Factor Clause)",
+                        "Ratchet Clause",
+                        "Yakıt Maliyeti Ayarlaması"
+                    ],
+                    correctAnswer: "Hizmet Seviyesi (Service Level)"
+                },
+                {
+                    id: 9,
+                    question: "(Bölüm 4) Ekonomik analizde 'enflasyon' (&lambda;) kavramı neyi ifade eder?",
+                    options: [
+                        "Paranın faiz getirisi oranını",
+                        "Projenin toplam maliyetini",
+                        "Mal ve hizmetlerin fiyatının zamanla artış oranını",
+                        "Devletin aldığı vergi oranını"
+                    ],
+                    correctAnswer: "Mal ve hizmetlerin fiyatının zamanla artış oranını"
+                },
+                {
+                    id: 10,
+                    question: "(Bölüm 2) Sokak aydınlatması ve su temini için gereken pompaların oluşturduğu yük kategorisi hangisidir?",
+                    options: [
+                        "Evsel Yük (Domestic load)",
+                        "Belediye Yükü (Municipal load)",
+                        "Ticari Yük (Commercial load)",
+                        "Endüstriyel Yük (Industrial load)"
+                    ],
+                    correctAnswer: "Belediye Yükü (Municipal load)"
+                },
+                {
+                    id: 11,
+                    question: "(Bölüm 3) Aşağıdakilerden hangisi 'Geleneksel' (Conventional) bir Dağıtık Enerji Kaynağı (DER) örneğidir?",
+                    options: [
+                        "Yakıt Hücresi (Fuel Cell)",
+                        "Güneş (Solar)",
+                        "Gaz Türbini (Gas Turbine)",
+                        "Rüzgar (Wind)"
+                    ],
+                    correctAnswer: "Gaz Türbini (Gas Turbine)"
+                },
+                {
+                    id: 12,
+                    question: "(Bölüm 4) Bir projenin 'Fayda-Maliyet Oranı' (BCR) yöntemine göre ekonomik olarak kabul edilebilir olması için kriter nedir?",
+                    options: [
+                        "BCR = 0",
+                        "BCR < 1.0",
+                        "BCR > 1.0",
+                        "BCR = 1.0"
+                    ],
+                    correctAnswer: "BCR > 1.0"
+                },
+                {
+                    id: 13,
+                    question: "(Bölüm 1) Enerji yönetimi sayesinde, yeni teknolojiler ve süreçler kullanarak şirketlerin maliyet tasarrufunun yanı sıra elde ettiği ek fayda nedir?",
+                    options: [
+                        "Daha fazla hammadde tüketimi",
+                        "Üretkenlik artışı (productivity improvement)",
+                        "Daha fazla personel istihdamı",
+                        "Daha düşük vergi ödemesi"
+                    ],
+                    correctAnswer: "Üretkenlik artışı (productivity improvement)"
+                },
+                {
+                    id: 14,
+                    question: "(Bölüm 4) Bir projenin Net Bugünkü Değerini (NPW) sıfıra eşitleyen 'iskonto oranını' bulan ekonomik analiz yöntemi hangisidir?",
+                    options: [
+                        "Geri Dönüş Oranı (Rate of Return - ROR)",
+                        "Geri Ödeme Süresi (Payback Period)",
+                        "Fayda-Maliyet Oranı (BCR)",
+                        "Yaşam Döngüsü Maliyeti (LCC)"
+                    ],
+                    correctAnswer: "Geri Dönüş Oranı (Rate of Return - ROR)"
+                },
+                {
+                    id: 15,
+                    question: "(Bölüm 3) Elektrik tarifesini belirlerken dikkate alınan 'İdari Maliyetler' (Administrative costs) neleri içerir?",
+                    options: [
+                        "Sadece santralde kullanılan yakıtın maliyetini",
+                        "Sadece iletim hatlarının maliyetini",
+                        "Yönetim, teknik personel maaşları, sigorta ve bakım maliyetlerini",
+                        "Sadece devlet vergilerini"
+                    ],
+                    correctAnswer: "Yönetim, teknik personel maaşları, sigorta ve bakım maliyetlerini"
+                }
+            ],
+            en: [
+                {
+                    id: 1,
+                    question: "(Chapter 2) What does the area under the 'Load Curve' represent?",
+                    options: [
+                        "Maximum demand in that period (kW)",
+                        "Total energy produced in that period (kWh)",
+                        "Installed capacity of the power plant (MW)",
+                        "Average load in that period (kW)"
+                    ],
+                    correctAnswer: "Total energy produced in that period (kWh)"
+                },
+                {
+                    id: 2,
+                    question: "(Chapter 4) What is the fundamental difference between 'Simple Payback' (SPB) and 'Discounted Payback' (DPB) methods in economic analysis?",
+                    options: [
+                        "SPB neglects the time value of money; DPB takes it into account.",
+                        "SPB is only used for industrial projects.",
+                        "SPB considers inflation, DPB does not.",
+                        "SPB gives a longer payback period."
+                    ],
+                    correctAnswer: "SPB neglects the time value of money; DPB takes it into account."
+                },
+                {
+                    id: 3,
+                    question: "(Chapter 1) How is Turkey's per capita energy consumption in 2015 (1.6 toe) compared to the OECD average (4.2 toe) described in the slides?",
+                    options: [
+                        "High efficiency",
+                        "Underconsumption",
+                        "Rapid growth",
+                        "Stagnation"
+                    ],
+                    correctAnswer: "Underconsumption"
+                },
+                {
+                    id: 4,
+                    question: "(Chapter 3) How does 'Descending Block Rate' pricing work?",
+                    options: [
+                        "As energy consumption increases, unit price increases.",
+                        "As energy consumption increases, unit price decreases.",
+                        "Prices change according to time of day.",
+                        "Prices decrease only in summer months."
+                    ],
+                    correctAnswer: "As energy consumption increases, unit price decreases."
+                },
+                {
+                    id: 5,
+                    question: "(Chapter 2) How is a power plant's 'Reserve Capacity' calculated?",
+                    options: [
+                        "Plant Capacity - Average Load",
+                        "Plant Capacity - Maximum Demand",
+                        "Maximum Demand - Average Load",
+                        "Total Connected Load - Maximum Demand"
+                    ],
+                    correctAnswer: "Plant Capacity - Maximum Demand"
+                },
+                {
+                    id: 6,
+                    question: "(Chapter 4) What factor finds the annual payment amount (A) required to pay off a present debt (P) by making a constant payment (A) *every year* for N years?",
+                    options: [
+                        "SPPW (Single Payment Present Worth)",
+                        "SPCA (Single Payment Compound Amount)",
+                        "USPW (Uniform Series Present Worth)",
+                        "USCR (Uniform Series Capital Recovery)"
+                    ],
+                    correctAnswer: "USCR (Uniform Series Capital Recovery)"
+                },
+                {
+                    id: 7,
+                    question: "(Chapter 1) What is the primary gas that causes acid rain and is released especially from coal/fuel oil burning power plants?",
+                    options: [
+                        "CO2 (Carbon Dioxide)",
+                        "SO2 (Sulfur Dioxide)",
+                        "CH4 (Methane)",
+                        "N2O (Nitrous Oxide)"
+                    ],
+                    correctAnswer: "SO2 (Sulfur Dioxide)"
+                },
+                {
+                    id: 8,
+                    question: "(Chapter 3) When a supplier offers a discount if the customer owns their own transformer (customer-owned transformer), which tariff component does this fall under?",
+                    options: [
+                        "Service Level",
+                        "Power Factor Clause",
+                        "Ratchet Clause",
+                        "Fuel Cost Adjustment"
+                    ],
+                    correctAnswer: "Service Level"
+                },
+                {
+                    id: 9,
+                    question: "(Chapter 4) What does the concept of 'inflation' (λ) represent in economic analysis?",
+                    options: [
+                        "The interest return rate of money",
+                        "The total cost of the project",
+                        "The rate of increase in prices of goods and services over time",
+                        "The tax rate charged by the government"
+                    ],
+                    correctAnswer: "The rate of increase in prices of goods and services over time"
+                },
+                {
+                    id: 10,
+                    question: "(Chapter 2) What is the load category for street lighting and pumps required for water supply?",
+                    options: [
+                        "Domestic load",
+                        "Municipal load",
+                        "Commercial load",
+                        "Industrial load"
+                    ],
+                    correctAnswer: "Municipal load"
+                },
+                {
+                    id: 11,
+                    question: "(Chapter 3) Which of the following is an example of a 'Conventional' Distributed Energy Resource (DER)?",
+                    options: [
+                        "Fuel Cell",
+                        "Solar",
+                        "Gas Turbine",
+                        "Wind"
+                    ],
+                    correctAnswer: "Gas Turbine"
+                },
+                {
+                    id: 12,
+                    question: "(Chapter 4) What is the criterion for a project to be economically acceptable according to the 'Benefit-Cost Ratio' (BCR) method?",
+                    options: [
+                        "BCR = 0",
+                        "BCR < 1.0",
+                        "BCR > 1.0",
+                        "BCR = 1.0"
+                    ],
+                    correctAnswer: "BCR > 1.0"
+                },
+                {
+                    id: 13,
+                    question: "(Chapter 1) What is the additional benefit companies gain through energy management, besides cost savings, by using new technologies and processes?",
+                    options: [
+                        "More raw material consumption",
+                        "Productivity improvement",
+                        "More personnel employment",
+                        "Lower tax payment"
+                    ],
+                    correctAnswer: "Productivity improvement"
+                },
+                {
+                    id: 14,
+                    question: "(Chapter 4) Which economic analysis method finds the 'discount rate' that makes the Net Present Worth (NPW) of a project equal to zero?",
+                    options: [
+                        "Rate of Return (ROR)",
+                        "Payback Period",
+                        "Benefit-Cost Ratio (BCR)",
+                        "Life Cycle Cost (LCC)"
+                    ],
+                    correctAnswer: "Rate of Return (ROR)"
+                },
+                {
+                    id: 15,
+                    question: "(Chapter 3) What do 'Administrative costs' considered when determining electricity tariffs include?",
+                    options: [
+                        "Only the cost of fuel used in the power plant",
+                        "Only the cost of transmission lines",
+                        "Management, technical staff salaries, insurance, and maintenance costs",
+                        "Only government taxes"
+                    ],
+                    correctAnswer: "Management, technical staff salaries, insurance, and maintenance costs"
+                }
+            ]
+        };
 
-        
+        // Get quiz data based on current language
+        function getQuizData() {
+            const lang = getLanguage();
+            return quizDataBilingual[lang] || quizDataBilingual.tr;
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const quizContainer = document.getElementById('quiz-container');
             const quizForm = document.getElementById('quiz-form');
@@ -263,13 +443,16 @@
 
             // 1. Sınavı Yükle
             function loadQuiz() {
+                const quizData = getQuizData(); // Get language-specific quiz data
+                const lang = getLanguage();
+                const questionText = translate('question', 'quiz');
                 let quizHTML = '';
                 quizData.forEach((q, index) => {
                     // Soru başlığı
                     quizHTML += `
                         <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100" id="question-card-${q.id}">
                             <p class="text-lg font-semibold text-gray-800">
-                                Soru ${index + 1}: ${q.question}
+                                ${questionText} ${index + 1}: ${q.question}
                             </p>
                             <div class="space-y-3 mt-4" id="options-container-${q.id}">
                     `;
@@ -293,6 +476,14 @@
             function showResults(event) {
                 event.preventDefault(); // Formun sayfayı yenilemesini engelle
 
+                const quizData = getQuizData(); // Get language-specific quiz data
+                
+                // Get translation texts first
+                const lang = getLanguage();
+                const yourAnswerText = translate('yourAnswer', 'quiz');
+                const correctAnswerText = translate('correctAnswer', 'quiz');
+                const leftBlankText = translate('leftBlank', 'quiz');
+                
                 let score = 0;
                 let wrongAnswersHTML = ''; // Yanlış cevaplar için HTML
                 
@@ -336,8 +527,8 @@
                         wrongAnswersHTML += `
                             <div class="p-4 border-b border-gray-200">
                                 <p class="font-semibold text-gray-800">${q.question}</p>
-                                <p class="text-red-600 mt-2"><strong>Sizin Cevabınız:</strong> ${userAnswer || 'Boş bırakıldı'}</p>
-                                <p class="text-green-600 mt-1"><strong>Doğru Cevap:</strong> ${correctAnswer}</p>
+                                <p class="text-red-600 mt-2"><strong>${yourAnswerText}:</strong> ${userAnswer || leftBlankText}</p>
+                                <p class="text-green-600 mt-1"><strong>${correctAnswerText}:</strong> ${correctAnswer}</p>
                             </div>
                         `;
                     }
@@ -345,23 +536,30 @@
 
                 // Sonuçları üstte göster
                 const scorePercentage = Math.round((score / quizData.length) * 100);
+                const examResultText = translate('examResult', 'quiz');
+                const scoreText = translate('score', 'quiz');
+                const correctText = translate('correct', 'quiz');
+                const wrongText = translate('wrong', 'quiz');
+                const wrongQuestionsTitle = translate('wrongQuestionsTitle', 'quiz');
+                const congratulations = translate('congratulations', 'quiz');
+                
                 resultsContainer.innerHTML = `
-                    <h2 class="text-3xl font-bold text-center text-blue-900">Sınav Sonucu</h2>
-                    <p class="text-5xl font-bold text-center my-4">${scorePercentage} Puan</p>
+                    <h2 class="text-3xl font-bold text-center text-blue-900">${examResultText}</h2>
+                    <p class="text-5xl font-bold text-center my-4">${scorePercentage} ${scoreText}</p>
                     <div class="flex justify-center gap-6 text-center text-lg">
-                        <span class="font-semibold text-green-600">Doğru: ${score}</span>
-                        <span class="font-semibold text-red-600">Yanlış: ${quizData.length - score}</span>
+                        <span class="font-semibold text-green-600">${correctText}: ${score}</span>
+                        <span class="font-semibold text-red-600">${wrongText}: ${quizData.length - score}</span>
                     </div>
                     
                     ${wrongAnswersHTML ? `
                         <hr class="my-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Yanlış Sorular ve Doğruları</h3>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">${wrongQuestionsTitle}</h3>
                         <div class="border border-gray-200 rounded-lg overflow-hidden">
                             ${wrongAnswersHTML}
                         </div>
                     ` : `
                         <hr class="my-8">
-                        <p class="text-center text-2xl font-bold text-green-600">🎉 Tebrikler! Tüm soruları doğru cevapladınız! 🎉</p>
+                        <p class="text-center text-2xl font-bold text-green-600">${congratulations}</p>
                     `}
                 `;
 
@@ -375,6 +573,12 @@
             // Olayları Bağla
             loadQuiz();
             quizForm.addEventListener('submit', showResults);
+        
+            // Re-render quiz when language changes
+            document.addEventListener('languageChanged', () => {
+                loadQuiz();
+                updatePageTranslations();
+            });
         });
     </script>
 </body>
