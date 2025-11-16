@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YTÜ - Enerji Yönetimi Sınavı (Karma)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        /* Özel kaydırma çubuğu */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #1e3a8a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #1e40af; }
+
+        /* Sınav sonuç stilleri */
+        .correct-answer-label {
+            background-color: #dcfce7; /* green-100 */
+            border: 1px solid #16a34a; /* green-600 */
+            color: #15803d; /* green-700 */
+            font-weight: bold;
+        }
+        .wrong-answer-label {
+            background-color: #fee2e2; /* red-100 */
+            border: 1px solid #dc2626; /* red-600 */
+            color: #b91c1c; /* red-700 */
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800">
+
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-blue-900 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md">
+                    YTÜ
+                </div>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-bold text-blue-900 leading-tight">Akıllı Evler ve Enerji Yönetimi</h1>
+                    <p class="text-xs sm:text-sm text-gray-500">Karma Sınav (Bölüm 1-4)</p>
+                </div>
+            </div>
+            <div class="hidden sm:block text-right">
+                <span class="block text-sm font-semibold text-blue-800">Sınava Hazırlan</span>
+                <span class="block text-xs text-gray-500">Ders Özeti Serisi</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-10">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Karma Değerlendirme Sınavı (Bölüm 1-4)</h2>
+            <p class="text-gray-600 leading-relaxed">
+                Bu sınav, dersin ilk dört bölümündeki (PDF 1-4) temel kavramsal bilgilerinizi ölçmek için hazırlanmıştır.
+                15 adet çoktan seçmeli sözel soru bulunmaktadır. Başarılar!
+            </p>
+        </div>
+
+        <form id="quiz-form">
+            <div id="quiz-container" class="space-y-10">
+                </div>
+
+            <div class="mt-12 text-center">
+                <button type="submit" id="submit-btn" class="bg-blue-800 text-white font-bold py-3 px-10 rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-300">
+                    Sınavı Bitir
+                </button>
+            </div>
+        </form>
+
+        <div id="results-container" class="hidden bg-white rounded-xl shadow-lg border border-gray-100 p-8 mb-10 mt-12">
+            </div>
+
+    </main>
+
+    <footer class="bg-blue-900 text-blue-100 py-8 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-sm">&copy; 2025 eren0n. Tüm hakları saklıdır.</p>
+            <p class="text-xs mt-2 opacity-60">Sınavınızda Başarılar.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Soru Veri Seti (Tüm PDF'lerden Karma)
+        const quizData = [
+            {
+                id: 1,
+                question: "(Bölüm 1) 'Enerji Yoğunluğu' (Energy Intensity) kavramı nedir ve yüksek olması ne anlama gelir?",
+                options: [
+                    "Kişi başı tüketimdir; yüksek olması refahı gösterir.",
+                    "GSYİH başına düşen enerjidir; yüksek olması verimsizliği gösterir.",
+                    "Santral kapasitesidir; yüksek olması arz güvenliğini gösterir.",
+                    "Yenilenebilir enerji oranıdır; yüksek olması çevreciliği gösterir."
+                ],
+                correctAnswer: "GSYİH başına düşen enerjidir; yüksek olması verimsizliği gösterir."
+            },
+            {
+                id: 2,
+                question: "(Bölüm 2) 'Yük Faktörü'nün (Load Factor) tanımı nedir?",
+                options: [
+                    "Ortalama Yük / Maksimum Talep",
+                    "Maksimum Talep / Ortalama Yük",
+                    "Maksimum Talep / Toplam Bağlı Yük",
+                    "Toplam Bağlı Yük / Ortalama Yük"
+                ],
+                correctAnswer: "Ortalama Yük / Maksimum Talep"
+            },
+            {
+                id: 3,
+                question: "(Bölüm 3) Bir elektrik faturasındaki 'Talep Bedeli' (Demand Charge) neyin karşılığı olarak alınır?",
+                options: [
+                    "Ay içinde tüketilen toplam enerjinin (kWh)",
+                    "Ay içinde ulaşılan en yüksek anlık gücün (kW)",
+                    "Devlete ödenen sabit vergilerin",
+                    "Tesisin sahip olduğu toplam bağlı yükün (kW)"
+                ],
+                correctAnswer: "Ay içinde ulaşılan en yüksek anlık gücün (kW)"
+            },
+            {
+                id: 4,
+                question: "(Bölüm 4) Bir projenin ekonomik analizinde 'Paranın Zaman Değeri' kavramı neden dikkate alınmalıdır?",
+                options: [
+                    "Çünkü bugünkü para, enflasyon ve faiz (fırsat maliyeti) nedeniyle gelecekteki paradan daha değerlidir.",
+                    "Çünkü gelecekteki para, teknolojik gelişmeler nedeniyle bugünkü paradan daha değerlidir.",
+                    "Çünkü muhasebe standartları sadece bugünkü değeri kabul eder.",
+                    "Çünkü projelerin maliyeti zamanla hep azalır."
+                ],
+                correctAnswer: "Çünkü bugünkü para, enflasyon ve faiz (fırsat maliyeti) nedeniyle gelecekteki paradan daha değerlidir."
+            },
+            {
+                id: 5,
+                question: "(Bölüm 1) AB'nin '20-20-20' hedefleri arasında hangisi *yoktur*?",
+                options: [
+                    "%20 Enerji Verimliliği artışı",
+                    "%20 Sera Gazı Emisyonu azaltma",
+                    "%20 Yenilenebilir Enerji payı",
+                    "%20 Nükleer Enerji payı"
+                ],
+                correctAnswer: "%20 Nükleer Enerji payı"
+            },
+            {
+                id: 6,
+                question: "(Bölüm 2) Santralin 'Baz Yükünü' (Base Load) belirlemek için en faydalı olan ve yükleri büyükten küçüğe sıralayan grafik hangisidir?",
+                options: [
+                    "Yük Eğrisi (Load Curve)",
+                    "Yük Süreklilik Eğrisi (Load Duration Curve)",
+                    "Çeşitlilik Grafiği (Diversity Chart)",
+                    "Kapasite Faktörü Grafiği (Capacity Factor Chart)"
+                ],
+                correctAnswer: "Yük Süreklilik Eğrisi (Load Duration Curve)"
+            },
+            {
+                id: 7,
+                question: "(Bölüm 3) Faturanızdaki talep bedelinin, mevcut tüketiminizden bağımsız olarak, son 12 ayın en yüksek zirvesinin belli bir yüzdesinden az olmamasını sağlayan madde nedir?",
+                options: [
+                    "Güç Faktörü Cezası (Power Factor Clause)",
+                    "Yakıt Ayarlama Bedeli (Fuel Adjustment Clause)",
+                    "Ratchet Clause (Geçmişe Bağlı Talep Maddesi)",
+                    "Blok Fiyatlandırma (Block Pricing)"
+                ],
+                correctAnswer: "Ratchet Clause (Geçmişe Bağlı Talep Maddesi)"
+            },
+            {
+                id: 8,
+                question: "(Bölüm 4) Bir projenin tüm nakit akışlarının (ilk yatırım, yıllık tasarruflar) bugünkü değerlerinin toplamını bulan ve sonucun > 0 olmasını hedefleyen yöntem nedir?",
+                options: [
+                    "Net Bugünkü Değer (NPW)",
+                    "Basit Geri Ödeme Süresi (SPB)",
+                    "Fayda-Maliyet Oranı (BCR)",
+                    "Yaşam Döngüsü Maliyeti (LCC)"
+                ],
+                correctAnswer: "Net Bugünkü Değer (NPW)"
+            },
+            {
+                id: 9,
+                question: "(Bölüm 2) 'Çeşitlilik Faktörü'nün (Diversity Factor) 1'den büyük olması ne anlama gelir?",
+                options: [
+                    "Sistem çok verimsiz çalışıyor demektir.",
+                    "Tüm tüketicilerin maksimum talepleri aynı anda oluyor demektir.",
+                    "Tüketicilerin maksimum talepleri farklı anlarda oluyor demektir (bu santral için iyidir).",
+                    "Santral kapasitesi yetersiz demektir."
+                ],
+                correctAnswer: "Tüketicilerin maksimum talepleri farklı anlarda oluyor demektir (bu santral için iyidir)."
+            },
+            {
+                id: 10,
+                question: "(Bölüm 3) Elektrik fiyatının saatlik olarak değiştiği ve fiyatların bir gün önceden duyurulduğu en dinamik tarife modeli hangisidir?",
+                options: [
+                    "Gerçek Zamanlı Fiyatlandırma (RTP)",
+                    "Zaman Esaslı Tarife (TOU)",
+                    "Ters Blok Tarife (Inverted Block Rate)",
+                    "Düz Tarife (Flat Rate)"
+                ],
+                correctAnswer: "Gerçek Zamanlı Fiyatlandırma (RTP)"
+            },
+            {
+                id: 11,
+                question: "(Bölüm 1) Düşük maliyetli (low cost) enerji yönetimi faaliyetleri ile ilk 1-2 yılda elde edilebilecek tipik tasarruf oranı nedir?",
+                options: [
+                    "%1 - %2",
+                    "%5 - %15",
+                    "%15 - %30",
+                    "%30 - %50"
+                ],
+                correctAnswer: "%5 - %15"
+            },
+            {
+                id: 12,
+                question: "(Bölüm 4) Farklı proje alternatiflerini (örn. A kazanı vs B kazanı) karşılaştırırken, her alternatifin *tüm ömrü boyunca* toplam maliyetini hesaplayan yöntem nedir?",
+                options: [
+                    "Net Bugünkü Değer (NPW)",
+                    "Geri Ödeme Süresi (Payback Period)",
+                    "Yaşam Döngüsü Maliyeti (LCC)",
+                    "İç Verim Oranı (ROR)"
+                ],
+                correctAnswer: "Yaşam Döngüsü Maliyeti (LCC)"
+            },
+            {
+                id: 13,
+                question: "(Bölüm 2) 'Talep Faktörü'nün (Demand Factor) tanımı nedir?",
+                options: [
+                    "Ortalama Yük / Maksimum Talep",
+                    "Maksimum Talep / Toplam Bağlı Yük",
+                    "Toplam Bağlı Yük / Maksimum Talep",
+                    "Ortalama Yük / Toplam Bağlı Yük"
+                ],
+                correctAnswer: "Maksimum Talep / Toplam Bağlı Yük"
+            },
+            {
+                id: 14,
+                question: "(Bölüm 3) 'Güç Faktörü' (Power Factor) neden önemlidir ve tedarikçiler neden düşük (örn. <0.9) PF'yi cezalandırır?",
+                options: [
+                    "Çünkü düşük PF, aynı iş (kW) için şebekeden daha fazla toplam akım (kVA) çekildiğini gösterir (verimsizlik).",
+                    "Çünkü düşük PF, sadece konutlarda meydana gelir ve haksız yüktür.",
+                    "Çünkü düşük PF, enerjinin daha pahalı üretildiği anlamına gelir.",
+                    "Çünkü düşük PF, sayaçların daha az yazmasına neden olur."
+                ],
+                correctAnswer: "Çünkü düşük PF, aynı iş (kW) için şebekeden daha fazla toplam akım (kVA) çekildiğini gösterir (verimsizlik)."
+            },
+            {
+                id: 15,
+                question: "(Bölüm 4) Bir projenin 'Basit Geri Ödeme Süresi' (Simple Payback Period) nasıl hesaplanır?",
+                options: [
+                    "Toplam Proje Ömrü / Yıllık Tasarruf",
+                    "İlk Yatırım Maliyeti / Yıllık Tasarruf",
+                    "Yıllık Tasarruf / İlk Yatırım Maliyeti",
+                    "İlk Yatırım Maliyeti / Proje Ömrü"
+                ],
+                correctAnswer: "İlk Yatırım Maliyeti / Yıllık Tasarruf"
+            }
+        ];
+
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizContainer = document.getElementById('quiz-container');
+            const quizForm = document.getElementById('quiz-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const resultsContainer = document.getElementById('results-container');
+
+            // 1. Sınavı Yükle
+            function loadQuiz() {
+                let quizHTML = '';
+                quizData.forEach((q, index) => {
+                    // Soru başlığı
+                    quizHTML += `
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100" id="question-card-${q.id}">
+                            <p class="text-lg font-semibold text-gray-800">
+                                Soru ${index + 1}: ${q.question}
+                            </p>
+                            <div class="space-y-3 mt-4" id="options-container-${q.id}">
+                    `;
+                    
+                    // Cevap seçenekleri (Radyo butonları)
+                    q.options.forEach(option => {
+                        quizHTML += `
+                            <label class="block w-full p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors cursor-pointer">
+                                <input type="radio" name="question-${q.id}" value="${option}" class="mr-3 text-blue-800 focus:ring-blue-700">
+                                <span class="text-gray-700">${option}</span>
+                            </label>
+                        `;
+                    });
+
+                    quizHTML += `</div></div>`;
+                });
+                quizContainer.innerHTML = quizHTML;
+            }
+
+            // 2. Sınavı Gönder ve Sonuçları Göster
+            function showResults(event) {
+                event.preventDefault(); // Formun sayfayı yenilemesini engelle
+
+                let score = 0;
+                let wrongAnswersHTML = ''; // Yanlış cevaplar için HTML
+                
+                quizData.forEach(q => {
+                    const card = document.getElementById(`question-card-${q.id}`);
+                    const optionsContainer = document.getElementById(`options-container-${q.id}`);
+                    const allLabels = optionsContainer.querySelectorAll('label');
+
+                    // Kullanıcının seçtiği cevabı bul
+                    const selectedRadio = document.querySelector(`input[name="question-${q.id}"]:checked`);
+                    const userAnswer = selectedRadio ? selectedRadio.value : null;
+                    const correctAnswer = q.correctAnswer;
+
+                    // Tüm etiketleri sıfırla (eğer varsa)
+                    allLabels.forEach(label => {
+                        label.classList.remove('correct-answer-label', 'wrong-answer-label');
+                    });
+
+                    if (userAnswer === correctAnswer) {
+                        // Cevap doğruysa
+                        score++;
+                        if (selectedRadio) {
+                            selectedRadio.parentElement.classList.add('correct-answer-label');
+                        }
+                    } else {
+                        // Cevap yanlışsa
+                        if (selectedRadio) {
+                            // Kullanıcının yanlış seçimini kırmızı yap
+                            selectedRadio.parentElement.classList.add('wrong-answer-label');
+                        }
+
+                        // Doğru cevabı bul ve yeşil yap
+                        allLabels.forEach(label => {
+                            const input = label.querySelector('input');
+                            if (input.value === correctAnswer) {
+                                label.classList.add('correct-answer-label');
+                            }
+                        });
+
+                        // Sonuç listesi için HTML hazırla
+                        wrongAnswersHTML += `
+                            <div class="p-4 border-b border-gray-200">
+                                <p class="font-semibold text-gray-800">${q.question}</p>
+                                <p class="text-red-600 mt-2"><strong>Sizin Cevabınız:</strong> ${userAnswer || 'Boş bırakıldı'}</p>
+                                <p class="text-green-600 mt-1"><strong>Doğru Cevap:</strong> ${correctAnswer}</p>
+                            </div>
+                        `;
+                    }
+                });
+
+                // Sonuçları üstte göster
+                const scorePercentage = Math.round((score / quizData.length) * 100);
+                resultsContainer.innerHTML = `
+                    <h2 class="text-3xl font-bold text-center text-blue-900">Sınav Sonucu</h2>
+                    <p class="text-5xl font-bold text-center my-4">${scorePercentage} Puan</p>
+                    <div class="flex justify-center gap-6 text-center text-lg">
+                        <span class="font-semibold text-green-600">Doğru: ${score}</span>
+                        <span class="font-semibold text-red-600">Yanlış: ${quizData.length - score}</span>
+                    </div>
+                    
+                    ${wrongAnswersHTML ? `
+                        <hr class="my-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Yanlış Sorular ve Doğruları</h3>
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            ${wrongAnswersHTML}
+                        </div>
+                    ` : `
+                        <hr class="my-8">
+                        <p class="text-center text-2xl font-bold text-green-600">🎉 Tebrikler! Tüm soruları doğru cevapladınız! 🎉</p>
+                    `}
+                `;
+
+                resultsContainer.classList.remove('hidden');
+                submitBtn.classList.add('hidden'); // Butonu gizle
+                
+                // Sonuçlara odaklan
+                resultsContainer.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Olayları Bağla
+            loadQuiz();
+            quizForm.addEventListener('submit', showResults);
+        });
+    </script>
+</body>
+</html>

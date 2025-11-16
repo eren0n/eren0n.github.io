@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YTÜ - Enerji Yönetimi Sınavı (Karma 2)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        /* Özel kaydırma çubuğu */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #1e3a8a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #1e40af; }
+
+        /* Sınav sonuç stilleri */
+        .correct-answer-label {
+            background-color: #dcfce7; /* green-100 */
+            border: 1px solid #16a34a; /* green-600 */
+            color: #15803d; /* green-700 */
+            font-weight: bold;
+        }
+        .wrong-answer-label {
+            background-color: #fee2e2; /* red-100 */
+            border: 1px solid #dc2626; /* red-600 */
+            color: #b91c1c; /* red-700 */
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800">
+
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-blue-900 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md">
+                    YTÜ
+                </div>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-bold text-blue-900 leading-tight">Akıllı Evler ve Enerji Yönetimi</h1>
+                    <p class="text-xs sm:text-sm text-gray-500">Karma Sınav 2 (Bölüm 1-4)</p>
+                </div>
+            </div>
+            <div class="hidden sm:block text-right">
+                <span class="block text-sm font-semibold text-blue-800">Sınava Hazırlan</span>
+                <span class="block text-xs text-gray-500">Ders Özeti Serisi</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-10">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Karma Değerlendirme Sınavı 2 (Bölüm 1-4)</h2>
+            <p class="text-gray-600 leading-relaxed">
+                Bu sınav, dersin ilk dört bölümündeki (PDF 1-4) temel kavramsal bilgilerinizi ölçmek için hazırlanmıştır. 
+                15 adet çoktan seçmeli sözel soru bulunmaktadır. Başarılar!
+            </p>
+        </div>
+
+        <form id="quiz-form">
+            <div id="quiz-container" class="space-y-10">
+                </div>
+
+            <div class="mt-12 text-center">
+                <button type="submit" id="submit-btn" class="bg-blue-800 text-white font-bold py-3 px-10 rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-300">
+                    Sınavı Bitir
+                </button>
+            </div>
+        </form>
+
+        <div id="results-container" class="hidden bg-white rounded-xl shadow-lg border border-gray-100 p-8 mb-10 mt-12">
+            </div>
+
+    </main>
+
+    <footer class="bg-blue-900 text-blue-100 py-8 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-sm">&copy; 2025 eren0n. Tüm hakları saklıdır.</p>
+            <p class="text-xs mt-2 opacity-60">Sınavınızda Başarılar.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Soru Veri Seti (Tüm PDF'lerden Karma 2)
+        const quizData = [
+            {
+                id: 1,
+                question: "(Bölüm 2) 'Yük Eğrisi'nin (Load Curve) altında kalan alan neyi ifade eder?",
+                options: [
+                    "O dönemdeki maksimum talebi (kW)",
+                    "O dönemde üretilen toplam enerjiyi (kWh)",
+                    "Santralin kurulu kapasitesini (MW)",
+                    "O dönemdeki ortalama yükü (kW)"
+                ],
+                correctAnswer: "O dönemde üretilen toplam enerjiyi (kWh)"
+            },
+            {
+                id: 2,
+                question: "(Bölüm 4) Ekonomik analizde 'Basit Geri Ödeme' (SPB) yönteminin, 'İskontolu Geri Ödeme' (DPB) yönteminden temel farkı nedir?",
+                options: [
+                    "SPB, paranın zaman değerini ihmal eder; DPB ise hesaba katar.",
+                    "SPB, sadece endüstriyel projelerde kullanılır.",
+                    "SPB, enflasyonu dikkate alır, DPB almaz.",
+                    "SPB, daha uzun bir geri ödeme süresi verir."
+                ],
+                correctAnswer: "SPB, paranın zaman değerini ihmal eder; DPB ise hesaba katar."
+            },
+            {
+                id: 3,
+                question: "(Bölüm 1) Türkiye'nin 2015 yılındaki kişi başı enerji tüketiminin (1.6 toe) OECD ortalamasına (4.2 toe) göre durumu, slaytlarda nasıl adlandırılmıştır?",
+                options: [
+                    "Yüksek verimlilik (High efficiency)",
+                    "Düşük tüketim (Underconsumption)",
+                    "Hızlı büyüme (Rapid growth)",
+                    "Durgunluk (Stagnation)"
+                ],
+                correctAnswer: "Düşük tüketim (Underconsumption)"
+            },
+            {
+                id: 4,
+                question: "(Bölüm 3) 'Azalan Blok Fiyatlandırma' (Descending Block Rate) tarifesi nasıl çalışır?",
+                options: [
+                    "Enerji tüketimi arttıkça birim fiyat artar.",
+                    "Enerji tüketimi arttıkça birim fiyat azalır.",
+                    "Fiyatlar günün saatine göre değişir.",
+                    "Fiyatlar sadece yaz aylarında azalır."
+                ],
+                correctAnswer: "Enerji tüketimi arttıkça birim fiyat azalır."
+            },
+            {
+                id: 5,
+                question: "(Bölüm 2) Bir santralin 'Yedek Kapasitesi' (Reserve Capacity) nasıl hesaplanır?",
+                options: [
+                    "Santral Kapasitesi - Ortalama Yük",
+                    "Santral Kapasitesi - Maksimum Talep",
+                    "Maksimum Talep - Ortalama Yük",
+                    "Toplam Bağlı Yük - Maksimum Talep"
+                ],
+                correctAnswer: "Santral Kapasitesi - Maksimum Talep"
+            },
+            {
+                id: 6,
+                question: "(Bölüm 4) N yıl boyunca *her yıl* sabit (A) bir ödeme yaparak bugünkü (P) bir borcu kapatmak için gereken yıllık (A) miktarını bulan faktör nedir?",
+                options: [
+                    "SPPW (Tek Seferlik Bugünkü Değer)",
+                    "SPCA (Tek Seferlik Gelecek Değer)",
+                    "USPW (Üniform Seri Bugünkü Değer)",
+                    "USCR (Üniform Seri Sermaye Kurtarma)"
+                ],
+                correctAnswer: "USCR (Üniform Seri Sermaye Kurtarma)"
+            },
+            {
+                id: 7,
+                question: "(Bölüm 1) Asit yağmurlarına neden olan ve özellikle kömür/fuel oil yakan santrallerden salınan birincil gaz hangisidir?",
+                options: [
+                    "CO2 (Karbondioksit)",
+                    "SO2 (Kükürt Dioksit)",
+                    "CH4 (Metan)",
+                    "N2O (Diazot Monoksit)"
+                ],
+                correctAnswer: "SO2 (Kükürt Dioksit)"
+            },
+            {
+                id: 8,
+                question: "(Bölüm 3) Bir faturada, tedarikçinin müşterinin kendi trafosuna sahip olması (customer-owned transformer) durumunda indirim yapması, hangi tarife bileşeni kapsamındadır?",
+                options: [
+                    "Hizmet Seviyesi (Service Level)",
+                    "Güç Faktörü Maddesi (Power Factor Clause)",
+                    "Ratchet Clause",
+                    "Yakıt Maliyeti Ayarlaması"
+                ],
+                correctAnswer: "Hizmet Seviyesi (Service Level)"
+            },
+            {
+                id: 9,
+                question: "(Bölüm 4) Ekonomik analizde 'enflasyon' (&lambda;) kavramı neyi ifade eder?",
+                options: [
+                    "Paranın faiz getirisi oranını",
+                    "Projenin toplam maliyetini",
+                    "Mal ve hizmetlerin fiyatının zamanla artış oranını",
+                    "Devletin aldığı vergi oranını"
+                ],
+                correctAnswer: "Mal ve hizmetlerin fiyatının zamanla artış oranını"
+            },
+            {
+                id: 10,
+                question: "(Bölüm 2) Sokak aydınlatması ve su temini için gereken pompaların oluşturduğu yük kategorisi hangisidir?",
+                options: [
+                    "Evsel Yük (Domestic load)",
+                    "Belediye Yükü (Municipal load)",
+                    "Ticari Yük (Commercial load)",
+                    "Endüstriyel Yük (Industrial load)"
+                ],
+                correctAnswer: "Belediye Yükü (Municipal load)"
+            },
+            {
+                id: 11,
+                question: "(Bölüm 3) Aşağıdakilerden hangisi 'Geleneksel' (Conventional) bir Dağıtık Enerji Kaynağı (DER) örneğidir?",
+                options: [
+                    "Yakıt Hücresi (Fuel Cell)",
+                    "Güneş (Solar)",
+                    "Gaz Türbini (Gas Turbine)",
+                    "Rüzgar (Wind)"
+                ],
+                correctAnswer: "Gaz Türbini (Gas Turbine)"
+            },
+            {
+                id: 12,
+                question: "(Bölüm 4) Bir projenin 'Fayda-Maliyet Oranı' (BCR) yöntemine göre ekonomik olarak kabul edilebilir olması için kriter nedir?",
+                options: [
+                    "BCR = 0",
+                    "BCR < 1.0",
+                    "BCR > 1.0",
+                    "BCR = 1.0"
+                ],
+                correctAnswer: "BCR > 1.0"
+            },
+            {
+                id: 13,
+                question: "(Bölüm 1) Enerji yönetimi sayesinde, yeni teknolojiler ve süreçler kullanarak şirketlerin maliyet tasarrufunun yanı sıra elde ettiği ek fayda nedir?",
+                options: [
+                    "Daha fazla hammadde tüketimi",
+                    "Üretkenlik artışı (productivity improvement)",
+                    "Daha fazla personel istihdamı",
+                    "Daha düşük vergi ödemesi"
+                ],
+                correctAnswer: "Üretkenlik artışı (productivity improvement)"
+            },
+            {
+                id: 14,
+                question: "(Bölüm 4) Bir projenin Net Bugünkü Değerini (NPW) sıfıra eşitleyen 'iskonto oranını' bulan ekonomik analiz yöntemi hangisidir?",
+                options: [
+                    "Geri Dönüş Oranı (Rate of Return - ROR)",
+                    "Geri Ödeme Süresi (Payback Period)",
+                    "Fayda-Maliyet Oranı (BCR)",
+                    "Yaşam Döngüsü Maliyeti (LCC)"
+                ],
+                correctAnswer: "Geri Dönüş Oranı (Rate of Return - ROR)"
+            },
+            {
+                id: 15,
+                question: "(Bölüm 3) Elektrik tarifesini belirlerken dikkate alınan 'İdari Maliyetler' (Administrative costs) neleri içerir?",
+                options: [
+                    "Sadece santralde kullanılan yakıtın maliyetini",
+                    "Sadece iletim hatlarının maliyetini",
+                    "Yönetim, teknik personel maaşları, sigorta ve bakım maliyetlerini",
+                    "Sadece devlet vergilerini"
+                ],
+                correctAnswer: "Yönetim, teknik personel maaşları, sigorta ve bakım maliyetlerini"
+            }
+        ];
+
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizContainer = document.getElementById('quiz-container');
+            const quizForm = document.getElementById('quiz-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const resultsContainer = document.getElementById('results-container');
+
+            // 1. Sınavı Yükle
+            function loadQuiz() {
+                let quizHTML = '';
+                quizData.forEach((q, index) => {
+                    // Soru başlığı
+                    quizHTML += `
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100" id="question-card-${q.id}">
+                            <p class="text-lg font-semibold text-gray-800">
+                                Soru ${index + 1}: ${q.question}
+                            </p>
+                            <div class="space-y-3 mt-4" id="options-container-${q.id}">
+                    `;
+                    
+                    // Cevap seçenekleri (Radyo butonları)
+                    q.options.forEach(option => {
+                        quizHTML += `
+                            <label class="block w-full p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors cursor-pointer">
+                                <input type="radio" name="question-${q.id}" value="${option}" class="mr-3 text-blue-800 focus:ring-blue-700">
+                                <span class="text-gray-700">${option}</span>
+                            </label>
+                        `;
+                    });
+
+                    quizHTML += `</div></div>`;
+                });
+                quizContainer.innerHTML = quizHTML;
+            }
+
+            // 2. Sınavı Gönder ve Sonuçları Göster
+            function showResults(event) {
+                event.preventDefault(); // Formun sayfayı yenilemesini engelle
+
+                let score = 0;
+                let wrongAnswersHTML = ''; // Yanlış cevaplar için HTML
+                
+                quizData.forEach(q => {
+                    const card = document.getElementById(`question-card-${q.id}`);
+                    const optionsContainer = document.getElementById(`options-container-${q.id}`);
+                    const allLabels = optionsContainer.querySelectorAll('label');
+
+                    // Kullanıcının seçtiği cevabı bul
+                    const selectedRadio = document.querySelector(`input[name="question-${q.id}"]:checked`);
+                    const userAnswer = selectedRadio ? selectedRadio.value : null;
+                    const correctAnswer = q.correctAnswer;
+
+                    // Tüm etiketleri sıfırla (eğer varsa)
+                    allLabels.forEach(label => {
+                        label.classList.remove('correct-answer-label', 'wrong-answer-label');
+                    });
+
+                    if (userAnswer === correctAnswer) {
+                        // Cevap doğruysa
+                        score++;
+                        if (selectedRadio) {
+                            selectedRadio.parentElement.classList.add('correct-answer-label');
+                        }
+                    } else {
+                        // Cevap yanlışsa
+                        if (selectedRadio) {
+                            // Kullanıcının yanlış seçimini kırmızı yap
+                            selectedRadio.parentElement.classList.add('wrong-answer-label');
+                        }
+
+                        // Doğru cevabı bul ve yeşil yap
+                        allLabels.forEach(label => {
+                            const input = label.querySelector('input');
+                            if (input.value === correctAnswer) {
+                                label.classList.add('correct-answer-label');
+                            }
+                        });
+
+                        // Sonuç listesi için HTML hazırla
+                        wrongAnswersHTML += `
+                            <div class="p-4 border-b border-gray-200">
+                                <p class="font-semibold text-gray-800">${q.question}</p>
+                                <p class="text-red-600 mt-2"><strong>Sizin Cevabınız:</strong> ${userAnswer || 'Boş bırakıldı'}</p>
+                                <p class="text-green-600 mt-1"><strong>Doğru Cevap:</strong> ${correctAnswer}</p>
+                            </div>
+                        `;
+                    }
+                });
+
+                // Sonuçları üstte göster
+                const scorePercentage = Math.round((score / quizData.length) * 100);
+                resultsContainer.innerHTML = `
+                    <h2 class="text-3xl font-bold text-center text-blue-900">Sınav Sonucu</h2>
+                    <p class="text-5xl font-bold text-center my-4">${scorePercentage} Puan</p>
+                    <div class="flex justify-center gap-6 text-center text-lg">
+                        <span class="font-semibold text-green-600">Doğru: ${score}</span>
+                        <span class="font-semibold text-red-600">Yanlış: ${quizData.length - score}</span>
+                    </div>
+                    
+                    ${wrongAnswersHTML ? `
+                        <hr class="my-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Yanlış Sorular ve Doğruları</h3>
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            ${wrongAnswersHTML}
+                        </div>
+                    ` : `
+                        <hr class="my-8">
+                        <p class="text-center text-2xl font-bold text-green-600">🎉 Tebrikler! Tüm soruları doğru cevapladınız! 🎉</p>
+                    `}
+                `;
+
+                resultsContainer.classList.remove('hidden');
+                submitBtn.classList.add('hidden'); // Butonu gizle
+                
+                // Sonuçlara odaklan
+                resultsContainer.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Olayları Bağla
+            loadQuiz();
+            quizForm.addEventListener('submit', showResults);
+        });
+    </script>
+</body>
+</html>

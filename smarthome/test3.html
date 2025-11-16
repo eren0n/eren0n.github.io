@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YTÜ - Enerji Yönetimi Sınavı (Bölüm 3)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        /* Özel kaydırma çubuğu */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #1e3a8a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #1e40af; }
+
+        /* Sınav sonuç stilleri */
+        .correct-answer-label {
+            background-color: #dcfce7; /* green-100 */
+            border: 1px solid #16a34a; /* green-600 */
+            color: #15803d; /* green-700 */
+            font-weight: bold;
+        }
+        .wrong-answer-label {
+            background-color: #fee2e2; /* red-100 */
+            border: 1px solid #dc2626; /* red-600 */
+            color: #b91c1c; /* red-700 */
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800">
+
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-blue-900 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md">
+                    YTÜ
+                </div>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-bold text-blue-900 leading-tight">Akıllı Evler ve Enerji Yönetimi</h1>
+                    <p class="text-xs sm:text-sm text-gray-500">Bölüm 3 Sınavı</p>
+                </div>
+            </div>
+            <div class="hidden sm:block text-right">
+                <span class="block text-sm font-semibold text-blue-800">Sınava Hazırlan</span>
+                <span class="block text-xs text-gray-500">Ders Özeti Serisi</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-10">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Bölüm 3: Değerlendirme Sınavı</h2>
+            <p class="text-gray-600 leading-relaxed">
+                Bu sınav, "Enerji Kaynakları ve Hizmet Bedelleri (Tarifeler)" (3.pdf) konusundaki bilginizi ölçmek için hazırlanmıştır. 
+                15 adet çoktan seçmeli sözel soru bulunmaktadır. Başarılar!
+            </p>
+        </div>
+
+        <form id="quiz-form">
+            <div id="quiz-container" class="space-y-10">
+                </div>
+
+            <div class="mt-12 text-center">
+                <button type="submit" id="submit-btn" class="bg-blue-800 text-white font-bold py-3 px-10 rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-300">
+                    Sınavı Bitir
+                </button>
+            </div>
+        </form>
+
+        <div id="results-container" class="hidden bg-white rounded-xl shadow-lg border border-gray-100 p-8 mb-10 mt-12">
+            </div>
+
+    </main>
+
+    <footer class="bg-blue-900 text-blue-100 py-8 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-sm">&copy; 2025 eren0n. Tüm hakları saklıdır.</p>
+            <p class="text-xs mt-2 opacity-60">Sınavınızda Başarılar.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Soru Veri Seti (3. PDF'ten)
+        const quizData = [
+            {
+                id: 1,
+                question: "1972-2006 yılları arasındaki verilere göre en ucuz enerji kaynağı olarak kalan hangisidir?",
+                options: [
+                    "Kömür (Coal)",
+                    "Doğal Gaz (Natural Gas)",
+                    "Petrol Ürünleri (Petroleum Products)",
+                    "Elektrik (Electricity)"
+                ],
+                correctAnswer: "Kömür (Coal)"
+            },
+            {
+                id: 2,
+                question: "'Dağıtık Enerji Kaynakları' (Distributed Energy Resources) nasıl tanımlanır?",
+                options: [
+                    "Sadece büyük barajlarda üretilen enerji",
+                    "Dağıtım şebekesine veya tüketicinin sayaç tarafına bağlanan enerji kaynakları",
+                    "Sadece fosil yakıtlardan elde edilen enerji",
+                    "Ülkeler arası taşınan enerji hatları"
+                ],
+                correctAnswer: "Dağıtım şebekesine veya tüketicinin sayaç tarafına bağlanan enerji kaynakları"
+            },
+            {
+                id: 3,
+                question: "Aşağıdakilerden hangisi 'Yeni Nesil' (New Generation) bir Dağıtık Enerji Kaynağı (DER) örneğidir?",
+                options: [
+                    "Mikrotürbin (Microturbine)",
+                    "Gaz Türbini (Gas Turbine)",
+                    "Güneş (Solar)",
+                    "Hepsi"
+                ],
+                correctAnswer: "Güneş (Solar)"
+            },
+            {
+                id: 4,
+                question: "Elektrik tedarikçileri için tarifeleri belirlerken tipik olarak en yüksek maliyet kategorisi hangisidir?",
+                options: [
+                    "İletim ve dağıtım sistemleri",
+                    "İdari maliyetler (maaşlar, sigorta)",
+                    "Yakıt maliyetleri",
+                    "Santralin işletme maliyeti (Generation plant operation)"
+                ],
+                correctAnswer: "Santralin işletme maliyeti (Generation plant operation)"
+            },
+            {
+                id: 5,
+                question: "Tedarikçiler, elektrik maliyetlerini paylaştırmak için genellikle hangi üç ana müşteri tipini dikkate alır?",
+                options: [
+                    "Evsel, Ticari ve Endüstriyel",
+                    "Devlet, Özel Sektör ve Tarımsal",
+                    "Şehir, Kırsal ve Banliyö",
+                    "Yüksek Gerilim, Orta Gerilim ve Alçak Gerilim"
+                ],
+                correctAnswer: "Evsel, Ticari ve Endüstriyel"
+            },
+            {
+                id: 6,
+                question: "Tedarikçilerin faturalandırmada kullandığı 'Billing Demand' (Faturalandırılan Talep) genellikle neye göre belirlenir?",
+                options: [
+                    "Müşterinin ay içindeki ortalama tüketimine",
+                    "Müşterinin ay içindeki en yüksek (peak) talebine",
+                    "Müşterinin toplam bağlı yüküne",
+                    "Müşterinin sözleşme gücüne"
+                ],
+                correctAnswer: "Müşterinin ay içindeki en yüksek (peak) talebine"
+            },
+            {
+                id: 7,
+                question: "Tedarikçiler neden 'Peak Demand' (Puant Talep) için ek bir bedel (Demand Charge) talep eder?",
+                options: [
+                    "Müşterileri daha az enerji tüketmeye teşvik etmek için",
+                    "Müşterileri zirve (peak) taleplerini 'tıraşlamaya' (shave) teşvik etmek için",
+                    "İdari maliyetleri karşılamak için",
+                    "Devletin koyduğu vergileri yansıtmak için"
+                ],
+                correctAnswer: "Müşterileri zirve (peak) taleplerini 'tıraşlamaya' (shave) teşvik etmek için"
+            },
+            {
+                id: 8,
+                question: "Güç Faktörü (Power Factor) nasıl tanımlanır?",
+                options: [
+                    "Reaktif Gücün (kVAR) Toplam Güce (kVA) oranı",
+                    "Gerçek Gücün (kW) Reaktif Güce (kVAR) oranı",
+                    "Gerçek Gücün (kW) Toplam Güce (kVA) oranı",
+                    "Toplam Gücün (kVA) Gerçek Güce (kW) oranı"
+                ],
+                correctAnswer: "Gerçek Gücün (kW) Toplam Güce (kVA) oranı"
+            },
+            {
+                id: 9,
+                question: "Tedarikçiler, müşterileri düşük güç faktörü (örn. < 0.9) için neden cezalandırır?",
+                options: [
+                    "Düşük PF, şebekede voltaj dalgalanmalarına neden olduğu için",
+                    "Düşük PF, aynı gerçek güç (kW) için daha yüksek toplam güç (kVA) çekilmesini gerektirdiği için",
+                    "Düşük PF, sayaçların yanlış ölçüm yapmasına neden olduğu için",
+                    "Düşük PF, sadece endüstriyel tesislerde meydana geldiği için"
+                ],
+                correctAnswer: "Düşük PF, aynı gerçek güç (kW) için daha yüksek toplam güç (kVA) çekilmesini gerektirdiği için"
+            },
+            {
+                id: 10,
+                question: "Bir faturada 'Ratchet Clause' (Geçmişe Bağlı Talep Maddesi) bulunmasının anlamı nedir?",
+                options: [
+                    "Müşterinin faturasının, son 12 ayın en yüksek talebinin belli bir yüzdesinden az olamayacağı",
+                    "Müşterinin faturasının, enflasyon oranına göre otomatik olarak artacağı",
+                    "Müşterinin faturasının, tükettikçe birim fiyatının düşeceği (azalan blok)",
+                    "Müşterinin faturasının, yakıt maliyetlerindeki artışları yansıtacağı"
+                ],
+                correctAnswer: "Müşterinin faturasının, son 12 ayın en yüksek talebinin belli bir yüzdesinden az olamayacağı"
+            },
+            {
+                id: 11,
+                question: "'Yakıt Maliyeti Ayarlaması' (Fuel Cost Adjustment) maddesi ne işe yarar?",
+                options: [
+                    "Müşterinin yakıt tasarrufunu ödüllendirmek",
+                    "Tedarikçinin, birincil enerji (kömür, gaz vb.) fiyatlarındaki dalgalanmaları faturaya yansıtması",
+                    "Ulaşım sektöründeki akaryakıt zamlarını dengelemek",
+                    "Yenilenebilir enerji kaynaklarını teşvik etmek"
+                ],
+                correctAnswer: "Tedarikçinin, birincil enerji (kömür, gaz vb.) fiyatlarındaki dalgalanmaları faturaya yansıtması"
+            },
+            {
+                id: 12,
+                question: "'Ters Blok Fiyatlandırma' (Inverted Block Pricing) tarifesi nasıl çalışır?",
+                options: [
+                    "Enerji tüketimi arttıkça birim fiyat artar",
+                    "Enerji tüketimi arttıkça birim fiyat azalır",
+                    "Günün saatlerine göre fiyat değişir",
+                    "Mevsimlere göre fiyat değişir"
+                ],
+                correctAnswer: "Enerji tüketimi arttıkça birim fiyat artar"
+            },
+            {
+                id: 13,
+                question: "Elektrik maliyetinin gün içinde 'on-peak' (puant/pahalı) ve 'off-peak' (puant dışı/ucuz) olarak değiştiği tarife hangisidir?",
+                options: [
+                    "Blok Fiyatlandırma (Block Pricing)",
+                    "Zaman Esaslı Tarife (Time-of-Use - TOU)",
+                    "Gerçek Zamanlı Fiyatlandırma (RTP)",
+                    "Düz Tarife (Flat Rate)"
+                ],
+                correctAnswer: "Zaman Esaslı Tarife (Time-of-Use - TOU)"
+            },
+            {
+                id: 14,
+                question: "Elektrik maliyetinin *saatlik olarak* değiştiği ve fiyatların genellikle saatler öncesinden duyurulduğu en dinamik tarife hangisidir?",
+                options: [
+                    "Blok Fiyatlandırma (Block Pricing)",
+                    "Zaman Esaslı Tarife (Time-of-Use - TOU)",
+                    "Gerçek Zamanlı Fiyatlandırma (Real-Time-Pricing - RTP)",
+                    "Mevsimsel Tarife (Seasonal Rate)"
+                ],
+                correctAnswer: "Gerçek Zamanlı Fiyatlandırma (Real-Time-Pricing - RTP)"
+            },
+            {
+                id: 15,
+                question: "Türkiye'de 'Serbest Tüketici' (Eligible Consumer) limitlerinin yıllar içinde düşürülmesinin en önemli sonucu ne olmuştur?",
+                options: [
+                    "Enerji tüketiminin azalması",
+                    "Tüketicilerin tedarikçilerini serbestçe seçebilmesi ve rekabetin artması",
+                    "Tüm faturaların devlet tarafından sübvanse edilmesi",
+                    "Sadece yenilenebilir enerji kullanımına izin verilmesi"
+                ],
+                correctAnswer: "Tüketicilerin tedarikçilerini serbestçe seçebilmesi ve rekabetin artması"
+            }
+        ];
+
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizContainer = document.getElementById('quiz-container');
+            const quizForm = document.getElementById('quiz-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const resultsContainer = document.getElementById('results-container');
+
+            // 1. Sınavı Yükle
+            function loadQuiz() {
+                let quizHTML = '';
+                quizData.forEach((q, index) => {
+                    // Soru başlığı
+                    quizHTML += `
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100" id="question-card-${q.id}">
+                            <p class="text-lg font-semibold text-gray-800">
+                                Soru ${index + 1}: ${q.question}
+                            </p>
+                            <div class="space-y-3 mt-4" id="options-container-${q.id}">
+                    `;
+                    
+                    // Cevap seçenekleri (Radyo butonları)
+                    q.options.forEach(option => {
+                        quizHTML += `
+                            <label class="block w-full p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors cursor-pointer">
+                                <input type="radio" name="question-${q.id}" value="${option}" class="mr-3 text-blue-800 focus:ring-blue-700">
+                                <span class="text-gray-700">${option}</span>
+                            </label>
+                        `;
+                    });
+
+                    quizHTML += `</div></div>`;
+                });
+                quizContainer.innerHTML = quizHTML;
+            }
+
+            // 2. Sınavı Gönder ve Sonuçları Göster
+            function showResults(event) {
+                event.preventDefault(); // Formun sayfayı yenilemesini engelle
+
+                let score = 0;
+                let wrongAnswersHTML = ''; // Yanlış cevaplar için HTML
+                
+                quizData.forEach(q => {
+                    const card = document.getElementById(`question-card-${q.id}`);
+                    const optionsContainer = document.getElementById(`options-container-${q.id}`);
+                    const allLabels = optionsContainer.querySelectorAll('label');
+
+                    // Kullanıcının seçtiği cevabı bul
+                    const selectedRadio = document.querySelector(`input[name="question-${q.id}"]:checked`);
+                    const userAnswer = selectedRadio ? selectedRadio.value : null;
+                    const correctAnswer = q.correctAnswer;
+
+                    // Tüm etiketleri sıfırla (eğer varsa)
+                    allLabels.forEach(label => {
+                        label.classList.remove('correct-answer-label', 'wrong-answer-label');
+                    });
+
+                    if (userAnswer === correctAnswer) {
+                        // Cevap doğruysa
+                        score++;
+                        if (selectedRadio) {
+                            selectedRadio.parentElement.classList.add('correct-answer-label');
+                        }
+                    } else {
+                        // Cevap yanlışsa
+                        if (selectedRadio) {
+                            // Kullanıcının yanlış seçimini kırmızı yap
+                            selectedRadio.parentElement.classList.add('wrong-answer-label');
+                        }
+
+                        // Doğru cevabı bul ve yeşil yap
+                        allLabels.forEach(label => {
+                            const input = label.querySelector('input');
+                            if (input.value === correctAnswer) {
+                                label.classList.add('correct-answer-label');
+                            }
+                        });
+
+                        // Sonuç listesi için HTML hazırla
+                        wrongAnswersHTML += `
+                            <div class="p-4 border-b border-gray-200">
+                                <p class="font-semibold text-gray-800">${q.question}</p>
+                                <p class="text-red-600 mt-2"><strong>Sizin Cevabınız:</strong> ${userAnswer || 'Boş bırakıldı'}</p>
+                                <p class="text-green-600 mt-1"><strong>Doğru Cevap:</strong> ${correctAnswer}</p>
+                            </div>
+                        `;
+                    }
+                });
+
+                // Sonuçları üstte göster
+                const scorePercentage = Math.round((score / quizData.length) * 100);
+                resultsContainer.innerHTML = `
+                    <h2 class="text-3xl font-bold text-center text-blue-900">Sınav Sonucu</h2>
+                    <p class="text-5xl font-bold text-center my-4">${scorePercentage} Puan</p>
+                    <div class="flex justify-center gap-6 text-center text-lg">
+                        <span class="font-semibold text-green-600">Doğru: ${score}</span>
+                        <span class="font-semibold text-red-600">Yanlış: ${quizData.length - score}</span>
+                    </div>
+                    
+                    ${wrongAnswersHTML ? `
+                        <hr class="my-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Yanlış Sorular ve Doğruları</h3>
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            ${wrongAnswersHTML}
+                        </div>
+                    ` : `
+                        <hr class="my-8">
+                        <p class="text-center text-2xl font-bold text-green-600">🎉 Tebrikler! Tüm soruları doğru cevapladınız! 🎉</p>
+                    `}
+                `;
+
+                resultsContainer.classList.remove('hidden');
+                submitBtn.classList.add('hidden'); // Butonu gizle
+                
+                // Sonuçlara odaklan
+                resultsContainer.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Olayları Bağla
+            loadQuiz();
+            quizForm.addEventListener('submit', showResults);
+        });
+    </script>
+</body>
+</html>
