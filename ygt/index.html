@@ -193,219 +193,7 @@
             </ul>
 
         </section>
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yüksek Gerilim Tekniği Özeti (En Basit Sürüm)</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <style>
-        /* HTML'in kendi üst ve alt simge etiketlerinin düzgün görünmesini sağla */
-        sup, sub {
-            font-size: 0.75em;
-            line-height: 0;
-            position: relative;
-            vertical-align: baseline;
-        }
-        sup {
-            top: -0.5em;
-        }
-        sub {
-            bottom: -0.25em;
-        }
-        /* Formülleri metinden ayırmak için basit bir stil */
-        .formula {
-            display: block;
-            margin: 0.5em 0;
-            padding: 0.5em;
-            background-color: #f9f9f9;
-            border: 1px solid #eee;
-            border-radius: 4px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1.1em;
-            text-align: center;
-        }
-        .inline-formula {
-            font-family: 'Times New Roman', Times, serif;
-            font-style: italic;
-            font-weight: bold;
-            padding: 0 0.15em;
-        }
-    </style>
-</head>
-<body class="bg-gray-100 p-4 md:p-10 font-sans">
-
-    <div class="max-w-4xl mx-auto bg-white shadow-xl rounded-lg p-6 md:p-12">
-
-        <h1 class="text-4xl font-bold text-blue-700 mb-8 border-b pb-4">
-            ⚡ Yüksek Gerilim Tekniği Özeti
-        </h1>
-
-        <section class="mb-10">
-            <h2 class="text-3xl font-semibold text-blue-600 mb-6">
-                Bölüm 1: Yüksek Gerilim Hakkında Genel Bilgiler
-            </h2>
-            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                Bu bölümde, yüksek gerilimin neden kullanıldığı, temel tanımlar, gerilim çeşitleri, üretim ve ölçüm yöntemleri ele alınmaktadır.
-            </p>
-
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">1.1 Yüksek Gerilimin Kullanılma Sebepleri</h3>
-            <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                Elektrik enerjisi iletiminde yüksek gerilim kullanılmasının temel nedeni <strong>enerji kayıplarını azaltmaktır</strong>.
-            </p>
-            <ul class="list-disc list-inside space-y-3 pl-4 text-lg text-gray-700 leading-relaxed mb-4">
-                <li><strong>Güç Kaybı:</strong> İletim hatlarındaki 3 fazlı güç kaybı <span class="inline-formula">&Delta;P = 3 &middot; R &middot; I<sup>2</sup></span> formülü ile hesaplanır.</li>
-                <li><strong>Bağıl Kayıp:</strong> İletilen güce (P) kıyasla bağıl kayıp <span class="inline-formula">p = P &middot; R / (U<sup>2</sup> &middot; cos<sup>2</sup>&phi;)</span> olarak ifade edilir.</li>
-                <li><strong>Çözüm:</strong> Bu formüle göre, kaybı (p) azaltmanın en ekonomik ve etkili yolu, gerilimi (U) artırmaktır. İletken kesitini artırarak <span class="inline-formula">R</span>'yi düşürmek veya kompanzasyon ile <span class="inline-formula">cos &phi;</span>'yi düzeltmek daha maliyetlidir.</li>
-            </ul>
-            <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                İletim geriliminin seviyesini belirleyen <strong>en büyük etken, iletilecek güç değeridir</strong>. Mesafe, güç kadar belirleyici değildir.
-            </p>
-            <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                <strong>HVDC (Yüksek Gerilim Doğru Akım):</strong> Özellikle uzun mesafelerde (havai hatlarda 500-600 km, kablolarda 50 km üzeri) AC'ye göre daha ekonomik olabilen bir iletim alternatifidir.
-            </p>
-
-            <h3 class="text-2xl font-semibold text-gray-800 mt-6 mb-4">1.2 Doğal Güç ve Gerilim Tanımları</h3>
-            <ul class="list-disc list-inside space-y-3 pl-4 text-lg text-gray-700 leading-relaxed mb-4">
-                <li><strong>Yüksek Gerilim Tanımı:</strong> AC'de 1000 V'tan, DC'de 1200 V'tan büyük gerilimlerdir.</li>
-                <li><strong>Standart Gerilimler:</strong> Malzemede birliği sağlamak ve maliyeti düşürmek için standart gerilim serileri kullanılır (Örn: 154 kV, 380 kV).</li>
-                <li><strong>Anma Gerilimi (Nominal):</strong> Tesisin veya cihazın adlandırıldığı gerilimdir.</li>
-                <li><strong>Karakteristik Empedans (<span class="inline-formula">Z<sub>o</sub></span>):</strong> Kayıpsız bir hattın dalga empedansıdır, <span class="inline-formula">Z<sub>O</sub> = &radic;(L'/C')</span>. Havai hatlar için 400-750 &Omega; civarındadır.</li>
-                <li><strong>Doğal Güç (<span class="inline-formula">P<sub>o</sub></span>):</strong> Bir hattın, karakteristik empedansına eşit bir yükle yüklendiğinde ilettiği güçtür (<span class="inline-formula">P<sub>0</sub> = U<sup>2</sup> / Z<sub>o</sub></span>). Bu durumda reaktif güç iletimi olmaz. Gerilimi 2 kat artırmak, doğal gücü 4 kat artırır.</li>
-            </ul>
-
-            <h3 class="text-2xl font-semibold text-gray-800 mt-6 mb-4">1.3 Yüksek Gerilim Çeşitleri</h3>
-            <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                Yüksek gerilimler zamana göre değişimlerine göre üçe ayrılır:
-            </p>
-            <ol class="list-decimal list-inside space-y-3 pl-4 text-lg text-gray-700 leading-relaxed mb-4">
-                <li><strong>Yüksek Doğru Gerilim (DC):</strong> Zamanla kutbiyeti değişmez. Sabit veya dalgalı olabilir. Dalgalanma faktörü (%5'ten küçük olmalı) ile tanımlanır. Kablo ve kondansatör muayenesi, elektrostatik filtreleme gibi alanlarda kullanılır.</li>
-                <li><strong>Yüksek Alternatif Gerilim (AC):</strong> Değeri ve kutbiyeti periyodik değişir. Tepe (<span class="inline-formula">U<sub>M</sub></span>) ve efektif (U) değerleri ile tanımlanır (<span class="inline-formula">U = U<sub>M</sub> / &radic;2</span>).</li>
-                <li><strong>Darbe Gerilimi (Impulse):</strong> Şebekedeki aşırı gerilimleri taklit etmek için laboratuvarlarda kullanılır.
-                    <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                        <li><strong>Yıldırım Darbesi:</strong> Dış (atmosferik) aşırı gerilimleri taklit eder. Standart şekli <strong>1,2/50 µs</strong> (cephe/sırt süresi) olarak tanımlanır.</li>
-                        <li><strong>Bağlama (Açma-Kapama) Darbesi:</strong> İç (anahtarlama) aşırı gerilimleri taklit eder. Standart şekli <strong>250/2500 µs</strong>'dir.</li>
-                    </ul>
-                </li>
-            </ol>
-            <p class="text-lg bg-blue-50 p-4 rounded-md text-blue-800">
-                Genel olarak, 220 kV'a kadar tesislerde dış aşırı gerilimler (yıldırım), 380 kV'un üzerindeki tesislerde ise iç aşırı gerilimler (anahtarlama) izolasyon boyutlandırmasında daha kritiktir.
-            </p>
-
-            <h3 class="text-2xl font-semibold text-gray-800 mt-6 mb-4">1.4 Yüksek Gerilimlerin Üretilmesi</h3>
-            <ul class="list-disc list-inside space-y-3 pl-4 text-lg text-gray-700 leading-relaxed mb-4">
-                <li><strong>AC Gerilim Üretimi:</strong>
-                    <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                        <li><strong>Deney Transformatörleri:</strong> Tek katlı olarak 400 kV'a kadar kullanılır.</li>
-                        <li><strong>Kaskat Bağlantı:</strong> Çok daha yüksek gerilimler (MV seviyeleri) için transformatörler kaskat (seri) bağlanır. Bu, ağırlık ve maliyet açısından daha verimlidir, çünkü trafo ağırlığı <span class="inline-formula">G = k &middot; U<sup>3</sup></span> ile orantılıdır.</li>
-                    </ul>
-                </li>
-                <li><strong>DC Gerilim Üretimi:</strong>
-                    <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                        <li><strong>Doğrultucular:</strong> AC gerilimi yarım veya tam dalga (Graetz köprüsü) doğrultarak DC elde edilir.</li>
-                        <li><strong>Gerilim Katlayıcılar:</strong> Greinacher veya <strong>Greinacher Kaskad</strong> (çok kademeli) devreleri kullanılarak AC girişin tepe değerinin katları (örn: <span class="inline-formula">6U<sub>m</sub></span>, <span class="inline-formula">8U<sub>m</sub></span>...) elde edilir.</li>
-                    </ul>
-                </li>
-                <li><strong>Darbe Gerilimi Üretimi (Marx Generatörü):</strong>
-                    <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                        <li>Temel prensibi, <strong>darbe kondansatörlerini (<span class="inline-formula">C<sub>d</sub></span>) paralel yükleyip seri halde boşaltmaktır</strong>.</li>
-                        <li>Çok kademeli generatörlerde, kat kondansatörleri (<span class="inline-formula">C<sub>d</sub>'</span>) paralel olarak <span class="inline-formula">U<sub>0</sub></span> gerilimine şarj olur. Atlama (spark gap) elektrotlarının (F) ateşlenmesiyle kondansatörler seri hale gelir ve <span class="inline-formula">C<sub>y</sub></span> yük kondansatörü üzerinde <span class="inline-formula">n &middot; U<sub>0</sub></span>'a yakın bir darbe gerilimi oluştururlar.</li>
-                        <li>Çıkış dalga şekli (<span class="inline-formula">u(t)</span>), <span class="inline-formula">R<sub>a</sub></span> (cephe direnci) ve <span class="inline-formula">R<sub>d</sub></span> (sırt direnci) ile ayarlanır.</li>
-                    </ul>
-                </li>
-            </ul>
-
-            <h3 class="text-2xl font-semibold text-gray-800 mt-6 mb-4">1.5 Yüksek Gerilim Ölçme Devreleri</h3>
-            <ul class="list-disc list-inside space-y-3 pl-4 text-lg text-gray-700 leading-relaxed mb-4">
-                <li><strong>Doğrudan Y.G. Ölçen Aletler:</strong>
-                    <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                        <li><strong>Küresel Elektrotlar:</strong> En yaygın yöntemdir. AC, DC veya darbe gerilimlerinin <strong>tepe değerini</strong> ölçer. Ölçüm, küre çapı (D) ve atlama sırasındaki küreler arası açıklığa (a) dayanır. Düzgün bir alan ve düşük hata için <span class="inline-formula">a/D &le; 0.5</span> olmalıdır. Ölçümler, standart hava koşullarına (basınç ve sıcaklık) göre düzeltme faktörleri (<span class="inline-formula">&delta;</span>) kullanılarak düzeltilmelidir.</li>
-                        <li><strong>Elektrostatik Voltmetreler:</strong> İki elektrot arasındaki elektrostatik çekme kuvveti prensibiyle çalışır; DC gerilimleri ve AC'nin efektif değerini ölçer.</li>
-                    </ul>
-                </li>
-                <li><strong>Alçak Gerilim Aletleri (Bölücülerle) Kullanan Devreler:</strong>
-                    <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                        <li><strong>Gerilim Bölücüler:</strong> Yüksek gerilimi, osiloskop (K.O) veya voltmetre gibi alçak gerilim cihazlarının ölçebileceği seviyeye düşürür.</li>
-                        <li><strong>Türleri:</strong> Omik (dirençli), Kapasitif veya ikisinin karışımı (Karma) olabilirler.</li>
-                        <li><strong>Gerilim Ölçü Transformatörleri:</strong> Yüksek AC gerilimini, standart bir sekonder gerilimine (örn: 100 V) düşürerek efektif değerin ölçülmesini sağlar.</li>
-                    </ul>
-                </li>
-            </ul>
-        </section>
-
-        <section class="mt-12">
-            <h2 class="text-3xl font-semibold text-blue-600 mb-6">
-                Bölüm 2: Statik Elektrik Alan ve Elektrot Sistemleri
-            </h2>
-            <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                Bu bölümde, yüksek gerilim yalıtımını anlamak için gerekli olan elektrostatik alan denklemleri ve temel elektrot geometrileri incelenmektedir.
-            </p>
-
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">2.1 Temel Alan Denklemleri</h3>
-            <ul class="list-disc list-inside space-y-3 pl-4 text-lg text-gray-700 leading-relaxed mb-4">
-                <li><strong>Maxwell Denklemleri:</strong> Elektromanyetik alanın temelini oluşturur.</li>
-                <li><strong>Bünye Denklemleri:</strong> Alan vektörlerini (<span class="inline-formula">E, H</span>) akı yoğunluklarına (<span class="inline-formula">D, B</span>) bağlar: <span class="inline-formula">D = &epsilon; &middot; E</span>, <span class="inline-formula">B = &mu; &middot; H</span>.</li>
-                <li><strong>Statik Alan:</strong> Yüklerin (<span class="inline-formula">&rho;</span>) ve akımların (<span class="inline-formula">j</span>) zamanla değişmediği (<span class="inline-formula">j = 0</span>) durumdur.</li>
-                <li><strong>Poisson Denklemi:</strong> Bir bölgedeki potansiyel (<span class="inline-formula">&phi;</span>) ile yük yoğunluğu (<span class="inline-formula">&rho;</span>) arasındaki ilişkiyi tanımlar: <span class="inline-formula">&Delta;&phi; = -&rho;/&epsilon;</span>.</li>
-                <li><strong>Laplace Denklemi:</strong> Yük bulunmayan (<span class="inline-formula">&rho; = 0</span>) bölgeler için (yalıtkanların çoğu) kullanılan temel denklemdir: <strong><span class="inline-formula">&Delta;&phi; = 0</span></strong>. Alan hesabı, bu denklemin sınır koşullarına göre çözülmesine dayanır.</li>
-                <li><strong>Alan-Potansiyel İlişkisi:</strong> Elektrik alan, potansiyelin gradyanının negatifidir: <span class="inline-formula">E = -grad &phi;</span>.</li>
-            </ul>
-            <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                Alan hesabı, problemin geometrisine uygun koordinat sisteminde (Kartezyen, Küresel, Silindirik) Laplace denklemi çözülerek yapılır.
-            </p>
-
-            <h3 class="text-2xl font-semibold text-gray-800 mt-6 mb-4">2.3 Düzlemsel Elektrot Sistemi (Paralel Plakalar)</h3>
-            <ul class="list-disc list-inside space-y-3 pl-4 text-lg text-gray-700 leading-relaxed mb-4">
-                <li><strong>Sistem:</strong> Aralarında 'a' mesafesi olan iki paralel iletken plaka.</li>
-                <li><strong>Analiz:</strong> Potansiyel sadece y ekseninde değişir (<span class="inline-formula">&phi; = f(y)</span>). Laplace denklemi <span class="inline-formula">&Delta;&phi; = d<sup>2</sup>&phi;/dy<sup>2</sup> = 0</span>.</li>
-                <li><strong>Potansiyel:</strong> <span class="inline-formula">&phi;(y) = (U/a) &middot; y</span>.</li>
-                <li><strong>Elektrik Alan:</strong> <span class="inline-formula">E = U/a</span>.</li>
-                <li><strong>Sonuç:</strong> Düzlemsel sistemde elektrik alan <strong>düzgündür</strong> (uniform). Yalıtkan malzeme içindeki her noktada alan şiddeti aynıdır. Delinme, <span class="inline-formula">E &ge; E<sub>d</sub></span> (malzemenin delinme dayanımı) olduğunda gerçekleşir.</li>
-            </ul>
-
-            <h3 class="text-2xl font-semibold text-gray-800 mt-6 mb-4">2.4 Küresel Elektrot Sistemi (Eş Merkezli Küreler)</h3>
-            <ul class="list-disc list-inside space-y-3 pl-4 text-lg text-gray-700 leading-relaxed mb-4">
-                <li><strong>Sistem:</strong> İç yarıçapı <span class="inline-formula">r<sub>1</sub></span>, dış yarıçapı <span class="inline-formula">r<sub>2</sub></span> olan eş merkezli iki küre.</li>
-                <li><strong>Analiz:</strong> Potansiyel sadece yarıçapa bağlıdır (<span class="inline-formula">&phi; = f(r)</span>). Laplace denklemi <span class="inline-formula">&Delta;&phi; = d<sup>2</sup>&phi;/dr<sup>2</sup> + (2/r) &middot; (d&phi;/dr) = 0</span>.</li>
-                <li><strong>Potansiyel:</strong> <span class="inline-formula">&phi;(r) = U &middot; (r<sub>1</sub>/(r<sub>2</sub>-r<sub>1</sub>)) &middot; (r<sub>2</sub>/r - 1)</span>.</li>
-                <li><strong>Elektrik Alan:</strong> <span class="inline-formula">E(r) = U &middot; (r<sub>1</sub>&middot;r<sub>2</sub>)/(r<sub>2</sub>-r<sub>1</sub>) &middot; (1/r<sup>2</sup>)</span>.</li>
-                <li><strong>Sonuç:</strong> Alan <strong>düzgün değildir</strong>. Yarıçap (r) küçüldükçe alan şiddeti artar.
-                    <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                        <li><strong>Maksimum Alan (<span class="inline-formula">E<sub>max</sub></span>):</strong> İç kürenin yüzeyinde (<span class="inline-formula">r = r<sub>1</sub></span>) oluşur.</li>
-                        <li><strong>Minimum Alan (<span class="inline-formula">E<sub>min</sub></span>):</strong> Dış kürenin yüzeyinde (<span class="inline-formula">r = r<sub>2</sub></span>) oluşur.</li>
-                    </ul>
-                </li>
-                <li><strong>Tasarım ve Delinme:</strong>
-                    <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                        <li><strong>Verim (<span class="inline-formula">&eta;</span>):</strong> <span class="inline-formula">&eta; = E<sub>ort</sub> / E<sub>max</sub> = r<sub>1</sub>/r<sub>2</sub></span>. 1'e ne kadar yakınsa alan o kadar düzgündür.</li>
-                        <li><strong>En Elverişli Sistem:</strong> <span class="inline-formula">E<sub>max</sub></span>'ı minimum yapan (en dayanıklı) tasarım, <span class="inline-formula">r<sub>2</sub> = 2 &middot; r<sub>1</sub></span> (veya <span class="inline-formula">p = r<sub>2</sub>/r<sub>1</sub> = 2</span>) olduğunda elde edilir.</li>
-                        <li><strong>Delinme Bölgeleri:</strong> Uygulanan gerilim (U), delinme geriliminden (<span class="inline-formula">U<sub>d</sub></span>) büyükse:
-                            <ul class="list-square list-inside pl-8 mt-2 space-y-1">
-                                <li><strong>Ön Boşalma (Korona):</strong> <span class="inline-formula">p > 2</span> (alan çok düzgünsüz) ise, iç iletken (<span class="inline-formula">r<sub>1</sub></span>) etrafında kısmi boşalma başlar ancak tam delinme olmaz.</li>
-                                <li><strong>Tam Delinme:</strong> <span class="inline-formula">p < 2</span> (alan daha düzgün) ise, başlayan boşalma hızla gelişerek tam delinmeye (kısa devreye) dönüşür.</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-
-            <h3 class="text-2xl font-semibold text-gray-800 mt-6 mb-4">2.5 Silindirsel Elektrot Sistemi (Eş Eksenli Silindirler/Kablo)</h3>
-            <ul class="list-disc list-inside space-y-3 pl-4 text-lg text-gray-700 leading-relaxed mb-4">
-                <li><strong>Sistem:</strong> İç yarıçapı <span class="inline-formula">r<sub>1</sub></span>, dış yarıçapı <span class="inline-formula">r<sub>2</sub></span> olan eş eksenli iki silindir (tipik bir koaksiyel kablo).</li>
-                <li><strong>Analiz:</strong> Potansiyel sadece yarıçapa bağlıdır (<span class="inline-formula">&phi; = f(r)</span>). Laplace denklemi <span class="inline-formula">&Delta;&phi; = d<sup>2</sup>&phi;/dr<sup>2</sup> + (1/r) &middot; (d&phi;/dr) = 0</span>.</li>
-                <li><strong>Potansiyel:</strong> <span class="inline-formula">&phi;(r) = (U / ln(r<sub>2</sub>/r<sub>1</sub>)) &middot; ln(r<sub>2</sub>/r)</span>.</li>
-                <li><strong>Elektrik Alan:</strong> <span class="inline-formula">E(r) = U / (r &middot; ln(r<sub>2</sub>/r<sub>1</sub>))</span>.</li>
-                <li><strong>Sonuç:</strong> Alan <strong>düzgün değildir</strong>. Tıpkı küresel sistemde olduğu gibi, alan şiddeti iç iletkene yaklaştıkça artar.</li>
-                <li><strong>Maksimum Alan (<span class="inline-formula">E<sub>max</sub></span>):</strong> İç iletkenin yüzeyinde (<span class="inline-formula">r = r<sub>1</sub></span>) oluşur: <span class="inline-formula">E<sub>max</sub> = U / (r<sub>1</sub> &middot; ln(r<sub>2</sub>/r<sub>1</sub>))</span>.</li>
-                <li><strong>Minimum Alan (<span class="inline-formula">E<sub>min</sub></span>):</strong> Dış iletkenin yüzeyinde (<span class="inline-formula">r = r<sub>2</sub></span>) oluşur: <span class="inline-formula">E<sub>min</sub> = U / (r<sub>2</sub> &middot; ln(r<sub>2</sub>/r<sub>1</sub>))</span>.</li>
-            </ul>
-
-        </section>
-
-        <section class="mt-12 border-t pt-10">
+<section class="mt-12 border-t pt-10">
             <h2 class="text-3xl font-semibold text-green-600 mb-6">
                 Bölüm 3: Örnek Soru Çözümleri
             </h2>
@@ -418,42 +206,42 @@
                     1. ÖDEV-3 (Sayfa 54) - Darbe Generatörü Analizi
                 </h4>
                 <blockquote class="border-l-4 border-gray-300 pl-4 text-gray-600 italic mb-4">
-                    5 kademeli a-bağlamı darbe generatörü: <span class="inline-formula">C<sub>d</sub>' = 100 nF</span>, <span class="inline-formula">R<sub>d</sub>' = 1 k&Omega;</span>, <span class="inline-formula">R<sub>a</sub>' = 80 &Omega;</span>, <span class="inline-formula">C<sub>y</sub> = 1 nF</span>, <span class="inline-formula">U<sub>0</sub>' = 100 kV</span>.
+                    5 kademeli a-bağlamı darbe generatörü: <math display="inline"><msubsup><mi>C</mi><mi>d</mi><mo>&prime;</mo></msubsup><mo>=</mo><mn>100</mn><mi> nF</mi></math>, <math display="inline"><msubsup><mi>R</mi><mi>d</mi><mo>&prime;</mo></msubsup><mo>=</mo><mn>1</mn><mi> k&Omega;</mi></math>, <math display="inline"><msubsup><mi>R</mi><mi>a</mi><mo>&prime;</mo></msubsup><mo>=</mo><mn>80</mn><mi> &Omega;</mi></math>, <math display="inline"><msub><mi>C</mi><mi>y</mi></msub><mo>=</mo><mn>1</mn><mi> nF</mi></math>, <math display="inline"><msubsup><mi>U</mi><mn>0</mn><mo>&prime;</mo></msubsup><mo>=</mo><mn>100</part><mi> kV</mi></math>.
                 </blockquote>
                 <h5 class="text-lg font-semibold text-gray-700 mt-4 mb-2">Çözüm Adımları:</h5>
                 <ol class="list-decimal list-inside space-y-3 pl-4 text-lg text-gray-700 leading-relaxed">
                     <li>
                         <strong>Tek Kademeye Dönüşüm (n=5):</strong>
                         <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                            <li><span class="inline-formula">U<sub>0</sub> = n &middot; U<sub>0</sub>' = 5 &middot; 100 kV = 500 kV</span></li>
-                            <li><span class="inline-formula">C<sub>d</sub> = C<sub>d</sub>' / n = 100 nF / 5 = 20 nF</span></li>
-                            <li><span class="inline-formula">R<sub>a</sub> = n &middot; R<sub>a</sub>' = 5 &middot; 80 &Omega; = 400 &Omega;</span></li>
-                            <li><span class="inline-formula">R<sub>d</sub> = n &middot; R<sub>d</sub>' = 5 &middot; 1 k&Omega; = 5000 &Omega;</span></li>
+                            <li><math display="inline"><msub><mi>U</mi><mn>0</mn></msub><mo>=</mo><mi>n</mi><mo>&sdot;</mo><msubsup><mi>U</mi><mn>0</mn><mo>&prime;</mo></msubsup><mo>=</mo><mn>5</mn><mo>&sdot;</mo><mn>100</mn><mi> kV</mi><mo>=</mo><mn>500</mi><mi> kV</mi></math></li>
+                            <li><math display="inline"><msub><mi>C</mi><mi>d</mi></msub><mo>=</mo><msubsup><mi>C</mi><mi>d</mi><mo>&prime;</mo></msubsup><mo>/</mo><mi>n</mi><mo>=</mo><mn>100</mn><mi> nF</mi><mo>/</mo><mn>5</mn><mo>=</mo><mn>20</mn><mi> nF</mi></math></li>
+                            <li><math display="inline"><msub><mi>R</mi><mi>a</mi></msub><mo>=</mo><mi>n</mi><mo>&sdot;</mo><msubsup><mi>R</mi><mi>a</mi><mo>&prime;</mo></msubsup><mo>=</mo><mn>5</mn><mo>&sdot;</mo><mn>80</mn><mi> &Omega;</mi><mo>=</mo><mn>400</mn><mi> &Omega;</mi></math></li>
+                            <li><math display="inline"><msub><mi>R</mi><mi>d</mi></msub><mo>=</mo><mi>n</mi><mo>&sdot;</mo><msubsup><mi>R</mi><mi>d</mi><mo>&prime;</mo></msubsup><mo>=</mo><mn>5</mn><mo>&sdot;</mo><mn>1</mn><mi> k&Omega;</mi><mo>=</mo><mn>5000</mn><mi> &Omega;</mi></math></li>
                         </ul>
                     </li>
                     <li>
                         <strong>Çıkış Gerilimi u(t) (a-bağlamı):</strong>
                         <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                            <li>Devre s-domeni denklemleri (Sayfa 52) çözülür: <span class="inline-formula">U(s) = A &middot; 1 / (s<sup>2</sup> + s&middot;b + c)</span></li>
-                            <li>Ters Laplace dönüşümü alınır: <span class="inline-formula">u(t) = K &middot; (e<sup>s<sub>1</sub>t</sup> - e<sup>s<sub>2</sub>t</sup>)</span>. (Burada K, s<sub>1</sub>, s<sub>2</sub> devre parametrelerinden hesaplanır).</li>
+                            <li>Devre $s$-domeni denklemleri (Sayfa 52) çözülür: <math display="inline"><mi>U</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><mi>A</mi><mo>&sdot;</mo><mfrac><mn>1</mn><mrow><msup><mi>s</mi><mn>2</mn></msup><mo>+</mo><mi>s</mi><mi>b</mi><mo>+</mo><mi>c</mi></mrow></mfrac></math></li>
+                            <li>Ters Laplace dönüşümü alınır: <math display="inline"><mi>u</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mi>K</mi><mo>&sdot;</mo><mo>(</mo><msup><mi>e</mi><mrow><msub><mi>s</mi><mn>1</mn></msub><mi>t</mi></mrow></msup><mo>-</mo><msup><mi>e</mi><mrow><msub><mi>s</mi><mn>2</mn></msub><mi>t</mi></mrow></msup><mo>)</mo></math>. (K, s₁, s₂ devre parametrelerinden hesaplanır).</li>
                         </ul>
                     </li>
                     <li>
-                        <strong>Verim (&eta;):</strong>
+                        <strong>Verim (<math display="inline"><mi>&eta;</mi></math>):</strong>
                         <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                            <li><span class="inline-formula">du(t)/dt = 0</span> yapılarak <span class="inline-formula">t<sub>m</sub></span> (maksimum süre) bulunur.</li>
-                            <li><span class="inline-formula">U<sub>m</sub> = u(t<sub>m</sub>)</span> hesaplanır.</li>
-                            <li>Verim: <span class="inline-formula">&eta; = U<sub>m</sub> / U<sub>0</sub></span>.</li>
+                            <li><math display="inline"><mfrac><mrow><mi>d</mi><mi>u</mi><mo>(</mo><mi>t</mi><mo>)</mo></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mo>=</mo><mn>0</mn></math> yapılarak <math display="inline"><msub><mi>t</mi><mi>m</mi></msub></math> (maksimum süre) bulunur.</li>
+                            <li><math display="inline"><msub><mi>U</mi><mi>m</mi></msub><mo>=</mo><mi>u</mi><mo>(</mo><msub><mi>t</mi><mi>m</mi></msub><mo>)</mo></math> hesaplanır.</li>
+                            <li>Verim: <math display="inline"><mi>&eta;</mi><mo>=</mo><mfrac><msub><mi>U</mi><mi>m</mi></msub><msub><mi>U</mi><mn>0</mn></msub></mfrac></math>.</li>
                         </ul>
                     </li>
                     <li>
-                        <strong>Süreler (T<sub>c</sub> ve T<sub>s</sub>):</strong>
+                        <strong>Süreler (<math display="inline"><msub><mi>T</mi><mi>c</mi></msub></math> ve <math display="inline"><msub><mi>T</mi><mi>s</mi></msub></math>):</strong>
                         <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                            <li><span class="inline-formula">T<sub>1</sub> &cong; (R<sub>a</sub> + R<sub>d</sub>) &middot; (C<sub>d</sub> + C<sub>y</sub>) = (5400) &middot; (21e-9) &cong; 113.4 &mu;s</span></li>
-                            <li><span class="inline-formula">T<sub>2</sub> &cong; ( (R<sub>a</sub>&middot;R<sub>d</sub>) / (R<sub>a</sub>+R<sub>d</sub>) ) &middot; ( (C<sub>y</sub>&middot;C<sub>d</sub>) / (C<sub>d</sub>+C<sub>y</sub>) ) &cong; (370) &middot; (0.95e-9) &cong; 0.35 &mu;s</span></li>
-                            <li>Standart 1.2/50 tablosundan (k<sub>1</sub>=0.73, k<sub>2</sub>=2.96):</li>
-                            <li><span class="inline-formula">T<sub>s</sub> = k<sub>1</sub> &middot; T<sub>1</sub> = 0.73 &middot; 113.4 &mu;s &cong; 82.8 &mu;s</span></li>
-                            <li><span class="inline-formula">T<sub>c</sub> = k<sub>2</sub> &middot; T<sub>2</sub> = 2.96 &middot; 0.35 &mu;s &cong; 1.04 &mu;s</span></li>
+                            <li><math display="inline"><msub><mi>T</mi><mn>1</mn></msub><mo>&cong;</mo><mo>(</mo><msub><mi>R</mi><mi>a</mi></msub><mo>+</mo><msub><mi>R</mi><mi>d</mi></msub><mo>)</mo><mo>&sdot;</mo><mo>(</mo><msub><mi>C</mi><mi>d</mi></msub><mo>+</mo><msub><mi>C</mi><mi>y</mi></msub><mo>)</mo><mo>=</mo><mo>(</mo><mn>5400</mn><mo>)</mo><mo>&sdot;</mo><mo>(</mo><mn>21</mn><mi>e</mi><mo>-</mo><mn>9</mn><mo>)</mo><mo>&cong;</mo><mn>113.4</mn><mi> &mu;s</mi></math></li>
+                            <li><math display="inline"><msub><mi>T</mi><mn>2</mn></msub><mo>&cong;</mo><mo>(</mo><mfrac><mrow><msub><mi>R</mi><mi>a</mi></msub><msub><mi>R</mi><mi>d</mi></msub></mrow><mrow><msub><mi>R</mi><mi>a</mi></msub><mo>+</mo><msub><mi>R</mi><mi>d</mi></msub></mrow></mfrac><mo>)</mo><mo>&sdot;</mo><mo>(</mo><mfrac><mrow><msub><mi>C</mi><mi>y</mi></msub><msub><mi>C</mi><mi>d</mi></msub></mrow><mrow><msub><mi>C</mi><mi>d</mi></msub><mo>+</mo><msub><mi>C</mi><mi>y</mi></msub></mrow></mfrac><mo>)</mo><mo>&cong;</mo><mo>(</mo><mn>370</mn><mo>)</mo><mo>&sdot;</mo><mo>(</mo><mn>0.95</mn><mi>e</mi><mo>-</mo><mn>9</mn><mo>)</mo><mo>&cong;</mo><mn>0.35</mn><mi> &mu;s</mi></math></li>
+                            <li>Standart 1.2/50 tablosundan (<math display="inline"><msub><mi>k</mi><mn>1</mn></msub><mo>=</mo><mn>0.73</mn></math>, <math display="inline"><msub><mi>k</mi><mn>2</mn></msub><mo>=</mo><mn>2.96</mn></math>):</li>
+                            <li><math display="inline"><msub><mi>T</mi><mi>s</mi></msub><mo>=</mo><msub><mi>k</mi><mn>1</mn></msub><mo>&sdot;</mo><msub><mi>T</mi><mn>1</mn></msub><mo>=</mo><mn>0.73</mn><mo>&sdot;</mo><mn>113.4</mn><mi> &mu;s</mi><mo>&cong;</mo><mn>82.8</mn><mi> &mu;s</mi></math></li>
+                            <li><math display="inline"><msub><mi>T</mi><mi>c</mi></msub><mo>=</mo><msub><mi>k</mi><mn>2</mn></msub><mo>&sdot;</mo><msub><mi>T</mi><mn>2</mn></msub><mo>=</mo><mn>2.96</mn><mo>&sdot;</mo><mn>0.35</mn><mi> &mu;s</mi><mo>&cong;</mo><mn>1.04</mn><mi> &mu;s</mi></math></li>
                         </ul>
                     </li>
                 </ol>
@@ -464,24 +252,24 @@
                     2. SORU-2 (Sayfa 206) - Küresel Elektrotla Ölçme
                 </h4>
                 <blockquote class="border-l-4 border-gray-300 pl-4 text-gray-600 italic mb-4">
-                    D=25 cm. (a) 22°C, 756 mmHg, $a=8.4 \text{ cm}$ için $U=$? (b) N.Ş.A, 200 kV için $a=$?
+                    D=25 cm. (a) 22°C, 756 mmHg, <math display="inline"><mi>a</mi><mo>=</mo><mn>8.4</mn><mi> cm</mi></math> için <math display="inline"><mi>U</mi><mo>=</mo><mo>?</mo></math> (b) N.Ş.A, 200 kV için <math display="inline"><mi>a</mi><mo>=</mo><mo>?</mo></math>
                 </blockquote>
                 <h5 class="text-lg font-semibold text-gray-700 mt-4 mb-2">Çözüm Adımları:</h5>
                 <ol class="list-decimal list-inside space-y-3 pl-4 text-lg text-gray-700 leading-relaxed">
                     <li>
                         <strong>a) Gerilim Düzeltme:</strong>
                         <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                            <li>Bağıl Hava Yoğunluğu (&delta;): <span class="inline-formula">&delta; = 0.386 &middot; p / (273 + &theta;) = 0.386 &middot; 756 / (273 + 22) &cong; 0.988</span></li>
-                            <li>Tablodan (Enterpolasyonla) U<sub>n</sub> (a=8.4 cm için):<br/>
-                                <span class="formula">U<sub>n</sub> = 204 + (219 - 204) &middot; ( (8.4 - 8.0) / (9.0 - 8.0) ) = 210 kV</span></li>
-                            <li>Düzeltilmiş Gerilim (U): <span class="inline-formula">U = &delta; &middot; U<sub>n</sub> = 0.988 &middot; 210 kV &cong; 207.5 kV</span></li>
+                            <li>Bağıl Hava Yoğunluğu (<math display="inline"><mi>&delta;</mi></math>): <math display="inline"><mi>&delta;</mi><mo>=</mo><mn>0.386</mn><mo>&sdot;</mo><mfrac><mi>p</mi><mrow><mn>273</mn><mo>+</mo><mi>&theta;</mi></mrow></mfrac><mo>=</mo><mn>0.386</mn><mo>&sdot;</mo><mfrac><mn>756</mn><mrow><mn>273</mn><mo>+</mo><mn>22</mn></mrow></mfrac><mo>&cong;</mo><mn>0.988</mn></math></li>
+                            <li>Tablodan (Enterpolasyonla) <math display="inline"><msub><mi>U</mi><mi>n</mi></msub></math> (<math display="inline"><mi>a</mi><mo>=</mo><mn>8.4</mn><mi> cm</mi></math> için):<br/>
+                                <math display="block"><msub><mi>U</mi><mi>n</mi></msub><mo>=</mo><mn>204</mn><mo>+</mo><mo>(</mo><mn>219</mn><mo>-</mo><mn>204</mn><mo>)</mo><mo>&sdot;</mo><mfrac><mrow><mn>8.4</mn><mo>-</mo><mn>8.0</mn></mrow><mrow><mn>9.0</mn><mo>-</mo><mn>8.0</mn></mrow></mfrac><mo>=</mo><mn>210</mn><mi> kV</mi></math></li>
+                            <li>Düzeltilmiş Gerilim (U): <math display="inline"><mi>U</mi><mo>=</mo><mi>&delta;</mi><mo>&sdot;</mo><msub><mi>U</mi><mi>n</mi></msub><mo>=</mo><mn>0.988</mn><mo>&sdot;</mo><mn>210</mn><mi> kV</mi><mo>&cong;</mo><mn>207.5</mn><mi> kV</mi></math></li>
                         </ul>
                     </li>
                     <li>
                         <strong>b) Açıklık Bulma (Enterpolasyon):</strong>
                         <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
                             <li>Tablodan 200 kV'a karşılık gelen 'a' değeri: <br/>
-                                <span class="formula">a = 7.5 + (8.0 - 7.5) &middot; ( (200 - 194) / (204 - 194) ) = 7.5 + 0.3 = 7.8 cm</span></li>
+                                <math display="block"><mi>a</mi><mo>=</mo><mn>7.5</mn><mo>+</mo><mo>(</mo><mn>8.0</mn><mo>-</mo><mn>7.5</mn><mo>)</mo><mo>&sdot;</mo><mfrac><mrow><mn>200</mn><mo>-</mo><mn>194</mn></mrow><mrow><mn>204</mn><mo>-</mo><mn>194</mn></mrow></mfrac><mo>=</mo><mn>7.5</mn><mo>+</mo><mn>0.3</mn><mo>=</mo><mn>7.8</mn><mi> cm</mi></math></li>
                         </ul>
                     </li>
                 </ol>
@@ -492,32 +280,32 @@
                     3. SORU-3 (Sayfa 206) - Doğal Güç ve Hat Parametreleri
                 </h4>
                 <blockquote class="border-l-4 border-gray-300 pl-4 text-gray-600 italic mb-4">
-                    l=300 km, Z<sub>0</sub>= 450 &Omega;, R'= 0.031 &Omega;/km, X<sub>L</sub>'= 0.327 &Omega;/km, f=50 Hz.
+                    l=300 km, <math display="inline"><msub><mi>Z</mi><mn>0</mn></msub><mo>=</mo><mn>450</mn><mi> &Omega;</mi></math>, <math display="inline"><mi>R</mi><mo>&prime;</mo><mo>=</mo><mn>0.031</mn><mi> &Omega;/km</mi></math>, <math display="inline"><msub><mi>X</mi><mi>L</mi></msub><mo>&prime;</mo><mo>=</mo><mn>0.327</mn><mi> &Omega;/km</mi></math>, f=50 Hz.
                 </blockquote>
                 <h5 class="text-lg font-semibold text-gray-700 mt-4 mb-2">Çözüm Adımları:</h5>
                 <ol class="list-decimal list-inside space-y-3 pl-4 text-lg text-gray-700 leading-relaxed">
                     <li>
-                        <strong>a) Doğal Güç (<span class="inline-formula">P<sub>0</sub></span>):</strong> <span class="inline-formula">P<sub>0</sub> = U<sup>2</sup> / Z<sub>0</sub></span>
+                        <strong>a) Doğal Güç (<math display="inline"><msub><mi>P</mi><mn>0</mn></msub></math>):</strong> <math display="inline"><msub><mi>P</mi><mn>0</mn></msub><mo>=</mo><mfrac><msup><mi>U</mi><mn>2</mn></msup><msub><mi>Z</mi><mn>0</mn></msub></mfrac></math>
                         <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                            <li>154 kV için: <span class="inline-formula">P<sub>0</sub> = (154&middot;10<sup>3</sup>)<sup>2</sup> / 450 &cong; 52.7 MW</span></li>
-                            <li>380 kV için: <span class="inline-formula">P<sub>0</sub> = (380&middot;10<sup>3</sup>)<sup>2</sup> / 450 &cong; 320.9 MW</span></li>
+                            <li>154 kV için: <math display="inline"><msub><mi>P</mi><mn>0</mn></msub><mo>=</mo><mfrac><mrow><mo>(</mo><mn>154</mn><mo>&sdot;</mo><msup><mn>10</mn><mn>3</mn></msup><msup><mo>)</mo><mn>2</mn></msup></mrow><mn>450</mn></mfrac><mo>&cong;</mo><mn>52.7</mn><mi> MW</mi></math></li>
+                            <li>380 kV için: <math display="inline"><msub><mi>P</mi><mn>0</mn></msub><mo>=</mo><mfrac><mrow><mo>(</mo><mn>380</mn><mo>&sdot;</mo><msup><mn>10</mn><mn>3</mn></msup><msup><mo>)</mo><mn>2</mn></msup></mrow><mn>450</mn></mfrac><mo>&cong;</mo><mn>320.9</mn><mi> MW</mi></math></li>
                         </ul>
                     </li>
                     <li>
-                        <strong>b) Birim Kapasite (<span class="inline-formula">C'</span>):</strong>
+                        <strong>b) Birim Kapasite (<math display="inline"><mi>C</mi><mo>&prime;</mo></math>):</strong>
                         <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                            <li><span class="inline-formula">L' = X<sub>L</sub>' / &omega; = 0.327 / (2&pi;&middot;50) &cong; 1.04 mH/km</span></li>
-                            <li><span class="inline-formula">Z<sub>0</sub><sup>2</sup> = L' / C' &rArr; C' = L' / Z<sub>0</sub><sup>2</sup> = (1.04&middot;10<sup>-3</sup>) / 450<sup>2</sup> &cong; 5.14 nF/km</span></li>
+                            <li><math display="inline"><mi>L</mi><mo>&prime;</mo><mo>=</mo><mfrac><mrow><msub><mi>X</mi><mi>L</mi></msub><mo>&prime;</mo></mrow><mi>&omega;</mi></mfrac><mo>=</mo><mfrac><mn>0.327</mn><mrow><mn>2</mn><mi>&pi;</mi><mn>50</mn></mrow></mfrac><mo>&cong;</mo><mn>1.04</mn><mi> mH/km</mi></math></li>
+                            <li><math display="inline"><msubsup><mi>Z</mi><mn>0</mn><mn>2</mn></msubsup><mo>=</mo><mfrac><mrow><mi>L</mi><mo>&prime;</mo></mrow><mrow><mi>C</mi><mo>&prime;</mo></mrow></mfrac><mo>&rArr;</mo><mi>C</mi><mo>&prime;</mo><mo>=</mo><mfrac><mrow><mi>L</mi><mo>&prime;</mo></mrow><msubsup><mi>Z</mi><mn>0</mn><mn>2</mn></msubsup></mfrac><mo>=</mo><mfrac><mrow><mn>1.04</mn><mo>&sdot;</mo><msup><mn>10</mn><mrow><mo>-</mo><mn>3</mn></mrow></msup></mrow><msup><mn>450</mn><mn>2</mn></msup></mfrac><mo>&cong;</mo><mn>5.14</mn><mi> nF/km</mi></math></li>
                         </ul>
                     </li>
                     <li>
-                        <strong>c) Kayıp Güç (<span class="inline-formula">&Delta;P</span>):</strong>
+                        <strong>c) Kayıp Güç (<math display="inline"><mo>&#x0394;</mo><mi>P</mi></math>):</strong>
                         <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                            <li>Hat Akımları: <span class="inline-formula">I = P<sub>0</sub> / (&radic;3 &middot; U)</span> &nbsp;&nbsp; (<span class="inline-formula">I<sub>154</sub> &cong; 197.5 A</span>, <span class="inline-formula">I<sub>380</sub> &cong; 487.6 A</span>)</li>
-                            <li>Toplam Direnç: <span class="inline-formula">R<sub>top</sub> = R' &middot; l = 0.031 &middot; 300 = 9.3 &Omega;</span></li>
-                            <li>Kayıp Güç: <span class="inline-formula">&Delta;P = 3 &middot; I<sup>2</sup> &middot; R<sub>top</sub></span></li>
-                            <li>154 kV için: <span class="inline-formula">&Delta;P<sub>154</sub> = 3 &middot; (197.5)<sup>2</sup> &middot; 9.3 &cong; 1.08 MW</span></li>
-                            <li>380 kV için: <span class="inline-formula">&Delta;P<sub>380</sub> = 3 &middot; (487.6)<sup>2</sup> &middot; 9.3 &cong; 6.63 MW</span></li>
+                            <li>Hat Akımları: <math display="inline"><mi>I</mi><mo>=</mo><mfrac><msub><mi>P</mi><mn>0</mn></msub><mrow><msqrt><mn>3</mn></msqrt><mo>&sdot;</mo><mi>U</mi></mrow></mfrac></math> &nbsp;&nbsp; (<math display="inline"><msub><mi>I</mi><mn>154</mn></msub><mo>&cong;</mo><mn>197.5</mn><mi> A</mi></math>, <math display="inline"><msub><mi>I</mi><mn>380</mn></msub><mo>&cong;</mo><mn>487.6</mn><mi> A</mi></math>)</li>
+                            <li>Toplam Direnç: <math display="inline"><msub><mi>R</mi><mi>top</mi></msub><mo>=</mo><mi>R</mi><mo>&prime;</mo><mo>&sdot;</mo><mi>l</mi><mo>=</mo><mn>0.031</mn><mo>&sdot;</mo><mn>300</mn><mo>=</mo><mn>9.3</mn><mi> &Omega;</mi></math></li>
+                            <li>Kayıp Güç: <math display="inline"><mo>&#x0394;</mo><mi>P</mi><mo>=</mo><mn>3</mn><mo>&sdot;</mo><msup><mi>I</mi><mn>2</mn></msup><mo>&sdot;</mo><msub><mi>R</mi><mi>top</mi></msub></math></li>
+                            <li>154 kV için: <math display="inline"><mo>&#x0394;</mo><msub><mi>P</mi><mn>154</mn></msub><mo>=</mo><mn>3</mn><mo>&sdot;</mo><mo>(</mo><mn>197.5</mn><msup><mo>)</mo><mn>2</mn></msup><mo>&sdot;</mo><mn>9.3</mn><mo>&cong;</mo><mn>1.08</mn><mi> MW</mi></math></li>
+                            <li>380 kV için: <math display="inline"><mo>&#x0394;</mo><msub><mi>P</mi><mn>380</mn></msub><mo>=</mo><mn>3</mn><mo>&sdot;</mo><mo>(</mo><mn>487.6</mn><msup><mo>)</mo><mn>2</mn></msup><mo>&sdot;</mo><mn>9.3</mn><mo>&cong;</mo><mn>6.63</mn><mi> MW</mi></math></li>
                         </ul>
                     </li>
                 </ol>
@@ -528,35 +316,35 @@
                     4. SORU-5 (Sayfa 207) - Silindirsel Elektrot (Kablo) Tasarımı
                 </h4>
                 <blockquote class="border-l-4 border-gray-300 pl-4 text-gray-600 italic mb-4">
-                    (a) En uygun $p_d$ değerini çıkarınız. (b) $r_1= 1.13 \text{ cm}$ ise en uygun $r_2=$? (c) En uygun koşulda $r_1= 1.13 \text{ cm}$, $E_d=140 \text{ kV/cm}$, $\epsilon_r= 2.3$ ise $U_{max}=$? $C/l=$?
+                    (a) En uygun <math display="inline"><msub><mi>p</mi><mi>d</mi></msub></math> değerini çıkarınız. (b) <math display="inline"><msub><mi>r</mi><mn>1</mn></msub><mo>=</mo><mn>1.13</mn><mi> cm</mi></math> ise en uygun <math display="inline"><msub><mi>r</mi><mn>2</mn></msub><mo>=</mo><mo>?</mo></math> (c) En uygun koşulda <math display="inline"><msub><mi>r</mi><mn>1</mn></msub><mo>=</mo><mn>1.13</mn><mi> cm</mi></math>, <math display="inline"><msub><mi>E</mi><mi>d</mi></msub><mo>=</mo><mn>140</mn><mi> kV/cm</mi></math>, <math display="inline"><msub><mi>&epsilon;</mi><mi>r</mi></msub><mo>=</mo><mn>2.3</mn></math> ise <math display="inline"><msub><mi>U</mi><mi>max</mi></msub><mo>=</mo><mo>?</mo></math> <math display="inline"><mi>C</mi><mo>/</mo><mi>l</mi><mo>=</mo><mo>?</mo></math>
                 </blockquote>
                 <h5 class="text-lg font-semibold text-gray-700 mt-4 mb-2">Çözüm Adımları:</h5>
                 <ol class="list-decimal list-inside space-y-3 pl-4 text-lg text-gray-700 leading-relaxed">
                     <li>
-                        <strong>a) En Uygun Geometrik Karakteristik (<span class="inline-formula">p<sub>d</sub></span>):</strong>
+                        <strong>a) En Uygun Geometrik Karakteristik (<math display="inline"><msub><mi>p</mi><mi>d</mi></msub></math>):</strong>
                         <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                            <li>Maksimum alanı en aza indirmek için (<span class="inline-formula">r<sub>2</sub></span> sabitken) gerilim denkleminin <span class="inline-formula">r<sub>1</sub></span>'e göre türevi alınır.</li>
-                            <li><span class="inline-formula">U = E<sub>max</sub> &middot; r<sub>1</sub> &middot; ln(r<sub>2</sub>/r<sub>1</sub>)</span></li>
-                            <li><span class="inline-formula">dU/dr<sub>1</sub> = 0 &rArr; ln(r<sub>2</sub>/r<sub>1</sub>) - 1 = 0</span></li>
-                            <li><span class="inline-formula">ln(r<sub>2</sub>/r<sub>1</sub>) = 1 &rArr; p<sub>d</sub> = r<sub>2</sub>/r<sub>1</sub> = e &cong; 2.718</span></li>
+                            <li>Maksimum alanı en aza indirmek için (<math display="inline"><msub><mi>r</mi><mn>2</mn></msub></math> sabitken) gerilim denkleminin <math display="inline"><msub><mi>r</mi><mn>1</mn></msub></math>'e göre türevi alınır.</li>
+                            <li><math display="inline"><mi>U</mi><mo>=</mo><msub><mi>E</mi><mi>max</mi></msub><mo>&sdot;</mo><msub><mi>r</mi><mn>1</mn></msub><mo>&sdot;</mo><mi>ln</mi><mo>(</mo><msub><mi>r</mi><mn>2</mn></msub><mo>/</mo><msub><mi>r</mi><mn>1</mn></msub><mo>)</mo></math></li>
+                            <li><math display="inline"><mfrac><mrow><mi>d</mi><mi>U</mi></mrow><mrow><mi>d</mi><msub><mi>r</mi><mn>1</mn></msub></mrow></mfrac><mo>=</mo><mn>0</mn><mo>&rArr;</mo><mi>ln</mi><mo>(</mo><msub><mi>r</mi><mn>2</mn></msub><mo>/</mo><msub><mi>r</mi><mn>1</t</msub><mo>)</mo><mo>-</mo><mn>1</mn><mo>=</mo><mn>0</mn></math></li>
+                            <li><math display="inline"><mi>ln</mi><mo>(</mo><msub><mi>r</mi><mn>2</mn></msub><mo>/</mo><msub><mi>r</mi><mn>1</mn></msub><mo>)</mo><mo>=</mo><mn>1</mn><mo>&rArr;</mo><msub><mi>p</mi><mi>d</mi></msub><mo>=</mo><mfrac><msub><mi>r</mi><mn>2</mn></msub><msub><mi>r</mi><mn>1</mn></msub></mfrac><mo>=</mo><mi>e</mi><mo>&cong;</mo><mn>2.718</mn></math></li>
                         </ul>
                     </li>
                     <li>
-                        <strong>b) <span class="inline-formula">r<sub>2</sub></span> Hesabı:</strong>
+                        <strong>b) <math display="inline"><msub><mi>r</mi><mn>2</mn></msub></math> Hesabı:</strong>
                         <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                            <li><span class="inline-formula">r<sub>2</sub> = r<sub>1</sub> &middot; e = 1.13 cm &middot; 2.718 &cong; 3.07 cm</span></li>
+                            <li><math display="inline"><msub><mi>r</mi><mn>2</mn></msub><mo>=</mo><msub><mi>r</mi><mn>1</mn></msub><mo>&sdot;</mo><mi>e</mi><mo>=</mo><mn>1.13</mn><mi> cm</mi><mo>&sdot;</mo><mn>2.718</mn><mo>&cong;</mo><mn>3.07</mn><mi> cm</mi></math></li>
                         </ul>
                     </li>
                     <li>
-                        <strong>c) <span class="inline-formula">U<sub>max</sub></span> ve <span class="inline-formula">C/l</span> Hesabı (En uygun koşulda):</strong>
+                        <strong>c) <math display="inline"><msub><mi>U</mi><mi>max</mi></msub></math> ve <math display="inline"><mi>C</mi><mo>/</mo><mi>l</mi></math> Hesabı (En uygun koşulda):</strong>
                         <ul class="list-circle list-inside pl-6 mt-2 space-y-2">
-                            <li>Maksimum Gerilim (<span class="inline-formula">U<sub>max</sub></span>): (<span class="inline-formula">ln(r<sub>2</sub>/r<sub>1</sub>) = 1</span> olduğunda)
-                                <span class="formula">U<sub>max</sub> = E<sub>d</sub> &middot; r<sub>1</sub> &middot; ln(e) = E<sub>d</sub> &middot; r<sub>1</sub></span>
-                                <span class="formula">U<sub>max</sub> = 140 kV/cm &middot; 1.13 cm = 158.2 kV</span>
+                            <li>Maksimum Gerilim (<math display="inline"><msub><mi>U</mi><mi>max</mi></msub></math>): (<math display="inline"><mi>ln</mi><mo>(</mo><msub><mi>r</mi><mn>2</mn></msub><mo>/</mo><msub><mi>r</mi><mn>1</mn></msub><mo>)</mo><mo>=</mo><mn>1</mn></math> olduğunda)
+                                <math display="block"><msub><mi>U</mi><mi>max</mi></msub><mo>=</mo><msub><mi>E</mi><mi>d</mi></msub><mo>&sdot;</mo><msub><mi>r</mi><mn>1</mn></msub><mo>&sdot;</mo><mi>ln</mi><mo>(</mo><mi>e</mi><mo>)</mo><mo>=</mo><msub><mi>E</mi><mi>d</mi></msub><mo>&sdot;</mo><msub><mi>r</mi><mn>1</mn></msub></math>
+                                <math display="block"><msub><mi>U</mi><mi>max</mi></msub><mo>=</mo><mn>140</mn><mi> kV/cm</mi><mo>&sdot;</mo><mn>1.13</mn><mi> cm</mi><mo>=</mo><mn>158.2</mn><mi> kV</mi></math>
                             </li>
-                            <li>Birim Kapasite (<span class="inline-formula">C/l</span>):
-                                <span class="formula">C/l = (2&pi;&epsilon;) / ln(r<sub>2</sub>/r<sub>1</sub>) = (2&pi;&epsilon;<sub>0</sub>&epsilon;<sub>r</sub>) / 1</span>
-                                <span class="formula">C/l = 2&pi; &middot; (8.854&middot;10<sup>-12</sup> F/m) &middot; 2.3 &cong; 128 pF/m</span>
+                            <li>Birim Kapasite (<math display="inline"><mi>C</mi><mo>/</mo><mi>l</mi></math>):
+                                <math display="block"><mfrac><mi>C</mi><mi>l</mi></mfrac><mo>=</mo><mfrac><mrow><mn>2</mn><mi>&pi;</mi><mi>&epsilon;</mi></mrow><mrow><mi>ln</mi><mo>(</mo><msub><mi>r</mi><mn>2</mn></msub><mo>/</mo><msub><mi>r</mi><mn>1</t></msub><mo>)</mo></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>2</mn><mi>&pi;</mi><msub><mi>&epsilon;</mi><mn>0</mn></msub><msub><mi>&epsilon;</mi><mi>r</mi></msub></mrow><mn>1</mn></mfrac></math>
+                                <math display="block"><mfrac><mi>C</mi><mi>l</mi></mfrac><mo>=</mo><mn>2</mn><mi>&pi;</mi><mo>&sdot;</mo><mo>(</mo><mn>8.854</mn><mo>&sdot;</mo><msup><mn>10</mn><mrow><mo>-</mo><mn>12</mn></mrow></msup><mi> F/m</mi><mo>)</mo><mo>&sdot;</mo><mn>2.3</nbsp;<mo>&cong;</mo><mn>128</mn><mi> pF/m</mi></math>
                             </li>
                         </ul>
                     </li>
