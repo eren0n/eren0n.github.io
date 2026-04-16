@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human Resource Management — Exam Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --paper: #f7f3ec;
+    --paper2: #ede8df;
+    --accent: #8b3a1a;
+    --accent2: #2a4a6b;
+    --accent3: #3d6b3a;
+    --accent4: #6b3a6b;
+    --rule: #c8bfb0;
+    --tag-bg: #e8e0d5;
+    --concept-bg: #fdf6ee;
+    --concept-border: #d4a870;
+    --warning: #7a2e0e;
+    --note-bg: #eef3ee;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3rem 2rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,.025) 40px,
+      rgba(255,255,255,.025) 80px
+    );
+  }
+  .site-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    position: relative;
+  }
+  .site-header .subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    opacity: .6;
+    margin-top: .5rem;
+    position: relative;
+  }
+  .site-header .meta {
+    margin-top: 1.2rem;
+    font-style: italic;
+    font-size: .9rem;
+    opacity: .75;
+    position: relative;
+  }
+
+  /* ── NAV ── */
+  .toc {
+    background: var(--paper2);
+    border-bottom: 2px solid var(--rule);
+    padding: 1.5rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem .8rem;
+    align-items: center;
+  }
+  .toc-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    color: var(--accent);
+    margin-right: .4rem;
+    font-weight: 600;
+  }
+  .toc a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .72rem;
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1.5px solid var(--rule);
+    padding: .2rem .6rem;
+    border-radius: 3px;
+    transition: background .15s, border-color .15s;
+    white-space: nowrap;
+  }
+  .toc a:hover { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+
+  /* ── LAYOUT ── */
+  .main-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 2rem 5rem; }
+
+  /* ── CHAPTER ── */
+  .chapter {
+    margin-bottom: 4rem;
+    border-top: 3px solid var(--ink);
+    padding-top: 1.8rem;
+  }
+  .chapter-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .65rem;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    color: var(--paper);
+    background: var(--accent);
+    padding: .2rem .6rem;
+    border-radius: 2px;
+    display: inline-block;
+    margin-bottom: .6rem;
+  }
+  .chapter h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── SECTIONS ── */
+  .section { margin-bottom: 2.2rem; }
+  .section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent2);
+    border-left: 3px solid var(--accent2);
+    padding-left: .8rem;
+    margin-bottom: .8rem;
+  }
+  .section h4 {
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--accent);
+    margin: 1rem 0 .4rem;
+  }
+  p { margin-bottom: .8rem; }
+
+  /* ── CONCEPT BOXES ── */
+  .concept {
+    background: var(--concept-bg);
+    border: 1.5px solid var(--concept-border);
+    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    margin: .8rem 0 1rem;
+    position: relative;
+  }
+  .concept-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .65rem;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    color: var(--concept-border);
+    font-weight: 600;
+    margin-bottom: .3rem;
+  }
+  .concept strong { color: var(--accent); }
+
+  /* ── DEFINITION LIST ── */
+  .def-list { margin: .5rem 0 1rem; }
+  .def-item { 
+    display: grid; 
+    grid-template-columns: minmax(160px, max-content) 1fr; 
+    gap: .3rem 1rem; 
+    padding: .5rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: .95rem;
+  }
+  .def-item:last-child { border-bottom: none; }
+  .def-term {
+    font-weight: 600;
+    color: var(--ink);
+    font-family: 'Source Serif 4', serif;
+  }
+  .def-term em { 
+    font-family: 'JetBrains Mono', monospace; 
+    font-size: .72rem; 
+    color: var(--accent4); 
+    font-style: normal;
+    display: block;
+    font-weight: 400;
+    margin-top: .1rem;
+  }
+  .def-body { color: var(--ink); }
+
+  /* ── BULLET LIST ── */
+  ul.study-list { 
+    list-style: none; 
+    padding: 0; 
+    margin: .5rem 0 1rem;
+  }
+  ul.study-list li {
+    padding: .3rem 0 .3rem 1.4rem;
+    position: relative;
+    font-size: .95rem;
+    border-bottom: 1px dotted var(--rule);
+  }
+  ul.study-list li:last-child { border-bottom: none; }
+  ul.study-list li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  /* ── COMPARISON TABLE ── */
+  .compare-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin: .8rem 0 1.2rem;
+    font-size: .9rem;
+  }
+  .compare-table th {
+    background: var(--ink);
+    color: var(--paper);
+    padding: .6rem .8rem;
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .compare-table td {
+    padding: .55rem .8rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  .compare-table tr:nth-child(even) td { background: var(--paper2); }
+  .compare-table tr:hover td { background: #e8e0d4; }
+
+  /* ── STEP LIST ── */
+  ol.step-list { 
+    list-style: none; 
+    padding: 0; 
+    margin: .5rem 0 1rem; 
+    counter-reset: steps;
+  }
+  ol.step-list li {
+    counter-increment: steps;
+    padding: .4rem 0 .4rem 2.5rem;
+    position: relative;
+    border-bottom: 1px dotted var(--rule);
+    font-size: .95rem;
+  }
+  ol.step-list li:last-child { border-bottom: none; }
+  ol.step-list li::before {
+    content: counter(steps);
+    position: absolute;
+    left: 0;
+    top: .4rem;
+    width: 1.7rem;
+    height: 1.7rem;
+    background: var(--accent2);
+    color: var(--paper);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1.7rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .75rem;
+    font-weight: 600;
+  }
+
+  /* ── HIGHLIGHT ── */
+  .highlight-box {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1rem 1.2rem;
+    border-radius: 4px;
+    margin: .8rem 0 1rem;
+    font-size: .95rem;
+  }
+  .highlight-box strong { color: #e8c97a; }
+
+  /* ── WARNING / NOTE ── */
+  .note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--accent3);
+    padding: .7rem 1rem;
+    margin: .8rem 0 1rem;
+    font-size: .93rem;
+    font-style: italic;
+  }
+  .note strong { font-style: normal; color: var(--accent3); }
+
+  /* ── BIG FIVE GRID ── */
+  .big5-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: .7rem;
+    margin: .8rem 0 1.2rem;
+  }
+  .big5-card {
+    background: var(--paper2);
+    border: 1.5px solid var(--rule);
+    border-top: 3px solid var(--accent4);
+    border-radius: 4px;
+    padding: .7rem .9rem;
+  }
+  .big5-card .name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: .95rem;
+    color: var(--accent4);
+    margin-bottom: .3rem;
+  }
+  .big5-card .name em {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .65rem;
+    color: var(--accent4);
+    opacity: .75;
+    font-style: normal;
+    display: block;
+  }
+  .big5-card p { font-size: .85rem; margin: 0; }
+
+  /* ── TAG ── */
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .68rem;
+    padding: .1rem .4rem;
+    color: var(--accent2);
+    margin: .1rem;
+    vertical-align: middle;
+  }
+
+  /* ── DIVIDER ── */
+  hr { border: none; border-top: 1px solid var(--rule); margin: 1.5rem 0; }
+
+  @media (max-width: 600px) {
+    .def-item { grid-template-columns: 1fr; }
+    .def-term { border-bottom: none; padding-bottom: 0; }
+    .toc { padding: 1rem; }
+    .main-wrap { padding: 1.5rem 1rem 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>Human Resource Management</h1>
+  <p class="subtitle">Comprehensive Exam Study Guide</p>
+  <p class="meta">Chapters 1, 3, 4, 5, 6 &amp; 7 · Pearson Education (2013) · ~60 min reading</p>
+</header>
+
+<nav class="toc">
+  <span class="toc-label">Jump to →</span>
+  <a href="#ch1">Ch.1 Introduction</a>
+  <a href="#ch3">Ch.3 Strategy</a>
+  <a href="#ch4">Ch.4 Job Analysis</a>
+  <a href="#ch5">Ch.5 Recruiting</a>
+  <a href="#ch6">Ch.6 Testing</a>
+  <a href="#ch7">Ch.7 Interviewing</a>
+</nav>
+
+<div class="main-wrap">
+
+<!-- ══════════════════════════════════════════════
+     CHAPTER 1
+═══════════════════════════════════════════════════ -->
+<section class="chapter" id="ch1">
+  <span class="chapter-badge">Chapter 1</span>
+  <h2>Introduction to Human Resource Management</h2>
+
+  <div class="section">
+    <h3>What is HRM?</h3>
+    <div class="concept">
+      <div class="concept-label">Core Definition</div>
+      <strong>Human Resource Management (HRM)</strong> — İnsan Kaynakları Yönetimi — is the process of acquiring, training, appraising, compensating, and attending to employee relations, health, safety, and fairness concerns. It is embedded in the broader management process.
+    </div>
+
+    <p>HRM is not just an HR department function — <strong>all managers are HR managers</strong> because every manager is involved in recruiting, interviewing, selecting, and training employees. The four functions of management are:</p>
+    <div class="def-list">
+      <div class="def-item"><div class="def-term">Planning</div><div class="def-body">Setting objectives and deciding on actions</div></div>
+      <div class="def-item"><div class="def-term">Organizing (Staffing)</div><div class="def-body">Arranging the structure and filling positions</div></div>
+      <div class="def-item"><div class="def-term">Leading</div><div class="def-body">Directing and motivating employees</div></div>
+      <div class="def-item"><div class="def-term">Controlling</div><div class="def-body">Measuring and correcting performance</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Key HRM Activities</h3>
+    <ul class="study-list">
+      <li>Conducting <strong>job analysis</strong> (iş analizi)</li>
+      <li>Planning labor needs (iş gücü planlaması)</li>
+      <li>Acquiring talented employees — recruiting &amp; selection (işe alım ve seçme)</li>
+      <li>Orienting (oryantasyon) and training new hires</li>
+      <li>Creating and administering performance appraisals (performans değerlendirmesi)</li>
+      <li>Managing wages and compensation (ücret yönetimi)</li>
+      <li>Attending to labor relations (işçi ilişkileri), health, safety, and fairness</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>Line vs. Staff Managers</h3>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Line Authority <em>(Hat Yetkisi)</em></div>
+        <div class="def-body">Right to issue orders, provide directions, establish rules. Line managers have direct HR duties: job placement, orientation &amp; training, performance, cooperation, controlling labor costs, development.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Staff Authority <em>(Kurmay Yetkisi)</em></div>
+        <div class="def-body">Right to advise others in the organization. HR managers are primarily staff managers — they assist and advise line managers in recruiting, hiring, and compensation.</div>
+      </div>
+    </div>
+    <div class="note"><strong>Key Point:</strong> The HR manager has three functions simultaneously: <em>line function</em> (directs HR dept), <em>coordinative function</em> (ensures policies are implemented), and <em>staff function</em> (advises the CEO and line managers).</div>
+  </div>
+
+  <div class="section">
+    <h3>Evolution of HRM</h3>
+    <table class="compare-table">
+      <thead><tr><th>Period</th><th>Key Development</th><th>Focus</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Pre-Industrial</strong></td><td>Agricultural economy, apprenticeships</td><td>Craft skills within communities</td></tr>
+        <tr><td><strong>Industrial Revolution (1750–1850)</strong></td><td>Factory system; Personnel Management (wages, welfare, records) emerges</td><td>Worker wages, housing, health</td></tr>
+        <tr><td><strong>Labour Unions (1790+)</strong></td><td>Long hours &amp; low wages → worker protests → unions → Industrial Relations dept</td><td>Politics &amp; diplomacy between workers and management</td></tr>
+        <tr><td><strong>Scientific Management (1857–1911)</strong></td><td>Frederick W. Taylor's principles</td><td>Worker training, wage uniformity, productivity</td></tr>
+        <tr><td><strong>Hawthorne Studies (1927–1940)</strong></td><td>Elton Mayo &amp; Fritz Roethlisberger</td><td>Shifted focus to worker satisfaction → efficiency</td></tr>
+        <tr><td><strong>Behavioral Theories (1954–1960)</strong></td><td>Maslow's Hierarchy of Needs; McGregor's Theory X &amp; Y</td><td>Workers as valuable resources → dynamic HRM</td></tr>
+        <tr><td><strong>Strategic HRM (today)</strong></td><td>Global competition &amp; technology</td><td>Aligning individual &amp; corporate goals; long-term competitive advantage</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h3>Important Trends in HRM</h3>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Globalization <em>(Küreselleşme)</em></div>
+        <div class="def-body">Firms extending sales, ownership, and manufacturing abroad. Reasons: sales expansion, lower labor costs, forming partnerships, becoming more competitive.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Technological Trends</div>
+        <div class="def-body">Smartphones, tablets, LinkedIn, Facebook recruiting, AI; call-center outsourcing (e.g., Dell → India); internet-based distribution networks.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Human Capital <em>(İnsan Sermayesi)</em></div>
+        <div class="def-body">The knowledge, education, training, skills, and expertise of a firm's workers. Today's best jobs go to the best knowledge workers.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Generation Y Workers</div>
+        <div class="def-body">More family-centric or dual-centric (vs work-centric). High-performance and high-maintenance; seek fair &amp; direct supervisors and creative challenges.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Generation Z Workers</div>
+        <div class="def-body">30% of global population; 27% of workforce by 2025. Value diversity, equality, inclusion, transparent &amp; fast pay, mental health, flexible culture.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Economic Trends</div>
+        <div class="def-body">Inflation, interest rates, GNI, economic crises, and recessions all affect HR decisions.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>The New HR Manager — Key Competencies</h3>
+    <ul class="study-list">
+      <li><strong>Big picture</strong> — understanding business strategy</li>
+      <li><strong>Talent management</strong> (yetenek yönetimi)</li>
+      <li><strong>Employee engagement</strong> (çalışan bağlılığı)</li>
+      <li><strong>Ethics</strong> (etik)</li>
+      <li><strong>Performance &amp; evidence-based practice</strong></li>
+      <li><strong>Transactional services</strong> (işlemsel hizmetler)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     CHAPTER 3
+═══════════════════════════════════════════════════ -->
+<section class="chapter" id="ch3">
+  <span class="chapter-badge">Chapter 3</span>
+  <h2>HRM Strategy and Analysis</h2>
+
+  <div class="section">
+    <h3>Core Concepts</h3>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Strategic Management <em>(Stratejik Yönetim)</em></div>
+        <div class="def-body">The process of identifying and executing the organization's mission by matching its capabilities with the demands of its environment.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Strategy</div>
+        <div class="def-body">A course of action; a company's long-term plan for how it will balance its internal strengths &amp; weaknesses with external opportunities &amp; threats to maintain competitive advantage.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Strategic Plan <em>(Stratejik Plan)</em></div>
+        <div class="def-body">A company's plan for how it will match internal strengths and weaknesses with external opportunities and threats. HR must be involved not just in execution but also in design.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Three Levels of Strategy</h3>
+    <div class="highlight-box">
+      <strong>Corporate Strategy</strong> — "What businesses are we in?" (Konsantrasyon, çeşitlendirme, dikey entegrasyon, konsolidasyon, coğrafi genişleme)<br><br>
+      <strong>Competitive Strategy</strong> — "How will we compete in each business?" (Cost leadership, differentiation, focus)<br><br>
+      <strong>Functional Strategy</strong> — "How does each department (HR, Sales, Production) support the competitive strategy?"
+    </div>
+
+    <h4>Corporate Strategies — Types</h4>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Concentration <em>(Konsantrasyon)</em></div>
+        <div class="def-body">One product/product line, usually in one market.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Diversification <em>(Çeşitlendirme)</em></div>
+        <div class="def-body">Expanding by adding new product lines (e.g., PepsiCo, Unilever).</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Vertical Integration <em>(Dikey Entegrasyon)</em></div>
+        <div class="def-body">Producing own raw materials OR selling directly to consumers (e.g., Apple Stores).</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Consolidation <em>(Konsolidasyon)</em></div>
+        <div class="def-body">Reducing the company's size.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Geographic Expansion <em>(Coğrafi Genişleme)</em></div>
+        <div class="def-body">Growing by entering new (international) markets.</div>
+      </div>
+    </div>
+
+    <h4>Competitive Strategies (Porter)</h4>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Cost Leadership <em>(Maliyet Liderliği)</em></div>
+        <div class="def-body">Compete on lowest cost / price.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Differentiation <em>(Farklılaştırma)</em></div>
+        <div class="def-body">Compete on unique product/service attributes.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Focus <em>(Odaklanma)</em></div>
+        <div class="def-body">Target a narrow market segment.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Strategic HRM</h3>
+    <div class="concept">
+      <div class="concept-label">Definition</div>
+      <strong>Strategic HRM</strong> — Stratejik İKY — involves the development of a consistent, aligned collection of practices, programs, and policies to facilitate the achievement of the organization's strategic objectives. It links HRM with strategic goals to improve business performance and develop cultures fostering innovation and flexibility.
+    </div>
+
+    <p>Key shift: from <em>operational / administrative</em> "Personnel Management" thinking → to <em>strategic</em> HRM thinking.</p>
+
+    <h4>HR's Roles in Strategy</h4>
+    <ul class="study-list">
+      <li>Partner with senior &amp; line managers in <strong>strategy execution</strong></li>
+      <li>Expert in organizing work — delivering <strong>administrative efficiency</strong></li>
+      <li><strong>Champion for employees</strong> — representing their concerns to senior management</li>
+      <li><strong>Agent of continuous transformation</strong> — shaping processes and organizational culture</li>
+      <li>Supply competitive intelligence and identify human strengths/weaknesses during strategy formulation</li>
+    </ul>
+
+    <h4>Strategic HRM Tools</h4>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">HR Scorecard <em>(İK Karnesi)</em></div>
+        <div class="def-body">Measures the HR function's effectiveness in producing employee behaviors needed to achieve strategic goals. Requires knowing the strategy, causal links between HR activities and outcomes, and metrics for all activities.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">HPWS <em>(Yüksek Performans İş Sistemi)</em></div>
+        <div class="def-body">High-Performance Work System. Practices include: high-involvement (job enrichment, team-based), high-commitment (employee development, communication), flexible work assignments, skilled workforces.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Strategic Fit <em>(Stratejik Uyum)</em></div>
+        <div class="def-body">All of the firm's activities must be tailored to/fit its strategy. Functional strategy of HR should fit and support the company's competitive aims.</div>
+      </div>
+    </div>
+
+    <div class="note"><strong>Hierarchy of Goals:</strong> Strategic plans set by top management cascade down to departmental plans and individual goals — forming a hierarchy that guides everyone in the organization.</div>
+  </div>
+
+  <div class="section">
+    <h3>Competitive Advantage via HR</h3>
+    <p><strong>Competitive advantage</strong> (rekabet avantajı) = any factors that allow an organization to differentiate its product/service to increase market share. Superior human resources are an important source of competitive advantage because <em>human capital is hard to duplicate</em>.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     CHAPTER 4
+═══════════════════════════════════════════════════ -->
+<section class="chapter" id="ch4">
+  <span class="chapter-badge">Chapter 4</span>
+  <h2>Job Analysis and the Talent Management Process</h2>
+
+  <div class="section">
+    <h3>Core Definitions</h3>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Job Analysis <em>(İş Analizi)</em></div>
+        <div class="def-body">The procedure for determining the duties and skill requirements of a job and the kind of person who should be hired for it. It is the foundation of HRM — produces job descriptions and job specifications.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Job Description <em>(İş Tanımı)</em></div>
+        <div class="def-body">A written statement of what the worker actually does, how he/she does it, and what the job's working conditions are. Lists duties, responsibilities, reporting relationships, working conditions, and supervisory responsibilities.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Job Specification <em>(İş Şartnamesi)</em></div>
+        <div class="def-body">A list of a job's "human requirements" — requisite education, skills, personality, and so on. Answers: what kind of person to hire?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>What Job Analysis Captures</h3>
+    <ul class="study-list">
+      <li><strong>Work activities</strong> — cleaning, selling, teaching, painting; how/why/when performed</li>
+      <li><strong>Human behaviors</strong> — sensing, communicating, deciding, writing; physical demands (lifting, walking)</li>
+      <li><strong>Machines, tools, equipment, work aids</strong></li>
+      <li><strong>Performance standards</strong> — quantity and quality levels expected</li>
+      <li><strong>Job context</strong> — working conditions, schedule, organizational/social context</li>
+      <li><strong>Human requirements</strong> — education, training, experience, personality, aptitudes</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>Uses of Job Analysis Information</h3>
+    <div class="def-list">
+      <div class="def-item"><div class="def-term">Recruitment &amp; Selection</div><div class="def-body">Determines what the job entails and what human characteristics are required → informs what to recruit for.</div></div>
+      <div class="def-item"><div class="def-term">Performance Appraisal <em>(Performans Değerlendirmesi)</em></div><div class="def-body">Determines specific activities and performance standards for evaluation.</div></div>
+      <div class="def-item"><div class="def-term">Compensation <em>(Ücretlendirme)</em></div><div class="def-body">Crucial for estimating the value of each job (skill level, hazards, responsibility, etc.).</div></div>
+      <div class="def-item"><div class="def-term">Training <em>(Eğitim)</em></div><div class="def-body">The job description shows activities and skills required → guides training design.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Conducting a Job Analysis — 6 Steps</h3>
+    <ol class="step-list">
+      <li>Decide <strong>how the information will be used</strong></li>
+      <li>Collect <strong>background information</strong> (organization charts, process charts)</li>
+      <li>Select <strong>representative positions</strong> to analyze</li>
+      <li><strong>Collect and analyze data</strong> using various methods</li>
+      <li><strong>Verify</strong> the data with workers and supervisors</li>
+      <li>Produce the <strong>job description and specification</strong></li>
+    </ol>
+    <div class="note"><strong>Best Practice:</strong> Make job analysis a joint effort by HR manager, worker, and worker's supervisor. Use several different tools — don't rely only on questionnaires.</div>
+  </div>
+
+  <div class="section">
+    <h3>Methods of Collecting Job Analysis Information</h3>
+    <table class="compare-table">
+      <thead><tr><th>Method</th><th>Description</th><th>Advantages</th><th>Disadvantages</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Interview</strong></td>
+          <td>Structured or unstructured oral questions to employees, supervisors</td>
+          <td>Quick; captures overlooked info</td>
+          <td>Distorted / biased information</td>
+        </tr>
+        <tr>
+          <td><strong>Questionnaire</strong></td>
+          <td>Employees fill out structured checklists or open-ended forms</td>
+          <td>Quick for large numbers of employees</td>
+          <td>Expensive &amp; time-consuming to prepare</td>
+        </tr>
+        <tr>
+          <td><strong>Observation</strong></td>
+          <td>Analyst directly watches employee perform job tasks</td>
+          <td>First-hand; reduces distortion</td>
+          <td>Time-consuming; misses infrequent tasks; poor for mental work</td>
+        </tr>
+        <tr>
+          <td><strong>Participant Diary/Log</strong></td>
+          <td>Workers keep chronological logs of activities and time spent</td>
+          <td>Complete picture; employee participation</td>
+          <td>Distortion; relies on accurate self-recall</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h3>Writing Job Descriptions — Key Sections</h3>
+    <div class="def-list">
+      <div class="def-item"><div class="def-term">Job Identification</div><div class="def-body">Job title, preparation date, prepared by.</div></div>
+      <div class="def-item"><div class="def-term">Job Summary</div><div class="def-body">General nature of the job; major functions or activities.</div></div>
+      <div class="def-item"><div class="def-term">Relationships</div><div class="def-body">Reports to (supervisor); Supervises; Works with (internal); Outside the company contacts.</div></div>
+      <div class="def-item"><div class="def-term">Responsibilities &amp; Duties</div><div class="def-body">Essential functions; limits of decision-making authority; budgetary limitations.</div></div>
+      <div class="def-item"><div class="def-term">Standards of Performance</div><div class="def-body">Specific measurable standards expected (e.g., "work group produces no fewer than 426 units/day").</div></div>
+      <div class="def-item"><div class="def-term">Working Conditions</div><div class="def-body">Location, tools, environment (hot/cold, etc.).</div></div>
+      <div class="def-item"><div class="def-term">Job Specifications</div><div class="def-body">Human requirements: education, skills, personality, experience.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Job Specifications — Two Types</h3>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Trained Personnel <em>(Deneyimli Aday)</em></div>
+        <div class="def-body">Focus on: length of previous service, quality of relevant training, previous job performance.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Untrained Personnel <em>(Deneyimsiz Aday)</em></div>
+        <div class="def-body">Focus on: physical traits, personality, interests, or sensory skills implying potential.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Job Redesign Concepts</h3>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Job Enlargement <em>(İş Genişletme)</em></div>
+        <div class="def-body">Assigning workers additional <em>same-level</em> activities — increases the number of tasks performed.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Job Enrichment <em>(İş Zenginleştirme)</em></div>
+        <div class="def-body">Redesigning jobs to increase opportunities for responsibility, achievement, growth, and recognition — adds <em>depth</em> (vertical).</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Job Rotation <em>(İş Rotasyonu)</em></div>
+        <div class="def-body">Moving a trainee/worker from department to department to broaden experience, identify strengths/weaknesses, and enhance work team performance.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>De-Jobbing &amp; Modern Organization</h3>
+    <p>Rapid technological change, global competition, and demographic shifts are causing <strong>de-jobbing</strong> — moving away from narrowly defined job roles. Organizations respond with:</p>
+    <ul class="study-list">
+      <li><strong>Boundaryless organizations</strong> — flat structures, team-based (e.g., GE, Walmart, IKEA)</li>
+      <li><strong>Re-engineering</strong> — radical redesign of business processes</li>
+      <li><strong>Broadbanding</strong> (geniş bant iş tanımları) — broader, more flexible job descriptions</li>
+      <li><strong>Performance-based job descriptions</strong></li>
+      <li><strong>Empowered employees</strong> (güçlendirilmiş çalışanlar) &amp; skills matrices</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     CHAPTER 5
+═══════════════════════════════════════════════════ -->
+<section class="chapter" id="ch5">
+  <span class="chapter-badge">Chapter 5</span>
+  <h2>Personnel Planning and Recruiting</h2>
+
+  <div class="section">
+    <h3>The 5-Step Recruitment &amp; Selection Process</h3>
+    <ol class="step-list">
+      <li>Decide what <strong>positions to fill</strong> through workforce planning and forecasting</li>
+      <li>Build a <strong>pool of candidates</strong> by recruiting internal or external candidates</li>
+      <li>Have candidates complete <strong>application forms</strong> and undergo initial screening</li>
+      <li>Use <strong>selection tools</strong> (tests, background checks, physical exams) to identify viable candidates</li>
+      <li>Decide <strong>who to make an offer to</strong> via supervisor interview(s)</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h3>Planning &amp; Forecasting Concepts</h3>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Employment/Personnel Planning <em>(Personel Planlaması)</em></div>
+        <div class="def-body">The process of deciding what positions the firm will have to fill, and how to fill them.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Succession Planning <em>(Halef Planlaması)</em></div>
+        <div class="def-body">The process of deciding how to fill the company's most important executive jobs. Steps: identify key needs → develop inside candidates → assess and choose.</div>
+      </div>
+    </div>
+
+    <h4>Forecasting Personnel Needs (Labor Demand)</h4>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Trend Analysis <em>(Trend Analizi)</em></div>
+        <div class="def-body">Study past employment needs over years to predict future needs.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Ratio Analysis <em>(Oran Analizi)</em></div>
+        <div class="def-body">Determine future staff needs using ratios between a causal factor and number of employees. Assumes the relationship is constant.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Scatter Plot <em>(Dağılım Grafiği)</em></div>
+        <div class="def-body">Graphical method to identify relationships between two variables (e.g., hospital beds vs. number of nurses needed).</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Markov Analysis</div>
+        <div class="def-body">A quantitative technique forecasting movement of employees from one position to another over time.</div>
+      </div>
+    </div>
+
+    <h4>Forecasting the Supply of Candidates</h4>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Qualifications Inventories <em>(Nitelik Envanteri)</em></div>
+        <div class="def-body">Records listing employees' education, career interests, languages, special skills — used to select inside candidates for promotion.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Personnel Replacement Charts <em>(Yedekleme Tablosu)</em></div>
+        <div class="def-body">Company records showing present performance and promotability of inside candidates for important positions.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">HRIS <em>(İK Bilgi Sistemi)</em></div>
+        <div class="def-body">Human Resource Information System — computerized inventory of employee background, experience, skills (experience codes, industry knowledge, formal education).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Internal Sources of Candidates</h3>
+    <table class="compare-table">
+      <thead><tr><th>Advantages</th><th>Disadvantages</th></tr></thead>
+      <tbody>
+        <tr><td>Foreknowledge of candidates' strengths/weaknesses</td><td>Failed applicants become discontented</td></tr>
+        <tr><td>More accurate view of candidate's skills</td><td>Time wasted interviewing unsuitable insiders</td></tr>
+        <tr><td>Stronger commitment to the company</td><td>Inbreeding of the status quo (mevcut durumun sürdürülmesi)</td></tr>
+        <tr><td>Increases employee morale (çalışan morali)</td><td></td></tr>
+        <tr><td>Less training and orientation required</td><td></td></tr>
+      </tbody>
+    </table>
+
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Job Posting <em>(İş İlanı — İç)</em></div>
+        <div class="def-body">Publicizing an open job to employees (bulletin boards, intranet) and listing its attributes.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Rehiring Former Employees</div>
+        <div class="def-body">Pros: known quantities, know the firm. Cons: may have negative attitudes; wrong message to current employees.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>External Sources of Candidates</h3>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Advertising <em>(Reklam/İlan)</em></div>
+        <div class="def-body">Media choices: newspapers, trade/professional journals, internet job sites. Effective ads use the <strong>AIDA</strong> principle: Attention → Interest → Desire → Action.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Employment Agencies <em>(İş Ajansları)</em></div>
+        <div class="def-body">Public (government-run), nonprofit-associated, or privately owned. Used when: no HR dept, difficulty generating applicant pool, urgent openings, diversity goals.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Executive Recruiters / Headhunters <em>(Kafa Avcıları)</em></div>
+        <div class="def-body">Seek out top-management talent. <em>Contingent-based</em>: paid only on successful hire. <em>Retained</em>: paid regardless of outcome.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">College Recruiting <em>(Üniversite Kampüs İşe Alımı)</em></div>
+        <div class="def-body">Goals: determine if candidate is worthy of further consideration; attract good candidates. On-site visits: invitation, hosts, info package, planned interviews, timely offer, follow-up.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Employee Referrals <em>(Çalışan Referansı)</em></div>
+        <div class="def-body">Current employees recommend applicants. Cost-effective; referring employees become stakeholders; can speed up diversifying the workforce.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Internet Recruiting</div>
+        <div class="def-body">Cost-effective; wider reach; immediate responses; online prescreening; automation of tracking. Growing use of LinkedIn, Facebook recruiting, virtual job fairs.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Application Forms</h3>
+    <p>Provide information on education, prior work record, and skills. Used to judge: educational/experience qualifications, previous progress, employment stability (istihdam istikrarı), and predictions of future job success.</p>
+    <div class="note"><strong>CV / Resume components:</strong> Personal info, contact info, educational background, achievements &amp; awards, work experience, skills &amp; competencies (software, languages), interests, certificates, references.</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     CHAPTER 6
+═══════════════════════════════════════════════════ -->
+<section class="chapter" id="ch6">
+  <span class="chapter-badge">Chapter 6</span>
+  <h2>Employee Testing and Selection</h2>
+
+  <div class="section">
+    <h3>Why Careful Selection Matters</h3>
+    <ul class="study-list">
+      <li><strong>Performance</strong> — the right person does the job better</li>
+      <li><strong>Cost</strong> — hiring mistakes are expensive</li>
+      <li><strong>Legal obligations</strong> (yasal yükümlülükler) — fair hiring is required by law</li>
+      <li><strong>Person-job/organization fit</strong> — match between person and role</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>Basic Testing Concepts</h3>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Reliability <em>(Güvenilirlik)</em></div>
+        <div class="def-body">Consistency of scores obtained by the same person when retested. Are the results stable over time?</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Validity <em>(Geçerlilik)</em></div>
+        <div class="def-body">The accuracy with which a test measures what it purports to measure. Does the test actually measure what we need it to?</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Criterion Validity <em>(Kriter Geçerliliği)</em></div>
+        <div class="def-body">Test scores (predictors) are statistically related to job performance (criterion). E.g., "Do scores on this test predict who will perform well?"</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Content Validity <em>(İçerik Geçerliliği)</em></div>
+        <div class="def-body">Test contains a fair sample of tasks and skills actually needed for the job. E.g., "Does the test question actually relate to job tasks?"</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Construct Validity <em>(Yapı Geçerliliği)</em></div>
+        <div class="def-body">Tests whether the test measures the theoretical construct it claims to (e.g., intelligence, leadership).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>How to Validate a Test — 5 Steps</h3>
+    <ol class="step-list">
+      <li><strong>Analyze the job</strong> — identify predictors (job spec) and criterion (measures of job success)</li>
+      <li><strong>Choose the tests</strong> — single test or test battery?</li>
+      <li><strong>Administer the test</strong> — <em>concurrent validation</em> (current employees' scores vs. current performance) OR <em>predictive validation</em> (prior test scores vs. later-measured performance)</li>
+      <li><strong>Relate test scores and criteria</strong> — correlation analysis of actual test scores vs. actual performance</li>
+      <li><strong>Cross-validate and revalidate</strong> — repeat steps 3 &amp; 4 with a different sample</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h3>Types of Tests</h3>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Cognitive Ability Tests <em>(Bilişsel Yetenek)</em></div>
+        <div class="def-body">Intelligence tests (IQ); specific cognitive abilities (mechanical comprehension, numerical reasoning, spatial ability).</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Motor &amp; Physical Ability Tests</div>
+        <div class="def-body">Measure physical strength, dexterity, coordination (relevant for manual jobs).</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Personality Tests <em>(Kişilik Testleri)</em></div>
+        <div class="def-body">Measure traits like the Big Five. Used to predict performance and reduce turnover via personality profiling.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Interest Inventories <em>(İlgi Envanteri)</em></div>
+        <div class="def-body">Compare person's current interests with those of others in various occupations to determine preferred career path. Used for personal development and selection.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Achievement Tests <em>(Başarı Testleri)</em></div>
+        <div class="def-body">Measure what a person has already learned — "job knowledge" in areas like accounting, marketing, or personnel.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>The "Big Five" Personality Traits</h3>
+    <div class="big5-grid">
+      <div class="big5-card">
+        <div class="name">Extraversion<em>Dışadönüklük</em></div>
+        <p>Tendency to be sociable, assertive, active, with positive energy and zeal.</p>
+      </div>
+      <div class="big5-card">
+        <div class="name">Emotional Stability<em>Duygusal Denge (Nevrotizm)</em></div>
+        <p>Poor emotional adjustment → anxiety, insecurity, hostility. (Neuroticism = instability.)</p>
+      </div>
+      <div class="big5-card">
+        <div class="name">Openness<em>Deneyime Açıklık</em></div>
+        <p>Imaginative, nonconforming, unconventional, autonomous.</p>
+      </div>
+      <div class="big5-card">
+        <div class="name">Agreeableness<em>Uyumluluk</em></div>
+        <p>Trusting, compliant, caring, and gentle.</p>
+      </div>
+      <div class="big5-card">
+        <div class="name">Conscientiousness<em>Sorumluluk Bilinci</em></div>
+        <p>Two facets: achievement orientation and dependability (güvenilirlik).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Work Simulations &amp; Assessment</h3>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Management Assessment Center <em>(Yönetim Değerlendirme Merkezi)</em></div>
+        <div class="def-body">A simulation in which management candidates perform realistic tasks in hypothetical situations and are scored. Exercises include: in-basket (gelen kutusu), leaderless group discussion, management games, individual presentations, objective tests, interviews.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Situational Judgment Tests <em>(Durumsal Yargı Testleri)</em></div>
+        <div class="def-body">Candidates choose how they would respond to job-related scenarios.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Miniature Job Training &amp; Evaluation</div>
+        <div class="def-body">Candidates are trained to perform a sample of job tasks, then evaluated. Assumes: someone who can learn and perform a sample can learn and perform the whole job.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Realistic Job Previews <em>(Gerçekçi İş Önizlemeleri)</em></div>
+        <div class="def-body">Give candidates an honest picture of the job (positive and negative aspects) to reduce turnover caused by unrealistic expectations.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     CHAPTER 7
+═══════════════════════════════════════════════════ -->
+<section class="chapter" id="ch7">
+  <span class="chapter-badge">Chapter 7</span>
+  <h2>Interviewing Candidates</h2>
+
+  <div class="section">
+    <h3>Types of Interviews by Purpose</h3>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Selection Interview <em>(Seçme Mülakatı)</em></div>
+        <div class="def-body">Designed to predict future job performance based on applicants' oral responses. The main type discussed in HRM selection.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Appraisal Interview <em>(Değerlendirme Mülakatı)</em></div>
+        <div class="def-body">Discussion following a performance appraisal; supervisor and employee discuss the rating and possible remedial actions.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Exit Interview <em>(Çıkış Mülakatı)</em></div>
+        <div class="def-body">Conducted when an employee leaves; provides insight into what's right or wrong about the firm.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Interview Structure</h3>
+    <table class="compare-table">
+      <thead><tr><th>Type</th><th>Description</th><th>Key Feature</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Unstructured (Non-directive)</strong></td>
+          <td>Manager follows no set format; questions come to mind spontaneously</td>
+          <td>Flexible but inconsistent; less reliable</td>
+        </tr>
+        <tr>
+          <td><strong>Structured (Directive)</strong></td>
+          <td>Questions listed in advance; possible answers may also be scored</td>
+          <td>All applicants get same questions → more reliable and valid. <strong>Generally superior.</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Sequential</strong></td>
+          <td>Multiple interviewers in sequence, each rates candidate independently</td>
+          <td>Structured sequential: standardized evaluation forms</td>
+        </tr>
+        <tr>
+          <td><strong>Panel Interview</strong></td>
+          <td>Team of interviewers interview each candidate simultaneously; combine ratings</td>
+          <td>Final panel score from multiple raters</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h3>Types of Interview Questions</h3>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Situational <em>(Durumsal Sorular)</em></div>
+        <div class="def-body">Focus on how the candidate <em>would behave in a given hypothetical situation</em>. "What would you do if...?"</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Behavioral <em>(Davranışsal Sorular)</em></div>
+        <div class="def-body">Focus on how the candidate <em>reacted to actual past situations</em>. "Tell me about a time when..." Based on the premise that past behavior predicts future behavior.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Job-related <em>(İşe İlişkin Sorular)</em></div>
+        <div class="def-body">Focus on relevant past job-related behaviors and experience.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Background Questions</div>
+        <div class="def-body">About work experience, education, qualifications. "How much experience have you had with...?"</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Stress Interview <em>(Stres Mülakatı)</em></div>
+        <div class="def-body">Interviewer intentionally makes applicant uncomfortable with rude/challenging questions to spot low or high stress tolerance.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Puzzle Questions</div>
+        <div class="def-body">Pose unusual problems requiring creative ("out-of-the-box") solutions to see how candidates think under pressure. Used in technical and finance roles.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Interview Formats / Delivery Methods</h3>
+    <ul class="study-list">
+      <li><strong>Phone interviews</strong> — can be more accurate than face-to-face for judging conscientiousness, intelligence, and interpersonal skills</li>
+      <li><strong>Video/web-assisted</strong> (Skype, iPad) — growing use</li>
+      <li><strong>Computerized interviews</strong> — candidate responds to questions/situations via computer</li>
+      <li><strong>Second Life / virtual</strong> — Microsoft and HP have used online virtual communities</li>
+      <li><strong>Speed dating model</strong> — candidates visit briefly with selected employees</li>
+      <li><strong>Case interviews</strong> — candidate solves a business problem</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>Errors that Undermine Interviews</h3>
+    <div class="def-list">
+      <div class="def-item">
+        <div class="def-term">Snap Judgments <em>(Ani Kararlar)</em></div>
+        <div class="def-body">Interviewers jump to conclusions within the first few minutes. <strong>Negative bias</strong>: unfavorable info influences more than positive info.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Misunderstanding the Job <em>(İşi Yanlış Anlama)</em></div>
+        <div class="def-body">Not knowing what the job entails → decisions based on incorrect stereotypes of a good applicant.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Candidate-Order Error <em>(Aday Sırası Hatası)</em></div>
+        <div class="def-body">Rating of a candidate affected by the quality of candidates interviewed just before. A mediocre candidate after poor candidates seems better than they are.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Nonverbal Behavior &amp; Impression Management</div>
+        <div class="def-body">Interviewers infer personality from nonverbal cues — has large impact on ratings. Clever candidates manage their impression deliberately (izlenim yönetimi).</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Personal Characteristics Bias</div>
+        <div class="def-body">Less favorable view toward candidates who are physically unattractive, female, of a different racial background, or disabled.</div>
+      </div>
+      <div class="def-item">
+        <div class="def-term">Interviewer Behaviors</div>
+        <div class="def-body">Inadvertently telegraphing expected answers; talking too much; letting applicant dominate; acting more positively toward a favored/similar applicant.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>How to Conduct an Effective Interview — 8 Steps</h3>
+    <ol class="step-list">
+      <li><strong>Know the job</strong> — study the job description beforehand; understand what human skills you're looking for</li>
+      <li><strong>Structure the interview</strong> — base questions on actual job duties; use situational/behavioral/knowledge questions; use rating scales; use standardized form if possible</li>
+      <li><strong>Get organized</strong> — hold interview in a private room; minimize interruptions</li>
+      <li><strong>Establish rapport</strong> — greet the candidate warmly; start with a noncontroversial question; explain the timeframe</li>
+      <li><strong>Ask questions</strong> — follow the prepared situational, behavioral, and job-knowledge questions</li>
+      <li><strong>Take notes</strong> — brief, unobtrusive; helps avoid snap decisions; aids recall later</li>
+      <li><strong>Close the interview</strong> — leave time for candidate questions; advocate for your firm if appropriate</li>
+      <li><strong>Review the interview</strong> — immediately after candidate leaves, review notes, score answers, and make a decision while impressions are fresh</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h3>Three Ways to Make Interviews More Useful</h3>
+    <div class="highlight-box">
+      <strong>1. Structure the interview</strong> — all applicants get the same questions; scored against consistent criteria<br><br>
+      <strong>2. Carefully select traits to assess</strong> — only assess traits that are demonstrably relevant to job performance<br><br>
+      <strong>3. Beware of interviewing errors</strong> — snap judgments, candidate-order errors, bias based on personal characteristics
+    </div>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<div style="border-top:2px solid var(--ink);padding-top:1.5rem;margin-top:3rem;text-align:center;font-family:'JetBrains Mono',monospace;font-size:.7rem;opacity:.5;letter-spacing:.1em;">
+  HRM STUDY GUIDE · Chapters 1, 3, 4, 5, 6, 7 · Based on Dessler, Human Resource Management (Pearson, 2013)
+</div>
+
+</div><!-- /main-wrap -->
+</body>
+</html>
