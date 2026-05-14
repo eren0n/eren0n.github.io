@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İnsan Kaynakları Yönetimi (HRM) - Vize/Final Deneme Sınavı</title>
+<style>
+  :root {
+    --ink: #1a1410;
+    --paper: #f7f3ec;
+    --paper2: #ede8df;
+    --accent: #8b3a1a;
+    --accent2: #2a4a6b;
+    --accent3: #3d6b3a;
+    --rule: #c8bfb0;
+    --correct-bg: #e6f4ea;
+    --wrong-bg: #fce8e6;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    padding: 20px;
+    margin: 0;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-top: 5px solid var(--accent);
+  }
+  h1 {
+    text-align: center;
+    color: var(--accent);
+    font-size: 2em;
+    margin-bottom: 5px;
+  }
+  p.subtitle {
+    text-align: center;
+    color: var(--accent2);
+    font-size: 0.9em;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .question {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--paper2);
+  }
+  .question:last-of-type {
+    border-bottom: none;
+  }
+  .question h3 {
+    font-size: 1.1em;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .options {
+    list-style-type: none;
+    padding: 0;
+  }
+  .options li {
+    margin: 8px 0;
+  }
+  label {
+    cursor: pointer;
+    padding: 10px 15px;
+    display: block;
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    transition: all 0.2s ease;
+    background: var(--paper);
+  }
+  label:hover {
+    background: var(--paper2);
+    border-color: var(--accent2);
+  }
+  input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.1);
+  }
+  button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: var(--accent2);
+    color: #fff;
+    border: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background 0.3s;
+  }
+  button:hover {
+    background: #1e354d;
+  }
+  #result-box {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.3em;
+    display: none;
+  }
+  .correct-ans {
+    background-color: var(--correct-bg) !important;
+    border-color: var(--accent3) !important;
+    color: var(--accent3);
+  }
+  .wrong-ans {
+    background-color: var(--wrong-bg) !important;
+    border-color: #d93025 !important;
+    color: #d93025;
+  }
+  .explanation {
+    display: none;
+    font-size: 0.9em;
+    color: var(--accent2);
+    margin-top: 10px;
+    padding: 10px;
+    background: #f0f4f8;
+    border-left: 3px solid var(--accent2);
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>HRM - Deneme Sınavı</h1>
+  <p class="subtitle">20 Soruluk Kapsamlı Çalışma Testi</p>
+
+  <form id="quiz-form">
+    <!-- Question 1 -->
+    <div class="question" data-correct="B">
+      <h3>1. İnsan Kaynakları Yönetimi (HRM) sürecinde, işe alma, eğitme ve tazminat gibi konularda diğer yöneticilere danışmanlık yapan yöneticilerin sahip olduğu yetki türü aşağıdakilerden hangisidir? (Ch.1)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q1" value="A"> A) Komuta Yetkisi (Line Authority)</label></li>
+        <li><label><input type="radio" name="q1" value="B"> B) Kurmay Yetkisi (Staff Authority)</label></li>
+        <li><label><input type="radio" name="q1" value="C"> C) Yürütme Yetkisi</label></li>
+        <li><label><input type="radio" name="q1" value="D"> D) Karar Yetkisi</label></li>
+      </ul>
+      <div class="explanation">Açıklama: İK yöneticileri genellikle diğer birimlere danışmanlık ve tavsiye verdikleri için 'Kurmay Yetkisine' (Staff Authority) sahiptirler.</div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question" data-correct="D">
+      <h3>2. Aşağıdakilerden hangisi Porter’ın rekabet stratejilerinden (Competitive Strategies) biri değildir? (Ch.3)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q2" value="A"> A) Maliyet Liderliği</label></li>
+        <li><label><input type="radio" name="q2" value="B"> B) Farklılaştırma</label></li>
+        <li><label><input type="radio" name="q2" value="C"> C) Odaklanma</label></li>
+        <li><label><input type="radio" name="q2" value="D"> D) Çeşitlendirme (Diversification)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Çeşitlendirme (Diversification) bir kurumsal stratejidir (Corporate Strategy). Porter'ın rekabet stratejileri Maliyet Liderliği, Farklılaştırma ve Odaklanmadır.</div>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question" data-correct="C">
+      <h3>3. İş analizi (Job Analysis) sonucunda, işin görevlerini, sorumluluklarını ve çalışma koşullarını gösteren yazılı belgeye ne ad verilir? (Ch.4)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q3" value="A"> A) İş Şartnamesi (Job Specification)</label></li>
+        <li><label><input type="radio" name="q3" value="B"> B) İş Genişletme (Job Enlargement)</label></li>
+        <li><label><input type="radio" name="q3" value="C"> C) İş Tanımı (Job Description)</label></li>
+        <li><label><input type="radio" name="q3" value="D"> D) İş Değerlemesi</label></li>
+      </ul>
+      <div class="explanation">Açıklama: İşin görevlerini ve sorumluluklarını anlatan belge İş Tanımıdır (Job Description). İşin gerektirdiği insan özelliklerini anlatan ise İş Şartnamesidir (Job Spec).</div>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="question" data-correct="A">
+      <h3>4. Bir işin, çalışana daha fazla sorumluluk, başarı, büyüme ve takdir fırsatı verecek şekilde dikey olarak yeniden tasarlanmasına (derinlik katılmasına) ne ad verilir? (Ch.4)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q4" value="A"> A) İş Zenginleştirme (Job Enrichment)</label></li>
+        <li><label><input type="radio" name="q4" value="B"> B) İş Rotasyonu (Job Rotation)</label></li>
+        <li><label><input type="radio" name="q4" value="C"> C) İş Genişletme (Job Enlargement)</label></li>
+        <li><label><input type="radio" name="q4" value="D"> D) De-jobbing</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Sorumluluk ve otonomi eklenerek işin dikey olarak büyütülmesi 'İş Zenginleştirme'dir (Job Enrichment).</div>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="question" data-correct="C">
+      <h3>5. Personel ihtiyacını tahmin ederken, geçmiş yıllardaki istihdam verilerini inceleyerek gelecekteki ihtiyaçları tahmin etmeye yarayan yöntem hangisidir? (Ch.5)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q5" value="A"> A) Oran Analizi (Ratio Analysis)</label></li>
+        <li><label><input type="radio" name="q5" value="B"> B) Dağılım Grafiği (Scatter Plot)</label></li>
+        <li><label><input type="radio" name="q5" value="C"> C) Trend Analizi (Trend Analysis)</label></li>
+        <li><label><input type="radio" name="q5" value="D"> D) Markov Analizi</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Trend Analizi, geçmiş istihdam ihtiyaçlarının zaman içindeki eğilimini (trendini) inceleyerek geleceği tahmin eder.</div>
+    </div>
+
+    <!-- Question 6 -->
+    <div class="question" data-correct="C">
+      <h3>6. İşe alımda adayları "İç Kaynaklardan" (Internal Sources) seçmenin dezavantajı aşağıdakilerden hangisidir? (Ch.5)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q6" value="A"> A) Çalışan moralini yükseltmesi</label></li>
+        <li><label><input type="radio" name="q6" value="B"> B) Adayın becerileri hakkında daha net bilgi sağlaması</label></li>
+        <li><label><input type="radio" name="q6" value="C"> C) Mevcut durumun statükosunun sürdürülmesine (inbreeding) yol açması</label></li>
+        <li><label><input type="radio" name="q6" value="D"> D) Daha az eğitim ve oryantasyon gerektirmesi</label></li>
+      </ul>
+      <div class="explanation">Açıklama: İçeriden işe alımın en büyük dezavantajı dışarıdan yeni fikirlerin gelmesini engelleyerek 'inbreeding' (iç içe üreme/mevcut durumu koruma) yaratmasıdır.</div>
+    </div>
+
+    <!-- Question 7 -->
+    <div class="question" data-correct="B">
+      <h3>7. Bir seçme testinin, ölçmeyi iddia ettiği şeyi gerçekten ve doğru bir şekilde ölçüp ölçmediğini ifade eden kavram nedir? (Ch.6)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q7" value="A"> A) Güvenilirlik (Reliability)</label></li>
+        <li><label><input type="radio" name="q7" value="B"> B) Geçerlilik (Validity)</label></li>
+        <li><label><input type="radio" name="q7" value="C"> C) Standardizasyon</label></li>
+        <li><label><input type="radio" name="q7" value="D"> D) Yapısal Uyum</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Geçerlilik (Validity) testin amacına uygunluğunu; Güvenilirlik (Reliability) ise testin tutarlı sonuçlar verip vermediğini ölçer.</div>
+    </div>
+
+    <!-- Question 8 -->
+    <div class="question" data-correct="C">
+      <h3>8. "Beş Büyük" (Big Five) kişilik özelliklerinden hangisi başarı odaklılık ve güvenilirlik (dependability) özelliklerini içerir? (Ch.6)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q8" value="A"> A) Dışadönüklük (Extraversion)</label></li>
+        <li><label><input type="radio" name="q8" value="B"> B) Uyumluluk (Agreeableness)</label></li>
+        <li><label><input type="radio" name="q8" value="C"> C) Sorumluluk Bilinci (Conscientiousness)</label></li>
+        <li><label><input type="radio" name="q8" value="D"> D) Deneyime Açıklık (Openness)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Sorumluluk bilinci yüksek kişiler iş hayatında güvenilir ve başarıya odaklıdır.</div>
+    </div>
+
+    <!-- Question 9 -->
+    <div class="question" data-correct="B">
+      <h3>9. Mülakatta adaya "Geçmişte zor bir müşteriyle karşılaştığında durumu nasıl yönettin?" şeklinde sorulan soru tipi hangisidir? (Ch.7)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q9" value="A"> A) Durumsal (Situational)</label></li>
+        <li><label><input type="radio" name="q9" value="B"> B) Davranışsal (Behavioral)</label></li>
+        <li><label><input type="radio" name="q9" value="C"> C) Stres Sorusu</label></li>
+        <li><label><input type="radio" name="q9" value="D"> D) Bulmaca Sorusu</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Geçmişteki gerçek davranışları soran sorular Davranışsal (Behavioral); varsayımsal gelecek senaryoları soranlar ise Durumsal (Situational) sorulardır.</div>
+    </div>
+
+    <!-- Question 10 -->
+    <div class="question" data-correct="A">
+      <h3>10. Mülakatçının, adayın tek bir özelliğinden etkilenerek (çok pozitif veya negatif olması) adayın genel değerlendirmesini bu yönde saptırması hatasına ne denir? (Ch.7)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q10" value="A"> A) Hale Etkisi (Halo Effect)</label></li>
+        <li><label><input type="radio" name="q10" value="B"> B) Aday Sırası Hatası (Candidate-Order Error)</label></li>
+        <li><label><input type="radio" name="q10" value="C"> C) Ani Karar Verme (Snap Judgments)</label></li>
+        <li><label><input type="radio" name="q10" value="D"> D) İşi Yanlış Anlama</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Bir özelliğin (örn. dış görünüş) adayın tüm yetkinlik puanlarını gölgelemesine Hale Etkisi (Halo Effect) denir.</div>
+    </div>
+
+    <!-- Question 11 -->
+    <div class="question" data-correct="B">
+      <h3>11. Yeni işe giren çalışanlara kurumun kurallarını, faydalarını, güvenlik prosedürlerini ve çalışma rutinini aktararak onların uyum sürecini kolaylaştıran uygulama hangisidir? (Ch.8)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q11" value="A"> A) İş Rotasyonu</label></li>
+        <li><label><input type="radio" name="q11" value="B"> B) Oryantasyon (Orientation)</label></li>
+        <li><label><input type="radio" name="q11" value="C"> C) Kariyer Planlama</label></li>
+        <li><label><input type="radio" name="q11" value="D"> D) 360-Derece Geri Bildirim</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Oryantasyon (Employee Orientation), yeni çalışana şirketin temel arka plan bilgilerinin verildiği süreçtir.</div>
+    </div>
+
+    <!-- Question 12 -->
+    <div class="question" data-correct="C">
+      <h3>12. Eğitim ve Gelişim sürecinin (Training Process) 5 adımından ilki aşağıdakilerden hangisidir? (Ch.8)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q12" value="A"> A) Eğitimin Değerlendirilmesi (Evaluation)</label></li>
+        <li><label><input type="radio" name="q12" value="B"> B) Programın Uygulanması (Implementation)</label></li>
+        <li><label><input type="radio" name="q12" value="C"> C) İhtiyaç Analizi (Needs Analysis)</label></li>
+        <li><label><input type="radio" name="q12" value="D"> D) Eğitim Tasarımı (Instructional Design)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Eğitim süreci daima 'İhtiyaç Analizi' (Needs Analysis) ile başlar; performans açıklarının eğitimle çözülüp çözülemeyeceği belirlenir.</div>
+    </div>
+
+    <!-- Question 13 -->
+    <div class="question" data-correct="D">
+      <h3>13. Performans eksikliğinin eğitim eksikliğinden mi yoksa çalışanın isteksizliğinden (motivasyon sorunu) mi kaynaklandığını bulmak için hangi analiz yapılır? (Ch.8)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q13" value="A"> A) Trend Analizi</label></li>
+        <li><label><input type="radio" name="q13" value="B"> B) Görev Analizi (Task Analysis)</label></li>
+        <li><label><input type="radio" name="q13" value="C"> C) Oran Analizi</label></li>
+        <li><label><input type="radio" name="q13" value="D"> D) Performans Analizi (Performance Analysis)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Performans Analizi, sorunun "yapamıyor mu" (eğitimle çözülür) yoksa "yapmak mı istemiyor" (motivasyon/yönetimle çözülür) olduğunu tespit eder.</div>
+    </div>
+
+    <!-- Question 14 -->
+    <div class="question" data-correct="B">
+      <h3>14. Yöneticilerin, davranışın doğrusunu gözlemlediği, ardından bunu rol yaparak uyguladığı ve geri bildirim aldığı yönetim geliştirme (Management Development) tekniği hangisidir? (Ch.8)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q14" value="A"> A) Vaka Çalışması (Case Study)</label></li>
+        <li><label><input type="radio" name="q14" value="B"> B) Davranış Modelleme (Behavior Modeling)</label></li>
+        <li><label><input type="radio" name="q14" value="C"> C) Eylem Öğrenmesi (Action Learning)</label></li>
+        <li><label><input type="radio" name="q14" value="D"> D) İş Rotasyonu</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Davranış Modelleme; model gösterme, rol yapma, sosyal pekiştirme ve öğrenmenin transferi adımlarını içerir.</div>
+    </div>
+
+    <!-- Question 15 -->
+    <div class="question" data-correct="B">
+      <h3>15. "Performans Değerlendirme" (Appraisal) ile "Performans Yönetimi" (Management) arasındaki temel fark nedir? (Ch.9)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q15" value="A"> A) Performans yönetimi sadece yıllık yapılır, değerlendirme süreklidir.</label></li>
+        <li><label><input type="radio" name="q15" value="B"> B) Değerlendirme spesifik bir ölçüm aracıdır; yönetim ise organizasyonel hedeflere ulaşmak için oluşturulan sürekli sistemdir.</label></li>
+        <li><label><input type="radio" name="q15" value="C"> C) İkisi tamamen aynı kavramlardır.</label></li>
+        <li><label><input type="radio" name="q15" value="D"> D) Performans yönetimi sadece yeni çalışanlara uygulanır.</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Performans yönetimi stratejik ve geniş kapsamlı bir süreçtir. Performans değerlendirme ise bu sürecin içindeki puanlama ve geri bildirim aşamasıdır.</div>
+    </div>
+
+    <!-- Question 16 -->
+    <div class="question" data-correct="D">
+      <h3>16. Performans değerlendirme yöntemlerinden hangisi "çan eğrisi" mantığına benzer ve çalışanları belirli yüzdelik dilimlere (örn: %15 yüksek, %30 ortalama) ayırmayı zorunlu kılar? (Ch.9)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q16" value="A"> A) Sıralama Yöntemi (Alternation Ranking)</label></li>
+        <li><label><input type="radio" name="q16" value="B"> B) İkili Karşılaştırma (Paired Comparison)</label></li>
+        <li><label><input type="radio" name="q16" value="C"> C) Grafik Derecelendirme Ölçeği (Graphic Rating Scale)</label></li>
+        <li><label><input type="radio" name="q16" value="D"> D) Zorunlu Dağılım (Forced Distribution)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Zorunlu Dağılım (Forced Distribution) yöntemi, yöneticileri değerlendirmede belirli kotalara uymaya mecbur bırakır.</div>
+    </div>
+
+    <!-- Question 17 -->
+    <div class="question" data-correct="A">
+      <h3>17. BARS (Davranışsal Beklenti Ölçekleri - Behaviorally Anchored Rating Scale) yönteminin en önemli dezavantajı nedir? (Ch.9)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q17" value="A"> A) Geliştirilmesinin zor ve çok zaman alıcı olması</label></li>
+        <li><label><input type="radio" name="q17" value="B"> B) Ölçümün çok basit ve yüzeysel kalması</label></li>
+        <li><label><input type="radio" name="q17" value="C"> C) Sadece nicel hedefleri ölçebilmesi</label></li>
+        <li><label><input type="radio" name="q17" value="D"> D) Yöneticilerin insiyatifini tamamen elinden alması</label></li>
+      </ul>
+      <div class="explanation">Açıklama: BARS oldukça doğru sonuçlar veren bir yöntemdir ancak her iş için özel kritik olayların (critical incidents) tespit edilmesi gerektiğinden geliştirilmesi maliyetli ve zordur.</div>
+    </div>
+
+    <!-- Question 18 -->
+    <div class="question" data-correct="C">
+      <h3>18. Değerlendiricinin, çalışanların gerçek performansına bakmaksızın herkesi "ortalama" düzeyde (ne çok iyi ne çok kötü) değerlendirme eğilimine ne ad verilir? (Ch.9)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q18" value="A"> A) Hoşgörü/Sıkılık Hatası (Leniency/Strictness)</label></li>
+        <li><label><input type="radio" name="q18" value="B"> B) Hale Etkisi (Halo Effect)</label></li>
+        <li><label><input type="radio" name="q18" value="C"> C) Merkezi Eğilim Hatası (Central Tendency)</label></li>
+        <li><label><input type="radio" name="q18" value="D"> D) Belirsiz Standartlar (Unclear Standards)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Değerlendiricinin risk almaktan kaçınıp herkesi ortada toplaması Merkezi Eğilim (Central Tendency) hatasıdır.</div>
+    </div>
+
+    <!-- Question 19 -->
+    <div class="question" data-correct="B">
+      <h3>19. Performans değerlendirme mülakatlarında, çalışan "Savunmacı" (Defensive) bir tavır sergilediğinde yöneticinin KESİNLİKLE YAPMAMASI gereken davranış hangisidir? (Ch.9)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q19" value="A"> A) Savunmacı davranışın normal olduğunu kabul etmek</label></li>
+        <li><label><input type="radio" name="q19" value="B"> B) Çalışanın savunmalarına saldırarak onu haksız çıkarmaya çalışmak</label></li>
+        <li><label><input type="radio" name="q19" value="C"> C) Gerekirse aksiyon almayı ve görüşmeyi ertelemek</label></li>
+        <li><label><input type="radio" name="q19" value="D"> D) Kendi sınırlarının farkında olmak</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Savunma mekanizmaları doğaldır. Yöneticinin doğrudan çalışanın savunmasına saldırması (Never attack a person's defenses) mülakatı çıkmaza sokar.</div>
+    </div>
+
+    <!-- Question 20 -->
+    <div class="question" data-correct="A">
+      <h3>20. Stratejik İKY kapsamında, İK faaliyetlerinin organizasyonun stratejik hedeflerine ulaşmasında ne kadar etkili olduğunu (çalışan davranışları üzerinden) ölçen araca ne ad verilir? (Ch.3)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q20" value="A"> A) İK Karnesi (HR Scorecard)</label></li>
+        <li><label><input type="radio" name="q20" value="B"> B) Yönetim Oyunları</label></li>
+        <li><label><input type="radio" name="q20" value="C"> C) Eylem Öğrenmesi</label></li>
+        <li><label><input type="radio" name="q20" value="D"> D) Hedeflere Göre Yönetim (MBO)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: İK Karnesi (HR Scorecard), stratejik hedeflere ulaşmak için İK'nın değer yaratma sürecini ölçülebilir metriklerle takip eder.</div>
+    </div>
+
+    <button type="button" onclick="calculateScore()">Testi Bitir ve Sonuçları Gör</button>
+  </form>
+
+  <div id="result-box"></div>
+</div>
+
+<script>
+  function calculateScore() {
+    let score = 0;
+    const questions = document.querySelectorAll('.question');
+    
+    questions.forEach((q, index) => {
+      const correctAns = q.getAttribute('data-correct');
+      const selected = q.querySelector(`input[type="radio"]:checked`);
+      const options = q.querySelectorAll('label');
+      
+      // Reset styles
+      options.forEach(opt => {
+        opt.classList.remove('correct-ans', 'wrong-ans');
+      });
+      q.querySelector('.explanation').style.display = 'block';
+
+      if (selected) {
+        if (selected.value === correctAns) {
+          score++;
+          selected.parentElement.classList.add('correct-ans');
+        } else {
+          selected.parentElement.classList.add('wrong-ans');
+          // Highlight correct answer as well
+          const correctInput = q.querySelector(`input[value="${correctAns}"]`);
+          if(correctInput) correctInput.parentElement.classList.add('correct-ans');
+        }
+      } else {
+        // If not answered, just show the correct one
+        const correctInput = q.querySelector(`input[value="${correctAns}"]`);
+        if(correctInput) correctInput.parentElement.classList.add('correct-ans');
+      }
+      
+      // Disable inputs after submit
+      q.querySelectorAll('input[type="radio"]').forEach(input => input.disabled = true);
+    });
+
+    const resultBox = document.getElementById('result-box');
+    resultBox.style.display = 'block';
+    
+    if(score >= 15) {
+      resultBox.innerHTML = `🎉 Harika İş Çıkardın! Skorun: 20 üzerinden ${score}`;
+      resultBox.style.backgroundColor = '#e6f4ea';
+      resultBox.style.color = '#3d6b3a';
+    } else if (score >= 10) {
+      resultBox.innerHTML = `👍 Fena Değil, Ama Biraz Daha Tekrar Lazım. Skorun: 20 üzerinden ${score}`;
+      resultBox.style.backgroundColor = '#fff8e1';
+      resultBox.style.color = '#f29900';
+    } else {
+      resultBox.innerHTML = `📚 Notlara Geri Dönme Vakti... Skorun: 20 üzerinden ${score}`;
+      resultBox.style.backgroundColor = '#fce8e6';
+      resultBox.style.color = '#d93025';
+    }
+  }
+</script>
+
+</body>
+</html>
