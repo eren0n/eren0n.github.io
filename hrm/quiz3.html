@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İnsan Kaynakları Yönetimi (HRM) - Deneme Sınavı 3</title>
+<style>
+  :root {
+    --ink: #1a1410;
+    --paper: #f7f3ec;
+    --paper2: #ede8df;
+    --accent: #8b3a1a;
+    --accent2: #2a4a6b;
+    --accent3: #3d6b3a;
+    --rule: #c8bfb0;
+    --correct-bg: #e6f4ea;
+    --wrong-bg: #fce8e6;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    padding: 20px;
+    margin: 0;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-top: 5px solid var(--accent);
+  }
+  h1 {
+    text-align: center;
+    color: var(--accent);
+    font-size: 2em;
+    margin-bottom: 5px;
+  }
+  p.subtitle {
+    text-align: center;
+    color: var(--accent2);
+    font-size: 0.9em;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .question {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--paper2);
+  }
+  .question:last-of-type {
+    border-bottom: none;
+  }
+  .question h3 {
+    font-size: 1.1em;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .options {
+    list-style-type: none;
+    padding: 0;
+  }
+  .options li {
+    margin: 8px 0;
+  }
+  label {
+    cursor: pointer;
+    padding: 10px 15px;
+    display: block;
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    transition: all 0.2s ease;
+    background: var(--paper);
+  }
+  label:hover {
+    background: var(--paper2);
+    border-color: var(--accent2);
+  }
+  input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.1);
+  }
+  button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: var(--accent2);
+    color: #fff;
+    border: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background 0.3s;
+  }
+  button:hover {
+    background: #1e354d;
+  }
+  #result-box {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.3em;
+    display: none;
+  }
+  .correct-ans {
+    background-color: var(--correct-bg) !important;
+    border-color: var(--accent3) !important;
+    color: var(--accent3);
+  }
+  .wrong-ans {
+    background-color: var(--wrong-bg) !important;
+    border-color: #d93025 !important;
+    color: #d93025;
+  }
+  .explanation {
+    display: none;
+    font-size: 0.9em;
+    color: var(--accent2);
+    margin-top: 10px;
+    padding: 10px;
+    background: #f0f4f8;
+    border-left: 3px solid var(--accent2);
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>HRM - Deneme Sınavı 3</h1>
+  <p class="subtitle">Detay Sorular ve İleri Seviye Konu Tarama Testi</p>
+
+  <form id="quiz-form">
+    <div class="question" data-correct="C">
+      <h3>1. Çeşitliliğe, eşitliğe, ruh sağlığına, şeffaf ve hızlı ücrete önem veren; 2025'e kadar iş gücünün %27'sini oluşturması beklenen çalışan kuşağı hangisidir? (Ch.1)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q1" value="A"> A) Baby Boomers</label></li>
+        <li><label><input type="radio" name="q1" value="B"> B) X Kuşağı</label></li>
+        <li><label><input type="radio" name="q1" value="C"> C) Z Kuşağı (Gen Z)</label></li>
+        <li><label><input type="radio" name="q1" value="D"> D) Y Kuşağı (Gen Y)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Gen Z, iş esnekliği, eşitlik ve ruh sağlığı gibi konulara çok daha fazla vurgu yapan ve iş gücüne hızla katılan yeni kuşaktır.</div>
+    </div>
+
+    <div class="question" data-correct="B">
+      <h3>2. Porter’ın Rekabet Stratejilerinden olan "Focus" (Odaklanma) stratejisinin temel amacı nedir? (Ch.3)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q2" value="A"> A) Tüm pazarda en düşük maliyetle ürün satmak</label></li>
+        <li><label><input type="radio" name="q2" value="B"> B) Pazarın dar ve spesifik bir bölümüne (niş kitle) hizmet etmek</label></li>
+        <li><label><input type="radio" name="q2" value="C"> C) Ürünleri eşsiz ve farklı hale getirip tüm sektöre pazarlamak</label></li>
+        <li><label><input type="radio" name="q2" value="D"> D) Firmanın boyutunu küçültmek (Konsolidasyon)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Odaklanma (Focus), rekabeti geniş pazarda değil, dar ve spesifik bir pazar segmenti (niş) üzerinde kurmaktır.</div>
+    </div>
+
+    <div class="question" data-correct="D">
+      <h3>3. Çalışan katılımını (job enrichment, team-based), çalışan gelişimini ve esnek çalışma atamalarını içeren; stratejik hedeflere ulaşmayı sağlayan İK uygulamaları bütününe ne ad verilir? (Ch.3)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q3" value="A"> A) HR Scorecard</label></li>
+        <li><label><input type="radio" name="q3" value="B"> B) Stratejik Uyum (Strategic Fit)</label></li>
+        <li><label><input type="radio" name="q3" value="C"> C) MBO (Hedeflerle Yönetim)</label></li>
+        <li><label><input type="radio" name="q3" value="D"> D) HPWS (High-Performance Work System)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Yüksek Performanslı İş Sistemleri (HPWS), çalışan katılımını ve bağlılığını maksimize eden İK politikaları bütünüdür.</div>
+    </div>
+
+    <div class="question" data-correct="A">
+      <h3>4. İş analizi yöntemleri arasında yer alan "Participant Diary/Log" (Katılımcı Günlüğü) yönteminin en temel dezavantajı nedir? (Ch.4)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q4" value="A"> A) Çalışanın kendi hafızasına ve doğruluğuna dayanması, çarpıtmaya açık olması</label></li>
+        <li><label><input type="radio" name="q4" value="B"> B) Büyük kitlelere aynı anda uygulanmasının zor olması</label></li>
+        <li><label><input type="radio" name="q4" value="C"> C) Nadir yapılan görevleri (infrequent tasks) gözden kaçırması</label></li>
+        <li><label><input type="radio" name="q4" value="D"> D) Hazırlanmasının çok pahalı olması</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Çalışanların kendi yaptıklarını not alması, bilerek veya bilmeyerek süreleri ve görevleri çarpıtmalarına sebep olabilir (Distortion).</div>
+    </div>
+
+    <div class="question" data-correct="A">
+      <h3>5. Çalışana hiyerarşik olarak daha üst düzey sorumluluklar eklemek yerine, işi yatay olarak büyütmek için "aynı seviyeden daha fazla görev" (same-level activities) verilmesi uygulamasına ne denir? (Ch.4)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q5" value="A"> A) İş Genişletme (Job Enlargement)</label></li>
+        <li><label><input type="radio" name="q5" value="B"> B) İş Zenginleştirme (Job Enrichment)</label></li>
+        <li><label><input type="radio" name="q5" value="C"> C) İş Rotasyonu (Job Rotation)</label></li>
+        <li><label><input type="radio" name="q5" value="D"> D) Re-engineering</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Görevlerin sayısının yatay olarak (aynı seviyede) artırılmasına İş Genişletme (Job Enlargement) denir.</div>
+    </div>
+
+    <div class="question" data-correct="C">
+      <h3>6. İşe alım ilanlarında başarı sağlamak için kullanılan AIDA prensibindeki harfler sırasıyla ne anlama gelir? (Ch.5)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q6" value="A"> A) Assessment, Interview, Decision, Action</label></li>
+        <li><label><input type="radio" name="q6" value="B"> B) Analysis, Interest, Data, Action</label></li>
+        <li><label><input type="radio" name="q6" value="C"> C) Attention, Interest, Desire, Action</label></li>
+        <li><label><input type="radio" name="q6" value="D"> D) Application, Interview, Demonstration, Action</label></li>
+      </ul>
+      <div class="explanation">Açıklama: İyi bir iş ilanı adayın dikkatini çekmeli (Attention), ilgisini uyandırmalı (Interest), istek yaratmalı (Desire) ve başvuruya geçirmelidir (Action).</div>
+    </div>
+
+    <div class="question" data-correct="B">
+      <h3>7. Üst düzey yöneticileri işe almak için çalışan ve sadece aday başarıyla işe girdiğinde ödeme alan "Kafa Avcıları" (Headhunters) türüne ne ad verilir? (Ch.5)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q7" value="A"> A) Retained Recruiters</label></li>
+        <li><label><input type="radio" name="q7" value="B"> B) Contingent-based Recruiters</label></li>
+        <li><label><input type="radio" name="q7" value="C"> C) Public Agencies</label></li>
+        <li><label><input type="radio" name="q7" value="D"> D) Internal HR</label></li>
+      </ul>
+      <div class="explanation">Açıklama: "Contingent-based" çalışan ajanslar başarı (işe alım) şartına bağlı ücret alırken, "Retained" çalışanlar işe alım olsa da olmasa da danışmanlık ücretini alır.</div>
+    </div>
+
+    <div class="question" data-correct="B">
+      <h3>8. Bir adayın kariyer hedeflerini, gelişim alanlarını ve hangi mesleğe uygun olduğunu saptamak için adayın ilgilerini mevcut meslek sahiplerininkiyle kıyaslayan test türü hangisidir? (Ch.6)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q8" value="A"> A) Bilişsel Yetenek Testi</label></li>
+        <li><label><input type="radio" name="q8" value="B"> B) İlgi Envanteri (Interest Inventories)</label></li>
+        <li><label><input type="radio" name="q8" value="C"> C) Başarı Testi (Achievement Test)</label></li>
+        <li><label><input type="radio" name="q8" value="D"> D) Durumsal Yargı Testi</label></li>
+      </ul>
+      <div class="explanation">Açıklama: İlgi envanterleri adayın kişisel ilgi alanlarını ölçerek doğru kariyer yolunu bulması (ve seçme sürecinde kullanılması) için kullanılır.</div>
+    </div>
+
+    <div class="question" data-correct="D">
+      <h3>9. Şirketten ayrılan bir çalışanla, ayrılık nedenini anlamak ve firmadaki doğrular/yanlışlar hakkında içgörü kazanmak için yapılan mülakata ne ad verilir? (Ch.7)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q9" value="A"> A) Seçme Mülakatı</label></li>
+        <li><label><input type="radio" name="q9" value="B"> B) Değerlendirme Mülakatı (Appraisal)</label></li>
+        <li><label><input type="radio" name="q9" value="C"> C) Stres Mülakatı</label></li>
+        <li><label><input type="radio" name="q9" value="D"> D) Çıkış Mülakatı (Exit Interview)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Çıkış Mülakatı (Exit Interview), şirketten ayrılan personelin dürüst geri bildirimlerini toplamak için mükemmel bir fırsattır.</div>
+    </div>
+
+    <div class="question" data-correct="C">
+      <h3>10. Mülakatçıların görüşmenin sadece ilk birkaç dakikasında aday hakkında aceleci bir sonuca varması ve geri kalan sürede bu fikri haklı çıkaracak sorular sorması hatası hangisidir? (Ch.7)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q10" value="A"> A) Aday Sırası Hatası</label></li>
+        <li><label><input type="radio" name="q10" value="B"> B) İşi Yanlış Anlama</label></li>
+        <li><label><input type="radio" name="q10" value="C"> C) Ani Karar Verme (Snap Judgments)</label></li>
+        <li><label><input type="radio" name="q10" value="D"> D) Hale Etkisi</label></li>
+      </ul>
+      <div class="explanation">Açıklama: "Snap judgments" (Ani kararlar), ilk izlenimin görüşmenin geri kalanını haksız şekilde domine etmesidir. Özellikle negatif izlenimler çok belirleyici olur.</div>
+    </div>
+
+    <div class="question" data-correct="D">
+      <h3>11. Yeni işe giren çalışanları doğrudan üretim hattına koymak yerine, iş ortamının bir benzerini kurarak onlara özel ekipmanlarla tehlikesiz ortamda verilen eğitim (Simulated training) hangisidir? (Ch.8)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q11" value="A"> A) JIT (Job Instruction Training)</label></li>
+        <li><label><input type="radio" name="q11" value="B"> B) Çıraklık Eğitimi</label></li>
+        <li><label><input type="radio" name="q11" value="C"> C) Action Learning</label></li>
+        <li><label><input type="radio" name="q11" value="D"> D) Vestibule Eğitim (Simülasyon)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Vestibule/Simüle edilmiş eğitim, üretim hatası maliyetlerini ve güvenlik risklerini sıfıra indirmek için tasarlanmış izole eğitimdir.</div>
+    </div>
+
+    <div class="question" data-correct="A">
+      <h3>12. Çalışanların performansını özelliklere (traits) göre puanlarken, tüm çalışanların olası tüm ikili kombinasyonlarını yapıp, her bir eşleşmede "hangisi daha iyi" diye sorarak sıralama yapan yöntem hangisidir? (Ch.9)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q12" value="A"> A) İkili Karşılaştırma (Paired Comparison)</label></li>
+        <li><label><input type="radio" name="q12" value="B"> B) Alternatif Sıralama (Alternation Ranking)</label></li>
+        <li><label><input type="radio" name="q12" value="C"> C) Zorunlu Dağılım (Forced Distribution)</label></li>
+        <li><label><input type="radio" name="q12" value="D"> D) Grafik Derecelendirme Ölçeği</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Paired comparison (İkili karşılaştırma), her çalışanı bir diğer çalışanla tek tek kıyaslayıp (+) veya (-) vererek en iyiyi matematiksel olarak bulmaya çalışır.</div>
+    </div>
+
+    <div class="question" data-correct="B">
+      <h3>13. Yöneticinin, performansı ne olursa olsun tüm altındaki çalışanlara yüksek puanlar (hoşgörü) ya da düşük puanlar (sıkılık) verme eğilimine ne denir? (Ch.9)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q13" value="A"> A) Hale Etkisi</label></li>
+        <li><label><input type="radio" name="q13" value="B"> B) Sıkılık/Hoşgörü Hatası (Strictness/Leniency)</label></li>
+        <li><label><input type="radio" name="q13" value="C"> C) Merkezi Eğilim (Central Tendency)</label></li>
+        <li><label><input type="radio" name="q13" value="D"> D) Belirsiz Standartlar</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Herkesi ortaya (ortalama) yığmak Merkezi Eğilim iken; herkesi çok iyi veya çok kötü değerlendirmek Hoşgörü/Sıkılık hatasıdır.</div>
+    </div>
+
+    <div class="question" data-correct="A">
+      <h3>14. Hastane yatak sayısı ile ihtiyaç duyulan hemşire sayısı gibi, "nedensel bir faktör ile personel sayısı arasındaki oranı" baz alarak personel ihtiyacı planlayan araç hangisidir? (Ch.5)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q14" value="A"> A) Oran Analizi (Ratio Analysis)</label></li>
+        <li><label><input type="radio" name="q14" value="B"> B) Trend Analizi</label></li>
+        <li><label><input type="radio" name="q14" value="C"> C) Markov Analizi</label></li>
+        <li><label><input type="radio" name="q14" value="D"> D) Dağılım Grafiği (Scatter Plot)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: İki değişken arasında (hacim ile iş gücü) matematiksel ve sabit bir oran kurarak tahmin yapmaya Oran Analizi denir.</div>
+    </div>
+
+    <div class="question" data-correct="B">
+      <h3>15. Bir adayın, karşısındaki "birden fazla mülakatçı" (bir ekip) tarafından aynı anda soru yağmuruna tutulduğu ve ekibin ortak not verdiği mülakat türü nedir? (Ch.7)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q15" value="A"> A) Sıralı Mülakat (Sequential)</label></li>
+        <li><label><input type="radio" name="q15" value="B"> B) Panel Mülakatı</label></li>
+        <li><label><input type="radio" name="q15" value="C"> C) Bilgisayar Destekli Mülakat</label></li>
+        <li><label><input type="radio" name="q15" value="D"> D) Stres Mülakatı</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Adayın bir masada oturup birden fazla temsilcinin eşzamanlı değerlendirmesine girmesi Panel Mülakatıdır. Sıralı (Sequential) olanda aday odaları/kişileri tek tek gezer.</div>
+    </div>
+
+    <div class="question" data-correct="A">
+      <h3>16. İş Tanımı (Job Description) yazılırken işin başlığının (Job title), belgenin hazırlandığı tarihin ve hazırlayanın adının bulunduğu en üst bölüme ne denir? (Ch.4)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q16" value="A"> A) İş Kimliği (Job Identification)</label></li>
+        <li><label><input type="radio" name="q16" value="B"> B) İş Özeti (Job Summary)</label></li>
+        <li><label><input type="radio" name="q16" value="C"> C) Performans Standartları</label></li>
+        <li><label><input type="radio" name="q16" value="D"> D) İlişkiler (Relationships)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: İş kimliği kısmı, belgenin temel meta verilerini barındırır (Kim hazırladı, ne zaman hazırlandı, işin tam unvanı nedir vb).</div>
+    </div>
+
+    <div class="question" data-correct="C">
+      <h3>17. Organizasyon içinde çalışanların bir pozisyondan diğerine veya işten ayrılmaya doğru zaman içindeki hareketlerini olasılıklar üzerinden ölçen kantitatif araca ne ad verilir? (Ch.5)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q17" value="A"> A) Personel Yedekleme Tablosu (Replacement Chart)</label></li>
+        <li><label><input type="radio" name="q17" value="B"> B) Dağılım Grafiği (Scatter Plot)</label></li>
+        <li><label><input type="radio" name="q17" value="C"> C) Markov Analizi</label></li>
+        <li><label><input type="radio" name="q17" value="D"> D) İK Bilgi Sistemi (HRIS)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Markov analizi, personel akışını (terfi, yatay geçiş, çıkış vb.) matematiksel olarak modelleyen nicel bir tahmin tekniğidir.</div>
+    </div>
+
+    <div class="question" data-correct="B">
+      <h3>18. Muhasebe, pazarlama veya teknik bir dilde "adayın daha önceden okulda veya önceki işinde ne öğrendiğini (iş bilgisini)" ölçen test türü hangisidir? (Ch.6)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q18" value="A"> A) Bilişsel Yetenek Testi</label></li>
+        <li><label><input type="radio" name="q18" value="B"> B) Başarı Testleri (Achievement Tests)</label></li>
+        <li><label><input type="radio" name="q18" value="C"> C) Kişilik Testleri</label></li>
+        <li><label><input type="radio" name="q18" value="D"> D) Motor Yetenek Testleri</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Başarı testleri potansiyeli değil, halihazırda öğrenilmiş spesifik bilgiyi (job knowledge) test eder.</div>
+    </div>
+
+    <div class="question" data-correct="D">
+      <h3>19. Bir çalışanın performansı "Yetersiz" ise ve geliştirme planlarına rağmen "Düzeltilemez" (Unsatisfactory-Uncorrectable) olduğu kararına varıldıysa, değerlendirme mülakatı genellikle hangi sonuçla biter? (Ch.9)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q19" value="A"> A) Detaylı bir eğitim takvimi çıkarmak</label></li>
+        <li><label><input type="radio" name="q19" value="B"> B) Sadece motive edici sözler söyleyerek geçiştirmek</label></li>
+        <li><label><input type="radio" name="q19" value="C"> C) Terfi planlaması yapmak</label></li>
+        <li><label><input type="radio" name="q19" value="D"> D) İşten çıkarma veya pozisyon düşürme gibi idari işlemleri başlatmak</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Performans hem yetersiz hem de düzeltilemez durumdaysa, eğitim fayda etmeyecektir. Artık ayrılık veya sert idari yaptırımlar (uyarı vb.) devreye girer.</div>
+    </div>
+
+    <div class="question" data-correct="C">
+      <h3>20. Teknolojik değişimler ve modern ekipler yüzünden katı iş tanımlarının (narrow job roles) giderek ortadan kalkması eğilimine "De-jobbing" denir. Şirketler buna aşağıdakilerden hangisiyle tepki verir? (Ch.4)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q20" value="A"> A) Mikro yönetim ve katı hiyerarşi</label></li>
+        <li><label><input type="radio" name="q20" value="B"> B) İşi sadece uzmanlara bırakma ve departmanları keskinleştirme</label></li>
+        <li><label><input type="radio" name="q20" value="C"> C) Sınırsız organizasyonlar (Boundaryless) ve geniş bant iş tanımları (Broadbanding)</label></li>
+        <li><label><input type="radio" name="q20" value="D"> D) Yalnızca kıdemli işçileri elde tutma politikası</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Sınırların kalkması (de-jobbing), şirketleri esnek rollere, takım bazlı projelere ve katı sınırları olmayan (boundaryless) hiyerarşilere itmektedir.</div>
+    </div>
+
+    <button type="button" onclick="calculateScore()">Testi Bitir ve Sonuçları Gör</button>
+  </form>
+
+  <div id="result-box"></div>
+</div>
+
+<script>
+  function calculateScore() {
+    let score = 0;
+    const questions = document.querySelectorAll('.question');
+    
+    questions.forEach((q, index) => {
+      const correctAns = q.getAttribute('data-correct');
+      const selected = q.querySelector(`input[type="radio"]:checked`);
+      const options = q.querySelectorAll('label');
+      
+      options.forEach(opt => {
+        opt.classList.remove('correct-ans', 'wrong-ans');
+      });
+      q.querySelector('.explanation').style.display = 'block';
+
+      if (selected) {
+        if (selected.value === correctAns) {
+          score++;
+          selected.parentElement.classList.add('correct-ans');
+        } else {
+          selected.parentElement.classList.add('wrong-ans');
+          const correctInput = q.querySelector(`input[value="${correctAns}"]`);
+          if(correctInput) correctInput.parentElement.classList.add('correct-ans');
+        }
+      } else {
+        const correctInput = q.querySelector(`input[value="${correctAns}"]`);
+        if(correctInput) correctInput.parentElement.classList.add('correct-ans');
+      }
+      
+      q.querySelectorAll('input[type="radio"]').forEach(input => input.disabled = true);
+    });
+
+    const resultBox = document.getElementById('result-box');
+    resultBox.style.display = 'block';
+    
+    if(score >= 15) {
+      resultBox.innerHTML = `🎉 Harikasın! Artık Hocayı Bile Sen Sınav Yaparsın. Skorun: 20 üzerinden ${score}`;
+      resultBox.style.backgroundColor = '#e6f4ea';
+      resultBox.style.color = '#3d6b3a';
+    } else if (score >= 10) {
+      resultBox.innerHTML = `👍 Detaylar Unutulmaya Başlamış. Son Bir Tur Daha Notlara Bak. Skorun: 20 üzerinden ${score}`;
+      resultBox.style.backgroundColor = '#fff8e1';
+      resultBox.style.color = '#f29900';
+    } else {
+      resultBox.innerHTML = `📚 Biraz Daha Odaklanma Zamanı. Skorun: 20 üzerinden ${score}`;
+      resultBox.style.backgroundColor = '#fce8e6';
+      resultBox.style.color = '#d93025';
+    }
+  }
+</script>
+
+</body>
+</html>
