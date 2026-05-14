@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>İnsan Kaynakları Yönetimi (HRM) - Vize/Final Deneme Sınavı</title>
 <style>
   :root {
@@ -130,261 +131,269 @@
     border-left: 3px solid var(--accent2);
     border-radius: 3px;
   }
+
+  .lang-tr { display: none; }
+  .lang-en { display: inline; }
+  body.show-tr .lang-tr { display: inline; }
+  body.show-tr .lang-en { display: none; }
+  
+  .lang-switch-container {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+  .lang-switch-container button {
+    display: inline-block;
+    width: auto;
+    padding: 8px 15px;
+    margin: 0 5px;
+    background: var(--paper2);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    font-size: 0.9em;
+    cursor: pointer;
+  }
+  .lang-switch-container button.active {
+    background: var(--accent2);
+    color: white;
+    border-color: var(--accent2);
+  }
 </style>
 </head>
 <body>
-
 <div class="container">
-  <h1>HRM - Deneme Sınavı</h1>
-  <p class="subtitle">20 Soruluk Kapsamlı Çalışma Testi</p>
-
-  <form id="quiz-form">
-    <!-- Question 1 -->
-    <div class="question" data-correct="B">
-      <h3>1. İnsan Kaynakları Yönetimi (HRM) sürecinde, işe alma, eğitme ve tazminat gibi konularda diğer yöneticilere danışmanlık yapan yöneticilerin sahip olduğu yetki türü aşağıdakilerden hangisidir? (Ch.1)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q1" value="A"> A) Komuta Yetkisi (Line Authority)</label></li>
-        <li><label><input type="radio" name="q1" value="B"> B) Kurmay Yetkisi (Staff Authority)</label></li>
-        <li><label><input type="radio" name="q1" value="C"> C) Yürütme Yetkisi</label></li>
-        <li><label><input type="radio" name="q1" value="D"> D) Karar Yetkisi</label></li>
-      </ul>
-      <div class="explanation">Açıklama: İK yöneticileri genellikle diğer birimlere danışmanlık ve tavsiye verdikleri için 'Kurmay Yetkisine' (Staff Authority) sahiptirler.</div>
-    </div>
-
-    <!-- Question 2 -->
-    <div class="question" data-correct="D">
-      <h3>2. Aşağıdakilerden hangisi Porter’ın rekabet stratejilerinden (Competitive Strategies) biri değildir? (Ch.3)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q2" value="A"> A) Maliyet Liderliği</label></li>
-        <li><label><input type="radio" name="q2" value="B"> B) Farklılaştırma</label></li>
-        <li><label><input type="radio" name="q2" value="C"> C) Odaklanma</label></li>
-        <li><label><input type="radio" name="q2" value="D"> D) Çeşitlendirme (Diversification)</label></li>
-      </ul>
-      <div class="explanation">Açıklama: Çeşitlendirme (Diversification) bir kurumsal stratejidir (Corporate Strategy). Porter'ın rekabet stratejileri Maliyet Liderliği, Farklılaştırma ve Odaklanmadır.</div>
-    </div>
-
-    <!-- Question 3 -->
-    <div class="question" data-correct="C">
-      <h3>3. İş analizi (Job Analysis) sonucunda, işin görevlerini, sorumluluklarını ve çalışma koşullarını gösteren yazılı belgeye ne ad verilir? (Ch.4)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q3" value="A"> A) İş Şartnamesi (Job Specification)</label></li>
-        <li><label><input type="radio" name="q3" value="B"> B) İş Genişletme (Job Enlargement)</label></li>
-        <li><label><input type="radio" name="q3" value="C"> C) İş Tanımı (Job Description)</label></li>
-        <li><label><input type="radio" name="q3" value="D"> D) İş Değerlemesi</label></li>
-      </ul>
-      <div class="explanation">Açıklama: İşin görevlerini ve sorumluluklarını anlatan belge İş Tanımıdır (Job Description). İşin gerektirdiği insan özelliklerini anlatan ise İş Şartnamesidir (Job Spec).</div>
-    </div>
-
-    <!-- Question 4 -->
-    <div class="question" data-correct="A">
-      <h3>4. Bir işin, çalışana daha fazla sorumluluk, başarı, büyüme ve takdir fırsatı verecek şekilde dikey olarak yeniden tasarlanmasına (derinlik katılmasına) ne ad verilir? (Ch.4)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q4" value="A"> A) İş Zenginleştirme (Job Enrichment)</label></li>
-        <li><label><input type="radio" name="q4" value="B"> B) İş Rotasyonu (Job Rotation)</label></li>
-        <li><label><input type="radio" name="q4" value="C"> C) İş Genişletme (Job Enlargement)</label></li>
-        <li><label><input type="radio" name="q4" value="D"> D) De-jobbing</label></li>
-      </ul>
-      <div class="explanation">Açıklama: Sorumluluk ve otonomi eklenerek işin dikey olarak büyütülmesi 'İş Zenginleştirme'dir (Job Enrichment).</div>
-    </div>
-
-    <!-- Question 5 -->
-    <div class="question" data-correct="C">
-      <h3>5. Personel ihtiyacını tahmin ederken, geçmiş yıllardaki istihdam verilerini inceleyerek gelecekteki ihtiyaçları tahmin etmeye yarayan yöntem hangisidir? (Ch.5)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q5" value="A"> A) Oran Analizi (Ratio Analysis)</label></li>
-        <li><label><input type="radio" name="q5" value="B"> B) Dağılım Grafiği (Scatter Plot)</label></li>
-        <li><label><input type="radio" name="q5" value="C"> C) Trend Analizi (Trend Analysis)</label></li>
-        <li><label><input type="radio" name="q5" value="D"> D) Markov Analizi</label></li>
-      </ul>
-      <div class="explanation">Açıklama: Trend Analizi, geçmiş istihdam ihtiyaçlarının zaman içindeki eğilimini (trendini) inceleyerek geleceği tahmin eder.</div>
-    </div>
-
-    <!-- Question 6 -->
-    <div class="question" data-correct="C">
-      <h3>6. İşe alımda adayları "İç Kaynaklardan" (Internal Sources) seçmenin dezavantajı aşağıdakilerden hangisidir? (Ch.5)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q6" value="A"> A) Çalışan moralini yükseltmesi</label></li>
-        <li><label><input type="radio" name="q6" value="B"> B) Adayın becerileri hakkında daha net bilgi sağlaması</label></li>
-        <li><label><input type="radio" name="q6" value="C"> C) Mevcut durumun statükosunun sürdürülmesine (inbreeding) yol açması</label></li>
-        <li><label><input type="radio" name="q6" value="D"> D) Daha az eğitim ve oryantasyon gerektirmesi</label></li>
-      </ul>
-      <div class="explanation">Açıklama: İçeriden işe alımın en büyük dezavantajı dışarıdan yeni fikirlerin gelmesini engelleyerek 'inbreeding' (iç içe üreme/mevcut durumu koruma) yaratmasıdır.</div>
-    </div>
-
-    <!-- Question 7 -->
-    <div class="question" data-correct="B">
-      <h3>7. Bir seçme testinin, ölçmeyi iddia ettiği şeyi gerçekten ve doğru bir şekilde ölçüp ölçmediğini ifade eden kavram nedir? (Ch.6)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q7" value="A"> A) Güvenilirlik (Reliability)</label></li>
-        <li><label><input type="radio" name="q7" value="B"> B) Geçerlilik (Validity)</label></li>
-        <li><label><input type="radio" name="q7" value="C"> C) Standardizasyon</label></li>
-        <li><label><input type="radio" name="q7" value="D"> D) Yapısal Uyum</label></li>
-      </ul>
-      <div class="explanation">Açıklama: Geçerlilik (Validity) testin amacına uygunluğunu; Güvenilirlik (Reliability) ise testin tutarlı sonuçlar verip vermediğini ölçer.</div>
-    </div>
-
-    <!-- Question 8 -->
-    <div class="question" data-correct="C">
-      <h3>8. "Beş Büyük" (Big Five) kişilik özelliklerinden hangisi başarı odaklılık ve güvenilirlik (dependability) özelliklerini içerir? (Ch.6)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q8" value="A"> A) Dışadönüklük (Extraversion)</label></li>
-        <li><label><input type="radio" name="q8" value="B"> B) Uyumluluk (Agreeableness)</label></li>
-        <li><label><input type="radio" name="q8" value="C"> C) Sorumluluk Bilinci (Conscientiousness)</label></li>
-        <li><label><input type="radio" name="q8" value="D"> D) Deneyime Açıklık (Openness)</label></li>
-      </ul>
-      <div class="explanation">Açıklama: Sorumluluk bilinci yüksek kişiler iş hayatında güvenilir ve başarıya odaklıdır.</div>
-    </div>
-
-    <!-- Question 9 -->
-    <div class="question" data-correct="B">
-      <h3>9. Mülakatta adaya "Geçmişte zor bir müşteriyle karşılaştığında durumu nasıl yönettin?" şeklinde sorulan soru tipi hangisidir? (Ch.7)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q9" value="A"> A) Durumsal (Situational)</label></li>
-        <li><label><input type="radio" name="q9" value="B"> B) Davranışsal (Behavioral)</label></li>
-        <li><label><input type="radio" name="q9" value="C"> C) Stres Sorusu</label></li>
-        <li><label><input type="radio" name="q9" value="D"> D) Bulmaca Sorusu</label></li>
-      </ul>
-      <div class="explanation">Açıklama: Geçmişteki gerçek davranışları soran sorular Davranışsal (Behavioral); varsayımsal gelecek senaryoları soranlar ise Durumsal (Situational) sorulardır.</div>
-    </div>
-
-    <!-- Question 10 -->
-    <div class="question" data-correct="A">
-      <h3>10. Mülakatçının, adayın tek bir özelliğinden etkilenerek (çok pozitif veya negatif olması) adayın genel değerlendirmesini bu yönde saptırması hatasına ne denir? (Ch.7)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q10" value="A"> A) Hale Etkisi (Halo Effect)</label></li>
-        <li><label><input type="radio" name="q10" value="B"> B) Aday Sırası Hatası (Candidate-Order Error)</label></li>
-        <li><label><input type="radio" name="q10" value="C"> C) Ani Karar Verme (Snap Judgments)</label></li>
-        <li><label><input type="radio" name="q10" value="D"> D) İşi Yanlış Anlama</label></li>
-      </ul>
-      <div class="explanation">Açıklama: Bir özelliğin (örn. dış görünüş) adayın tüm yetkinlik puanlarını gölgelemesine Hale Etkisi (Halo Effect) denir.</div>
-    </div>
-
-    <!-- Question 11 -->
-    <div class="question" data-correct="B">
-      <h3>11. Yeni işe giren çalışanlara kurumun kurallarını, faydalarını, güvenlik prosedürlerini ve çalışma rutinini aktararak onların uyum sürecini kolaylaştıran uygulama hangisidir? (Ch.8)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q11" value="A"> A) İş Rotasyonu</label></li>
-        <li><label><input type="radio" name="q11" value="B"> B) Oryantasyon (Orientation)</label></li>
-        <li><label><input type="radio" name="q11" value="C"> C) Kariyer Planlama</label></li>
-        <li><label><input type="radio" name="q11" value="D"> D) 360-Derece Geri Bildirim</label></li>
-      </ul>
-      <div class="explanation">Açıklama: Oryantasyon (Employee Orientation), yeni çalışana şirketin temel arka plan bilgilerinin verildiği süreçtir.</div>
-    </div>
-
-    <!-- Question 12 -->
-    <div class="question" data-correct="C">
-      <h3>12. Eğitim ve Gelişim sürecinin (Training Process) 5 adımından ilki aşağıdakilerden hangisidir? (Ch.8)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q12" value="A"> A) Eğitimin Değerlendirilmesi (Evaluation)</label></li>
-        <li><label><input type="radio" name="q12" value="B"> B) Programın Uygulanması (Implementation)</label></li>
-        <li><label><input type="radio" name="q12" value="C"> C) İhtiyaç Analizi (Needs Analysis)</label></li>
-        <li><label><input type="radio" name="q12" value="D"> D) Eğitim Tasarımı (Instructional Design)</label></li>
-      </ul>
-      <div class="explanation">Açıklama: Eğitim süreci daima 'İhtiyaç Analizi' (Needs Analysis) ile başlar; performans açıklarının eğitimle çözülüp çözülemeyeceği belirlenir.</div>
-    </div>
-
-    <!-- Question 13 -->
-    <div class="question" data-correct="D">
-      <h3>13. Performans eksikliğinin eğitim eksikliğinden mi yoksa çalışanın isteksizliğinden (motivasyon sorunu) mi kaynaklandığını bulmak için hangi analiz yapılır? (Ch.8)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q13" value="A"> A) Trend Analizi</label></li>
-        <li><label><input type="radio" name="q13" value="B"> B) Görev Analizi (Task Analysis)</label></li>
-        <li><label><input type="radio" name="q13" value="C"> C) Oran Analizi</label></li>
-        <li><label><input type="radio" name="q13" value="D"> D) Performans Analizi (Performance Analysis)</label></li>
-      </ul>
-      <div class="explanation">Açıklama: Performans Analizi, sorunun "yapamıyor mu" (eğitimle çözülür) yoksa "yapmak mı istemiyor" (motivasyon/yönetimle çözülür) olduğunu tespit eder.</div>
-    </div>
-
-    <!-- Question 14 -->
-    <div class="question" data-correct="B">
-      <h3>14. Yöneticilerin, davranışın doğrusunu gözlemlediği, ardından bunu rol yaparak uyguladığı ve geri bildirim aldığı yönetim geliştirme (Management Development) tekniği hangisidir? (Ch.8)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q14" value="A"> A) Vaka Çalışması (Case Study)</label></li>
-        <li><label><input type="radio" name="q14" value="B"> B) Davranış Modelleme (Behavior Modeling)</label></li>
-        <li><label><input type="radio" name="q14" value="C"> C) Eylem Öğrenmesi (Action Learning)</label></li>
-        <li><label><input type="radio" name="q14" value="D"> D) İş Rotasyonu</label></li>
-      </ul>
-      <div class="explanation">Açıklama: Davranış Modelleme; model gösterme, rol yapma, sosyal pekiştirme ve öğrenmenin transferi adımlarını içerir.</div>
-    </div>
-
-    <!-- Question 15 -->
-    <div class="question" data-correct="B">
-      <h3>15. "Performans Değerlendirme" (Appraisal) ile "Performans Yönetimi" (Management) arasındaki temel fark nedir? (Ch.9)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q15" value="A"> A) Performans yönetimi sadece yıllık yapılır, değerlendirme süreklidir.</label></li>
-        <li><label><input type="radio" name="q15" value="B"> B) Değerlendirme spesifik bir ölçüm aracıdır; yönetim ise organizasyonel hedeflere ulaşmak için oluşturulan sürekli sistemdir.</label></li>
-        <li><label><input type="radio" name="q15" value="C"> C) İkisi tamamen aynı kavramlardır.</label></li>
-        <li><label><input type="radio" name="q15" value="D"> D) Performans yönetimi sadece yeni çalışanlara uygulanır.</label></li>
-      </ul>
-      <div class="explanation">Açıklama: Performans yönetimi stratejik ve geniş kapsamlı bir süreçtir. Performans değerlendirme ise bu sürecin içindeki puanlama ve geri bildirim aşamasıdır.</div>
-    </div>
-
-    <!-- Question 16 -->
-    <div class="question" data-correct="D">
-      <h3>16. Performans değerlendirme yöntemlerinden hangisi "çan eğrisi" mantığına benzer ve çalışanları belirli yüzdelik dilimlere (örn: %15 yüksek, %30 ortalama) ayırmayı zorunlu kılar? (Ch.9)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q16" value="A"> A) Sıralama Yöntemi (Alternation Ranking)</label></li>
-        <li><label><input type="radio" name="q16" value="B"> B) İkili Karşılaştırma (Paired Comparison)</label></li>
-        <li><label><input type="radio" name="q16" value="C"> C) Grafik Derecelendirme Ölçeği (Graphic Rating Scale)</label></li>
-        <li><label><input type="radio" name="q16" value="D"> D) Zorunlu Dağılım (Forced Distribution)</label></li>
-      </ul>
-      <div class="explanation">Açıklama: Zorunlu Dağılım (Forced Distribution) yöntemi, yöneticileri değerlendirmede belirli kotalara uymaya mecbur bırakır.</div>
-    </div>
-
-    <!-- Question 17 -->
-    <div class="question" data-correct="A">
-      <h3>17. BARS (Davranışsal Beklenti Ölçekleri - Behaviorally Anchored Rating Scale) yönteminin en önemli dezavantajı nedir? (Ch.9)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q17" value="A"> A) Geliştirilmesinin zor ve çok zaman alıcı olması</label></li>
-        <li><label><input type="radio" name="q17" value="B"> B) Ölçümün çok basit ve yüzeysel kalması</label></li>
-        <li><label><input type="radio" name="q17" value="C"> C) Sadece nicel hedefleri ölçebilmesi</label></li>
-        <li><label><input type="radio" name="q17" value="D"> D) Yöneticilerin insiyatifini tamamen elinden alması</label></li>
-      </ul>
-      <div class="explanation">Açıklama: BARS oldukça doğru sonuçlar veren bir yöntemdir ancak her iş için özel kritik olayların (critical incidents) tespit edilmesi gerektiğinden geliştirilmesi maliyetli ve zordur.</div>
-    </div>
-
-    <!-- Question 18 -->
-    <div class="question" data-correct="C">
-      <h3>18. Değerlendiricinin, çalışanların gerçek performansına bakmaksızın herkesi "ortalama" düzeyde (ne çok iyi ne çok kötü) değerlendirme eğilimine ne ad verilir? (Ch.9)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q18" value="A"> A) Hoşgörü/Sıkılık Hatası (Leniency/Strictness)</label></li>
-        <li><label><input type="radio" name="q18" value="B"> B) Hale Etkisi (Halo Effect)</label></li>
-        <li><label><input type="radio" name="q18" value="C"> C) Merkezi Eğilim Hatası (Central Tendency)</label></li>
-        <li><label><input type="radio" name="q18" value="D"> D) Belirsiz Standartlar (Unclear Standards)</label></li>
-      </ul>
-      <div class="explanation">Açıklama: Değerlendiricinin risk almaktan kaçınıp herkesi ortada toplaması Merkezi Eğilim (Central Tendency) hatasıdır.</div>
-    </div>
-
-    <!-- Question 19 -->
-    <div class="question" data-correct="B">
-      <h3>19. Performans değerlendirme mülakatlarında, çalışan "Savunmacı" (Defensive) bir tavır sergilediğinde yöneticinin KESİNLİKLE YAPMAMASI gereken davranış hangisidir? (Ch.9)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q19" value="A"> A) Savunmacı davranışın normal olduğunu kabul etmek</label></li>
-        <li><label><input type="radio" name="q19" value="B"> B) Çalışanın savunmalarına saldırarak onu haksız çıkarmaya çalışmak</label></li>
-        <li><label><input type="radio" name="q19" value="C"> C) Gerekirse aksiyon almayı ve görüşmeyi ertelemek</label></li>
-        <li><label><input type="radio" name="q19" value="D"> D) Kendi sınırlarının farkında olmak</label></li>
-      </ul>
-      <div class="explanation">Açıklama: Savunma mekanizmaları doğaldır. Yöneticinin doğrudan çalışanın savunmasına saldırması (Never attack a person's defenses) mülakatı çıkmaza sokar.</div>
-    </div>
-
-    <!-- Question 20 -->
-    <div class="question" data-correct="A">
-      <h3>20. Stratejik İKY kapsamında, İK faaliyetlerinin organizasyonun stratejik hedeflerine ulaşmasında ne kadar etkili olduğunu (çalışan davranışları üzerinden) ölçen araca ne ad verilir? (Ch.3)</h3>
-      <ul class="options">
-        <li><label><input type="radio" name="q20" value="A"> A) İK Karnesi (HR Scorecard)</label></li>
-        <li><label><input type="radio" name="q20" value="B"> B) Yönetim Oyunları</label></li>
-        <li><label><input type="radio" name="q20" value="C"> C) Eylem Öğrenmesi</label></li>
-        <li><label><input type="radio" name="q20" value="D"> D) Hedeflere Göre Yönetim (MBO)</label></li>
-      </ul>
-      <div class="explanation">Açıklama: İK Karnesi (HR Scorecard), stratejik hedeflere ulaşmak için İK'nın değer yaratma sürecini ölçülebilir metriklerle takip eder.</div>
-    </div>
-
-    <button type="button" onclick="calculateScore()">Testi Bitir ve Sonuçları Gör</button>
-  </form>
-
-  <div id="result-box"></div>
+<h1><span class="lang lang-en">HRM - Trial Exam</span><span class="lang lang-tr">HRM - Deneme Sınavı</span></h1>
+<p class="subtitle"><span class="lang lang-en">20-Question Comprehensive Study Test</span><span class="lang lang-tr">20 Soruluk Kapsamlı Çalışma Testi</span></p>
+<div class="lang-switch-container">
+<span>Language/Dil: </span>
+<button class="active" id="btn-en" onclick="setLang('en')" type="button">English</button>
+<button id="btn-tr" onclick="setLang('tr')" type="button">Türkçe</button>
 </div>
 
+<form id="quiz-form">
+<!-- Question 1 -->
+<div class="question" data-correct="B">
+<h3><span class="lang lang-en">1. In the Human Resources Management (HRM) process, which of the following is the type of authority held by managers who advise other managers on matters such as hiring, training and compensation? (Ch.1)</span><span class="lang lang-tr">1. İnsan Kaynakları Yönetimi (HRM) sürecinde, işe alma, eğitme ve tazminat gibi konularda diğer yöneticilere danışmanlık yapan yöneticilerin sahip olduğu yetki türü aşağıdakilerden hangisidir? (Ch.1)</span></h3>
+<ul class="options">
+<li><label><input name="q1" type="radio" value="A"/><span class="lang lang-en"> A) Command Authority (Line Authority)</span><span class="lang lang-tr"> A) Komuta Yetkisi (Line Authority)</span></label></li>
+<li><label><input name="q1" type="radio" value="B"/><span class="lang lang-en"> B) Staff Authority</span><span class="lang lang-tr"> B) Kurmay Yetkisi (Staff Authority)</span></label></li>
+<li><label><input name="q1" type="radio" value="C"/><span class="lang lang-en"> C) Executive Power</span><span class="lang lang-tr"> C) Yürütme Yetkisi</span></label></li>
+<li><label><input name="q1" type="radio" value="D"/><span class="lang lang-en"> D) Decision Authority</span><span class="lang lang-tr"> D) Karar Yetkisi</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: HR managers often have 'Staff Authority' as they provide consultancy and advice to other units.</span><span class="lang lang-tr">Açıklama: İK yöneticileri genellikle diğer birimlere danışmanlık ve tavsiye verdikleri için 'Kurmay Yetkisine' (Staff Authority) sahiptirler.</span></div>
+</div>
+<!-- Question 2 -->
+<div class="question" data-correct="D">
+<h3><span class="lang lang-en">2. Which of the following is not one of Porter's competitive strategies? (Ch.3)</span><span class="lang lang-tr">2. Aşağıdakilerden hangisi Porter’ın rekabet stratejilerinden (Competitive Strategies) biri değildir? (Ch.3)</span></h3>
+<ul class="options">
+<li><label><input name="q2" type="radio" value="A"/><span class="lang lang-en"> A) Cost Leadership</span><span class="lang lang-tr"> A) Maliyet Liderliği</span></label></li>
+<li><label><input name="q2" type="radio" value="B"/><span class="lang lang-en"> B) Differentiation</span><span class="lang lang-tr"> B) Farklılaştırma</span></label></li>
+<li><label><input name="q2" type="radio" value="C"/><span class="lang lang-en"> C) Focus</span><span class="lang lang-tr"> C) Odaklanma</span></label></li>
+<li><label><input name="q2" type="radio" value="D"/><span class="lang lang-en"> D) Diversification</span><span class="lang lang-tr"> D) Çeşitlendirme (Diversification)</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: Diversification is a corporate strategy. Porter's competitive strategies are Cost Leadership, Differentiation and Focus.</span><span class="lang lang-tr">Açıklama: Çeşitlendirme (Diversification) bir kurumsal stratejidir (Corporate Strategy). Porter'ın rekabet stratejileri Maliyet Liderliği, Farklılaştırma ve Odaklanmadır.</span></div>
+</div>
+<!-- Question 3 -->
+<div class="question" data-correct="C">
+<h3><span class="lang lang-en">3. What is the written document that shows the duties, responsibilities and working conditions of the job as a result of job analysis? (Ch.4)</span><span class="lang lang-tr">3. İş analizi (Job Analysis) sonucunda, işin görevlerini, sorumluluklarını ve çalışma koşullarını gösteren yazılı belgeye ne ad verilir? (Ch.4)</span></h3>
+<ul class="options">
+<li><label><input name="q3" type="radio" value="A"/><span class="lang lang-en"> A) Job Specification</span><span class="lang lang-tr"> A) İş Şartnamesi (Job Specification)</span></label></li>
+<li><label><input name="q3" type="radio" value="B"/><span class="lang lang-en"> B) Job Enlargement</span><span class="lang lang-tr"> B) İş Genişletme (Job Enlargement)</span></label></li>
+<li><label><input name="q3" type="radio" value="C"/><span class="lang lang-en"> C) Job Description</span><span class="lang lang-tr"> C) İş Tanımı (Job Description)</span></label></li>
+<li><label><input name="q3" type="radio" value="D"/><span class="lang lang-en"> D) Business Valuation</span><span class="lang lang-tr"> D) İş Değerlemesi</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: The document describing the duties and responsibilities of the job is the Job Description. It is the Job Specification that describes the human characteristics required by the job.</span><span class="lang lang-tr">Açıklama: İşin görevlerini ve sorumluluklarını anlatan belge İş Tanımıdır (Job Description). İşin gerektirdiği insan özelliklerini anlatan ise İş Şartnamesidir (Job Spec).</span></div>
+</div>
+<!-- Question 4 -->
+<div class="question" data-correct="A">
+<h3><span class="lang lang-en">4. What is it called when a job is vertically redesigned (added depth) to give the employee more responsibility, success, growth and recognition opportunities? (Ch.4)</span><span class="lang lang-tr">4. Bir işin, çalışana daha fazla sorumluluk, başarı, büyüme ve takdir fırsatı verecek şekilde dikey olarak yeniden tasarlanmasına (derinlik katılmasına) ne ad verilir? (Ch.4)</span></h3>
+<ul class="options">
+<li><label><input name="q4" type="radio" value="A"/><span class="lang lang-en"> A) Job Enrichment</span><span class="lang lang-tr"> A) İş Zenginleştirme (Job Enrichment)</span></label></li>
+<li><label><input name="q4" type="radio" value="B"/><span class="lang lang-en"> B) Job Rotation</span><span class="lang lang-tr"> B) İş Rotasyonu (Job Rotation)</span></label></li>
+<li><label><input name="q4" type="radio" value="C"/><span class="lang lang-en"> C) Job Enlargement</span><span class="lang lang-tr"> C) İş Genişletme (Job Enlargement)</span></label></li>
+<li><label><input name="q4" type="radio" value="D"/><span class="lang lang-en"> D) De-jobbing</span><span class="lang lang-tr"> D) De-jobbing</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: Vertical expansion of the job by adding responsibility and autonomy is 'Job Enrichment'.</span><span class="lang lang-tr">Açıklama: Sorumluluk ve otonomi eklenerek işin dikey olarak büyütülmesi 'İş Zenginleştirme'dir (Job Enrichment).</span></div>
+</div>
+<!-- Question 5 -->
+<div class="question" data-correct="C">
+<h3><span class="lang lang-en">5. When estimating personnel needs, which method is used to estimate future needs by examining past years' employment data? (Ch.5)</span><span class="lang lang-tr">5. Personel ihtiyacını tahmin ederken, geçmiş yıllardaki istihdam verilerini inceleyerek gelecekteki ihtiyaçları tahmin etmeye yarayan yöntem hangisidir? (Ch.5)</span></h3>
+<ul class="options">
+<li><label><input name="q5" type="radio" value="A"/><span class="lang lang-en"> A) Ratio Analysis</span><span class="lang lang-tr"> A) Oran Analizi (Ratio Analysis)</span></label></li>
+<li><label><input name="q5" type="radio" value="B"/><span class="lang lang-en"> B) Scatter Plot</span><span class="lang lang-tr"> B) Dağılım Grafiği (Scatter Plot)</span></label></li>
+<li><label><input name="q5" type="radio" value="C"/><span class="lang lang-en"> C) Trend Analysis</span><span class="lang lang-tr"> C) Trend Analizi (Trend Analysis)</span></label></li>
+<li><label><input name="q5" type="radio" value="D"/><span class="lang lang-en"> D) Markov Analysis</span><span class="lang lang-tr"> D) Markov Analizi</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: Trend Analysis predicts the future by examining the trend (trend) of past employment needs over time.</span><span class="lang lang-tr">Açıklama: Trend Analizi, geçmiş istihdam ihtiyaçlarının zaman içindeki eğilimini (trendini) inceleyerek geleceği tahmin eder.</span></div>
+</div>
+<!-- Question 6 -->
+<div class="question" data-correct="C">
+<h3><span class="lang lang-en">6. Which of the following is the disadvantage of selecting candidates from "Internal Sources" in recruitment? (Ch.5)</span><span class="lang lang-tr">6. İşe alımda adayları "İç Kaynaklardan" (Internal Sources) seçmenin dezavantajı aşağıdakilerden hangisidir? (Ch.5)</span></h3>
+<ul class="options">
+<li><label><input name="q6" type="radio" value="A"/><span class="lang lang-en"> A) Increasing employee morale</span><span class="lang lang-tr"> A) Çalışan moralini yükseltmesi</span></label></li>
+<li><label><input name="q6" type="radio" value="B"/><span class="lang lang-en"> B) Provide clearer information about the candidate's skills</span><span class="lang lang-tr"> B) Adayın becerileri hakkında daha net bilgi sağlaması</span></label></li>
+<li><label><input name="q6" type="radio" value="C"/><span class="lang lang-en"> C) The current situation leads to maintenance of the status quo (inbreeding)</span><span class="lang lang-tr"> C) Mevcut durumun statükosunun sürdürülmesine (inbreeding) yol açması</span></label></li>
+<li><label><input name="q6" type="radio" value="D"/><span class="lang lang-en"> D) Requires less training and orientation</span><span class="lang lang-tr"> D) Daha az eğitim ve oryantasyon gerektirmesi</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: The biggest disadvantage of internal recruitment is that it creates 'inbreeding' (maintaining the current situation) by preventing new ideas from coming from outside.</span><span class="lang lang-tr">Açıklama: İçeriden işe alımın en büyük dezavantajı dışarıdan yeni fikirlerin gelmesini engelleyerek 'inbreeding' (iç içe üreme/mevcut durumu koruma) yaratmasıdır.</span></div>
+</div>
+<!-- Question 7 -->
+<div class="question" data-correct="B">
+<h3><span class="lang lang-en">7. What is the concept that expresses whether a selection test actually and accurately measures what it claims to measure? (Ch.6)</span><span class="lang lang-tr">7. Bir seçme testinin, ölçmeyi iddia ettiği şeyi gerçekten ve doğru bir şekilde ölçüp ölçmediğini ifade eden kavram nedir? (Ch.6)</span></h3>
+<ul class="options">
+<li><label><input name="q7" type="radio" value="A"/><span class="lang lang-en"> A) Reliability</span><span class="lang lang-tr"> A) Güvenilirlik (Reliability)</span></label></li>
+<li><label><input name="q7" type="radio" value="B"/><span class="lang lang-en"> B) Validity</span><span class="lang lang-tr"> B) Geçerlilik (Validity)</span></label></li>
+<li><label><input name="q7" type="radio" value="C"/><span class="lang lang-en"> C) Standardization</span><span class="lang lang-tr"> C) Standardizasyon</span></label></li>
+<li><label><input name="q7" type="radio" value="D"/><span class="lang lang-en"> D) Structural Harmony</span><span class="lang lang-tr"> D) Yapısal Uyum</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: Validity refers to the suitability of the test for its purpose; Reliability measures whether the test gives consistent results.</span><span class="lang lang-tr">Açıklama: Geçerlilik (Validity) testin amacına uygunluğunu; Güvenilirlik (Reliability) ise testin tutarlı sonuçlar verip vermediğini ölçer.</span></div>
+</div>
+<!-- Question 8 -->
+<div class="question" data-correct="C">
+<h3><span class="lang lang-en">8. Which of the "Big Five" personality traits includes achievement orientation and dependability? (Ch.6)</span><span class="lang lang-tr">8. "Beş Büyük" (Big Five) kişilik özelliklerinden hangisi başarı odaklılık ve güvenilirlik (dependability) özelliklerini içerir? (Ch.6)</span></h3>
+<ul class="options">
+<li><label><input name="q8" type="radio" value="A"/><span class="lang lang-en"> A) Extraversion</span><span class="lang lang-tr"> A) Dışadönüklük (Extraversion)</span></label></li>
+<li><label><input name="q8" type="radio" value="B"/><span class="lang lang-en"> B) Compatibility (Agreeableness)</span><span class="lang lang-tr"> B) Uyumluluk (Agreeableness)</span></label></li>
+<li><label><input name="q8" type="radio" value="C"/><span class="lang lang-en"> C) Conscientiousness</span><span class="lang lang-tr"> C) Sorumluluk Bilinci (Conscientiousness)</span></label></li>
+<li><label><input name="q8" type="radio" value="D"/><span class="lang lang-en"> D) Openness to Experience</span><span class="lang lang-tr"> D) Deneyime Açıklık (Openness)</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: People with a high sense of responsibility are reliable and success-oriented in business life.</span><span class="lang lang-tr">Açıklama: Sorumluluk bilinci yüksek kişiler iş hayatında güvenilir ve başarıya odaklıdır.</span></div>
+</div>
+<!-- Question 9 -->
+<div class="question" data-correct="B">
+<h3><span class="lang lang-en">9. In the interview, ask the candidate, "How have you handled a difficult situation when you've encountered a difficult client in the past?" What type of question is asked? (Ch.7)</span><span class="lang lang-tr">9. Mülakatta adaya "Geçmişte zor bir müşteriyle karşılaştığında durumu nasıl yönettin?" şeklinde sorulan soru tipi hangisidir? (Ch.7)</span></h3>
+<ul class="options">
+<li><label><input name="q9" type="radio" value="A"/><span class="lang lang-en"> A) Situational</span><span class="lang lang-tr"> A) Durumsal (Situational)</span></label></li>
+<li><label><input name="q9" type="radio" value="B"/><span class="lang lang-en"> B) Behavioral</span><span class="lang lang-tr"> B) Davranışsal (Behavioral)</span></label></li>
+<li><label><input name="q9" type="radio" value="C"/><span class="lang lang-en"> C) Stress Question</span><span class="lang lang-tr"> C) Stres Sorusu</span></label></li>
+<li><label><input name="q9" type="radio" value="D"/><span class="lang lang-en"> D) Puzzle Question</span><span class="lang lang-tr"> D) Bulmaca Sorusu</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: Questions asking about actual behavior in the past are Behavioral; Situational questions are those that ask about hypothetical future scenarios.</span><span class="lang lang-tr">Açıklama: Geçmişteki gerçek davranışları soran sorular Davranışsal (Behavioral); varsayımsal gelecek senaryoları soranlar ise Durumsal (Situational) sorulardır.</span></div>
+</div>
+<!-- Question 10 -->
+<div class="question" data-correct="A">
+<h3><span class="lang lang-en">10. What is the mistake of the interviewer being influenced by a single characteristic of the candidate (being too positive or negative) and distorting the overall evaluation of the candidate in this direction? (Ch.7)</span><span class="lang lang-tr">10. Mülakatçının, adayın tek bir özelliğinden etkilenerek (çok pozitif veya negatif olması) adayın genel değerlendirmesini bu yönde saptırması hatasına ne denir? (Ch.7)</span></h3>
+<ul class="options">
+<li><label><input name="q10" type="radio" value="A"/><span class="lang lang-en"> A) Halo Effect</span><span class="lang lang-tr"> A) Hale Etkisi (Halo Effect)</span></label></li>
+<li><label><input name="q10" type="radio" value="B"/><span class="lang lang-en"> B) Candidate Order Error</span><span class="lang lang-tr"> B) Aday Sırası Hatası (Candidate-Order Error)</span></label></li>
+<li><label><input name="q10" type="radio" value="C"/><span class="lang lang-en"> C) Snap Judgments</span><span class="lang lang-tr"> C) Ani Karar Verme (Snap Judgments)</span></label></li>
+<li><label><input name="q10" type="radio" value="D"/><span class="lang lang-en"> D) Misunderstanding the Job</span><span class="lang lang-tr"> D) İşi Yanlış Anlama</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: The Halo Effect is when a feature (e.g. appearance) overshadows all the candidate's competency scores.</span><span class="lang lang-tr">Açıklama: Bir özelliğin (örn. dış görünüş) adayın tüm yetkinlik puanlarını gölgelemesine Hale Etkisi (Halo Effect) denir.</span></div>
+</div>
+<!-- Question 11 -->
+<div class="question" data-correct="B">
+<h3><span class="lang lang-en">11. Which application facilitates the adaptation process of newly hired employees by conveying the rules, benefits, security procedures and work routine of the organization? (Ch.8)</span><span class="lang lang-tr">11. Yeni işe giren çalışanlara kurumun kurallarını, faydalarını, güvenlik prosedürlerini ve çalışma rutinini aktararak onların uyum sürecini kolaylaştıran uygulama hangisidir? (Ch.8)</span></h3>
+<ul class="options">
+<li><label><input name="q11" type="radio" value="A"/><span class="lang lang-en"> A) Job Rotation</span><span class="lang lang-tr"> A) İş Rotasyonu</span></label></li>
+<li><label><input name="q11" type="radio" value="B"/><span class="lang lang-en"> B) Orientation</span><span class="lang lang-tr"> B) Oryantasyon (Orientation)</span></label></li>
+<li><label><input name="q11" type="radio" value="C"/><span class="lang lang-en"> C) Career Planning</span><span class="lang lang-tr"> C) Kariyer Planlama</span></label></li>
+<li><label><input name="q11" type="radio" value="D"/><span class="lang lang-en"> D) 360-Degree Feedback</span><span class="lang lang-tr"> D) 360-Derece Geri Bildirim</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: Orientation (Employee Orientation) is the process in which the new employee is given basic background information of the company.</span><span class="lang lang-tr">Açıklama: Oryantasyon (Employee Orientation), yeni çalışana şirketin temel arka plan bilgilerinin verildiği süreçtir.</span></div>
+</div>
+<!-- Question 12 -->
+<div class="question" data-correct="C">
+<h3><span class="lang lang-en">12. Which of the following is the first of the 5 steps of the Training and Development process? (Ch.8)</span><span class="lang lang-tr">12. Eğitim ve Gelişim sürecinin (Training Process) 5 adımından ilki aşağıdakilerden hangisidir? (Ch.8)</span></h3>
+<ul class="options">
+<li><label><input name="q12" type="radio" value="A"/><span class="lang lang-en"> A) Evaluation of Education</span><span class="lang lang-tr"> A) Eğitimin Değerlendirilmesi (Evaluation)</span></label></li>
+<li><label><input name="q12" type="radio" value="B"/><span class="lang lang-en"> B) Implementation of the Program</span><span class="lang lang-tr"> B) Programın Uygulanması (Implementation)</span></label></li>
+<li><label><input name="q12" type="radio" value="C"/><span class="lang lang-en"> C) Needs Analysis</span><span class="lang lang-tr"> C) İhtiyaç Analizi (Needs Analysis)</span></label></li>
+<li><label><input name="q12" type="radio" value="D"/><span class="lang lang-en"> D) Instructional Design</span><span class="lang lang-tr"> D) Eğitim Tasarımı (Instructional Design)</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: The training process always begins with 'Needs Analysis'; It is determined whether performance gaps can be resolved with training.</span><span class="lang lang-tr">Açıklama: Eğitim süreci daima 'İhtiyaç Analizi' (Needs Analysis) ile başlar; performans açıklarının eğitimle çözülüp çözülemeyeceği belirlenir.</span></div>
+</div>
+<!-- Question 13 -->
+<div class="question" data-correct="D">
+<h3><span class="lang lang-en">13. What analysis is done to find out whether the lack of performance is due to lack of training or employee reluctance (motivation problem)? (Ch.8)</span><span class="lang lang-tr">13. Performans eksikliğinin eğitim eksikliğinden mi yoksa çalışanın isteksizliğinden (motivasyon sorunu) mi kaynaklandığını bulmak için hangi analiz yapılır? (Ch.8)</span></h3>
+<ul class="options">
+<li><label><input name="q13" type="radio" value="A"/><span class="lang lang-en"> A) Trend Analysis</span><span class="lang lang-tr"> A) Trend Analizi</span></label></li>
+<li><label><input name="q13" type="radio" value="B"/><span class="lang lang-en"> B) Task Analysis</span><span class="lang lang-tr"> B) Görev Analizi (Task Analysis)</span></label></li>
+<li><label><input name="q13" type="radio" value="C"/><span class="lang lang-en"> C) Ratio Analysis</span><span class="lang lang-tr"> C) Oran Analizi</span></label></li>
+<li><label><input name="q13" type="radio" value="D"/><span class="lang lang-en"> D) Performance Analysis</span><span class="lang lang-tr"> D) Performans Analizi (Performance Analysis)</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: Performance Analysis determines whether the problem is "can't do it" (solved with training) or "doesn't want to do it" (solved with motivation/management).</span><span class="lang lang-tr">Açıklama: Performans Analizi, sorunun "yapamıyor mu" (eğitimle çözülür) yoksa "yapmak mı istemiyor" (motivasyon/yönetimle çözülür) olduğunu tespit eder.</span></div>
+</div>
+<!-- Question 14 -->
+<div class="question" data-correct="B">
+<h3><span class="lang lang-en">14. Which is the management development technique in which managers observe the correct behavior, then apply it through role play and receive feedback? (Ch.8)</span><span class="lang lang-tr">14. Yöneticilerin, davranışın doğrusunu gözlemlediği, ardından bunu rol yaparak uyguladığı ve geri bildirim aldığı yönetim geliştirme (Management Development) tekniği hangisidir? (Ch.8)</span></h3>
+<ul class="options">
+<li><label><input name="q14" type="radio" value="A"/><span class="lang lang-en"> A) Case Study</span><span class="lang lang-tr"> A) Vaka Çalışması (Case Study)</span></label></li>
+<li><label><input name="q14" type="radio" value="B"/><span class="lang lang-en"> B) Behavior Modeling</span><span class="lang lang-tr"> B) Davranış Modelleme (Behavior Modeling)</span></label></li>
+<li><label><input name="q14" type="radio" value="C"/><span class="lang lang-en"> C) Action Learning</span><span class="lang lang-tr"> C) Eylem Öğrenmesi (Action Learning)</span></label></li>
+<li><label><input name="q14" type="radio" value="D"/><span class="lang lang-en"> D) Job Rotation</span><span class="lang lang-tr"> D) İş Rotasyonu</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: Behavior Modeling; It includes the steps of modeling, role playing, social reinforcement and transfer of learning.</span><span class="lang lang-tr">Açıklama: Davranış Modelleme; model gösterme, rol yapma, sosyal pekiştirme ve öğrenmenin transferi adımlarını içerir.</span></div>
+</div>
+<!-- Question 15 -->
+<div class="question" data-correct="B">
+<h3><span class="lang lang-en">15. What is the main difference between "Performance Appraisal" and "Performance Management"? (Ch.9)</span><span class="lang lang-tr">15. "Performans Değerlendirme" (Appraisal) ile "Performans Yönetimi" (Management) arasındaki temel fark nedir? (Ch.9)</span></h3>
+<ul class="options">
+<li><label><input name="q15" type="radio" value="A"/><span class="lang lang-en"> A) Performance management is only done annually, evaluation is continuous.</span><span class="lang lang-tr"> A) Performans yönetimi sadece yıllık yapılır, değerlendirme süreklidir.</span></label></li>
+<li><label><input name="q15" type="radio" value="B"/><span class="lang lang-en"> B) Evaluation is a specific measurement tool; Management is the continuous system created to achieve organizational goals.</span><span class="lang lang-tr"> B) Değerlendirme spesifik bir ölçüm aracıdır; yönetim ise organizasyonel hedeflere ulaşmak için oluşturulan sürekli sistemdir.</span></label></li>
+<li><label><input name="q15" type="radio" value="C"/><span class="lang lang-en"> C) They are exactly the same concepts.</span><span class="lang lang-tr"> C) İkisi tamamen aynı kavramlardır.</span></label></li>
+<li><label><input name="q15" type="radio" value="D"/><span class="lang lang-en"> D) Performance management is applied only to new employees.</span><span class="lang lang-tr"> D) Performans yönetimi sadece yeni çalışanlara uygulanır.</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: Performance management is a strategic and comprehensive process. Performance evaluation is the scoring and feedback stage within this process.</span><span class="lang lang-tr">Açıklama: Performans yönetimi stratejik ve geniş kapsamlı bir süreçtir. Performans değerlendirme ise bu sürecin içindeki puanlama ve geri bildirim aşamasıdır.</span></div>
+</div>
+<!-- Question 16 -->
+<div class="question" data-correct="D">
+<h3><span class="lang lang-en">16. Which of the performance evaluation methods resembles the "bell curve" logic and requires dividing employees into certain percentages (e.g. 15% high, 30% average)? (Ch.9)</span><span class="lang lang-tr">16. Performans değerlendirme yöntemlerinden hangisi "çan eğrisi" mantığına benzer ve çalışanları belirli yüzdelik dilimlere (örn: %15 yüksek, %30 ortalama) ayırmayı zorunlu kılar? (Ch.9)</span></h3>
+<ul class="options">
+<li><label><input name="q16" type="radio" value="A"/><span class="lang lang-en"> A) Ranking Method (Alternation Ranking)</span><span class="lang lang-tr"> A) Sıralama Yöntemi (Alternation Ranking)</span></label></li>
+<li><label><input name="q16" type="radio" value="B"/><span class="lang lang-en"> B) Paired Comparison</span><span class="lang lang-tr"> B) İkili Karşılaştırma (Paired Comparison)</span></label></li>
+<li><label><input name="q16" type="radio" value="C"/><span class="lang lang-en"> C) Graphic Rating Scale</span><span class="lang lang-tr"> C) Grafik Derecelendirme Ölçeği (Graphic Rating Scale)</span></label></li>
+<li><label><input name="q16" type="radio" value="D"/><span class="lang lang-en"> D) Forced Distribution</span><span class="lang lang-tr"> D) Zorunlu Dağılım (Forced Distribution)</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: The Forced Distribution method obliges managers to comply with certain quotas in evaluation.</span><span class="lang lang-tr">Açıklama: Zorunlu Dağılım (Forced Distribution) yöntemi, yöneticileri değerlendirmede belirli kotalara uymaya mecbur bırakır.</span></div>
+</div>
+<!-- Question 17 -->
+<div class="question" data-correct="A">
+<h3><span class="lang lang-en">17. What is the most important disadvantage of the BARS (Behavioral Expectation Scales - Behaviorally Anchored Rating Scale) method? (Ch.9)</span><span class="lang lang-tr">17. BARS (Davranışsal Beklenti Ölçekleri - Behaviorally Anchored Rating Scale) yönteminin en önemli dezavantajı nedir? (Ch.9)</span></h3>
+<ul class="options">
+<li><label><input name="q17" type="radio" value="A"/><span class="lang lang-en"> A) It is difficult and time consuming to develop</span><span class="lang lang-tr"> A) Geliştirilmesinin zor ve çok zaman alıcı olması</span></label></li>
+<li><label><input name="q17" type="radio" value="B"/><span class="lang lang-en"> B) The measurement remains very simple and superficial</span><span class="lang lang-tr"> B) Ölçümün çok basit ve yüzeysel kalması</span></label></li>
+<li><label><input name="q17" type="radio" value="C"/><span class="lang lang-en"> C) It can only measure quantitative targets</span><span class="lang lang-tr"> C) Sadece nicel hedefleri ölçebilmesi</span></label></li>
+<li><label><input name="q17" type="radio" value="D"/><span class="lang lang-en"> D) Managers completely take away the initiative</span><span class="lang lang-tr"> D) Yöneticilerin insiyatifini tamamen elinden alması</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: BARS is a method that gives very accurate results, but it is costly and difficult to develop as critical incidents need to be detected for each job.</span><span class="lang lang-tr">Açıklama: BARS oldukça doğru sonuçlar veren bir yöntemdir ancak her iş için özel kritik olayların (critical incidents) tespit edilmesi gerektiğinden geliştirilmesi maliyetli ve zordur.</span></div>
+</div>
+<!-- Question 18 -->
+<div class="question" data-correct="C">
+<h3><span class="lang lang-en">18. What is the name given to the evaluator's tendency to evaluate everyone at an "average" level (neither very good nor very bad) regardless of the actual performance of the employees? (Ch.9)</span><span class="lang lang-tr">18. Değerlendiricinin, çalışanların gerçek performansına bakmaksızın herkesi "ortalama" düzeyde (ne çok iyi ne çok kötü) değerlendirme eğilimine ne ad verilir? (Ch.9)</span></h3>
+<ul class="options">
+<li><label><input name="q18" type="radio" value="A"/><span class="lang lang-en"> A) Leniency/Strictness Error</span><span class="lang lang-tr"> A) Hoşgörü/Sıkılık Hatası (Leniency/Strictness)</span></label></li>
+<li><label><input name="q18" type="radio" value="B"/><span class="lang lang-en"> B) Halo Effect</span><span class="lang lang-tr"> B) Hale Etkisi (Halo Effect)</span></label></li>
+<li><label><input name="q18" type="radio" value="C"/><span class="lang lang-en"> C) Central Tendency Error</span><span class="lang lang-tr"> C) Merkezi Eğilim Hatası (Central Tendency)</span></label></li>
+<li><label><input name="q18" type="radio" value="D"/><span class="lang lang-en"> D) Unclear Standards</span><span class="lang lang-tr"> D) Belirsiz Standartlar (Unclear Standards)</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: It is a Central Tendency error when the evaluator avoids taking risks and puts everyone in the middle.</span><span class="lang lang-tr">Açıklama: Değerlendiricinin risk almaktan kaçınıp herkesi ortada toplaması Merkezi Eğilim (Central Tendency) hatasıdır.</span></div>
+</div>
+<!-- Question 19 -->
+<div class="question" data-correct="B">
+<h3><span class="lang lang-en">19. During performance evaluation interviews, what behavior should the manager ABSOLUTELY NOT do when the employee exhibits a "Defensive" attitude? (Ch.9)</span><span class="lang lang-tr">19. Performans değerlendirme mülakatlarında, çalışan "Savunmacı" (Defensive) bir tavır sergilediğinde yöneticinin KESİNLİKLE YAPMAMASI gereken davranış hangisidir? (Ch.9)</span></h3>
+<ul class="options">
+<li><label><input name="q19" type="radio" value="A"/><span class="lang lang-en"> A) Accepting that defensive behavior is normal</span><span class="lang lang-tr"> A) Savunmacı davranışın normal olduğunu kabul etmek</span></label></li>
+<li><label><input name="q19" type="radio" value="B"/><span class="lang lang-en"> B) Trying to prove the employee wrong by attacking his defenses</span><span class="lang lang-tr"> B) Çalışanın savunmalarına saldırarak onu haksız çıkarmaya çalışmak</span></label></li>
+<li><label><input name="q19" type="radio" value="C"/><span class="lang lang-en"> C) Taking action and postponing the meeting if necessary</span><span class="lang lang-tr"> C) Gerekirse aksiyon almayı ve görüşmeyi ertelemek</span></label></li>
+<li><label><input name="q19" type="radio" value="D"/><span class="lang lang-en"> D) Being aware of one's own limits</span><span class="lang lang-tr"> D) Kendi sınırlarının farkında olmak</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: Defense mechanisms are natural. Never attack a person's defenses when the manager directly attacks the employee's defenses, which leads to a dead end in the interview.</span><span class="lang lang-tr">Açıklama: Savunma mekanizmaları doğaldır. Yöneticinin doğrudan çalışanın savunmasına saldırması (Never attack a person's defenses) mülakatı çıkmaza sokar.</span></div>
+</div>
+<!-- Question 20 -->
+<div class="question" data-correct="A">
+<h3><span class="lang lang-en">20. Within the scope of Strategic HRM, what is the name given to the tool that measures how effective HR activities are in achieving the organization's strategic goals (through employee behavior)? (Ch.3)</span><span class="lang lang-tr">20. Stratejik İKY kapsamında, İK faaliyetlerinin organizasyonun stratejik hedeflerine ulaşmasında ne kadar etkili olduğunu (çalışan davranışları üzerinden) ölçen araca ne ad verilir? (Ch.3)</span></h3>
+<ul class="options">
+<li><label><input name="q20" type="radio" value="A"/><span class="lang lang-en"> A) HR Scorecard</span><span class="lang lang-tr"> A) İK Karnesi (HR Scorecard)</span></label></li>
+<li><label><input name="q20" type="radio" value="B"/><span class="lang lang-en"> B) Management Games</span><span class="lang lang-tr"> B) Yönetim Oyunları</span></label></li>
+<li><label><input name="q20" type="radio" value="C"/><span class="lang lang-en"> C) Action Learning</span><span class="lang lang-tr"> C) Eylem Öğrenmesi</span></label></li>
+<li><label><input name="q20" type="radio" value="D"/><span class="lang lang-en"> D) Management by Objectives (MBO)</span><span class="lang lang-tr"> D) Hedeflere Göre Yönetim (MBO)</span></label></li>
+</ul>
+<div class="explanation"><span class="lang lang-en">Explanation: The HR Scorecard tracks HR's value creation process with measurable metrics to achieve strategic goals.</span><span class="lang lang-tr">Açıklama: İK Karnesi (HR Scorecard), stratejik hedeflere ulaşmak için İK'nın değer yaratma sürecini ölçülebilir metriklerle takip eder.</span></div>
+</div>
+<button onclick="calculateScore()" type="button">Testi Bitir ve Sonuçları Gör</button>
+</form>
+<div id="result-box"></div>
+</div>
 <script>
   function calculateScore() {
     let score = 0;
@@ -425,20 +434,34 @@
     resultBox.style.display = 'block';
     
     if(score >= 15) {
-      resultBox.innerHTML = `🎉 Harika İş Çıkardın! Skorun: 20 üzerinden ${score}`;
+      resultBox.innerHTML = `<span class="lang lang-tr">🏆 Harika İş Çıkardın! Skorun: 20 üzerinden ${score}</span><span class="lang lang-en">🏆 Great Job! Your score: ${score} out of 20</span>`;
       resultBox.style.backgroundColor = '#e6f4ea';
       resultBox.style.color = '#3d6b3a';
     } else if (score >= 10) {
-      resultBox.innerHTML = `👍 Fena Değil, Ama Biraz Daha Tekrar Lazım. Skorun: 20 üzerinden ${score}`;
+      resultBox.innerHTML = `<span class="lang lang-tr">👍 Fena Değil, Ama Biraz Daha Tekrar Lazım. Skorun: 20 üzerinden ${score}</span><span class="lang lang-en">👍 Not bad, but needs a bit more review. Your score: ${score} out of 20</span>`;
       resultBox.style.backgroundColor = '#fff8e1';
       resultBox.style.color = '#f29900';
     } else {
-      resultBox.innerHTML = `📚 Notlara Geri Dönme Vakti... Skorun: 20 üzerinden ${score}`;
+      resultBox.innerHTML = `<span class="lang lang-tr">📚 Notlara Geri Dönme Vakti... Skorun: 20 üzerinden ${score}</span><span class="lang lang-en">📚 Time to hit the notes... Your score: ${score} out of 20</span>`;
+      resultBox.style.backgroundColor = '#fce8e6';
+      resultBox.style.color = '#d93025';
+    }`;
       resultBox.style.backgroundColor = '#fce8e6';
       resultBox.style.color = '#d93025';
     }
   }
-</script>
 
+    function setLang(lang) {
+        if (lang === 'tr') {
+            document.body.classList.add('show-tr');
+            document.getElementById('btn-tr').classList.add('active');
+            document.getElementById('btn-en').classList.remove('active');
+        } else {
+            document.body.classList.remove('show-tr');
+            document.getElementById('btn-en').classList.add('active');
+            document.getElementById('btn-tr').classList.remove('active');
+        }
+    }
+    </script>
 </body>
 </html>
