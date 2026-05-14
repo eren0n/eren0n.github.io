@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İnsan Kaynakları Yönetimi (HRM) - Deneme Sınavı 2</title>
+<style>
+  :root {
+    --ink: #1a1410;
+    --paper: #f7f3ec;
+    --paper2: #ede8df;
+    --accent: #8b3a1a;
+    --accent2: #2a4a6b;
+    --accent3: #3d6b3a;
+    --rule: #c8bfb0;
+    --correct-bg: #e6f4ea;
+    --wrong-bg: #fce8e6;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    padding: 20px;
+    margin: 0;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-top: 5px solid var(--accent);
+  }
+  h1 {
+    text-align: center;
+    color: var(--accent);
+    font-size: 2em;
+    margin-bottom: 5px;
+  }
+  p.subtitle {
+    text-align: center;
+    color: var(--accent2);
+    font-size: 0.9em;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .question {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--paper2);
+  }
+  .question:last-of-type {
+    border-bottom: none;
+  }
+  .question h3 {
+    font-size: 1.1em;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .options {
+    list-style-type: none;
+    padding: 0;
+  }
+  .options li {
+    margin: 8px 0;
+  }
+  label {
+    cursor: pointer;
+    padding: 10px 15px;
+    display: block;
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    transition: all 0.2s ease;
+    background: var(--paper);
+  }
+  label:hover {
+    background: var(--paper2);
+    border-color: var(--accent2);
+  }
+  input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.1);
+  }
+  button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: var(--accent2);
+    color: #fff;
+    border: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background 0.3s;
+  }
+  button:hover {
+    background: #1e354d;
+  }
+  #result-box {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.3em;
+    display: none;
+  }
+  .correct-ans {
+    background-color: var(--correct-bg) !important;
+    border-color: var(--accent3) !important;
+    color: var(--accent3);
+  }
+  .wrong-ans {
+    background-color: var(--wrong-bg) !important;
+    border-color: #d93025 !important;
+    color: #d93025;
+  }
+  .explanation {
+    display: none;
+    font-size: 0.9em;
+    color: var(--accent2);
+    margin-top: 10px;
+    padding: 10px;
+    background: #f0f4f8;
+    border-left: 3px solid var(--accent2);
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>HRM - Deneme Sınavı 2</h1>
+  <p class="subtitle">Bölüm 1, 3, 4, 5, 6, 7, 8 ve 9 Konu Tarama Testi</p>
+
+  <form id="quiz-form">
+    <div class="question" data-correct="B">
+      <h3>1. İşletmelerin günümüzde en çok önem verdiği, "çalışanların sahip olduğu bilgi, eğitim, beceri ve uzmanlık" bütününe ne ad verilir? (Ch.1)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q1" value="A"> A) Finansal Sermaye</label></li>
+        <li><label><input type="radio" name="q1" value="B"> B) İnsan Sermayesi (Human Capital)</label></li>
+        <li><label><input type="radio" name="q1" value="C"> C) Organizasyonel Yapı</label></li>
+        <li><label><input type="radio" name="q1" value="D"> D) İşlemsel Hizmetler</label></li>
+      </ul>
+      <div class="explanation">Açıklama: İnsan Sermayesi (Human Capital), günümüzde rekabet avantajı sağlayan en önemli unsur olup, çalışanın taşıdığı bilgi ve uzmanlık birikimidir.</div>
+    </div>
+
+    <div class="question" data-correct="C">
+      <h3>2. "İşletme hangi iş kollarında faaliyet göstermelidir?" sorusuna yanıt arayan ve konsantrasyon, dikey entegrasyon gibi alt türleri olan strateji düzeyi hangisidir? (Ch.3)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q2" value="A"> A) İşlevsel (Functional) Strateji</label></li>
+        <li><label><input type="radio" name="q2" value="B"> B) Rekabet (Competitive) Stratejisi</label></li>
+        <li><label><input type="radio" name="q2" value="C"> C) Kurumsal (Corporate) Strateji</label></li>
+        <li><label><input type="radio" name="q2" value="D"> D) Operasyonel Strateji</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Kurumsal (Corporate) strateji, firmanın hangi pazarlarda veya iş kollarında var olacağını belirleyen en üst düzey stratejidir.</div>
+    </div>
+
+    <div class="question" data-correct="A">
+      <h3>3. İş şartnamesi (Job Specification) hazırlanırken, eğer aday "Deneyimsiz (Untrained)" ise öncelikle aşağıdakilerden hangisine odaklanılır? (Ch.4)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q3" value="A"> A) Fiziksel özellikler, kişilik, ilgi alanları ve potansiyel</label></li>
+        <li><label><input type="radio" name="q3" value="B"> B) Önceki işteki hizmet süresi</label></li>
+        <li><label><input type="radio" name="q3" value="C"> C) İlgili alandaki geçmiş tecrübeler</label></li>
+        <li><label><input type="radio" name="q3" value="D"> D) Önceki işte alınan performans notları</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Adayın deneyimi yoksa, işi öğrenme potansiyeline, kişiliğine ve doğuştan gelen yeteneklerine odaklanılır.</div>
+    </div>
+
+    <div class="question" data-correct="B">
+      <h3>4. Şirket içindeki en önemli yönetici pozisyonlarının boşalması ihtimaline karşı, içeriden adayların geliştirilip değerlendirilmesi sürecine ne denir? (Ch.5)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q4" value="A"> A) Nitelik Envanteri Çıkarma</label></li>
+        <li><label><input type="radio" name="q4" value="B"> B) Halef Planlaması (Succession Planning)</label></li>
+        <li><label><input type="radio" name="q4" value="C"> C) Trend Analizi</label></li>
+        <li><label><input type="radio" name="q4" value="D"> D) Üniversite İşe Alımı</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Halef Planlaması (Succession Planning), kilit pozisyonlardaki yöneticilerin yerini alacak potansiyel liderleri önceden belirleme sürecidir.</div>
+    </div>
+
+    <div class="question" data-correct="B">
+      <h3>5. Seçme testlerinde, "Testin iş için fiilen gereken görevlerin adil bir temsilini/örneğini içerip içermediğini" kontrol eden geçerlilik türü hangisidir? (Ch.6)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q5" value="A"> A) Kriter Geçerliliği (Criterion Validity)</label></li>
+        <li><label><input type="radio" name="q5" value="B"> B) İçerik Geçerliliği (Content Validity)</label></li>
+        <li><label><input type="radio" name="q5" value="C"> C) Yapı Geçerliliği (Construct Validity)</label></li>
+        <li><label><input type="radio" name="q5" value="D"> D) Güvenilirlik (Reliability)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: İçerik Geçerliliği, test sorularının veya simülasyonların, çalışanın gerçekte yapacağı işin içeriğiyle birebir uyuşup uyuşmadığına bakar.</div>
+    </div>
+
+    <div class="question" data-correct="D">
+      <h3>6. Aşağıdakilerden hangisi Beş Büyük (Big Five) kişilik özelliğinden biri DEĞİLDİR? (Ch.6)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q6" value="A"> A) Dışadönüklük (Extraversion)</label></li>
+        <li><label><input type="radio" name="q6" value="B"> B) Duygusal Denge/Nevrotizm (Emotional Stability)</label></li>
+        <li><label><input type="radio" name="q6" value="C"> C) Uyumluluk (Agreeableness)</label></li>
+        <li><label><input type="radio" name="q6" value="D"> D) Otoriterlik (Authoritarianism)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Big Five özellikleri: Extraversion, Emotional Stability, Openness, Agreeableness ve Conscientiousness'tır. Otoriterlik bu gruba girmez.</div>
+    </div>
+
+    <div class="question" data-correct="A">
+      <h3>7. Mülakat esnasında, adayın önündeki adayların çok kötü veya çok iyi olmasının, mülakatçının o adaya vereceği puanı etkilemesi hatasına ne denir? (Ch.7)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q7" value="A"> A) Aday Sırası Hatası (Candidate-Order Error)</label></li>
+        <li><label><input type="radio" name="q7" value="B"> B) Hale Etkisi (Halo Effect)</label></li>
+        <li><label><input type="radio" name="q7" value="C"> C) Ani Yargı Hatası (Snap Judgments)</label></li>
+        <li><label><input type="radio" name="q7" value="D"> D) İşi Yanlış Anlama</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Bir önceki adayın performansının kontrast yaratarak sonraki adayın notunu saptırmasına Aday Sırası Hatası (Kontrast Etkisi) denir.</div>
+    </div>
+
+    <div class="question" data-correct="C">
+      <h3>8. Teknik rollerde, adayın baskı altında nasıl düşündüğünü görmek için sorulan "Ekransız bir bilgisayar nasıl tasarlardın?" gibi yaratıcılık gerektiren sorular hangi türe girer? (Ch.7)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q8" value="A"> A) Davranışsal Sorular</label></li>
+        <li><label><input type="radio" name="q8" value="B"> B) Stres Soruları</label></li>
+        <li><label><input type="radio" name="q8" value="C"> C) Bulmaca Soruları (Puzzle Questions)</label></li>
+        <li><label><input type="radio" name="q8" value="D"> D) Arka Plan Soruları</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Alışılmışın dışında, kutu dışı düşünme gerektiren (out-of-the-box) bu tip sorular Puzzle (Bulmaca) sorularıdır.</div>
+    </div>
+
+    <div class="question" data-correct="B">
+      <h3>9. Eğitim ihtiyacı analizi yapılırken, mevcut çalışanların yaşadığı performans düşüklüğünün eğitimle mi yoksa motivasyonla mı çözüleceğini saptamak için hangi analiz kullanılır? (Ch.8)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q9" value="A"> A) Görev Analizi (Task Analysis)</label></li>
+        <li><label><input type="radio" name="q9" value="B"> B) Performans Analizi (Performance Analysis)</label></li>
+        <li><label><input type="radio" name="q9" value="C"> C) Trend Analizi</label></li>
+        <li><label><input type="radio" name="q9" value="D"> D) Stratejik Uyum Analizi</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Görev analizi daha çok yeni çalışanlar içindir. Mevcut çalışanlardaki "Can't do" (yapamıyor) ve "Won't do" (yapmıyor) farkını Performans Analizi belirler.</div>
+    </div>
+
+    <div class="question" data-correct="D">
+      <h3>10. Aşağıdakilerden hangisi İş Başında Eğitimin (OJT - On-the-Job Training) 4 temel adımından biri DEĞİLDİR? (Ch.8)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q10" value="A"> A) Öğreneni hazırlamak ve rahatlatmak</label></li>
+        <li><label><input type="radio" name="q10" value="B"> B) İşi bizzat göstererek sunmak</label></li>
+        <li><label><input type="radio" name="q10" value="C"> C) Öğrenene işi denettirmek (Tryout)</label></li>
+        <li><label><input type="radio" name="q10" value="D"> D) Öğrenenin davranışlarını not vererek cezalandırmak</label></li>
+      </ul>
+      <div class="explanation">Açıklama: OJT'nin son adımı cezalandırmak değil, takiptir (Follow-up); yardım alacağı kişiyi belirlemek ve gözetimi yavaş yavaş azaltmaktır.</div>
+    </div>
+
+    <div class="question" data-correct="C">
+      <h3>11. Yönetici adaylarının, diğer departmanlardaki gerçek sorunları tam zamanlı olarak analiz edip çözmesine dayanan yönetim geliştirme tekniğine ne ad verilir? (Ch.8)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q11" value="A"> A) Rol Yapma (Role Playing)</label></li>
+        <li><label><input type="radio" name="q11" value="B"> B) Yönetim Oyunları (Management Games)</label></li>
+        <li><label><input type="radio" name="q11" value="C"> C) Eylem Öğrenmesi (Action Learning)</label></li>
+        <li><label><input type="radio" name="q11" value="D"> D) İş Rotasyonu (Job Rotation)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Adayın gerçek bir organizasyonel probleme aktif olarak dahil edilerek eğitilmesi Eylem Öğrenmesi (Action Learning) yaklaşımıdır.</div>
+    </div>
+
+    <div class="question" data-correct="B">
+      <h3>12. İşletmenin, performansı "Tatmin edici ancak terfi ettirilemez" (Satisfactory-Not promotable) olan bir çalışanla yaptığı değerlendirme mülakatının BİRİNCİL AMACI nedir? (Ch.9)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q12" value="A"> A) Onu başka bir departmana sürmek</label></li>
+        <li><label><input type="radio" name="q12" value="B"> B) Performansını mevcut düzeyinde korumasını sağlamak</label></li>
+        <li><label><input type="radio" name="q12" value="C"> C) Derhal işten çıkarmak</label></li>
+        <li><label><input type="radio" name="q12" value="D"> D) Gelecekteki yöneticilik rollerine hazırlamak</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Terfi imkanı olmayan ancak işini iyi yapan çalışanlarda temel amaç, motivasyonu kırmadan mevcut faydalı performansı sürdürmelerini sağlamaktır.</div>
+    </div>
+
+    <div class="question" data-correct="B">
+      <h3>13. Hedeflere Göre Yönetim (MBO - Management by Objectives) sürecinin İLK ADIMI aşağıdakilerden hangisidir? (Ch.9)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q13" value="A"> A) Bireysel çalışan hedeflerini belirlemek</label></li>
+        <li><label><input type="radio" name="q13" value="B"> B) Organizasyonun genel hedeflerini belirlemek</label></li>
+        <li><label><input type="radio" name="q13" value="C"> C) Departman hedeflerini çalışanlarla tartışmak</label></li>
+        <li><label><input type="radio" name="q13" value="D"> D) Yıl sonu performans değerlendirmesi yapmak</label></li>
+      </ul>
+      <div class="explanation">Açıklama: MBO her zaman tepeden aşağı doğru (Top-down) işler. Önce şirket hedefleri konur, ardından departman ve en son bireysel hedefler belirlenir.</div>
+    </div>
+
+    <div class="question" data-correct="A">
+      <h3>14. Mülakat esnasında tüm adaylara BİREBİR AYNI soruların sorulduğu ve cevapların önceden belirlenmiş kriterlere göre puanlandığı mülakat yapısına ne denir? (Ch.7)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q14" value="A"> A) Yapılandırılmış (Structured) Mülakat</label></li>
+        <li><label><input type="radio" name="q14" value="B"> B) Yapılandırılmamış (Unstructured) Mülakat</label></li>
+        <li><label><input type="radio" name="q14" value="C"> C) Panel Mülakatı</label></li>
+        <li><label><input type="radio" name="q14" value="D"> D) Sıralı (Sequential) Mülakat</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Yapılandırılmış mülakatlar, önyargıyı ve tutarsızlığı en aza indiren, güvenilirliği en yüksek mülakat türüdür.</div>
+    </div>
+
+    <div class="question" data-correct="C">
+      <h3>15. İş analizi verileri toplanırken, "Analistin, çalışanın görevlerini doğrudan izleyerek" bilgi topladığı, ancak zihinsel işler için çok uygun olmayan yöntem hangisidir? (Ch.4)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q15" value="A"> A) Anket (Questionnaire)</label></li>
+        <li><label><input type="radio" name="q15" value="B"> B) Katılımcı Günlüğü (Participant Diary)</label></li>
+        <li><label><input type="radio" name="q15" value="C"> C) Gözlem (Observation)</label></li>
+        <li><label><input type="radio" name="q15" value="D"> D) Mülakat (Interview)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Gözlem yöntemi, montaj hattı gibi fiziksel işlerde çok etkilidir ancak muhasebe veya yazılım gibi zihinsel süreçleri olan işlerde kullanışlı değildir.</div>
+    </div>
+
+    <div class="question" data-correct="D">
+      <h3>16. Aşağıdakilerden hangisi bir işletmenin dışarıdan (External Sources) aday bulma yöntemlerinden biri DEĞİLDİR? (Ch.5)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q16" value="A"> A) Üniversite Kampüs İşe Alımı</label></li>
+        <li><label><input type="radio" name="q16" value="B"> B) İstihdam Ajansları (Headhunters vb.)</label></li>
+        <li><label><input type="radio" name="q16" value="C"> C) Gazete ve İnternet İlanları</label></li>
+        <li><label><input type="radio" name="q16" value="D"> D) Beceri Envanterleri (Qualifications Inventories)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Beceri Envanterleri (Qualifications Inventories), mevcut içerideki çalışanların verilerini içerdiği için 'İç Kaynak' (Internal Source) olarak sınıflandırılır.</div>
+    </div>
+
+    <div class="question" data-correct="A">
+      <h3>17. Çalışana bir görev öğretilirken "adım adım sorular sorulması, yanıtlanması ve anında geri bildirim verilmesi" esasına dayanan, kendi hızında öğrenme sağlayan metot hangisidir? (Ch.8)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q17" value="A"> A) Programlı Öğrenme (Programmed Instruction)</label></li>
+        <li><label><input type="radio" name="q17" value="B"> B) İş Rotasyonu</label></li>
+        <li><label><input type="radio" name="q17" value="C"> C) Çıraklık Eğitimi (Apprenticeship)</label></li>
+        <li><label><input type="radio" name="q17" value="D"> D) Yönetim Değerlendirme Merkezi</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Programlı Öğrenme (PI), bilgiyi parçalara ayırıp hemen test ederek anında geri bildirim (immediate feedback) veren sistematik bir yöntemdir.</div>
+    </div>
+
+    <div class="question" data-correct="C">
+      <h3>18. Değerlendiricinin, bir çalışanın tek bir olumlu özelliğinden (örneğin diksiyonunun çok iyi olması) etkilenip, çalışana üretkenlik, kalite gibi diğer tüm kriterlerde yüksek puan vermesi hatasıdır: (Ch.9)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q18" value="A"> A) Sıkılık (Strictness) Hatası</label></li>
+        <li><label><input type="radio" name="q18" value="B"> B) Merkezi Eğilim Hatası</label></li>
+        <li><label><input type="radio" name="q18" value="C"> C) Hale Etkisi (Halo Effect)</label></li>
+        <li><label><input type="radio" name="q18" value="D"> D) Belirsiz Standartlar (Unclear Standards)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Hale etkisi (Halo Effect), tek bir özelliğin algıda bir "hale" (ışık halkası) yaratarak diğer objektif değerlendirmeleri kör etmesidir.</div>
+    </div>
+
+    <div class="question" data-correct="B">
+      <h3>19. Hawthorne Çalışmaları (Elton Mayo) HRM tarihindeki hangi dönüm noktasını temsil eder? (Ch.1)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q19" value="A"> A) Sadece verimliliğe ve süre tutmaya odaklanılmasını (Scientific Management)</label></li>
+        <li><label><input type="radio" name="q19" value="B"> B) Odak noktasının çalışan memnuniyeti ve psikolojisine kaymasını</label></li>
+        <li><label><input type="radio" name="q19" value="C"> C) İlk işçi sendikalarının kurulmasını</label></li>
+        <li><label><input type="radio" name="q19" value="D"> D) Stratejik İKY kavramının doğmasını</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Hawthorne çalışmaları, işçi davranışının sadece fiziksel koşullara veya paraya değil, sosyal ilişkilere ve psikolojik faktörlere bağlı olduğunu kanıtlamıştır.</div>
+    </div>
+
+    <div class="question" data-correct="A">
+      <h3>20. Aşağıdakilerden hangisi bir iş tanımının (Job Description) temel bölümlerinden biri DEĞİLDİR? (Ch.4)</h3>
+      <ul class="options">
+        <li><label><input type="radio" name="q20" value="A"> A) Adayın mezun olduğu üniversitenin adı</label></li>
+        <li><label><input type="radio" name="q20" value="B"> B) İş Özeti (Job Summary)</label></li>
+        <li><label><input type="radio" name="q20" value="C"> C) Sorumluluklar ve Görevler (Responsibilities & Duties)</label></li>
+        <li><label><input type="radio" name="q20" value="D"> D) Çalışma Koşulları (Working Conditions)</label></li>
+      </ul>
+      <div class="explanation">Açıklama: Adayın eğitim düzeyi veya mezuniyet şartı İş Şartnamesi'nde (Job Spec) yer alabilir ancak spesifik bir okul adı hiçbir genel iş analizi dökümanında bulunmaz.</div>
+    </div>
+
+    <button type="button" onclick="calculateScore()">Testi Bitir ve Sonuçları Gör</button>
+  </form>
+
+  <div id="result-box"></div>
+</div>
+
+<script>
+  function calculateScore() {
+    let score = 0;
+    const questions = document.querySelectorAll('.question');
+    
+    questions.forEach((q, index) => {
+      const correctAns = q.getAttribute('data-correct');
+      const selected = q.querySelector(`input[type="radio"]:checked`);
+      const options = q.querySelectorAll('label');
+      
+      options.forEach(opt => {
+        opt.classList.remove('correct-ans', 'wrong-ans');
+      });
+      q.querySelector('.explanation').style.display = 'block';
+
+      if (selected) {
+        if (selected.value === correctAns) {
+          score++;
+          selected.parentElement.classList.add('correct-ans');
+        } else {
+          selected.parentElement.classList.add('wrong-ans');
+          const correctInput = q.querySelector(`input[value="${correctAns}"]`);
+          if(correctInput) correctInput.parentElement.classList.add('correct-ans');
+        }
+      } else {
+        const correctInput = q.querySelector(`input[value="${correctAns}"]`);
+        if(correctInput) correctInput.parentElement.classList.add('correct-ans');
+      }
+      
+      q.querySelectorAll('input[type="radio"]').forEach(input => input.disabled = true);
+    });
+
+    const resultBox = document.getElementById('result-box');
+    resultBox.style.display = 'block';
+    
+    if(score >= 15) {
+      resultBox.innerHTML = `🎉 Vize/Final Garanti Gibi! Skorun: 20 üzerinden ${score}`;
+      resultBox.style.backgroundColor = '#e6f4ea';
+      resultBox.style.color = '#3d6b3a';
+    } else if (score >= 10) {
+      resultBox.innerHTML = `👍 Biraz Daha Tekrar İyi Olur. Skorun: 20 üzerinden ${score}`;
+      resultBox.style.backgroundColor = '#fff8e1';
+      resultBox.style.color = '#f29900';
+    } else {
+      resultBox.innerHTML = `📚 Çalışma Notlarına Tekrar Dönmelisin. Skorun: 20 üzerinden ${score}`;
+      resultBox.style.backgroundColor = '#fce8e6';
+      resultBox.style.color = '#d93025';
+    }
+  }
+</script>
+
+</body>
+</html>
